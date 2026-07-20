@@ -123,8 +123,8 @@ Standard agent skills for the Cohub ecosystem. Install with [`npx skills`](https
 |---|---|---|
 | **okp-search** | [talesofai/okp](https://github.com/talesofai/okp) | Search and navigate Open Knowledge Protocol domains |
 | **okp-import** | [talesofai/okp](https://github.com/talesofai/okp) | Clean and import structured knowledge into OKP |
-| **warp-proxy** | [markbang/warp-proxy-skill](https://github.com/markbang/warp-proxy-skill) | One-click Cloudflare WARP proxy for sandboxes (SOCKS5/HTTP `:10800`) |
-| **wgetx** | [markbang/wgetx-skill](https://github.com/markbang/wgetx-skill) | Multi-platform social fetch (Weibo, Zhihu, XHS, Douyin, Bilibili, …) |
+| **warp-proxy** | [markbang/warp-proxy-skill](https://github.com/markbang/warp-proxy-skill) | WARP proxy scripts + skill (SOCKS5/HTTP `:10800`) |
+| **wgetx** | [markbang/wgetx-skill](https://github.com/markbang/wgetx-skill) | Multi-platform social fetch scripts + skill (Weibo, Zhihu, XHS, Douyin, Bilibili, …) |
 
 ### Install (Codex)
 
@@ -164,6 +164,8 @@ npx skills add https://github.com/talesofai/okp --list
 npx skills add https://github.com/markbang/warp-proxy-skill --list
 npx skills add https://github.com/markbang/wgetx-skill --list
 ```
+
+> **Note:** `npx skills add` copies the whole skill directory. For `warp-proxy` and `wgetx`, runnable scripts ship under `skills/<name>/scripts/` and land in `.agents/skills/<name>/scripts/` after install.
 
 ### Post-install runtime deps
 
