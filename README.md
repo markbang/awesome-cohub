@@ -8,8 +8,6 @@
   </a>
 </p>
 
-<br/>
-
 <div align="center">
   <strong>
     A curated list of the Cohub ecosystem — Spaces, Agents, Skills, Works, CLI, and community resources.
