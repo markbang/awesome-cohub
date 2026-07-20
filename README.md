@@ -106,14 +106,76 @@ cohub -s <space-id> spaces files ls
 
 ## Official Skills
 
-Skills teach agents how to operate Cohub well.
+Standard agent skills for the Cohub ecosystem. Install with [`npx skills`](https://github.com/vercel-labs/skills).
 
-| Skill | Description |
-|---|---|
-| **[cohub](https://github.com/talesofai/cohub/tree/main/skills/cohub)** | Spaces, chats, files, saves, labels, search, tasks, scheduled prompts, cross-space run |
-| **[cohub-generate](https://github.com/talesofai/cohub/tree/main/skills/cohub-generate)** | Image, video, and music generation via `cohub generate` |
-| **[cohub-works-share](https://github.com/talesofai/cohub/tree/main/skills/cohub-works-share)** | Publish files, directory sites, or ports as public Works |
-| **[public-share](https://github.com/talesofai/cohub/tree/main/skills/public-share)** | Publish runtime files to `/public` and return direct public URLs |
+### Cohub platform skills
+
+| Skill | Repo / path | Description |
+|---|---|---|
+| **cohub** | [talesofai/cohub](https://github.com/talesofai/cohub/tree/main/skills/cohub) | Spaces, chats, files, saves, labels, search, tasks, scheduled prompts, cross-space run |
+| **cohub-generate** | [talesofai/cohub](https://github.com/talesofai/cohub/tree/main/skills/cohub-generate) | Image, video, and music generation via `cohub generate` |
+| **cohub-works-share** | [talesofai/cohub](https://github.com/talesofai/cohub/tree/main/skills/cohub-works-share) | Publish files, directory sites, or ports as public Works |
+| **public-share** | [talesofai/cohub](https://github.com/talesofai/cohub/tree/main/skills/public-share) | Publish runtime files to `/public` and return direct public URLs |
+
+### Ecosystem skills
+
+| Skill | Repo | Description |
+|---|---|---|
+| **okp-search** | [talesofai/okp](https://github.com/talesofai/okp) | Search and navigate Open Knowledge Protocol domains |
+| **okp-import** | [talesofai/okp](https://github.com/talesofai/okp) | Clean and import structured knowledge into OKP |
+| **warp-proxy** | [markbang/warp-proxy-skill](https://github.com/markbang/warp-proxy-skill) | One-click Cloudflare WARP proxy for sandboxes (SOCKS5/HTTP `:10800`) |
+| **wgetx** | [markbang/wgetx-skill](https://github.com/markbang/wgetx-skill) | Multi-platform social fetch (Weibo, Zhihu, XHS, Douyin, Bilibili, …) |
+
+### Install (Codex)
+
+```bash
+# Open Knowledge Protocol
+npx skills add https://github.com/talesofai/okp \
+  --skill "okp-search" \
+  --agent codex \
+  --yes \
+  --copy
+
+npx skills add https://github.com/talesofai/okp \
+  --skill "okp-import" \
+  --agent codex \
+  --yes \
+  --copy
+
+# WARP proxy
+npx skills add https://github.com/markbang/warp-proxy-skill \
+  --skill "warp-proxy" \
+  --agent codex \
+  --yes \
+  --copy
+
+# Social media fetch
+npx skills add https://github.com/markbang/wgetx-skill \
+  --skill "wgetx" \
+  --agent codex \
+  --yes \
+  --copy
+```
+
+List skills in a package first:
+
+```bash
+npx skills add https://github.com/talesofai/okp --list
+npx skills add https://github.com/markbang/warp-proxy-skill --list
+npx skills add https://github.com/markbang/wgetx-skill --list
+```
+
+### Post-install runtime deps
+
+```bash
+# OKP CLI
+npm install -g @markbangwu/okp
+
+# wgetx Node deps + browser
+# (run inside the wgetx-skill package root / checkout)
+npm install
+npx playwright install chromium
+```
 
 ### Why skills matter
 
@@ -123,6 +185,7 @@ Cohub agents become useful when they know:
 2. how to keep outputs inside Space conventions
 3. how to publish Works and share results cleanly
 4. how to run multimodal generation without inventing fake APIs
+5. how to pull external knowledge / social data / network egress tools on demand
 
 ## Platform Architecture
 
@@ -158,10 +221,18 @@ cohub/
 
 Community and adjacent projects that pair well with Cohub workflows.
 
+### Ecosystem packages
+
+- **[talesofai/okp](https://github.com/talesofai/okp)** - Open Knowledge Protocol for people and AI agents (`okp-search` / `okp-import` skills).
+- **[markbang/warp-proxy-skill](https://github.com/markbang/warp-proxy-skill)** - Cloudflare WARP userspace proxy skill for sandboxes.
+- **[markbang/wgetx-skill](https://github.com/markbang/wgetx-skill)** - Multi-platform social media fetch skill + scripts.
+- **[markbang/cohub-desktop](https://github.com/markbang/cohub-desktop)** - Desktop companion prototype for Cohub.
+
+### Adjacent agent resources
+
 - **[awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills)** - Broad curated catalog of agent skills across tools and ecosystems.
 - **[awesome-design-md](https://github.com/VoltAgent/awesome-design-md)** - Brand `DESIGN.md` systems agents can apply to UI work.
 - **[diffusionstudio/lottie](https://github.com/diffusionstudio/lottie)** - Text-to-Lottie skill pipeline for production motion assets.
-- **[opencli](https://github.com/markbang)** - Local tooling experiments that complement Space automation.
 
 > Have a Cohub-related project? Open a PR. See [Contributing](#contributing).
 
