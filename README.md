@@ -1,15 +1,11 @@
 <p align="center">
   <a href="https://cohub.run">
-    <img src="assets/banner.gif" alt="Awesome Cohub" width="1280" />
+    <img
+      width="1440"
+      alt="Awesome Cohub"
+      src="https://cdn.jsdelivr.net/gh/markbang/awesome-cohub@main/assets/banner.svg"
+    />
   </a>
-</p>
-
-<p align="center">
-  <sub>
-    Source: <a href="assets/banner.svg">banner.svg</a>
-    · Poster: <a href="assets/banner.png">banner.png</a>
-    · Retina: <a href="assets/banner@2x.png">banner@2x.png</a>
-  </sub>
 </p>
 
 <br/>
@@ -180,22 +176,41 @@ Community and adjacent projects that pair well with Cohub workflows.
 
 ## Banner Assets
 
-This repo ships a VoltAgent-style header treatment:
+Primary header is an **animated SVG** — vector, no GIF palette crush, sharp at any zoom.
 
 | File | Purpose |
 |---|---|
-| `assets/banner.svg` | Animated source banner (SMIL) |
-| `assets/banner.gif` | README-friendly animated preview |
-| `assets/banner.png` | Static poster frame |
+| `assets/banner.svg` | **Main** animated vector banner (SMIL) |
+| `assets/banner.png` | Static poster / Open Graph fallback |
+| `assets/banner@2x.png` | Retina still |
+| `assets/banner.gif` | Optional raster fallback |
 | `assets/cohub-mark.svg` | Official-style Cohub mark |
 
-Raw animated SVG:
+### Embed
+
+README uses jsDelivr so the asset is served as real `image/svg+xml`:
 
 ```html
 <a href="https://cohub.run">
-  <img width="1500" alt="awesome-cohub" src="assets/banner.svg" />
+  <img
+    width="1440"
+    alt="Awesome Cohub"
+    src="https://cdn.jsdelivr.net/gh/markbang/awesome-cohub@main/assets/banner.svg"
+  />
 </a>
 ```
+
+Repo-relative:
+
+```html
+<img width="1440" alt="Awesome Cohub" src="assets/banner.svg" />
+```
+
+### Animation note
+
+- SVG is the lossless path (no GIF dither / color banding).
+- SMIL plays when the SVG is opened directly in a browser, or embedded in normal HTML.
+- `github.com` Markdown sometimes freezes SMIL via its image proxy. If the header looks static on GitHub, open the [raw SVG](https://cdn.jsdelivr.net/gh/markbang/awesome-cohub@main/assets/banner.svg) — motion is there. GIF remains as fallback.
 
 ## Contributing
 

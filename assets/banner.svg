@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="480" viewBox="0 0 1440 480" fill="none" role="img" aria-label="Awesome Cohub">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg text-rendering="geometricPrecision" shape-rendering="geometricPrecision" xmlns="http://www.w3.org/2000/svg" width="1440" height="480" viewBox="0 0 1440 480" fill="none" role="img" aria-label="Awesome Cohub">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1440" y2="480" gradientUnits="userSpaceOnUse">
       <stop stop-color="#0A0B10"/>
