@@ -1,11 +1,15 @@
 <p align="center">
   <a href="https://cohub.run">
-    <img src="assets/banner.gif" alt="Awesome Cohub" width="1000" />
+    <img src="assets/banner.gif" alt="Awesome Cohub" width="1280" />
   </a>
 </p>
 
 <p align="center">
-  <a href="assets/banner.svg"><img src="assets/cohub-mark.svg" width="28" height="28" alt="Cohub" /></a>
+  <sub>
+    Source: <a href="assets/banner.svg">banner.svg</a>
+    · Poster: <a href="assets/banner.png">banner.png</a>
+    · Retina: <a href="assets/banner@2x.png">banner@2x.png</a>
+  </sub>
 </p>
 
 <br/>
