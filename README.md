@@ -124,7 +124,7 @@ Standard agent skills for the Cohub ecosystem. Install with [`npx skills`](https
 | **okp-search** | [talesofai/okp](https://github.com/talesofai/okp) | Search and navigate Open Knowledge Protocol domains |
 | **okp-import** | [talesofai/okp](https://github.com/talesofai/okp) | Clean and import structured knowledge into OKP |
 | **warp-proxy** | [markbang/warp-proxy-skill](https://github.com/markbang/warp-proxy-skill) | WARP proxy scripts + skill (SOCKS5/HTTP `:10800`) |
-| **wgetx** | [markbang/wgetx-skill](https://github.com/markbang/wgetx-skill) | Multi-platform social fetch scripts + skill (Weibo, Zhihu, XHS, Douyin, Bilibili, …) |
+| **wgetx** | [markbang/wgetx-skill](https://github.com/markbang/wgetx-skill) | Pure ESM `.mjs` social fetch skill (no npm for default scrapers) |
 
 ### Install (Codex)
 
@@ -173,10 +173,9 @@ npx skills add https://github.com/markbang/wgetx-skill --list
 # OKP CLI
 npm install -g @markbangwu/okp
 
-# wgetx Node deps + browser
-# (run inside the wgetx-skill package root / checkout)
-npm install
-npx playwright install chromium
+# wgetx: pure ESM .mjs — no npm for default HTTP scrapers
+# optional browser flows only:
+#   cd .agents/skills/wgetx && npm init -y && npm i playwright && npx playwright install chromium
 ```
 
 ### Why skills matter
