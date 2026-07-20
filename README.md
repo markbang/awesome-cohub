@@ -125,6 +125,8 @@ Standard agent skills for the Cohub ecosystem. Install with [`npx skills`](https
 | **okp-import** | [talesofai/okp](https://github.com/talesofai/okp) | Clean and import structured knowledge into OKP |
 | **warp-proxy** | [markbang/warp-proxy-skill](https://github.com/markbang/warp-proxy-skill) | WARP proxy scripts + skill (SOCKS5/HTTP `:10800`) |
 | **wgetx** | [markbang/wgetx-skill](https://github.com/markbang/wgetx-skill) | Pure ESM `.mjs` social fetch skill (no npm for default scrapers) |
+| **cohub-work-kit** | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | Scaffold Cohub Works (Vite + React + TanStack Query template bundled) |
+| **cohub-work-publish** | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | Build + publish directory Works with minimal scopes |
 
 ### Install (Codex)
 
@@ -155,6 +157,19 @@ npx skills add https://github.com/markbang/wgetx-skill \
   --agent codex \
   --yes \
   --copy
+
+# Cohub Work Kit (template + publish)
+npx skills add https://github.com/markbang/cohub-work-skill \
+  --skill "cohub-work-kit" \
+  --agent codex \
+  --yes \
+  --copy
+
+npx skills add https://github.com/markbang/cohub-work-skill \
+  --skill "cohub-work-publish" \
+  --agent codex \
+  --yes \
+  --copy
 ```
 
 List skills in a package first:
@@ -163,6 +178,7 @@ List skills in a package first:
 npx skills add https://github.com/talesofai/okp --list
 npx skills add https://github.com/markbang/warp-proxy-skill --list
 npx skills add https://github.com/markbang/wgetx-skill --list
+npx skills add https://github.com/markbang/cohub-work-skill --list
 ```
 
 > **Note:** `npx skills add` copies the whole skill directory. For `warp-proxy` and `wgetx`, runnable scripts ship under `skills/<name>/scripts/` and land in `.agents/skills/<name>/scripts/` after install.
@@ -227,6 +243,7 @@ Community and adjacent projects that pair well with Cohub workflows.
 - **[talesofai/okp](https://github.com/talesofai/okp)** - Open Knowledge Protocol for people and AI agents (`okp-search` / `okp-import` skills).
 - **[markbang/warp-proxy-skill](https://github.com/markbang/warp-proxy-skill)** - Cloudflare WARP userspace proxy skill for sandboxes.
 - **[markbang/wgetx-skill](https://github.com/markbang/wgetx-skill)** - Multi-platform social media fetch skill + scripts.
+- **[markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill)** - Work Kit template + publish skills for Cohub Works.
 - **[markbang/cohub-desktop](https://github.com/markbang/cohub-desktop)** - Desktop companion prototype for Cohub.
 
 ### Adjacent agent resources
