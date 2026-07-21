@@ -157,7 +157,7 @@ npx skills add https://github.com/kjx-talesofai/claude-skill-fandom-cli \
   --yes \
   --copy
 
-# Fandom HTTP API (wikis-mod)
+# Wikis HTTP API
 npx skills add https://github.com/markbang/wikis-skill \
   --skill "wikis" \
   --agent codex \
