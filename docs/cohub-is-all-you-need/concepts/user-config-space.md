@@ -1,7 +1,6 @@
 ---
 id: cohub.concept.user-config-space
 title: User config Space
-title_zh: 用户 config Space
 type: concept
 related: [cohub.concept.home-space, cohub.concept.skill, cohub.bp.user-config-and-rules]
 sources:
@@ -12,7 +11,7 @@ sources:
   - apps/api/src/templates/sandbox-pod.ts
 ---
 
-# User config Space · 用户 config Space
+# User config Space
 
 A **config Space** is the owner’s personal agent-configuration Space.
 
@@ -80,3 +79,7 @@ Edit in Space name "config"
 
 - Playbook: `cohub.bp.user-config-and-rules`
 - Home: `cohub.concept.home-space` (different object)
+
+---
+
+[中文](../zh/concepts/user-config-space.md)

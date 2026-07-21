@@ -6,7 +6,7 @@
 
 这篇不是功能说明书，而是 **用法地图**：怎么建立心智、怎么选能力面、怎么交付，而不和产品较劲。
 
-配套：[场景矩阵](../matrix.md) · [实践卡](../playbooks/) · [English](./en.md)
+配套：[场景矩阵](./matrix.md) · [实践卡](./playbooks/) · [English](../manifesto.md)
 
 官方：[产品文档](https://cohub.run/docs) · [Changelog](https://cohub.run/changelog)
 
@@ -200,7 +200,7 @@ runtime/             # 可选：agent 路由、来源 registry、协议
 动作：`run`（沙箱 shell）或 `prompt`（Chat/session）
 
 实践：一文件一 hook；FS 匹配忽略 `.cohub/**` 防自激；turn 用 `sessionIds` / `sources` 过滤。  
-实践卡：[space-hooks-automation](../playbooks/space-hooks-automation.md) · 文档：[space-hooks.md](https://github.com/talesofai/cohub/blob/main/docs/space-hooks.md)
+实践卡：[space-hooks-automation](./playbooks/space-hooks-automation.md) · 文档：[space-hooks.md](https://github.com/talesofai/cohub/blob/main/docs/space-hooks.md)
 
 
 ### 3.11 Work 商业化
@@ -211,7 +211,7 @@ runtime/             # 可选：agent 路由、来源 registry、协议
 - 结账回流状态由宿主负责；Work 负责展示门槛/余额并触发购买/扣费
 - 商品 key 版本化；不要原地改价；积分扣费使用 `operationId` 保证幂等
 
-实践卡：[work-commerce](../playbooks/work-commerce.md) · 指南：[work-commerce-guide.md](https://github.com/talesofai/cohub/blob/main/docs/work-commerce-guide.md)
+实践卡：[work-commerce](./playbooks/work-commerce.md) · 指南：[work-commerce-guide.md](https://github.com/talesofai/cohub/blob/main/docs/work-commerce-guide.md)
 
 
 ### 3.12 Home、Sessions 收件箱、Mod、`/skill:`
@@ -221,7 +221,7 @@ runtime/             # 可选：agent 路由、来源 registry、协议
 - **Mods** — 把共享 Space 挂到 `/mods/<slug>`；写入在源 Space，消费方只读。
 - **`/skill:name`** — Composer 斜杠发现平台/Mod/用户/项目技能（发送时展开）。
 
-实践卡：[home-and-sessions-inbox](../playbooks/home-and-sessions-inbox.md) · [mod-mount](../playbooks/mod-mount.md) · [skill-slash-discovery](../playbooks/skill-slash-discovery.md)
+实践卡：[home-and-sessions-inbox](./playbooks/home-and-sessions-inbox.md) · [mod-mount](./playbooks/mod-mount.md) · [skill-slash-discovery](./playbooks/skill-slash-discovery.md)
 
 
 ### 3.13 用户 config Space（不是 Home）
@@ -239,26 +239,26 @@ Cohub 有一类特殊的 **owner 配置 Space**：当 **`space.name === "config"
 **Home 不是 config**——Home 存档不会发布 user config。  
 **Mod 不是 user config**——Mod 共享团队/基座能力；config Space 是个人默认。
 
-实践卡：[user-config-and-rules](../playbooks/user-config-and-rules.md) · 概念：[user-config-space](../concepts/user-config-space.md) · 速查：[config-layers](../cheatsheets/config-layers.md)
+实践卡：[user-config-and-rules](./playbooks/user-config-and-rules.md) · 概念：[user-config-space](./concepts/user-config-space.md) · 速查：[config-layers](./cheatsheets/config-layers.md)
 
 
 ### 3.14 Platform config Space
 
 由 **`PLATFORM_SPACE_ID`** 钉死。对其存档会发布白名单到 `/configs/platform`，并刷新平台 skill/prompt/model 缓存。沙箱只读挂载 `/configs/platform/.agents`。
 
-实践卡：[platform-config](../playbooks/platform-config.md)
+实践卡：[platform-config](./playbooks/platform-config.md)
 
 ### 3.15 Skill 目录与 `/skill:` 缓存
 
 `GET /api/skills` 合并 platform → mod → user → project。Redis 目录 TTL **24h**；user/platform 存档会**立即 SET**；project/mod key 带 revision 哈希。`/skill:name` 在进 Agent 前由服务端展开。
 
-实践卡：[skill-catalog-cache](../playbooks/skill-catalog-cache.md) · 概念：[skill-discovery](../concepts/skill-discovery.md)
+实践卡：[skill-catalog-cache](./playbooks/skill-catalog-cache.md) · 概念：[skill-discovery](./concepts/skill-discovery.md)
 
 ### 3.16 Execution token 身份
 
 Agent 工具注入 **`COHUB_EXECUTION_TOKEN`**（签名 execution grant，**24h**，绑定 space/turn）。CLI 环境变量会覆盖 Logto。API 先验 execution grant 再验用户会话。**仅当 actor === space owner 时，user skills 进入 system prompt。**
 
-实践卡：[execution-token-identity](../playbooks/execution-token-identity.md) · 概念：[execution-token](../concepts/execution-token.md)
+实践卡：[execution-token-identity](./playbooks/execution-token-identity.md) · 概念：[execution-token](./concepts/execution-token.md)
 
 
 ### 3.17 搜索分层（与 hyper-search）
@@ -272,7 +272,7 @@ Cohub **有产品内搜索**（Space/Chat/回合/标签等，`/api/search`）。
 node /configs/user/.agents/skills/hyper-search/scripts/cli.js search "query"
 ```
 
-实践卡：[search-layers](../playbooks/search-layers.md)
+实践卡：[search-layers](./playbooks/search-layers.md)
 
 ## 4. 给建造者（人）
 
@@ -324,7 +324,7 @@ node /configs/user/.agents/skills/hyper-search/scripts/cli.js search "query"
 
 ## 6. 反模式
 
-展开卡片见 [anti-patterns/](../anti-patterns/)。
+展开卡片见 [anti-patterns/](./anti-patterns/)。
 
 | 反模式 | 伤害 | 正确做法 |
 |--------|------|----------|
@@ -367,9 +367,9 @@ cohub -s "$COHUB_SPACE_ID" works publish <slug> \
 | 层 | 现在 | 之后 |
 |----|------|------|
 | 主文 | 本文件（v0.2） | 随产品迭代修订 |
-| [矩阵](../matrix.md) | 场景索引 | 保持 ID 稳定 |
-| [实践卡](../playbooks/) | 24 张实践卡 | 随产品增长追加新场景 |
-| [概念卡](../concepts/) | 核心名词 | 少而精 |
+| [矩阵](./matrix.md) | 场景索引 | 保持 ID 稳定 |
+| [实践卡](./playbooks/) | 24 张实践卡 | 随产品增长追加新场景 |
+| [概念卡](./concepts/) | 核心名词 | 少而精 |
 | 知识库模式 | §3.9 + 实践卡 | 随真实 Space 演进 |
 
 ---
@@ -382,7 +382,7 @@ cohub -s "$COHUB_SPACE_ID" works publish <slug> \
 Space（做）→ Agent+Skills（干）→ Checkpoint（留）→ Work（享）→ Fork（再来）
 ```
 
-具体选哪条路，看 [场景矩阵](../matrix.md) 与 [实践卡](../playbooks/)。
+具体选哪条路，看 [场景矩阵](./matrix.md) 与 [实践卡](./playbooks/)。
 
 ---
 

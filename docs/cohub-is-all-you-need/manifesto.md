@@ -6,7 +6,7 @@
 
 This manifesto is not a feature catalog. It is a **practice map**: how to think, choose surfaces, and ship work without fighting the product.
 
-Companion: [Scenario matrix](../matrix.md) · [Playbooks](../playbooks/) · [中文版](./zh.md)
+Companion: [Scenario matrix](./matrix.md) · [Playbooks](./playbooks/) · [中文](./zh/manifesto.md)
 
 Official: [Product docs](https://cohub.run/docs) · [Changelog](https://cohub.run/changelog)
 
@@ -200,7 +200,7 @@ Events: `space.fs.changed` · `space.workspace.ready` · `session.turn.finalized
 Actions: `run` (sandbox shell) or `prompt` (Chat/session)
 
 Practice: one file per hook; FS matching ignores `.cohub/**` to prevent loops; filter turns with `sessionIds` / `sources`.  
-Playbook: [space-hooks-automation](../playbooks/space-hooks-automation.md) · Doc: [space-hooks.md](https://github.com/talesofai/cohub/blob/main/docs/space-hooks.md)
+Playbook: [space-hooks-automation](./playbooks/space-hooks-automation.md) · Doc: [space-hooks.md](https://github.com/talesofai/cohub/blob/main/docs/space-hooks.md)
 
 
 ### 3.11 Work commerce
@@ -211,7 +211,7 @@ One-time products on a **published Work**: feature unlocks and consumable credit
 - Host owns checkout redirect state; Work displays gates/balances and triggers purchase/consume
 - Version product keys; never mutate price in place; `operationId` for idempotent credit consumes
 
-Playbook: [work-commerce](../playbooks/work-commerce.md) · Guide: [work-commerce-guide.md](https://github.com/talesofai/cohub/blob/main/docs/work-commerce-guide.md)
+Playbook: [work-commerce](./playbooks/work-commerce.md) · Guide: [work-commerce-guide.md](https://github.com/talesofai/cohub/blob/main/docs/work-commerce-guide.md)
 
 
 ### 3.12 Home, Sessions inbox, Mods, `/skill:`
@@ -221,7 +221,7 @@ Playbook: [work-commerce](../playbooks/work-commerce.md) · Guide: [work-commerc
 - **Mods** — mount shared Spaces at `/mods/<slug>`; source owns writes; consumers read.
 - **`/skill:name`** — composer slash discovery across platform / mod / user / project skills (expand on send).
 
-Playbooks: [home-and-sessions-inbox](../playbooks/home-and-sessions-inbox.md) · [mod-mount](../playbooks/mod-mount.md) · [skill-slash-discovery](../playbooks/skill-slash-discovery.md)
+Playbooks: [home-and-sessions-inbox](./playbooks/home-and-sessions-inbox.md) · [mod-mount](./playbooks/mod-mount.md) · [skill-slash-discovery](./playbooks/skill-slash-discovery.md)
 
 
 ### 3.13 User config Space (not Home)
@@ -239,26 +239,26 @@ Effects:
 **Home Space is not config.** Home does not publish user config on Save.  
 **Mods are not user config.** Mods share team/base tooling; config Space is personal defaults.
 
-Playbook: [user-config-and-rules](../playbooks/user-config-and-rules.md) · Concept: [user-config-space](../concepts/user-config-space.md) · Cheat: [config-layers](../cheatsheets/config-layers.md)
+Playbook: [user-config-and-rules](./playbooks/user-config-and-rules.md) · Concept: [user-config-space](./concepts/user-config-space.md) · Cheat: [config-layers](./cheatsheets/config-layers.md)
 
 
 ### 3.14 Platform config Space
 
 Pinned by **`PLATFORM_SPACE_ID`**. Saving it publishes whitelist → `/configs/platform` and refreshes platform skill/prompt/model caches. Mounted read-only as `/configs/platform/.agents` in every sandbox.
 
-Playbook: [platform-config](../playbooks/platform-config.md)
+Playbook: [platform-config](./playbooks/platform-config.md)
 
 ### 3.15 Skill catalog & `/skill:` cache
 
 `GET /api/skills` merges platform → mod → user → project. Redis catalogs TTL **24h**; user/platform Save **SETs** cache immediately; project/mod keys hash revisions. `/skill:name` expands server-side before the agent runs.
 
-Playbook: [skill-catalog-cache](../playbooks/skill-catalog-cache.md) · Concept: [skill-discovery](../concepts/skill-discovery.md)
+Playbook: [skill-catalog-cache](./playbooks/skill-catalog-cache.md) · Concept: [skill-discovery](./concepts/skill-discovery.md)
 
 ### 3.16 Execution token identity
 
 Agent tools inject **`COHUB_EXECUTION_TOKEN`** (signed execution grant, **24h TTL**, space/turn scoped). CLI env overrides Logto. API verifies execution grants before user sessions. **User skills enter the system prompt only if actor === space owner.**
 
-Playbook: [execution-token-identity](../playbooks/execution-token-identity.md) · Concept: [execution-token](../concepts/execution-token.md)
+Playbook: [execution-token-identity](./playbooks/execution-token-identity.md) · Concept: [execution-token](./concepts/execution-token.md)
 
 
 ### 3.17 Search layers (and hyper-search)
@@ -272,7 +272,7 @@ For web search, install **[hyper-search](https://github.com/kjx-talesofai/claude
 node /configs/user/.agents/skills/hyper-search/scripts/cli.js search "query"
 ```
 
-Playbook: [search-layers](../playbooks/search-layers.md)
+Playbook: [search-layers](./playbooks/search-layers.md)
 
 ## 4. Builder playbook (human)
 
@@ -324,7 +324,7 @@ Playbook: [search-layers](../playbooks/search-layers.md)
 
 ## 6. Anti-patterns
 
-See also expanded cards in [anti-patterns/](../anti-patterns/).
+See also expanded cards in [anti-patterns/](./anti-patterns/).
 
 | Anti-pattern | Why it hurts | Do this instead |
 |--------------|--------------|-----------------|
@@ -367,9 +367,9 @@ Always start smaller than you think.
 | Layer | Now | Later |
 |-------|-----|-------|
 | Manifesto | this file (v0.2) | revise with product changes |
-| [Matrix](../matrix.md) | scenario index | keep IDs stable |
-| [Playbooks](../playbooks/) | 24 playbooks | add new scenarios as product grows |
-| [Concepts](../concepts/) | core nouns | add sparingly |
+| [Matrix](./matrix.md) | scenario index | keep IDs stable |
+| [Playbooks](./playbooks/) | 24 playbooks | add new scenarios as product grows |
+| [Concepts](./concepts/) | core nouns | add sparingly |
 | Knowledge-base pattern | §3.9 + playbook | evolve with real Spaces |
 
 ---
@@ -382,7 +382,7 @@ Always start smaller than you think.
 Space (work) → Agent+Skills (do) → Checkpoint (keep) → Work (share) → Fork (again)
 ```
 
-Use the [scenario matrix](../matrix.md) and [playbooks](../playbooks/) to pick the next concrete path.
+Use the [scenario matrix](./matrix.md) and [playbooks](./playbooks/) to pick the next concrete path.
 
 ---
 

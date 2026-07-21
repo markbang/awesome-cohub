@@ -1,7 +1,6 @@
 ---
 id: cohub.concept.commerce
 title: Work commerce
-title_zh: Work 商业化
 type: concept
 ---
 
@@ -25,3 +24,7 @@ Only inside published Work shell: `cohub.context()`, `cohub.auth.*`, `cohub.work
 ## See also
 - Guide: https://github.com/talesofai/cohub/blob/main/docs/work-commerce-guide.md
 - Playbook: `cohub.bp.work-commerce`
+
+---
+
+[中文](../zh/concepts/commerce.md)

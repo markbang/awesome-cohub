@@ -10,47 +10,54 @@
   </a>
 </p>
 
+
 Best-practice guide for **builders** and **agents** using Cohub.
 
 > Space is the unit of work. Checkpoint is the unit of time. Work is the unit of sharing.
 
-Grounded in product docs, changelog, and monorepo paths (config publish, skills Redis, execution grants).
+**Language:** English (default) · [中文](./zh/README.md)
+
+Grounded in product docs ([/docs](https://cohub.run/docs)), changelog ([/changelog](https://cohub.run/changelog)), and monorepo behavior.
 
 ## Map
 
 | Path | What |
 |------|------|
-| [manifesto/](./manifesto/) | EN/ZH manifesto |
+| [manifesto.md](./manifesto.md) | Manifesto |
 | [matrix.md](./matrix.md) | Scenario matrix |
-| [playbooks/](./playbooks/) | Executable bilingual playbooks |
-| [concepts/](./concepts/) | Deep concept cards |
+| [playbooks/](./playbooks/) | Practice cards |
+| [concepts/](./concepts/) | Concept cards |
 | [anti-patterns/](./anti-patterns/) | Failure modes |
 | [cheatsheets/](./cheatsheets/) | CLI · scopes · config layers |
+| [assets/](./assets/) | Banner SVG/PNG |
 
-## Status
+## How to read
 
-| Piece | Status |
-|-------|--------|
-| Manifesto | **v0.5** |
-| Matrix | **v0.7** |
-| Playbooks | **v0.8** (24) |
-| Concepts | **v0.8** (14) |
-| Anti-patterns | **v0.5** (11) |
-| Cheatsheets | **v0.6** (3) |
+1. [Manifesto](./manifesto.md)  
+2. [Matrix](./matrix.md) → pick a scenario  
+3. Open the [playbook](./playbooks/)  
+4. Use [concepts](./concepts/) / [anti-patterns](./anti-patterns/) / [cheatsheets](./cheatsheets/) as needed  
 
-### Latest deep dives
+## Layout (i18n)
 
-- [Search layers + hyper-search](./playbooks/search-layers.md) — product vs wiki vs web; recommend [hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search) in config Space
-1. [Platform config](./playbooks/platform-config.md) · [concept](./concepts/platform-config.md)
-2. [Skill catalog cache](./playbooks/skill-catalog-cache.md) · [discovery](./concepts/skill-discovery.md)
-3. [Execution token identity](./playbooks/execution-token-identity.md) · [concept](./concepts/execution-token.md)
-4. [User config Space](./playbooks/user-config-and-rules.md) · [concept](./concepts/user-config-space.md)
+```text
+docs/cohub-is-all-you-need/     # English (default)
+  manifesto.md
+  matrix.md
+  playbooks/ concepts/ anti-patterns/ cheatsheets/
+  assets/
+  zh/                          # Chinese
+    README.md
+    manifesto.md
+    matrix.md
+    playbooks/ concepts/ anti-patterns/ cheatsheets/
+```
 
 ## Related
 
-- https://cohub.run/docs · https://cohub.run/changelog  
+- https://cohub.run · https://cohub.run/docs · https://cohub.run/changelog  
 - https://github.com/talesofai/cohub · https://github.com/markbang/awesome-cohub  
 - Web search: [hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search)  
 - Feishu: [lark-lite](https://github.com/kjx-talesofai/claude-skill-lark-lite)  
-- Wikis API: [wikis-skill](https://github.com/markbang/wikis-skill) (`wikis`)(https://github.com/markbang/wikis-skill)  
+- Wikis API: [wikis-skill](https://github.com/markbang/wikis-skill) (`wikis`)  
 - Fandom CLI: [fandom-cli](https://github.com/kjx-talesofai/claude-skill-fandom-cli)  

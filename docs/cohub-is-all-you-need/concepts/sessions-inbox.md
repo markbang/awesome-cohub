@@ -1,7 +1,6 @@
 ---
 id: cohub.concept.sessions-inbox
 title: Sessions inbox
-title_zh: Sessions 收件箱
 type: concept
 ---
 
@@ -17,3 +16,7 @@ Cross-space Chat radar at `/sessions`.
 ## See also
 - Playbook: `cohub.bp.home-and-sessions-inbox`
 - https://cohub.run/docs/learn/product-map
+
+---
+
+[中文](../zh/concepts/sessions-inbox.md)

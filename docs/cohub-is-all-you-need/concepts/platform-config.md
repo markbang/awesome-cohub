@@ -1,7 +1,6 @@
 ---
 id: cohub.concept.platform-config
 title: Platform config
-title_zh: 平台配置（platform config）
 type: concept
 related: [cohub.concept.user-config-space, cohub.bp.platform-config]
 sources:
@@ -11,7 +10,7 @@ sources:
   - apps/api/src/templates/sandbox-pod.ts
 ---
 
-# Platform config · 平台配置
+# Platform config
 
 **Platform config** is the account-global *operator* configuration layer shared by all Spaces in an environment.
 
@@ -55,3 +54,7 @@ Every sandbox mounts (read-only):
 ## See also
 - Playbook: `cohub.bp.platform-config`
 - Cheat: `cohub.cheat.config-layers`
+
+---
+
+[中文](../zh/concepts/platform-config.md)

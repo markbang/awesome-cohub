@@ -39,3 +39,7 @@ cohub -s <spaceId> works ls --json
 - Product docs: https://cohub.run/docs
 - Changelog: https://cohub.run/changelog
 - CLI guide: https://cohub.run/docs/developers/cli
+
+---
+
+[中文](../zh/cheatsheets/cli-and-ui.md)

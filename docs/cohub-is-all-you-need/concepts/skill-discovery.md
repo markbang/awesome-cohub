@@ -1,7 +1,6 @@
 ---
 id: cohub.concept.skill-discovery
 title: Skill discovery & cache
-title_zh: Skill 发现与缓存
 type: concept
 related: [cohub.bp.skill-slash-discovery, cohub.bp.skill-catalog-cache, cohub.concept.skill]
 sources:
@@ -11,7 +10,7 @@ sources:
   - apps/worker/src/skills-cache.ts
 ---
 
-# Skill discovery & cache · Skill 发现与缓存
+# Skill discovery & cache
 
 ## Catalog API
 
@@ -53,3 +52,7 @@ Composer input starting with `/skill:name` is expanded server-side (`expandSkill
 - After editing **project** skills in `/workspace`, slash catalog may lag until revision/TTL refresh — prefer Save or expect cache key change via revision.
 - After editing **user/platform** skills, **Save the config Space** to republish files **and** refresh Redis.
 - Agent runtime also walks skill dirs from disk for system prompt listings (parallel path to API catalog).
+
+---
+
+[中文](../zh/concepts/skill-discovery.md)

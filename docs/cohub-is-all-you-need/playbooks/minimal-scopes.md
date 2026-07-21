@@ -1,7 +1,6 @@
 ---
 id: cohub.bp.minimal-scopes
 title: Ship Works with least privilege
-title_zh: 最小权限发布 Work
 type: playbook
 audience: [builder, agent]
 features: [work, scopes, sdk]
@@ -12,14 +11,13 @@ sources:
   - https://github.com/talesofai/cohub/blob/main/docs/works-guide.md
 ---
 
-# Ship Works with least privilege · 最小权限发布 Work
+# Ship Works with least privilege
 
-## When · 何时用
+## When
 
-EN: Every Work publish — especially anything using the Cohub SDK.
-中文：每次发布 Work，尤其是会调用 Cohub SDK 的产品。
+Every Work publish — especially anything using the Cohub SDK.
 
-## Two layers · 两层权限
+## Two layers
 
 | Layer | Meaning | Examples |
 |-------|---------|----------|
@@ -29,9 +27,8 @@ EN: Every Work publish — especially anything using the Cohub SDK.
 Static brochure HTML often needs **no** runtime scopes.  
 Interactive products request viewer scopes **on gesture**, never on page load.
 
-## Steps · 步骤
+## Steps
 
-### EN
 1. List features the Work actually implements (read files? list sessions? prompt? generate? commerce?).
 2. Map each feature to the smallest scope. Delete “nice to have”.
 3. Publish with only those scopes.
@@ -39,15 +36,7 @@ Interactive products request viewer scopes **on gesture**, never on page load.
 5. Re-test as a fresh viewer account when possible.
 6. Document scopes in Space README next to the Work URL.
 
-### 中文
-1. 列出 Work **真实**功能（读文件？列会话？prompt？生成？商业化？）。
-2. 映射到最小权限；删掉“以后可能要”。
-3. 只带这些权限发布。
-4. 授权必须出现在点击之后，并说明原因。
-5. 有条件用干净观众账号复测。
-6. 在 README 写清 URL + 权限清单。
-
-## Heuristics · 经验
+## Heuristics
 
 | Work type | Start with |
 |-----------|------------|
@@ -58,14 +47,18 @@ Interactive products request viewer scopes **on gesture**, never on page load.
 | Button generates media | viewer `generation.create` |
 | Cross-account lists | viewer `user.*` (sensitive — justify hard) |
 
-## Done when · 完成标准
+## Done when
 
 - [ ] Every granted scope has a UI feature
 - [ ] No auth-on-load
 - [ ] Static demos don’t carry prompt/generation scopes
 
-## Avoid · 别这样做
+## Avoid
 
 - “Full access just in case”
 - Copying another Work’s scope set blindly
 - Using `user.*` for vanity metrics on a public demo
+
+---
+
+[中文](../zh/playbooks/minimal-scopes.md)

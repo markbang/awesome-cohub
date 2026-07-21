@@ -1,7 +1,6 @@
 ---
 id: cohub.concept.space
 title: Space
-title_zh: Space（空间）
 type: concept
 ---
 
@@ -20,3 +19,7 @@ UI: Space · CLI/API: space id + workspace filesystem
 ## See also
 - Playbook: `cohub.bp.scratch-to-checkpoint`
 - Docs: https://cohub.run/docs/workspace/spaces
+
+---
+
+[中文](../zh/concepts/space.md)

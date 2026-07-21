@@ -73,3 +73,7 @@ Members still get platform + mod + project skills.
 4. Logto user session
 
 Execution grant TTL **24h**; not refreshable like OIDC.
+
+---
+
+[中文](../zh/cheatsheets/config-layers.md)

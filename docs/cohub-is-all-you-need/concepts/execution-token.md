@@ -1,7 +1,6 @@
 ---
 id: cohub.concept.execution-token
 title: Execution token
-title_zh: Execution token（执行令牌）
 type: concept
 related: [cohub.bp.execution-token-identity, cohub.concept.user-config-space]
 sources:
@@ -12,7 +11,7 @@ sources:
   - apps/api/src/auth.ts / index.ts
 ---
 
-# Execution token · 执行令牌
+# Execution token
 
 An **execution token** is a short-lived, signed **execution grant** (JWT-like HS256) that authorizes tool/CLI calls **as a specific actor in a specific Space/turn**, without using a full interactive Logto browser session.
 
@@ -47,3 +46,7 @@ An **execution token** is a short-lived, signed **execution grant** (JWT-like HS
 
 ## See also
 - Playbook: `cohub.bp.execution-token-identity`
+
+---
+
+[中文](../zh/concepts/execution-token.md)

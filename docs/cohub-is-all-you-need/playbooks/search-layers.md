@@ -1,7 +1,6 @@
 ---
 id: cohub.bp.search-layers
 title: Three search layers (product vs workspace vs web)
-title_zh: 三层搜索（产品内 / 工作区 / 网页）
 type: playbook
 audience: [builder, agent]
 features: [search, skill, config-space]
@@ -12,9 +11,9 @@ sources:
   - https://github.com/kjx-talesofai/claude-skill-hyper-search
 ---
 
-# Three search layers · 三层搜索
+# Three search layers
 
-## Claim · 主张
+## Claim
 
 Cohub is **not** “searchless”. It has **different search layers**. Mixing them causes bad Agent behavior.
 
@@ -27,7 +26,7 @@ Cohub is **not** “searchless”. It has **different search layers**. Mixing th
 Do **not** say “Cohub has no search.”  
 Say: **no built-in web/RAG search**; product resource search exists; web search is a **config-space skill**.
 
-## Recommended web skill · 推荐网页搜索 skill
+## Recommended web skill
 
 **[hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search)** (`kjx-talesofai/claude-skill-hyper-search`)
 
@@ -93,7 +92,7 @@ Store API keys in **Space env / secret surfaces**, not in committed SKILL files.
 | Other Spaces (published user config) | `node /configs/user/.agents/skills/hyper-search/scripts/cli.js …` |
 | Project-local only (not account-wide) | `node .agents/skills/hyper-search/scripts/cli.js …` in that project |
 
-## When to use which layer · 何时用哪一层
+## When to use which layer
 
 | Need | Use |
 |------|-----|
@@ -102,22 +101,26 @@ Store API keys in **Space env / secret surfaces**, not in committed SKILL files.
 | Fresh public facts / links / news | **hyper-search** (web skill) |
 | Social platform dumps | **wgetx** (not web SERP) |
 
-## Product search (built-in) · 产品内搜索
+## Product search (built-in)
 
 - Endpoint: `/api/search`
 - Types include space / session / turn / label (query params)
 - Requires appropriate visibility; not a replacement for web search
 
-## Done when · 完成标准
+## Done when
 
 - [ ] Team wording distinguishes the three layers
 - [ ] `hyper-search` lives in **config Space** and is Saved/published
 - [ ] Owner sandboxes can run CLI under `/configs/user/.agents/skills/hyper-search`
 - [ ] Agents default to hyper-search for “search the web”, not inventing curl scrapers
 
-## Avoid · 别这样做
+## Avoid
 
 - Claiming Cohub has zero search
 - Putting web search only in a random project Space (won’t follow you)
 - Using product `/api/search` to “google” the internet
 - Hardcoding one flaky HTML scraper as the org standard when hyper-search exists
+
+---
+
+[中文](../zh/playbooks/search-layers.md)

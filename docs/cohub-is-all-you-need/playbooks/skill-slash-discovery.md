@@ -1,7 +1,6 @@
 ---
 id: cohub.bp.skill-slash-discovery
 title: Discover and invoke skills with /skill:
-title_zh: 用 /skill: 发现并调用技能
 type: playbook
 audience: [builder, agent]
 features: [skill, chat, mod]
@@ -12,20 +11,19 @@ sources:
   - https://cohub.run/changelog#v1.97
 ---
 
-# Discover and invoke skills with /skill: · 用 /skill: 发现并调用技能
+# Discover and invoke skills with /skill:
 
-## When · 何时用
+## When
 
-EN: You need the Agent to load a **named capability** with its instructions/assets, not a vague “try to scrape/publish”.
-中文：要让 Agent 加载**具名能力**（含说明与资产），而不是含糊地说「去采集/发布一下」。
+You need the Agent to load a **named capability** with its instructions/assets, not a vague “try to scrape/publish”.
 
-## Outcome · 结果
+## Outcome
 
 - Skills visible from composer `/` menu
 - Invocation via `/skill:name` expands on send (platform discovery; Redis-backed catalog)
 - Agent executes against skill files that were actually installed/mounted
 
-## Where skills come from · 来源
+## Where skills come from
 
 | Source | Typical location / mechanism |
 |--------|-------------------------------|
@@ -36,9 +34,8 @@ EN: You need the Agent to load a **named capability** with its instructions/asse
 
 `npx skills add … --copy` installs into agent/project skill dirs so composer/CLI can see them.
 
-## Steps · 步骤
+## Steps
 
-### EN
 1. Install or mount only mission skills (see `agent-with-skills` + `mod-mount`).
 2. In Chat composer type `/` → browse categories → pick a skill, or type `/skill:wgetx`.
 3. Confirm assets exist (scripts/template **inside** the skill folder). Missing assets ⇒ bad package layout.
@@ -46,15 +43,7 @@ EN: You need the Agent to load a **named capability** with its instructions/asse
 5. For headless ops, CLI/SDK may list skills (`skills.list` / `cohub` skill workflows) — still keep files as source of truth.
 6. If a skill doesn’t appear: remount mod / reinstall / restart sandbox / check name slug.
 
-### 中文
-1. 只装/挂本任务 skill。
-2. Composer 输入 `/` 浏览，或直接 `/skill:name`。
-3. 确认 skill 目录内有脚本/模板；缺资产多半是包装错（资源没打进 skill）。
-4. skill 标记后再给硬约束任务。
-5. 无头场景用 CLI/SDK 列表能力；仍以文件为准。
-6. 看不见时：重装、重挂 mod、重启沙箱、核对 name。
-
-## Authoring reminder · 编写提醒
+## Authoring reminder
 
 Skill packages for `npx skills add` must look like:
 
@@ -66,18 +55,22 @@ skills/<name>/
 
 Root-level `scripts/` next to `skills/` will **not** install.
 
-## Done when · 完成标准
+## Done when
 
 - [ ] `/skill:name` resolves in composer (or explicit path fallback works)
 - [ ] Smoke action succeeded using skill assets
 - [ ] No mystery duplicate skill names
 
-## Example: web search on every Space · 示例
+## Example: web search on every Space
 
 Account-wide web search → put **hyper-search** in config Space (see [search-layers](./search-layers.md)), not only in one project.
 
-## Avoid · 别这样做
+## Avoid
 
 - Pasting entire SKILL.md into every prompt instead of invoking it
 - Relying on skill names that never shipped to the Space
 - Dumping 30 skills then wondering why the Agent flails
+
+---
+
+[中文](../zh/playbooks/skill-slash-discovery.md)

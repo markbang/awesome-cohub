@@ -1,7 +1,6 @@
 ---
 id: cohub.bp.platform-config
 title: Operate the platform config Space
-title_zh: 运营 platform config Space
 type: playbook
 audience: [builder, agent]
 features: [platform-config, skills, prompts, models]
@@ -13,23 +12,21 @@ sources:
   - apps/worker/src/skills-cache.ts
 ---
 
-# Operate the platform config Space · 运营 platform config Space
+# Operate the platform config Space
 
-## When · 何时用
+## When
 
-EN: You run a Cohub deployment (or internal platform Space) and need **environment-wide** default skills, prompts, models, or agent rules.
-中文：你在运营 Cohub 部署/内部平台 Space，需要**环境级**默认 skills、prompts、models 或 agent 规则。
+You run a Cohub deployment (or internal platform Space) and need **environment-wide** default skills, prompts, models, or agent rules.
 
-## Outcome · 结果
+## Outcome
 
 - The Space id equals `PLATFORM_SPACE_ID`
 - After Save, files exist under platform config root and sandboxes see `/configs/platform/.agents`
 - Platform skills show up in `/skill:` / `GET /api/skills` with scope `platform`
 - Redis skills cache for platform is refreshed on publish
 
-## Steps · 步骤
+## Steps
 
-### EN
 1. Confirm env: `PLATFORM_SPACE_ID`, `PLATFORM_CONFIG_ROOT` (default often `/configs`).
 2. Open that Space only for **platform defaults** — not customer project work.
 3. Layout:
@@ -49,22 +46,18 @@ EN: You run a Cohub deployment (or internal platform Space) and need **environme
    ```
 6. Change management: treat like production config — review diffs, Save notes, avoid drive-by experiments.
 
-### 中文
-1. 确认 `PLATFORM_SPACE_ID` / `PLATFORM_CONFIG_ROOT`。
-2. 该 Space 只放**平台默认**，不做业务项目。
-3. 目录结构同上。
-4. **存档**触发平台发布与缓存刷新。
-5. 在普通项目沙箱检查 `/configs/platform/.agents` 与 `/skill:`。
-6. 按生产配置管理：看 diff、写 Save 备注。
-
-## Done when · 完成标准
+## Done when
 
 - [ ] Save on platform Space publishes without warnings (or warnings understood)
 - [ ] New sandbox sees platform skills/rules
 - [ ] Project workspace can still override same-named skills
 
-## Avoid · 别这样做
+## Avoid
 
 - Putting one customer’s kit into platform config
 - Confusing platform Space with user `name=config` Space
 - Editing `/configs/platform` inside a sandbox (read-only projection)
+
+---
+
+[中文](../zh/playbooks/platform-config.md)

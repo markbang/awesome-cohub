@@ -1,7 +1,6 @@
 ---
 id: cohub.concept.skill
 title: Skill & Mod
-title_zh: Skill 与 Mod
 type: concept
 ---
 
@@ -27,3 +26,7 @@ Mount another Space read-only (typically `/mods/<slug>`) to bring shared skills/
 ## Practice
 - Install skills per mission
 - Prefer Mods for shared bases; prefer skills for operational procedures
+
+---
+
+[中文](../zh/concepts/skill-and-mod.md)

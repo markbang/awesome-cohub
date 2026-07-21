@@ -40,3 +40,7 @@ Common direct grants (see current works guide for the live list):
 ## See also
 - Playbook: `cohub.bp.minimal-scopes`
 - Works guide: https://github.com/talesofai/cohub/blob/main/docs/works-guide.md
+
+---
+
+[中文](../zh/cheatsheets/scopes.md)

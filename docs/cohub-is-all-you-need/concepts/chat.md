@@ -1,11 +1,10 @@
 ---
 id: cohub.concept.chat
 title: Chat (Session)
-title_zh: Chat / Session（会话）
 type: concept
 ---
 
-# Chat · Session
+# Chat
 
 A **Chat** is a conversation context inside a Space. CLI/API name: **session**.
 
@@ -16,3 +15,7 @@ A **Chat** is a conversation context inside a Space. CLI/API name: **session**.
 
 ## See also
 - https://cohub.run/docs/workspace/chats
+
+---
+
+[中文](../zh/concepts/chat.md)

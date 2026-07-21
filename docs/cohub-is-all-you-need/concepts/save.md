@@ -1,11 +1,10 @@
 ---
 id: cohub.concept.save
 title: Save (Checkpoint)
-title_zh: Save / Checkpoint（存档）
 type: concept
 ---
 
-# Save · Checkpoint
+# Save
 
 A **Save** is an immutable workspace snapshot. CLI/API name: **checkpoint**.
 
@@ -16,3 +15,7 @@ A **Save** is an immutable workspace snapshot. CLI/API name: **checkpoint**.
 
 ## See also
 - https://cohub.run/docs/workspace/saves
+
+---
+
+[中文](../zh/concepts/save.md)

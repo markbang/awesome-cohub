@@ -1,7 +1,6 @@
 ---
 id: cohub.concept.hooks
 title: Space Hooks
-title_zh: Space Hooks（空间钩子）
 type: concept
 ---
 
@@ -20,3 +19,7 @@ Actions: `run` (sandbox shell) or `prompt` (session)
 ## See also
 - https://github.com/talesofai/cohub/blob/main/docs/space-hooks.md
 - Playbook: `cohub.bp.space-hooks-automation`
+
+---
+
+[中文](../zh/concepts/hooks.md)

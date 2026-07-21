@@ -1,7 +1,6 @@
 ---
 id: cohub.bp.work-commerce
 title: Sell features and credits inside a Work
-title_zh: 在 Work 内售卖功能与积分
 type: playbook
 audience: [builder, agent]
 features: [work, commerce, sdk, scopes]
@@ -12,14 +11,13 @@ sources:
   - https://cohub.run/docs/create/works
 ---
 
-# Sell features and credits inside a Work · 在 Work 内售卖功能与积分
+# Sell features and credits inside a Work
 
-## When · 何时用
+## When
 
-EN: A **published Work** should gate a capability or meter usage with one-time products (feature unlock and/or credit packs).
-中文：已发布 Work 要用一次性商品做能力门槛或计量（功能解锁和/或积分包）。
+A **published Work** should gate a capability or meter usage with one-time products (feature unlock and/or credit packs).
 
-## Outcome · 结果
+## Outcome
 
 - Products + benefits configured at Space billing scope (`business = space`)
 - Work hardcodes `productKey` / `benefitKey`
@@ -27,22 +25,21 @@ EN: A **published Work** should gate a capability or meter usage with one-time p
   - feature: `load → gate → purchase → return → load`
   - credits: `load → balance → consume → (insufficient? purchase) → return`
 
-## Preconditions · 前置
+## Preconditions
 
 1. Work is published (not raw static URL / local preview).
 2. You develop commerce against the **public Work URL**.
 3. Checkout state is owned by the **outer host** (sign-in, top-level navigation, return), not primarily by the iframe.
 
-## Benefit types · 权益类型
+## Benefit types
 
 | Type | Role |
 |------|------|
 | `feature` | Access gate via entitlement metadata (`enabled`, limits) |
 | `credits` | Consumable balance auto-granted on paid order (`cohub_credit`) |
 
-## Steps · 步骤
+## Steps
 
-### EN
 1. Design keys as **versioned** product ids (`pro_unlock_v2`, `credit_pack_050`). Prices are immutable after create — change price by new product + bind same benefit + archive old.
 2. In the Work (published runtime):
    ```ts
@@ -60,31 +57,26 @@ EN: A **published Work** should gate a capability or meter usage with one-time p
 6. For expensive side effects: Work only triggers; agent/script consumes credits, writes result file; Work reads file (don’t parse chat turns as ledger).
 7. Keep scopes minimal — commerce UI still does not justify blanket prompt/generation scopes.
 
-### 中文
-1. 商品 key **版本化**；价格创建后不可改，改价 = 新商品 + 绑定同一 benefit + 归档旧商品。
-2. 仅在已发布 Work 壳内调用 `createCohubClient` / `context()` / `work.commerce.*`。
-3. 功能门槛：未解锁 → 用户点击 → `purchase` → 宿主结账回流 → 再读权益/订单。
-4. 积分：余额足够则 `consumeCredits`（`operationId` 幂等）；不足则引导购买。
-5. 回流后 `getCheckoutState` / `getOrder`。
-6. 重副作用放脚本：Work 触发 → agent 扣费并写结果文件 → Work 读文件。
-7. 权限仍然最小集。
-
-## CLI helper · CLI
+## CLI helper
 
 ```bash
 cohub works commerce credits consume --work-id <work-id> --amount 100
 ```
 
-## Done when · 完成标准
+## Done when
 
 - [ ] Feature and/or credit loop verified on **public Work URL**
 - [ ] Purchase return restores coherent UI state
 - [ ] `operationId` used for consumes
 - [ ] Side effects persisted as Space files when metered work is heavy
 
-## Avoid · 别这样做
+## Avoid
 
 - Testing commerce only on local static previews (`context()` is null)
 - Letting the iframe own pending checkout as source of truth
 - Mutating product price in place
 - Double-charge retries without idempotency keys
+
+---
+
+[中文](../zh/playbooks/work-commerce.md)

@@ -1,7 +1,6 @@
 ---
 id: cohub.bp.multimodal-pipeline
 title: Multimodal generation into Space assets
-title_zh: 多模态生成并落入 Space 资产
 type: playbook
 audience: [builder, agent]
 features: [generation, files, chat, task]
@@ -13,22 +12,20 @@ sources:
   - https://cohub.run/changelog#v1.95
 ---
 
-# Multimodal generation into Space assets · 多模态生成并落入 Space 资产
+# Multimodal generation into Space assets
 
-## When · 何时用
+## When
 
-EN: You need image / video / music (or related multimodal outputs) as project files, not only as chat decorations.
-中文：需要把图/视频/音乐等产物变成项目文件，而不只是聊天里的装饰。
+You need image / video / music (or related multimodal outputs) as project files, not only as chat decorations.
 
-## Outcome · 结果
+## Outcome
 
 - Generation task completes (Task run visible if async)
 - Outputs saved under a clear Space path (`data/gen/…`, `assets/…`)
 - Good results referenced from README/wiki; milestone Saved
 
-## Steps · 步骤
+## Steps
 
-### EN
 1. State the asset contract: path, filename pattern, aspect/duration constraints, license/safety notes.
 2. Generate via UI composer/tools **or** CLI skill/platform flow (`cohub generate` / `cohub-generate` skill when available):
    ```bash
@@ -39,22 +36,18 @@ EN: You need image / video / music (or related multimodal outputs) as project fi
 5. Preview; iterate with tight diffs (“same composition, less glow”).
 6. Save when the set is demo-ready. Watch credit/discount behavior on paid models.
 
-### 中文
-1. 先约定资产契约：路径、命名、尺寸/时长、安全与授权备注。
-2. UI 或 CLI 生成（有 `cohub generate` / `cohub-generate` 就用）。
-3. 结果立刻**落盘到工作区**；聊天里的临时链接不当素材库。
-4. 在文件旁记录来源（模型、提示摘要、task id）。
-5. 预览后小步迭代。
-6. 演示级结果再存档；关注积分/折扣与失败计费语义。
-
-## Done when · 完成标准
+## Done when
 
 - [ ] Files exist on stable paths
 - [ ] Prompt/model provenance recoverable
 - [ ] Task failure modes understood (retry vs content refusal)
 
-## Avoid · 别这样做
+## Avoid
 
 - Leaving the only copy inside Chat attachments history
 - Regenerating from scratch instead of editing constraints
 - Committing secrets or customer PII into prompts written to git-tracked files without need
+
+---
+
+[中文](../zh/playbooks/multimodal-pipeline.md)

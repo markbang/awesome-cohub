@@ -1,7 +1,6 @@
 ---
 id: cohub.concept.home-space
 title: Home Space
-title_zh: Home Space
 type: concept
 ---
 
@@ -25,3 +24,7 @@ Default personal Space many accounts land in (`slug=home` when bootstrapped).
 - Config: `name === "config"`, Save **publishes** owner agent config to `/configs/user`
 
 See [user-config-space.md](./user-config-space.md).
+
+---
+
+[中文](../zh/concepts/home-space.md)

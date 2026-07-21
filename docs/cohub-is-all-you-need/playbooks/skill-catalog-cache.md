@@ -1,7 +1,6 @@
 ---
 id: cohub.bp.skill-catalog-cache
 title: Debug skill slash catalog and cache
-title_zh: 排查 /skill: 目录与缓存
 type: playbook
 audience: [builder, agent]
 features: [skill, cache, slash]
@@ -13,14 +12,13 @@ sources:
   - apps/worker/src/skills-cache.ts
 ---
 
-# Debug skill slash catalog and cache · 排查 /skill: 目录与缓存
+# Debug skill slash catalog and cache
 
-## When · 何时用
+## When
 
-EN: `/skill:foo` missing, stale, wrong body, or works in Agent disk read but not in slash menu (or the reverse).
-中文：`/skill:foo` 找不到、内容旧、或磁盘能读但斜杠菜单没有（或相反）。
+`/skill:foo` missing, stale, wrong body, or works in Agent disk read but not in slash menu (or the reverse).
 
-## Decision tree · 决策树
+## Decision tree
 
 ### 1) Is the skill in the right layer?
 | Intent | Put files in | Then |
@@ -55,15 +53,19 @@ Empty without auth+space is expected.
 Slash/API may list user skills for the **authenticated user**.  
 Agent **prompt injection of user skills** only when `actorUserId === space.ownerUserId` (see execution-identity playbook). Collaborators can see different behavior.
 
-## Done when · 完成标准
+## Done when
 
 - [ ] Skill appears in `GET /api/skills?spaceId=`
 - [ ] `/skill:name` expands without Unknown skill
 - [ ] Agent can `read` the sandbox path from the catalog entry
 - [ ] You know which layer owns the file
 
-## Avoid · 别这样做
+## Avoid
 
 - Editing only Redis mental model without fixing source files
 - Expecting Home project skills to become user-scope without config publish
 - Duplicate names across layers without intending override
+
+---
+
+[中文](../zh/playbooks/skill-catalog-cache.md)

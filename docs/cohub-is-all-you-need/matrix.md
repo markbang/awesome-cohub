@@ -1,10 +1,8 @@
-# Scenario Matrix · 场景矩阵
+# Scenario Matrix
 
 Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs**.
 
-按「你想做什么」定位能力、技能与文档。Playbook 卡片稍后补齐；现在先用主文 + 官方文档 + skill 安装命令落地。
-
-## Legend · 图例
+## Legend
 
 | Column | Meaning |
 |--------|---------|
@@ -18,36 +16,36 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 
 ## Matrix
 
-| ID | Scenario · 场景 | Surfaces · 能力面 | Skills · 技能 | Depth |
+| ID | Scenario | Surfaces | Skills | Depth |
 |----|-----------------|-------------------|---------------|-------|
-| `cohub.bp.scratch-to-checkpoint` | From blank Space to first Save · 从空白 Space 到第一次存档 | Space, Files, Chat, Checkpoint | `cohub` | starter |
-| `cohub.bp.agent-with-skills` | Equip an agent and do real work · 给 agent 装 skill 干活 | Space, Sandbox, Skills, CLI | `cohub`, any ecosystem skill | starter |
-| `cohub.bp.cross-space-context` | Pull context from another Space · 引用另一个 Space 的上下文 | `@space`, Sessions, Files | `cohub` | intermediate |
-| `cohub.bp.multimodal-pipeline` | Generate image/video/music into Space assets · 多模态生成并落盘 | Generation, Files | `cohub-generate` | starter |
-| `cohub.bp.publish-static-work` | Publish a static HTML/site Work · 发布静态 Work | Works (`file`/`directory`) | `cohub-works-share`, `public-share` | starter |
-| `cohub.bp.work-kit-product` | Build a real Work product with runtime · 用 Work Kit 做真产品 | Works, SDK, Scopes | `cohub-work-kit`, `cohub-work-publish` | intermediate |
-| `cohub.bp.minimal-scopes` | Ship with least privilege · 最小权限发布 | workScopes, viewerScopes | `cohub-work-publish` | intermediate |
-| `cohub.bp.scheduled-loop` | Recurring / outer-loop automation · 定时与 outer loop | Scheduled prompts, Tasks, Files-as-state | `cohub` | advanced |
-| `cohub.bp.space-knowledge-base` | Build a compounding wiki in a Space · 在 Space 里建复利知识库 | Files (`raw/` / `wiki/` / log), Sessions, Skills | `cohub` | intermediate |
-| `cohub.bp.social-research` | Social fetch → write into wiki · 社媒采集写入知识库 | Sandbox, Files, wiki pages | `wgetx` | intermediate |
-| `cohub.bp.egress-proxy` | Exit via Cloudflare WARP · 沙箱走 WARP 出口 | Sandbox network | `warp-proxy` | starter |
-| `cohub.bp.channel-ops` | Operate from Discord / Feishu / WeChat · 外部频道入口 | Channels, Gateway | `cohub` | intermediate |
-| `cohub.bp.fork-and-proposal` | Fork a Save, explore, propose back · Fork 存档并回馈 | Checkpoint, Fork, Proposal | `cohub` | intermediate |
-| `cohub.bp.space-hooks-automation` | Event automation with Space Hooks · 用 Space Hooks 做事件自动化 | Hooks, Tasks, Files | `cohub` | advanced |
-| `cohub.bp.mod-mount` | Mount Mods for shared tooling · 挂载 Mod 共享工具 | Mods, Skills, Sandbox | `cohub` | intermediate |
-| `cohub.bp.skill-slash-discovery` | Discover skills with `/skill:` · 用 `/skill:` 发现技能 | Chat, Skills, Mods | `cohub` | starter |
-| `cohub.bp.home-and-sessions-inbox` | Home Space & Sessions inbox · Home 与会话收件箱 | Home, `/sessions` | `cohub` | starter |
-| `cohub.bp.work-commerce` | Sell features/credits in a Work · Work 内售卖功能与积分 | Works, Billing, SDK | `cohub-work-kit` | advanced |
-| `cohub.bp.user-config-and-rules` | Own agent defaults in config Space · 用 config Space 管个人 Agent 默认 | config Space, User Rules, `/configs/user` | `cohub` | intermediate |
-| `cohub.bp.platform-config` | Operate platform config Space · 运营平台配置 Space | platform config, skills | `cohub` | advanced |
-| `cohub.bp.skill-catalog-cache` | Debug `/skill:` catalog & cache · 排查技能目录缓存 | Skills API, Redis | `cohub` | advanced |
-| `cohub.bp.execution-token-identity` | Execution token vs login identity · 执行令牌与登录身份 | Auth, sandbox env | `cohub` | advanced |
-| `cohub.bp.search-layers` | Product vs workspace vs web search · 三层搜索；网页用 hyper-search | Search API, config skills | `hyper-search` | starter |
-| `cohub.bp.port-preview` | Live port demo (dev, not default prod) · 端口预览（开发向） | Works (`port`), Sandbox ports | `cohub-works-share` | intermediate |
+| `cohub.bp.scratch-to-checkpoint` | From blank Space to first Save | Space, Files, Chat, Checkpoint | `cohub` | starter |
+| `cohub.bp.agent-with-skills` | Equip an agent and do real work | Space, Sandbox, Skills, CLI | `cohub`, any ecosystem skill | starter |
+| `cohub.bp.cross-space-context` | Pull context from another Space | `@space`, Sessions, Files | `cohub` | intermediate |
+| `cohub.bp.multimodal-pipeline` | Generate image/video/music into Space assets | Generation, Files | `cohub-generate` | starter |
+| `cohub.bp.publish-static-work` | Publish a static HTML/site Work | Works (`file`/`directory`) | `cohub-works-share`, `public-share` | starter |
+| `cohub.bp.work-kit-product` | Build a real Work product with runtime | Works, SDK, Scopes | `cohub-work-kit`, `cohub-work-publish` | intermediate |
+| `cohub.bp.minimal-scopes` | Ship with least privilege | workScopes, viewerScopes | `cohub-work-publish` | intermediate |
+| `cohub.bp.scheduled-loop` | Recurring / outer-loop automation | Scheduled prompts, Tasks, Files-as-state | `cohub` | advanced |
+| `cohub.bp.space-knowledge-base` | Build a compounding wiki in a Space | Files (`raw/` / `wiki/` / log), Sessions, Skills | `cohub` | intermediate |
+| `cohub.bp.social-research` | Social fetch → write into wiki | Sandbox, Files, wiki pages | `wgetx` | intermediate |
+| `cohub.bp.egress-proxy` | Exit via Cloudflare WARP | Sandbox network | `warp-proxy` | starter |
+| `cohub.bp.channel-ops` | Operate from Discord / Feishu / WeChat | Channels, Gateway | `cohub` | intermediate |
+| `cohub.bp.fork-and-proposal` | Fork a Save, explore, propose back | Checkpoint, Fork, Proposal | `cohub` | intermediate |
+| `cohub.bp.space-hooks-automation` | Event automation with Space Hooks | Hooks, Tasks, Files | `cohub` | advanced |
+| `cohub.bp.mod-mount` | Mount Mods for shared tooling | Mods, Skills, Sandbox | `cohub` | intermediate |
+| `cohub.bp.skill-slash-discovery` | Discover skills with `/skill:` | Chat, Skills, Mods | `cohub` | starter |
+| `cohub.bp.home-and-sessions-inbox` | Home Space & Sessions inbox | Home, `/sessions` | `cohub` | starter |
+| `cohub.bp.work-commerce` | Sell features/credits in a Work | Works, Billing, SDK | `cohub-work-kit` | advanced |
+| `cohub.bp.user-config-and-rules` | Own agent defaults in config Space | config Space, User Rules, `/configs/user` | `cohub` | intermediate |
+| `cohub.bp.platform-config` | Operate platform config Space | platform config, skills | `cohub` | advanced |
+| `cohub.bp.skill-catalog-cache` | Debug `/skill:` catalog & cache | Skills API, Redis | `cohub` | advanced |
+| `cohub.bp.execution-token-identity` | Execution token vs login identity | Auth, sandbox env | `cohub` | advanced |
+| `cohub.bp.search-layers` | Product vs workspace vs web search | Search API, config skills | `hyper-search` | starter |
+| `cohub.bp.port-preview` | Live port demo (dev, not default prod) | Works (`port`), Sandbox ports | `cohub-works-share` | intermediate |
 
 ---
 
-## Decision shortcuts · 决策捷径
+## Decision shortcuts
 
 ### EN
 
@@ -79,7 +77,7 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 
 ---
 
-## Knowledge base pattern · 知识库模式（Space 内）
+## Knowledge base pattern
 
 Inspired by long-running context Spaces (wiki compound interest, not archive dumps):
 
@@ -105,7 +103,7 @@ See manifesto § knowledge base for the full practice.
 
 ---
 
-## Install map · 安装速查
+## Install map
 
 ```bash
 # Web search (put in config Space, then Save)
@@ -129,7 +127,7 @@ npx skills add https://github.com/markbang/cohub-work-skill \
 
 ---
 
-## Official docs · 官方文档
+## Official docs
 
 | Topic | Doc |
 |-------|-----|
@@ -141,13 +139,17 @@ npx skills add https://github.com/markbang/cohub-work-skill \
 
 ---
 
-## Playbooks · 实践卡
+## Playbooks
 
 All matrix scenario IDs now have cards under [playbooks/](./playbooks/).
 
-## Maintain · 维护
+## Maintain
 
 1. Keep IDs stable; add new rows rather than renumbering
 2. Align behavior notes with https://cohub.run/docs and https://cohub.run/changelog
 3. Prefer updating a card over growing the manifesto forever
 4. Anti-patterns live under [anti-patterns/](./anti-patterns/)
+
+---
+
+[中文](./zh/matrix.md)

@@ -1,7 +1,6 @@
 ---
 id: cohub.concept.work
 title: Work
-title_zh: Work（作品）
 type: concept
 ---
 
@@ -20,3 +19,7 @@ URL: `/:username/:spaceSlug/w/:workSlug`
 ## See also
 - https://cohub.run/docs/create/works
 - Playbooks: `cohub.bp.publish-static-work`, `cohub.bp.work-kit-product`
+
+---
+
+[中文](../zh/concepts/work.md)
