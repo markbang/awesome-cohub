@@ -11,37 +11,38 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | Surfaces | Cohub product surfaces |
 | Skills | Installable agent skills (when relevant) |
 | Depth | starter / intermediate / advanced |
+| Role | builder / operator / agent-author (primary audience) |
 
 ---
 
 ## Matrix
 
-| ID | Scenario | Surfaces | Skills | Depth |
-|----|-----------------|-------------------|---------------|-------|
-| `cohub.bp.scratch-to-checkpoint` | From blank Space to first Save | Space, Files, Chat, Checkpoint | `cohub` | starter |
-| `cohub.bp.agent-with-skills` | Equip an agent and do real work | Space, Sandbox, Skills, CLI | `cohub`, any ecosystem skill | starter |
-| `cohub.bp.cross-space-context` | Pull context from another Space | `@space`, Sessions, Files | `cohub` | intermediate |
-| `cohub.bp.multimodal-pipeline` | Generate image/video/music into Space assets | Generation, Files | `cohub-generate` | starter |
-| `cohub.bp.publish-static-work` | Publish a static HTML/site Work | Works (`file`/`directory`) | `cohub-works-share`, `public-share` | starter |
-| `cohub.bp.work-kit-product` | Build a real Work product with runtime | Works, SDK, Scopes | `cohub-work-kit`, `cohub-work-publish` | intermediate |
-| `cohub.bp.minimal-scopes` | Ship with least privilege | workScopes, viewerScopes | `cohub-work-publish` | intermediate |
-| `cohub.bp.scheduled-loop` | Recurring / outer-loop automation | Scheduled prompts, Tasks, Files-as-state | `cohub` | advanced |
-| `cohub.bp.space-knowledge-base` | Build a compounding wiki in a Space | Files (`raw/` / `wiki/` / log), Sessions, Skills | `cohub` | intermediate |
-| `cohub.bp.social-research` | Social fetch → write into wiki | Sandbox, Files, wiki pages | `wgetx` | intermediate |
-| `cohub.bp.egress-proxy` | Exit via Cloudflare WARP | Sandbox network | `warp-proxy` | starter |
-| `cohub.bp.channel-ops` | Operate from Discord / Feishu / WeChat | Channels, Gateway | `cohub` | intermediate |
-| `cohub.bp.fork-and-proposal` | Fork a Save, explore, propose back | Checkpoint, Fork, Proposal | `cohub` | intermediate |
-| `cohub.bp.space-hooks-automation` | Event automation with Space Hooks | Hooks, Tasks, Files | `cohub` | advanced |
-| `cohub.bp.mod-mount` | Mount Mods for shared tooling | Mods, Skills, Sandbox | `cohub` | intermediate |
-| `cohub.bp.skill-slash-discovery` | Discover skills with `/skill:` | Chat, Skills, Mods | `cohub` | starter |
-| `cohub.bp.home-and-sessions-inbox` | Home Space & Sessions inbox | Home, `/sessions` | `cohub` | starter |
-| `cohub.bp.work-commerce` | Sell features/credits in a Work | Works, Billing, SDK | `cohub-work-kit` | advanced |
-| `cohub.bp.user-config-and-rules` | Own agent defaults in config Space | config Space, User Rules, `/configs/user` | `cohub` | intermediate |
-| `cohub.bp.platform-config` | Operate platform config Space | platform config, skills | `cohub` | advanced |
-| `cohub.bp.skill-catalog-cache` | Debug `/skill:` catalog & cache | Skills API, Redis | `cohub` | advanced |
-| `cohub.bp.execution-token-identity` | Execution token vs login identity | Auth, sandbox env | `cohub` | advanced |
-| `cohub.bp.search-layers` | Product vs workspace vs web search | Search API, config skills | `hyper-search` | starter |
-| `cohub.bp.port-preview` | Live port demo (dev, not default prod) | Works (`port`), Sandbox ports | `cohub-works-share` | intermediate |
+| ID | Scenario | Surfaces | Skills | Depth | Role |
+|----|-----------------|-------------------|---------------|-------|------|
+| `cohub.bp.scratch-to-checkpoint` | From blank Space to first Save | Space, Files, Chat, Checkpoint | `cohub` | starter | builder |
+| `cohub.bp.agent-with-skills` | Equip an agent and do real work | Space, Sandbox, Skills, CLI | `cohub`, any ecosystem skill | starter | builder, agent-author |
+| `cohub.bp.cross-space-context` | Pull context from another Space | `@space`, Sessions, Files | `cohub` | intermediate | builder, operator |
+| `cohub.bp.multimodal-pipeline` | Generate image/video/music into Space assets | Generation, Files | `cohub-generate` | starter | builder |
+| `cohub.bp.publish-static-work` | Publish a static HTML/site Work | Works (`file`/`directory`) | `cohub-works-share`, `public-share` | starter | builder |
+| `cohub.bp.work-kit-product` | Build a real Work product with runtime | Works, SDK, Scopes | `cohub-work-kit`, `cohub-work-publish` | intermediate | builder |
+| `cohub.bp.minimal-scopes` | Ship with least privilege | workScopes, viewerScopes | `cohub-work-publish` | intermediate | builder |
+| `cohub.bp.scheduled-loop` | Recurring / outer-loop automation | Scheduled prompts, Tasks, Files-as-state | `cohub` | advanced | operator, agent-author |
+| `cohub.bp.space-knowledge-base` | Build a compounding wiki in a Space | Files (`raw/` / `wiki/` / log), Sessions, Skills | `cohub` | intermediate | builder, agent-author |
+| `cohub.bp.social-research` | Social fetch → write into wiki | Sandbox, Files, wiki pages | `wgetx` | intermediate | builder |
+| `cohub.bp.egress-proxy` | Exit via Cloudflare WARP | Sandbox network | `warp-proxy` | starter | builder, operator |
+| `cohub.bp.channel-ops` | Operate from Discord / Feishu / WeChat | Channels, Gateway | `cohub` | intermediate | operator |
+| `cohub.bp.fork-and-proposal` | Fork a Save, explore, propose back | Checkpoint, Fork, Proposal | `cohub` | intermediate | builder |
+| `cohub.bp.space-hooks-automation` | Event automation with Space Hooks | Hooks, Tasks, Files | `cohub` | advanced | operator, agent-author |
+| `cohub.bp.mod-mount` | Mount Mods for shared tooling | Mods, Skills, Sandbox | `cohub` | intermediate | builder, operator |
+| `cohub.bp.skill-slash-discovery` | Discover skills with `/skill:` | Chat, Skills, Mods | `cohub` | starter | builder, agent-author |
+| `cohub.bp.home-and-sessions-inbox` | Home Space & Sessions inbox | Home, `/sessions` | `cohub` | starter | builder |
+| `cohub.bp.work-commerce` | Sell features/credits in a Work | Works, Billing, SDK | `cohub-work-kit` | advanced | builder |
+| `cohub.bp.user-config-and-rules` | Own agent defaults in config Space | config Space, User Rules, `/configs/user` | `cohub` | intermediate | builder, agent-author |
+| `cohub.bp.platform-config` | Operate platform config Space | platform config, skills | `cohub` | advanced | operator |
+| `cohub.bp.skill-catalog-cache` | Debug `/skill:` catalog & cache | Skills API, Redis | `cohub` | advanced | operator, agent-author |
+| `cohub.bp.execution-token-identity` | Execution token vs login identity | Auth, sandbox env | `cohub` | advanced | builder, agent-author |
+| `cohub.bp.search-layers` | Product vs workspace vs web search | Search API, config skills | `hyper-search` | starter | builder, agent-author |
+| `cohub.bp.port-preview` | Live port demo (dev, not default prod) | Works (`port`), Sandbox ports | `cohub-works-share` | intermediate | builder |
 
 ---
 
@@ -76,6 +77,19 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | 事件驱动自动化 | **Space Hooks**（`.cohub/hooks`） | 永远靠人肉轮询 Chat |
 
 ---
+
+
+
+## Cookbooks (end-to-end)
+
+| Cookbook | Outcome | Depth | Role |
+|----------|---------|-------|------|
+| [weekend-static-work](./cookbooks/weekend-static-work.md) | Public directory Work | starter | builder |
+| [config-skills-setup](./cookbooks/config-skills-setup.md) | Published user skills + rules | starter | builder, operator |
+| [research-agent-wiki](./cookbooks/research-agent-wiki.md) | Compounding knowledge Space | intermediate | builder, agent-author |
+| [paid-work-minimum](./cookbooks/paid-work-minimum.md) | Commerce-ready Work shell | advanced | builder |
+
+Also: [learning-path](./learning-path.md) · [AGENT_BRIEF](./AGENT_BRIEF.md) · [FAQ](./cheatsheets/faq-and-troubleshooting.md)
 
 ## Knowledge base pattern
 

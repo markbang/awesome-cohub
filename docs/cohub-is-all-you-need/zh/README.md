@@ -19,24 +19,37 @@
 
 依据官方文档（[/docs](https://cohub.run/docs)）、[changelog](https://cohub.run/changelog) 与 monorepo 实现整理。
 
+## 从这里开始
+
+1. **[学习路径](./learning-path.md)** — 30 分钟 / 半天 / 进阶  
+2. **[AGENT_BRIEF.md](./AGENT_BRIEF.md)** — Agent 一页简报  
+3. **[Cookbooks](./cookbooks/)** — 端到端旅程  
+4. **[FAQ 与排障](./cheatsheets/faq-and-troubleshooting.md)** — 卡住时  
+
 ## 目录
 
 | 路径 | 内容 |
 |------|------|
+| [learning-path.md](./learning-path.md) | 学习路径 |
+| [AGENT_BRIEF.md](./AGENT_BRIEF.md) | Agent 一页简报 |
+| [glossary.md](./glossary.md) | 术语表 |
+| [cookbooks/](./cookbooks/) | 端到端旅程 |
 | [manifesto.md](./manifesto.md) | 宣言 / 主文 |
-| [matrix.md](./matrix.md) | 场景矩阵 |
-| [playbooks/](./playbooks/) | 实践卡 |
-| [concepts/](./concepts/) | 概念卡 |
-| [anti-patterns/](./anti-patterns/) | 反模式 |
-| [cheatsheets/](./cheatsheets/) | 速查表 |
-| [assets](../assets/) | 头图资源（与英文共享） |
+| [matrix.md](./matrix.md) | 场景矩阵（含角色） |
+| [playbooks/](./playbooks/) | 实践卡（24） |
+| [concepts/](./concepts/) | 概念卡（18） |
+| [anti-patterns/](./anti-patterns/) | 反模式（15） |
+| [cheatsheets/](./cheatsheets/) | CLI · 路径 · FAQ · 包装 |
+| [samples.md](./samples.md) | 示例与参考 |
+| [CHANGELOG.md](./CHANGELOG.md) | 指南版本 |
+| [assets](../assets/) | 头图 + 架构图（与英文共享） |
 
 ## 阅读路径
 
-1. [主文](./manifesto.md)  
-2. [矩阵](./matrix.md) 选场景  
+1. [学习路径](./learning-path.md) 或 [主文](./manifesto.md)  
+2. [矩阵](./matrix.md) / [Cookbook](./cookbooks/) 选场景  
 3. 打开对应 [实践卡](./playbooks/)  
-4. 需要时查 [概念](./concepts/) / [反模式](./anti-patterns/) / [速查](./cheatsheets/)  
+4. 需要时查 [概念](./concepts/) / [反模式](./anti-patterns/) / [速查](./cheatsheets/) / [FAQ](./cheatsheets/faq-and-troubleshooting.md)  
 
 ## 相关链接
 

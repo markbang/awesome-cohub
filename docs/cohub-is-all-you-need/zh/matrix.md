@@ -13,37 +13,38 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | Surfaces | Cohub product surfaces |
 | Skills | Installable agent skills (when relevant) |
 | Depth | starter / intermediate / advanced |
+| 角色 / Role | builder / operator / agent-author |
 
 ---
 
 ## Matrix
 
-| ID | 场景 | 能力面 | 技能 | Depth |
-|----|-----------------|-------------------|---------------|-------|
-| `cohub.bp.scratch-to-checkpoint` | 从空白 Space 到第一次存档 | Space, Files, Chat, Checkpoint | `cohub` | starter |
-| `cohub.bp.agent-with-skills` | 给 agent 装 skill 干活 | Space, Sandbox, Skills, CLI | `cohub`, any ecosystem skill | starter |
-| `cohub.bp.cross-space-context` | 引用另一个 Space 的上下文 | `@space`, Sessions, Files | `cohub` | intermediate |
-| `cohub.bp.multimodal-pipeline` | 多模态生成并落盘 | Generation, Files | `cohub-generate` | starter |
-| `cohub.bp.publish-static-work` | 发布静态 Work | Works (`file`/`directory`) | `cohub-works-share`, `public-share` | starter |
-| `cohub.bp.work-kit-product` | 用 Work Kit 做真产品 | Works, SDK, Scopes | `cohub-work-kit`, `cohub-work-publish` | intermediate |
-| `cohub.bp.minimal-scopes` | 最小权限发布 | workScopes, viewerScopes | `cohub-work-publish` | intermediate |
-| `cohub.bp.scheduled-loop` | 定时与 outer loop | Scheduled prompts, Tasks, Files-as-state | `cohub` | advanced |
-| `cohub.bp.space-knowledge-base` | 在 Space 里建复利知识库 | Files (`raw/` / `wiki/` / log), Sessions, Skills | `cohub` | intermediate |
-| `cohub.bp.social-research` | 社媒采集写入知识库 | Sandbox, Files, wiki pages | `wgetx` | intermediate |
-| `cohub.bp.egress-proxy` | 沙箱走 WARP 出口 | Sandbox network | `warp-proxy` | starter |
-| `cohub.bp.channel-ops` | 外部频道入口 | Channels, Gateway | `cohub` | intermediate |
-| `cohub.bp.fork-and-proposal` | Fork 存档并回馈 | Checkpoint, Fork, Proposal | `cohub` | intermediate |
-| `cohub.bp.space-hooks-automation` | 用 Space Hooks 做事件自动化 | Hooks, Tasks, Files | `cohub` | advanced |
-| `cohub.bp.mod-mount` | 挂载 Mod 共享工具 | Mods, Skills, Sandbox | `cohub` | intermediate |
-| `cohub.bp.skill-slash-discovery` | 用 `/skill:` 发现技能 | Chat, Skills, Mods | `cohub` | starter |
-| `cohub.bp.home-and-sessions-inbox` | Home 与会话收件箱 | Home, `/sessions` | `cohub` | starter |
-| `cohub.bp.work-commerce` | Work 内售卖功能与积分 | Works, Billing, SDK | `cohub-work-kit` | advanced |
-| `cohub.bp.user-config-and-rules` | 用 config Space 管个人 Agent 默认 | config Space, User Rules, `/configs/user` | `cohub` | intermediate |
-| `cohub.bp.platform-config` | 运营平台配置 Space | platform config, skills | `cohub` | advanced |
-| `cohub.bp.skill-catalog-cache` | 排查技能目录缓存 | Skills API, Redis | `cohub` | advanced |
-| `cohub.bp.execution-token-identity` | 执行令牌与登录身份 | Auth, sandbox env | `cohub` | advanced |
-| `cohub.bp.search-layers` | 三层搜索；网页用 hyper-search | Search API, config skills | `hyper-search` | starter |
-| `cohub.bp.port-preview` | 端口预览（开发向） | Works (`port`), Sandbox ports | `cohub-works-share` | intermediate |
+| ID | 场景 | 能力面 | 技能 | Depth | 角色 |
+|----|-----------------|-------------------|---------------|-------|------|------|
+| `cohub.bp.scratch-to-checkpoint` | 从空白 Space 到第一次存档 | Space, Files, Chat, Checkpoint | `cohub` | starter | builder |
+| `cohub.bp.agent-with-skills` | 给 agent 装 skill 干活 | Space, Sandbox, Skills, CLI | `cohub`, any ecosystem skill | starter | builder, agent-author |
+| `cohub.bp.cross-space-context` | 引用另一个 Space 的上下文 | `@space`, Sessions, Files | `cohub` | intermediate | builder, operator |
+| `cohub.bp.multimodal-pipeline` | 多模态生成并落盘 | Generation, Files | `cohub-generate` | starter | builder |
+| `cohub.bp.publish-static-work` | 发布静态 Work | Works (`file`/`directory`) | `cohub-works-share`, `public-share` | starter | builder |
+| `cohub.bp.work-kit-product` | 用 Work Kit 做真产品 | Works, SDK, Scopes | `cohub-work-kit`, `cohub-work-publish` | intermediate | builder |
+| `cohub.bp.minimal-scopes` | 最小权限发布 | workScopes, viewerScopes | `cohub-work-publish` | intermediate | builder |
+| `cohub.bp.scheduled-loop` | 定时与 outer loop | Scheduled prompts, Tasks, Files-as-state | `cohub` | advanced | operator, agent-author |
+| `cohub.bp.space-knowledge-base` | 在 Space 里建复利知识库 | Files (`raw/` / `wiki/` / log), Sessions, Skills | `cohub` | intermediate | builder, agent-author |
+| `cohub.bp.social-research` | 社媒采集写入知识库 | Sandbox, Files, wiki pages | `wgetx` | intermediate | builder |
+| `cohub.bp.egress-proxy` | 沙箱走 WARP 出口 | Sandbox network | `warp-proxy` | starter | builder, operator |
+| `cohub.bp.channel-ops` | 外部频道入口 | Channels, Gateway | `cohub` | intermediate | operator |
+| `cohub.bp.fork-and-proposal` | Fork 存档并回馈 | Checkpoint, Fork, Proposal | `cohub` | intermediate | builder |
+| `cohub.bp.space-hooks-automation` | 用 Space Hooks 做事件自动化 | Hooks, Tasks, Files | `cohub` | advanced | operator, agent-author |
+| `cohub.bp.mod-mount` | 挂载 Mod 共享工具 | Mods, Skills, Sandbox | `cohub` | intermediate | builder, operator |
+| `cohub.bp.skill-slash-discovery` | 用 `/skill:` 发现技能 | Chat, Skills, Mods | `cohub` | starter | builder, agent-author |
+| `cohub.bp.home-and-sessions-inbox` | Home 与会话收件箱 | Home, `/sessions` | `cohub` | starter | builder |
+| `cohub.bp.work-commerce` | Work 内售卖功能与积分 | Works, Billing, SDK | `cohub-work-kit` | advanced | builder |
+| `cohub.bp.user-config-and-rules` | 用 config Space 管个人 Agent 默认 | config Space, User Rules, `/configs/user` | `cohub` | intermediate | builder, agent-author |
+| `cohub.bp.platform-config` | 运营平台配置 Space | platform config, skills | `cohub` | advanced | operator |
+| `cohub.bp.skill-catalog-cache` | 排查技能目录缓存 | Skills API, Redis | `cohub` | advanced | operator, agent-author |
+| `cohub.bp.execution-token-identity` | 执行令牌与登录身份 | Auth, sandbox env | `cohub` | advanced | builder, agent-author |
+| `cohub.bp.search-layers` | 三层搜索；网页用 hyper-search | Search API, config skills | `hyper-search` | starter | builder, agent-author |
+| `cohub.bp.port-preview` | 端口预览（开发向） | Works (`port`), Sandbox ports | `cohub-works-share` | intermediate | builder |
 
 ---
 
@@ -78,6 +79,19 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | 事件驱动自动化 | **Space Hooks**（`.cohub/hooks`） | 永远靠人肉轮询 Chat |
 
 ---
+
+
+
+## Cookbooks（端到端）
+
+| Cookbook | 结果 | 难度 | 角色 |
+|----------|------|------|------|
+| [weekend-static-work](./cookbooks/weekend-static-work.md) | 公开 directory Work | starter | builder |
+| [config-skills-setup](./cookbooks/config-skills-setup.md) | 发布用户 skills + 规则 | starter | builder, operator |
+| [research-agent-wiki](./cookbooks/research-agent-wiki.md) | 复利知识 Space | intermediate | builder, agent-author |
+| [paid-work-minimum](./cookbooks/paid-work-minimum.md) | 可商业化 Work 壳 | advanced | builder |
+
+另见：[学习路径](./learning-path.md) · [AGENT_BRIEF](./AGENT_BRIEF.md) · [FAQ](./cheatsheets/faq-and-troubleshooting.md)
 
 ## 知识库模式（Space 内）
 

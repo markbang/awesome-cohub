@@ -289,17 +289,19 @@ Community and adjacent projects that pair well with Cohub workflows.
 
 ## Cohub Is All You Need
 
-Best practices for builders and agents. **English is default**; Chinese lives under `zh/`.
+Best-practice series for **builders** and **agents** — from first Save to Works, config, and autonomy.
 
 | | |
-|---|---|
+|--|--|
 | **EN index** | [docs/cohub-is-all-you-need/README.md](docs/cohub-is-all-you-need/README.md) |
 | **中文** | [docs/cohub-is-all-you-need/zh/README.md](docs/cohub-is-all-you-need/zh/README.md) |
+| **Start** | [Learning path](docs/cohub-is-all-you-need/learning-path.md) · [AGENT_BRIEF](docs/cohub-is-all-you-need/AGENT_BRIEF.md) · [Cookbooks](docs/cohub-is-all-you-need/cookbooks/) · [FAQ](docs/cohub-is-all-you-need/cheatsheets/faq-and-troubleshooting.md) |
 | **Manifesto** | [EN](docs/cohub-is-all-you-need/manifesto.md) · [中文](docs/cohub-is-all-you-need/zh/manifesto.md) |
 | **Matrix** | [EN](docs/cohub-is-all-you-need/matrix.md) · [中文](docs/cohub-is-all-you-need/zh/matrix.md) |
-| **Playbooks** | [EN](docs/cohub-is-all-you-need/playbooks/) · [中文](docs/cohub-is-all-you-need/zh/playbooks/) |
-
-Aligned with [cohub.run/docs](https://cohub.run/docs) and [changelog](https://cohub.run/changelog).
+| **Playbooks** | [EN](docs/cohub-is-all-you-need/playbooks/) · [中文](docs/cohub-is-all-you-need/zh/playbooks/) (24) |
+| **Concepts / Anti-patterns / Cheatsheets** | [concepts](docs/cohub-is-all-you-need/concepts/) (18) · [anti-patterns](docs/cohub-is-all-you-need/anti-patterns/) (15) · [cheatsheets](docs/cohub-is-all-you-need/cheatsheets/) (6) |
+| **Banner** | [animated SVG](https://cdn.jsdelivr.net/gh/markbang/awesome-cohub@main/docs/cohub-is-all-you-need/assets/banner.svg) · [architecture](docs/cohub-is-all-you-need/assets/architecture.svg) |
+| **Changelog** | [guide CHANGELOG](docs/cohub-is-all-you-need/CHANGELOG.md) |
 
 
 ## Learning Resources

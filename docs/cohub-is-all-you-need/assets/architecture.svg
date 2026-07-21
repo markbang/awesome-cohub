@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img" aria-label="Cohub architecture sketch">
+  <rect width="1200" height="640" fill="#0B0D12"/>
+  <text x="40" y="48" fill="#F5F5F7" font-family="ui-sans-serif,system-ui,sans-serif" font-size="28" font-weight="700">Cohub — identity · config · sandbox · share</text>
+  <text x="40" y="78" fill="#9A9AA3" font-family="ui-sans-serif,system-ui,sans-serif" font-size="14">Static map (not animated). Read-only mounts vs writable workspace.</text>
+
+  <!-- Browser / human -->
+  <rect x="40" y="120" width="200" height="100" rx="12" fill="#151822" stroke="#FF4500" stroke-width="1.5"/>
+  <text x="60" y="160" fill="#FFF" font-family="ui-sans-serif,system-ui,sans-serif" font-size="16" font-weight="700">Human / Browser</text>
+  <text x="60" y="186" fill="#C8C8D0" font-family="ui-sans-serif,system-ui,sans-serif" font-size="13">Login session</text>
+  <text x="60" y="206" fill="#C8C8D0" font-family="ui-sans-serif,system-ui,sans-serif" font-size="13">UI · Works open</text>
+
+  <!-- Platform -->
+  <rect x="300" y="110" width="280" height="130" rx="12" fill="#151822" stroke="#FF4500" stroke-width="1.5"/>
+  <text x="320" y="150" fill="#FFF" font-family="ui-sans-serif,system-ui,sans-serif" font-size="16" font-weight="700">Cohub Platform</text>
+  <text x="320" y="178" fill="#C8C8D0" font-family="ui-sans-serif,system-ui,sans-serif" font-size="13">Spaces · Saves · Skills API</text>
+  <text x="320" y="198" fill="#C8C8D0" font-family="ui-sans-serif,system-ui,sans-serif" font-size="13">Search · Billing · Auth</text>
+  <text x="320" y="218" fill="#C8C8D0" font-family="ui-sans-serif,system-ui,sans-serif" font-size="13">Work hosting</text>
+
+  <!-- arrows -->
+  <path d="M240 170 H300" stroke="#FF4500" stroke-width="2" fill="none" marker-end="url(#m)"/>
+  <path d="M580 175 H660" stroke="#FF4500" stroke-width="2" fill="none"/>
+
+  <!-- Sandbox -->
+  <rect x="660" y="90" width="500" height="360" rx="16" fill="#10131A" stroke="#3A3A45" stroke-width="1.5"/>
+  <text x="680" y="125" fill="#FFB08A" font-family="ui-sans-serif,system-ui,sans-serif" font-size="16" font-weight="700">Sandbox (per Space run)</text>
+  <text x="680" y="148" fill="#9A9AA3" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">execution token · not laptop paths</text>
+
+  <rect x="680" y="170" width="220" height="90" rx="10" fill="#1A2030" stroke="#FF4500"/>
+  <text x="696" y="205" fill="#FFF" font-family="ui-sans-serif,system-ui,sans-serif" font-size="14" font-weight="700">/workspace</text>
+  <text x="696" y="228" fill="#C8C8D0" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">writable project</text>
+  <text x="696" y="246" fill="#C8C8D0" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">.agents/skills (project)</text>
+
+  <rect x="920" y="170" width="220" height="90" rx="10" fill="#151822" stroke="#666"/>
+  <text x="936" y="205" fill="#FFF" font-family="ui-sans-serif,system-ui,sans-serif" font-size="14" font-weight="700">/configs/user</text>
+  <text x="936" y="228" fill="#C8C8D0" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">read-only publish</text>
+  <text x="936" y="246" fill="#C8C8D0" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">from name=config Save</text>
+
+  <rect x="680" y="280" width="220" height="70" rx="10" fill="#151822" stroke="#666"/>
+  <text x="696" y="312" fill="#FFF" font-family="ui-sans-serif,system-ui,sans-serif" font-size="14" font-weight="700">/configs/platform</text>
+  <text x="696" y="332" fill="#C8C8D0" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">read-only</text>
+
+  <rect x="920" y="280" width="220" height="70" rx="10" fill="#151822" stroke="#666"/>
+  <text x="936" y="312" fill="#FFF" font-family="ui-sans-serif,system-ui,sans-serif" font-size="14" font-weight="700">/mods/&lt;slug&gt;</text>
+  <text x="936" y="332" fill="#C8C8D0" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">read-only toolkits</text>
+
+  <rect x="680" y="370" width="460" height="55" rx="10" fill="#1A1520" stroke="#FF4500" stroke-opacity="0.5"/>
+  <text x="696" y="404" fill="#FFB08A" font-family="ui-sans-serif,system-ui,sans-serif" font-size="14" font-weight="600">Skill merge: platform → mods → user → workspace</text>
+
+  <!-- config space -->
+  <rect x="40" y="280" width="240" height="120" rx="12" fill="#151822" stroke="#FF4500" stroke-width="1.5"/>
+  <text x="60" y="320" fill="#FFF" font-family="ui-sans-serif,system-ui,sans-serif" font-size="16" font-weight="700">config Space</text>
+  <text x="60" y="348" fill="#C8C8D0" font-family="ui-sans-serif,system-ui,sans-serif" font-size="13">name === "config"</text>
+  <text x="60" y="370" fill="#C8C8D0" font-family="ui-sans-serif,system-ui,sans-serif" font-size="13">Save → publish whitelist</text>
+
+  <path d="M280 340 C 400 340, 500 220, 660 215" stroke="#FF4500" stroke-width="1.5" fill="none" stroke-dasharray="6 4"/>
+  <text x="400" y="300" fill="#9A9AA3" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">Save publishes</text>
+
+  <!-- Work -->
+  <rect x="40" y="460" width="520" height="130" rx="12" fill="#151822" stroke="#FF4500" stroke-width="1.5"/>
+  <text x="60" y="500" fill="#FFF" font-family="ui-sans-serif,system-ui,sans-serif" font-size="16" font-weight="700">Work (share unit)</text>
+  <text x="60" y="528" fill="#C8C8D0" font-family="ui-sans-serif,system-ui,sans-serif" font-size="13">file · directory · port(dev) · public URL</text>
+  <text x="60" y="550" fill="#C8C8D0" font-family="ui-sans-serif,system-ui,sans-serif" font-size="13">scopes: workScopes / viewerScopes · not raw sandbox URL</text>
+  <text x="60" y="572" fill="#9A9AA3" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">Loop: Space → Skills → Save → Work → Fork</text>
+
+  <path d="M300 240 V460" stroke="#FF4500" stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
+  <text x="310" y="400" fill="#9A9AA3" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">publish</text>
+</svg>
