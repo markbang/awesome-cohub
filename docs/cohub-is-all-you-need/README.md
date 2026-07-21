@@ -42,5 +42,5 @@ Grounded in product docs, changelog, and monorepo paths (config publish, skills 
 - https://github.com/talesofai/cohub · https://github.com/markbang/awesome-cohub  
 - Web search: [hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search)  
 - Feishu: [lark-lite](https://github.com/kjx-talesofai/claude-skill-lark-lite)  
-- Fandom HTTP API: [wikis-skill / fandom-wiki](https://github.com/markbang/wikis-skill)  
+- Fandom HTTP API: [wikis-skill / wikis](https://github.com/markbang/wikis-skill)  
 - Fandom CLI: [fandom-cli](https://github.com/kjx-talesofai/claude-skill-fandom-cli)  

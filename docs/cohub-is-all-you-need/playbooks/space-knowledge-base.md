@@ -73,7 +73,7 @@ AGENTS.md            # how agents should navigate this knowledge Space
 
 For Fandom / MediaWiki lore dumps into `raw/` then distill to `wiki/`:
 
-- **[fandom-wiki](https://github.com/markbang/wikis-skill)** — HTTP API (`fff-wiki.neta.art`), great for curl/agents
+- **[wikis](https://github.com/markbang/wikis-skill)** — HTTP API (`fff-wiki.neta.art`), great for curl/agents
 - **[fandom-cli](https://github.com/kjx-talesofai/claude-skill-fandom-cli)** — local MediaWiki CLI alternative
 
 

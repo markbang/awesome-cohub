@@ -126,7 +126,7 @@ Standard agent skills for the Cohub ecosystem. Install with [`npx skills`](https
 | **hyper-search** | [kjx-talesofai/claude-skill-hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search) | Recommended **config Space** web search (multi-provider fallback) |
 | **lark-lite** | [kjx-talesofai/claude-skill-lark-lite](https://github.com/kjx-talesofai/claude-skill-lark-lite) | Lightweight Feishu/Lark ops as **user identity** (not bot-first) via `lark-cli` |
 | **fandom-cli** | [kjx-talesofai/claude-skill-fandom-cli](https://github.com/kjx-talesofai/claude-skill-fandom-cli) | Query Fandom/MediaWiki wikis (pages, infobox, search, images) without HTML scraping |
-| **fandom-wiki** | [markbang/wikis-skill](https://github.com/markbang/wikis-skill) | HTTP API for 250K+ Fandom/Miraheze/wiki.gg (search, md, infobox, image proxy) |
+| **wikis** | [markbang/wikis-skill](https://github.com/markbang/wikis-skill) | HTTP API skill for 250K+ community wikis (search, md, infobox, image proxy) |
 | **wgetx** | [markbang/wgetx-skill](https://github.com/markbang/wgetx-skill) | Pure ESM `.mjs` social fetch skill (no npm for default scrapers) |
 | **cohub-work-kit** | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | Scaffold Cohub Works (Vite + React + TanStack Query template bundled) |
 | **cohub-work-publish** | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | Build + publish directory Works with minimal scopes |
@@ -159,7 +159,7 @@ npx skills add https://github.com/kjx-talesofai/claude-skill-fandom-cli \
 
 # Fandom HTTP API (wikis-mod)
 npx skills add https://github.com/markbang/wikis-skill \
-  --skill "fandom-wiki" \
+  --skill "wikis" \
   --agent codex \
   --yes \
   --copy
@@ -206,7 +206,7 @@ npx skills add https://github.com/markbang/wikis-skill --list
 npx skills add https://github.com/markbang/cohub-work-skill --list
 ```
 
-> **Note:** `hyper-search` / `lark-lite` / `fandom-cli` / `fandom-wiki` work well as **config Space** skills (Save to publish to `/configs/user`). `npx skills add` copies the whole skill directory. For `warp-proxy` and `wgetx`, runnable scripts ship under `skills/<name>/scripts/` and land in `.agents/skills/<name>/scripts/` after install.
+> **Note:** `hyper-search` / `lark-lite` / `fandom-cli` / `wikis` work well as **config Space** skills (Save to publish to `/configs/user`). `npx skills add` copies the whole skill directory. For `warp-proxy` and `wgetx`, runnable scripts ship under `skills/<name>/scripts/` and land in `.agents/skills/<name>/scripts/` after install.
 
 ### Post-install runtime deps
 
@@ -272,7 +272,7 @@ Community and adjacent projects that pair well with Cohub workflows.
 - **[kjx-talesofai/claude-skill-hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search)** — config Space web search.
 - **[kjx-talesofai/claude-skill-lark-lite](https://github.com/kjx-talesofai/claude-skill-lark-lite)** — Feishu/Lark lite (`lark-cli`, user identity).
 - **[kjx-talesofai/claude-skill-fandom-cli](https://github.com/kjx-talesofai/claude-skill-fandom-cli)** — Fandom/MediaWiki CLI skill.
-- **[markbang/wikis-skill](https://github.com/markbang/wikis-skill)** — Fandom HTTP API skill (`fandom-wiki`).
+- **[markbang/wikis-skill](https://github.com/markbang/wikis-skill)** — Wikis HTTP API skill (`wikis`).
 - **[markbang/warp-proxy-skill](https://github.com/markbang/warp-proxy-skill)** - Cloudflare WARP userspace proxy skill for sandboxes.
 - **[markbang/wgetx-skill](https://github.com/markbang/wgetx-skill)** - Multi-platform social media fetch skill + scripts.
 - **[markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill)** - Work Kit template + publish skills for Cohub Works.
