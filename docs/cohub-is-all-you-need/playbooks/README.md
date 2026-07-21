@@ -1,6 +1,6 @@
 # Playbooks
 
-Executable bilingual practice cards. IDs match [matrix.md](../matrix.md).
+Executable bilingual practice cards. IDs align with [matrix.md](../matrix.md).
 
 | ID | Title | File |
 |----|-------|------|
@@ -18,8 +18,8 @@ Executable bilingual practice cards. IDs match [matrix.md](../matrix.md).
 | `cohub.bp.social-research` | Social fetch into a Space knowledge base · 社媒采集写入 Space 知识库 | [social-research.md](./social-research.md) |
 | `cohub.bp.space-hooks-automation` | Automate with Space Hooks · 用 Space Hooks 做自动化 | [space-hooks-automation.md](./space-hooks-automation.md) |
 | `cohub.bp.space-knowledge-base` | Build a compounding wiki in a Space · 在 Space 里建复利知识库 | [space-knowledge-base.md](./space-knowledge-base.md) |
+| `cohub.bp.work-commerce` | Sell features and credits inside a Work · 在 Work 内售卖功能与积分 | [work-commerce.md](./work-commerce.md) |
 | `cohub.bp.work-kit-product` | Build a Work product with Work Kit · 用 Work Kit 做真 Work 产品 | [work-kit-product.md](./work-kit-product.md) |
 
-**15** playbooks covering the full scenario matrix.
+**16** playbooks.
 
-Each card: When · Outcome · Steps (EN/中文) · Done when · Avoid.

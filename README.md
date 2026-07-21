@@ -247,6 +247,7 @@ Best practices for builders and agents — manifesto, scenario matrix, playbooks
 | **中文** | [docs/cohub-is-all-you-need/manifesto/zh.md](docs/cohub-is-all-you-need/manifesto/zh.md) |
 | **Matrix** | [docs/cohub-is-all-you-need/matrix.md](docs/cohub-is-all-you-need/matrix.md) |
 | **Playbooks** | [docs/cohub-is-all-you-need/playbooks/](docs/cohub-is-all-you-need/playbooks/) |
+| **Anti-patterns** | [docs/cohub-is-all-you-need/anti-patterns/](docs/cohub-is-all-you-need/anti-patterns/) |
 | **Index** | [docs/cohub-is-all-you-need/README.md](docs/cohub-is-all-you-need/README.md) |
 
 Aligned with [cohub.run/docs](https://cohub.run/docs) and [changelog](https://cohub.run/changelog).

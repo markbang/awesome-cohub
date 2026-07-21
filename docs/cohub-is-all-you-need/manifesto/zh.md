@@ -201,6 +201,17 @@ runtime/             # 可选：agent 路由、来源 registry、协议
 实践：一文件一 hook；FS 匹配忽略 `.cohub/**` 防自激；turn 用 `sessionIds` / `sources` 过滤。  
 实践卡：[space-hooks-automation](../playbooks/space-hooks-automation.md) · 文档：[space-hooks.md](https://github.com/talesofai/cohub/blob/main/docs/space-hooks.md)
 
+
+### 3.11 Work 商业化
+
+在**已发布 Work** 上售卖一次性商品：功能解锁与可消耗积分。
+
+- 仅在 Cohub Work 壳内可用（`context()` / `work.commerce.*`）
+- 结账回流状态由宿主负责；Work 负责展示门槛/余额并触发购买/扣费
+- 商品 key 版本化；不要原地改价；积分扣费使用 `operationId` 保证幂等
+
+实践卡：[work-commerce](../playbooks/work-commerce.md) · 指南：[work-commerce-guide.md](https://github.com/talesofai/cohub/blob/main/docs/work-commerce-guide.md)
+
 ## 4. 给建造者（人）
 
 ### 开始
@@ -251,6 +262,8 @@ runtime/             # 可选：agent 路由、来源 registry、协议
 
 ## 6. 反模式
 
+展开卡片见 [anti-patterns/](../anti-patterns/)。
+
 | 反模式 | 伤害 | 正确做法 |
 |--------|------|----------|
 | 只聊天的项目 | 没有耐久真相 | 文件 + 存档 |
@@ -293,7 +306,7 @@ cohub -s "$COHUB_SPACE_ID" works publish <slug> \
 |----|------|------|
 | 主文 | 本文件（v0.2） | 随产品迭代修订 |
 | [矩阵](../matrix.md) | 场景索引 | 保持 ID 稳定 |
-| [实践卡](../playbooks/) | 15 张（矩阵全覆盖） | 随产品增长追加新场景 |
+| [实践卡](../playbooks/) | 16+ 张实践卡（矩阵 + 商业化） | 随产品增长追加新场景 |
 | [概念卡](../concepts/) | 核心名词 | 少而精 |
 | 知识库模式 | §3.9 + 实践卡 | 随真实 Space 演进 |
 

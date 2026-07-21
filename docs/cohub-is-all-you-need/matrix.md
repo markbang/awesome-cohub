@@ -137,3 +137,4 @@ All matrix scenario IDs now have cards under [playbooks/](./playbooks/).
 1. Keep IDs stable; add new rows rather than renumbering
 2. Align behavior notes with https://cohub.run/docs and https://cohub.run/changelog
 3. Prefer updating a card over growing the manifesto forever
+4. Anti-patterns live under [anti-patterns/](./anti-patterns/)

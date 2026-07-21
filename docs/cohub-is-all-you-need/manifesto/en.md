@@ -201,6 +201,17 @@ Actions: `run` (sandbox shell) or `prompt` (Chat/session)
 Practice: one file per hook; FS matching ignores `.cohub/**` to prevent loops; filter turns with `sessionIds` / `sources`.  
 Playbook: [space-hooks-automation](../playbooks/space-hooks-automation.md) · Doc: [space-hooks.md](https://github.com/talesofai/cohub/blob/main/docs/space-hooks.md)
 
+
+### 3.11 Work commerce
+
+One-time products on a **published Work**: feature unlocks and consumable credits.
+
+- Runtime only inside Cohub Work shell (`context()` / `work.commerce.*`)
+- Host owns checkout redirect state; Work displays gates/balances and triggers purchase/consume
+- Version product keys; never mutate price in place; `operationId` for idempotent credit consumes
+
+Playbook: [work-commerce](../playbooks/work-commerce.md) · Guide: [work-commerce-guide.md](https://github.com/talesofai/cohub/blob/main/docs/work-commerce-guide.md)
+
 ## 4. Builder playbook (human)
 
 ### Start
@@ -251,6 +262,8 @@ Playbook: [space-hooks-automation](../playbooks/space-hooks-automation.md) · Do
 
 ## 6. Anti-patterns
 
+See also expanded cards in [anti-patterns/](../anti-patterns/).
+
 | Anti-pattern | Why it hurts | Do this instead |
 |--------------|--------------|-----------------|
 | Chat-only project | No durable truth | Files + Saves |
@@ -293,7 +306,7 @@ Always start smaller than you think.
 |-------|-----|-------|
 | Manifesto | this file (v0.2) | revise with product changes |
 | [Matrix](../matrix.md) | scenario index | keep IDs stable |
-| [Playbooks](../playbooks/) | 15 cards (full matrix) | add new scenarios as product grows |
+| [Playbooks](../playbooks/) | 16+ playbooks (matrix + commerce) | add new scenarios as product grows |
 | [Concepts](../concepts/) | core nouns | add sparingly |
 | Knowledge-base pattern | §3.9 + playbook | evolve with real Spaces |
 

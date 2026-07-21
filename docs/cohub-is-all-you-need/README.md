@@ -12,29 +12,30 @@ Grounded in product docs ([/docs](https://cohub.run/docs)) and platform changes 
 |------|------|
 | [manifesto/en.md](./manifesto/en.md) | English manifesto |
 | [manifesto/zh.md](./manifesto/zh.md) | 中文宣言 |
-| [matrix.md](./matrix.md) | Scenario matrix（场景矩阵） |
-| [playbooks/](./playbooks/) | **15** bilingual playbooks (full matrix) |
+| [matrix.md](./matrix.md) | Scenario matrix |
+| [playbooks/](./playbooks/) | Bilingual playbooks (matrix + commerce) |
 | [concepts/](./concepts/) | Concept lookup cards |
-| [cheatsheets/](./cheatsheets/) | CLI ↔ UI cheatsheet |
-| [anti-patterns/](./anti-patterns/) | Points at manifesto §6 |
+| [anti-patterns/](./anti-patterns/) | Failure-mode cards |
+| [cheatsheets/](./cheatsheets/) | CLI + scopes cheatsheets |
 
 ## How to read
 
 1. Manifesto in your language  
-2. Matrix → pick a scenario  
-3. Open the playbook card  
-4. Use concepts/cheatsheets for nouns & commands  
-5. Re-check `/docs` + `/changelog` when something seems new  
+2. Matrix → scenario  
+3. Playbook for steps  
+4. Concepts / anti-patterns / cheatsheets as needed  
+5. Re-check `/docs` + `/changelog` when behavior may have changed  
 
 ## Status
 
 | Piece | Status |
 |-------|--------|
 | Manifesto EN/ZH | **v0.2** |
-| Scenario matrix | **v0.3** (15 scenarios) |
-| Playbooks | **v0.3** (15/15 matrix coverage) |
-| Concepts | **v0.2** (6 cards) |
-| Cheatsheet | **v0.2** |
+| Scenario matrix | **v0.4** |
+| Playbooks | **v0.4** (16 cards) |
+| Concepts | **v0.4** (7 cards) |
+| Anti-patterns | **v0.4** (9 cards) |
+| Cheatsheets | **v0.4** (CLI + scopes) |
 
 ## Related
 
