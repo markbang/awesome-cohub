@@ -31,7 +31,9 @@ type: guide
 1. Cookbook：[周末静态 Work](./cookbooks/weekend-static-work.md)
 2. [Work Kit 产品](./playbooks/work-kit-product.md)
 3. [最小权限](./playbooks/minimal-scopes.md)
-4. 反模式：[静态 Work 上的 BrowserRouter](./anti-patterns/browser-router-static.md)、[把沙箱 URL 当上线](./anti-patterns/raw-sandbox-launch.md)
+4. [隐藏 Cohub 底栏](./playbooks/hide-cohub-bar.md)（Pro/Max）
+5. [Work 生命周期](./playbooks/work-lifecycle.md)
+6. 反模式：[静态 Work 上的 BrowserRouter](./anti-patterns/browser-router-static.md)、[把沙箱 URL 当上线](./anti-patterns/raw-sandbox-launch.md)
 
 **完成标志：** directory Work 公网可开、权限收敛。
 

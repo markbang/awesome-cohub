@@ -10,6 +10,19 @@ type: meta
 
 写法锚定当时的公开文档 + monorepo 行为；产品漂移时以产品文档为准并修指南。
 
+
+## v0.10 — 2026-07-21
+
+- 对照 monorepo 与官方 changelog 补缺口：
+  - **隐藏 Cohub 底栏**（`hideCohubBar`，Pro/Max，`--hide-cohub-bar`）
+  - Work 生命周期（限额、版本、停用、可见性）
+  - 访客授权与 `user.*`
+  - Space 成员/角色/访问
+  - Space env + 沙箱设置
+  - 公开身份 slug
+- 概念：`work-presentation`、`space-roles`
+- FAQ / 矩阵 +6 playbooks（共 **30**）
+
 ## v0.9 — 2026-07-21
 
 - 一次性定格动画 SVG banner  

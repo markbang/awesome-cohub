@@ -45,6 +45,12 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | `cohub.bp.execution-token-identity` | 执行令牌与登录身份 | Auth, sandbox env | `cohub` | advanced | builder, agent-author |
 | `cohub.bp.search-layers` | 三层搜索；网页用 hyper-search | Search API, config skills | `hyper-search` | starter | builder, agent-author |
 | `cohub.bp.port-preview` | 端口预览（开发向） | Works (`port`), Sandbox ports | `cohub-works-share` | intermediate | builder |
+| `cohub.bp.hide-cohub-bar` | 隐藏公开 Work 的 Cohub 底栏 | Works, 计费权益 | `cohub` CLI | starter | builder |
+| `cohub.bp.work-lifecycle` | 发布 / 版本 / 停用 / 可见性 | Works | `cohub` | intermediate | builder |
+| `cohub.bp.viewer-auth-user-scopes` | 访客授权 + `user.*` | Works, SDK | `cohub` | advanced | builder, agent-author |
+| `cohub.bp.space-members-access` | 成员、host/builder/guest、访问策略 | Space 设置 | `cohub` | intermediate | builder, operator |
+| `cohub.bp.space-env-sandbox` | 环境变量 + 沙箱规格/idle | Space 设置, Sandbox | `cohub` | intermediate | builder, operator |
+| `cohub.bp.public-identity-slugs` | 用户名与 slug，拼公开 URL | Profile, Space, Works | `cohub` | starter | builder |
 
 ---
 

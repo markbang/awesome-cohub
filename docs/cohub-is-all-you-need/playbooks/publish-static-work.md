@@ -5,7 +5,7 @@ type: playbook
 audience: [builder, agent]
 features: [work, files, save]
 difficulty: starter
-related: [cohub.concept.work, cohub.bp.minimal-scopes, cohub.bp.work-kit-product]
+related: [cohub.concept.work, cohub.bp.minimal-scopes, cohub.bp.work-kit-product, cohub.bp.hide-cohub-bar, cohub.bp.work-lifecycle, cohub.bp.public-identity-slugs]
 sources:
   - https://cohub.run/docs/create/works
   - https://github.com/talesofai/cohub/blob/main/docs/works-guide.md
@@ -38,6 +38,18 @@ Others should open a page/site without entering your Sandbox.
    ```
 5. Open the public Work URL (not a raw asset URL) and verify assets load.
 6. Put the URL in Space `README.md`.
+
+
+## Presentation (footer bar)
+
+Pro/Max can hide the public Cohub footer bar:
+
+```bash
+cohub -s <spaceId> works publish site --dir dist --hide-cohub-bar --json
+# later: works update <id> --show-cohub-bar
+```
+
+Full card: [hide-cohub-bar](./hide-cohub-bar.md) · lifecycle/limits: [work-lifecycle](./work-lifecycle.md) · slugs: [public-identity-slugs](./public-identity-slugs.md)
 
 ## Runtime note
 

@@ -19,10 +19,12 @@ Lookup cards for core Cohub objects.
 | `cohub.concept.skill` | Skill & Mod | [skill-and-mod.md](./skill-and-mod.md) |
 | `cohub.concept.skill-discovery` | Skill discovery & cache | [skill-discovery.md](./skill-discovery.md) |
 | `cohub.concept.space` | Space | [space.md](./space.md) |
+| `cohub.concept.space-roles` | Space roles (host / builder / guest) | [space-roles.md](./space-roles.md) |
 | `cohub.concept.task-schedule` | Task & scheduled prompt | [task-and-schedule.md](./task-and-schedule.md) |
 | `cohub.concept.user-config-space` | User config Space | [user-config-space.md](./user-config-space.md) |
 | `cohub.concept.work` | Work | [work.md](./work.md) |
+| `cohub.concept.work-presentation` | Work presentation (hideCohubBar) | [work-presentation.md](./work-presentation.md) |
 
-**18** items.
+**20** items.
 
 [中文](../zh/concepts/README.md)

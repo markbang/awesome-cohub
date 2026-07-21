@@ -23,3 +23,5 @@ URL: `/:username/:spaceSlug/w/:workSlug`
 ---
 
 [English](../../concepts/work.md)
+
+另见： [work-presentation](./work-presentation.md) (`hideCohubBar`), [work-lifecycle](../playbooks/work-lifecycle.md).

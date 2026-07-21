@@ -43,6 +43,12 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | `cohub.bp.execution-token-identity` | Execution token vs login identity | Auth, sandbox env | `cohub` | advanced | builder, agent-author |
 | `cohub.bp.search-layers` | Product vs workspace vs web search | Search API, config skills | `hyper-search` | starter | builder, agent-author |
 | `cohub.bp.port-preview` | Live port demo (dev, not default prod) | Works (`port`), Sandbox ports | `cohub-works-share` | intermediate | builder |
+| `cohub.bp.hide-cohub-bar` | Hide Cohub footer bar on public Work | Works, billing entitlement | `cohub` CLI | starter | builder |
+| `cohub.bp.work-lifecycle` | Publish / version / disable / visibility | Works | `cohub` | intermediate | builder |
+| `cohub.bp.viewer-auth-user-scopes` | Viewer consent + `user.*` scopes | Works, SDK | `cohub` | advanced | builder, agent-author |
+| `cohub.bp.space-members-access` | Members, host/builder/guest, access policy | Space settings | `cohub` | intermediate | builder, operator |
+| `cohub.bp.space-env-sandbox` | Env vars + sandbox spec/idle | Space settings, Sandbox | `cohub` | intermediate | builder, operator |
+| `cohub.bp.public-identity-slugs` | Username + space/work slugs for public URLs | Profile, Space, Works | `cohub` | starter | builder |
 
 ---
 

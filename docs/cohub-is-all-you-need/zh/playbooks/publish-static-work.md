@@ -5,7 +5,7 @@ type: playbook
 audience: [builder, agent]
 features: [work, files, save]
 difficulty: starter
-related: [cohub.concept.work, cohub.bp.minimal-scopes, cohub.bp.work-kit-product]
+related: [cohub.concept.work, cohub.bp.minimal-scopes, cohub.bp.work-kit-product, cohub.bp.hide-cohub-bar, cohub.bp.work-lifecycle, cohub.bp.public-identity-slugs]
 sources:
   - https://cohub.run/docs/create/works
   - https://github.com/talesofai/cohub/blob/main/docs/works-guide.md
@@ -38,6 +38,18 @@ sources:
    ```
 5. 打开 **公开 Work URL**（不是裸静态资源 URL）检查资源。
 6. 把链接写回 Space `README.md`。
+
+
+## 呈现（底栏）
+
+Pro/Max 可隐藏公开页 Cohub footer bar：
+
+```bash
+cohub -s <spaceId> works publish site --dir dist --hide-cohub-bar --json
+# later: works update <id> --show-cohub-bar
+```
+
+完整卡片： [hide-cohub-bar](./hide-cohub-bar.md) · lifecycle/limits: [work-lifecycle](./work-lifecycle.md) · slugs: [public-identity-slugs](./public-identity-slugs.md)
 
 ## 运行时
 

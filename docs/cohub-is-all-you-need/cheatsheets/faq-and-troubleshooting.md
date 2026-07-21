@@ -32,6 +32,12 @@ type: cheatsheet
 | White screen | Check `base: "./"`, asset paths, browser console; rebuild `dist/` |
 | 401 / scope errors | Tighten to required scopes only; re-publish ([minimal-scopes](../playbooks/minimal-scopes.md)) |
 | Commerce “works” only on preview | Need runtime Work ([commerce-on-static-preview](../anti-patterns/commerce-on-static-preview.md)) |
+| Cannot hide Cohub footer bar | Not Pro/Max, or not on published Work | [hide-cohub-bar](../playbooks/hide-cohub-bar.md); CLI `--hide-cohub-bar` |
+| Public URL will not form | Missing username or space/work slug | [public-identity-slugs](../playbooks/public-identity-slugs.md) |
+| File/dir publish rejected | Size/count limits | file ≤5MB; dir ≤1000 files / ≤100MB + `index.html` — [work-lifecycle](../playbooks/work-lifecycle.md) |
+| Viewer API 403 | Scope not allow-listed or not granted | [viewer-auth-and-user-scopes](../playbooks/viewer-auth-and-user-scopes.md) |
+| Target edited but public unchanged | Need publish-version | [work-lifecycle](../playbooks/work-lifecycle.md) |
+
 
 ## Network / fetch
 

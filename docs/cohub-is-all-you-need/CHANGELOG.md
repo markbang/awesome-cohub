@@ -10,6 +10,19 @@ This tracks **the guide**, not the Cohub product. Product changes: [cohub.run/ch
 
 Assumptions are pinned to public docs + monorepo behavior at write time. When product drifts, prefer product docs and file a guide fix.
 
+
+## v0.10 — 2026-07-21
+
+- Gap fill vs monorepo `talesofai/cohub` + product docs / changelog:
+  - **hide Cohub bar** (`hideCohubBar`, Pro/Max, `--hide-cohub-bar`)
+  - Work lifecycle (limits, version, disable, visibility)
+  - Viewer auth + `user.*` scopes
+  - Space members/roles/access
+  - Space env + sandbox settings
+  - Public identity slugs
+- Concepts: `work-presentation`, `space-roles`
+- FAQ Works rows expanded; matrix +6 playbooks (**30** total)
+
 ## v0.9 — 2026-07-21
 
 - One-shot animated SVG banner (title → loop graph → freeze)

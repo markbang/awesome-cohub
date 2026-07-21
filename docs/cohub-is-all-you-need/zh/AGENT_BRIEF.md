@@ -85,6 +85,10 @@ log.md   只追加时间线
 - 循环写磁盘状态（`runtime/state.json`、wiki log）  
 - 教人时引用 playbook id（`cohub.bp.*`）  
 
+## Work 呈现
+
+- Pro/Max：UI 或 `--hide-cohub-bar` 隐藏公开底栏 — [hide-cohub-bar](./playbooks/hide-cohub-bar.md)
+
 ## 跳转
 
 - [学习路径](./learning-path.md)

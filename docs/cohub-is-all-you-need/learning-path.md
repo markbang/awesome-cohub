@@ -31,7 +31,9 @@ Pick a track. Each step links to an existing playbook or cookbook.
 1. Cookbook: [Weekend static Work](./cookbooks/weekend-static-work.md)
 2. [Work Kit product](./playbooks/work-kit-product.md)
 3. [Minimal scopes](./playbooks/minimal-scopes.md)
-4. Skim anti-patterns: [BrowserRouter on static Works](./anti-patterns/browser-router-static.md), [Raw sandbox URL as launch](./anti-patterns/raw-sandbox-launch.md)
+4. [Hide Cohub bar](./playbooks/hide-cohub-bar.md) (Pro/Max presentation)
+5. [Work lifecycle](./playbooks/work-lifecycle.md)
+6. Skim anti-patterns: [BrowserRouter on static Works](./anti-patterns/browser-router-static.md), [Raw sandbox URL as launch](./anti-patterns/raw-sandbox-launch.md)
 
 **Done when:** directory Work opens on a public URL with least privilege.
 

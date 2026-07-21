@@ -85,6 +85,10 @@ Update existing wiki pages; do not only append raw forever.
 - Disk state for loops (`runtime/state.json`, wiki log)  
 - Cite playbooks by id (`cohub.bp.*`) when teaching humans  
 
+## Work presentation
+
+- Pro/Max: hide public footer bar via UI or `--hide-cohub-bar` — [hide-cohub-bar](./playbooks/hide-cohub-bar.md)
+
 ## Jump links
 
 - [Learning path](./learning-path.md)
