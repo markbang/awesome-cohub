@@ -50,7 +50,6 @@ Inspired by the [Awesome](https://awesome.re) format and the VoltAgent awesome s
 - [Product Surface](#product-surface)
 - [CLI and SDK](#cli-and-sdk)
 - [Official Skills](#official-skills)
-- [Related Projects](#related-projects)
 - [Learning Resources](#learning-resources)
 - [Cohub Is All You Need](#cohub-is-all-you-need)
 - [Contributing](#contributing)
@@ -166,29 +165,6 @@ Cohub agents become useful when they know:
 4. how to run multimodal generation without inventing fake APIs
 5. how to pull external knowledge / social data / network egress tools on demand
 
-
-## Related Projects
-
-Community and adjacent projects that pair well with Cohub workflows.
-
-### Ecosystem packages
-
-- **[kjx-talesofai/claude-skill-hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search)** — config Space web search.
-- **[kjx-talesofai/claude-skill-lark-lite](https://github.com/kjx-talesofai/claude-skill-lark-lite)** — Feishu/Lark lite (`lark-cli`, user identity).
-- **[kjx-talesofai/claude-skill-fandom-cli](https://github.com/kjx-talesofai/claude-skill-fandom-cli)** — Fandom/MediaWiki CLI skill.
-- **[markbang/wikis-skill](https://github.com/markbang/wikis-skill)** — Wikis HTTP API skill (`wikis`).
-- **[markbang/warp-proxy-skill](https://github.com/markbang/warp-proxy-skill)** - Cloudflare WARP userspace proxy skill for sandboxes.
-- **[markbang/wgetx-skill](https://github.com/markbang/wgetx-skill)** - Multi-platform social media fetch skill + scripts.
-- **[markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill)** - Work Kit template + publish skills for Cohub Works.
-- **[markbang/cohub-desktop](https://github.com/markbang/cohub-desktop)** - Desktop companion prototype for Cohub.
-
-### Adjacent agent resources
-
-- **[awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills)** - Broad curated catalog of agent skills across tools and ecosystems.
-- **[awesome-design-md](https://github.com/VoltAgent/awesome-design-md)** - Brand `DESIGN.md` systems agents can apply to UI work.
-- **[diffusionstudio/lottie](https://github.com/diffusionstudio/lottie)** - Text-to-Lottie skill pipeline for production motion assets.
-
-> Have a Cohub-related project? Open a PR. See [Contributing](#contributing).
 
 
 ## Cohub Is All You Need
