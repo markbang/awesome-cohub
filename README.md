@@ -156,20 +156,6 @@ npx skills add https://github.com/markbang/wgetx-skill --list
 
 > **Note:** Prefer **config Space** for personal defaults (`hyper-search`, `lark-lite`, `fandom-cli`, `wikis`) — install there, then **Save** so they publish to `/configs/user/.agents/skills/`. Project/sandbox tools (`warp-proxy`, `wgetx`, work-kit) can live in the Space workspace. `npx skills add --copy` copies the skill tree; scripts under `skills/<name>/scripts/` land in `.agents/skills/<name>/scripts/`.
 
-### Post-install runtime deps
-
-```bash
-# lark-lite
-npm install -g @larksuite/cli
-# then: lark-cli auth login --scope "$(cat lark-lite-scopes.txt)"  # see skill README; avoid --recommend alone
-
-# fandom-cli (sandbox-local venv recommended on Cohub)
-# python3 -m venv ~/venvs/fandom-cli && PIP_USER=false ~/venvs/fandom-cli/bin/pip install -e .agents/skills/fandom-cli
-
-# wgetx: pure ESM .mjs — no npm for default HTTP scrapers
-# optional browser flows only:
-#   cd .agents/skills/wgetx && npm init -y && npm i playwright && npx playwright install chromium
-```
 
 ### Why skills matter
 
