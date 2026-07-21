@@ -53,6 +53,7 @@ Inspired by the [Awesome](https://awesome.re) format and the VoltAgent awesome s
 - [Platform Architecture](#platform-architecture)
 - [Related Projects](#related-projects)
 - [Learning Resources](#learning-resources)
+- [Cohub Is All You Need](#cohub-is-all-you-need)
 - [Contributing](#contributing)
 
 ## Official
@@ -253,6 +254,20 @@ Community and adjacent projects that pair well with Cohub workflows.
 - **[diffusionstudio/lottie](https://github.com/diffusionstudio/lottie)** - Text-to-Lottie skill pipeline for production motion assets.
 
 > Have a Cohub-related project? Open a PR. See [Contributing](#contributing).
+
+
+## Cohub Is All You Need
+
+Best-practice manifesto + scenario matrix for builders and agents.
+
+| | |
+|---|---|
+| **EN** | [docs/cohub-is-all-you-need/manifesto/en.md](docs/cohub-is-all-you-need/manifesto/en.md) |
+| **中文** | [docs/cohub-is-all-you-need/manifesto/zh.md](docs/cohub-is-all-you-need/manifesto/zh.md) |
+| **Matrix** | [docs/cohub-is-all-you-need/matrix.md](docs/cohub-is-all-you-need/matrix.md) |
+| **Index** | [docs/cohub-is-all-you-need/README.md](docs/cohub-is-all-you-need/README.md) |
+
+> Playbooks / OKP domain `cohub` import come after the articles settle.
 
 ## Learning Resources
 
