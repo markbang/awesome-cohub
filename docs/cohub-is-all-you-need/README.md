@@ -29,7 +29,7 @@ Grounded in product docs ([/docs](https://cohub.run/docs)) and platform changes 
 |-------|--------|
 | Manifesto EN/ZH | **v0.3** |
 | Scenario matrix | **v0.5** |
-| Playbooks | **v0.5** (19 cards) |
+| Playbooks | **v0.5** (19 cards, matrix-aligned) |
 | Concepts | **v0.5** (9 cards) |
 | Anti-patterns | **v0.4** (9 cards) |
 | Cheatsheets | **v0.4** |
