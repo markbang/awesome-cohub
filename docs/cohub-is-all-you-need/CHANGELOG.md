@@ -11,6 +11,13 @@ This tracks **the guide**, not the Cohub product. Product changes: [cohub.run/ch
 Assumptions are pinned to public docs + monorepo behavior at write time. When product drifts, prefer product docs and file a guide fix.
 
 
+
+## v0.11 — 2026-07-21
+
+- Add **`.cohub` layers & priority** (concept + playbook): models / space.json theme & new-chat background / hooks vs **`.agents/prompts` slash templates**
+- Document merge order: skills & prompts `platform → mods → user → project`; models `platform → user`
+- Sync config-layers cheatsheet, glossary, AGENT_BRIEF, learning path
+
 ## v0.10 — 2026-07-21
 
 - Gap fill vs monorepo `talesofai/cohub` + product docs / changelog:

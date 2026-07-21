@@ -36,8 +36,8 @@
 | [cookbooks/](./cookbooks/) | 端到端旅程 |
 | [manifesto.md](./manifesto.md) | 宣言 / 主文 |
 | [matrix.md](./matrix.md) | 场景矩阵（含角色） |
-| [playbooks/](./playbooks/) | 实践卡（30） |
-| [concepts/](./concepts/) | 概念卡（20） |
+| [playbooks/](./playbooks/) | 实践卡（31） |
+| [concepts/](./concepts/) | 概念卡（21） |
 | [anti-patterns/](./anti-patterns/) | 反模式（15） |
 | [cheatsheets/](./cheatsheets/) | CLI · 路径 · FAQ · 包装 |
 | [samples.md](./samples.md) | 示例与参考 |

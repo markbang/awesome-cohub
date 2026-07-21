@@ -20,6 +20,7 @@ Pick a track. Each step links to an existing playbook or cookbook.
 
 1. [Own agent defaults in config Space](./playbooks/user-config-and-rules.md)
 2. Cookbook: [Config skills setup](./cookbooks/config-skills-setup.md)
+2b. [`.cohub` / `.agents` layers & priority](./playbooks/dot-cohub-layers.md)
 3. [Three search layers](./playbooks/search-layers.md)
 4. [Discover skills with /skill:](./playbooks/skill-slash-discovery.md)
 5. Optional: [Sandbox egress via WARP](./playbooks/egress-proxy.md)

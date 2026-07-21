@@ -80,6 +80,9 @@ Edit in Space name "config"
 - Playbook: `cohub.bp.user-config-and-rules`
 - Home: `cohub.concept.home-space` (different object)
 
+
+另见：[`.cohub` 分层与优先级](./dot-cohub-layers.md) · [实践卡](../playbooks/dot-cohub-layers.md)。
+
 ---
 
 [English](../../concepts/user-config-space.md)

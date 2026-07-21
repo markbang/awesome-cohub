@@ -7,6 +7,7 @@ Executable practice cards.
 | `cohub.bp.agent-with-skills` | Equip an agent and do real work | [agent-with-skills.md](./agent-with-skills.md) |
 | `cohub.bp.channel-ops` | Operate a Space from external channels | [channel-ops.md](./channel-ops.md) |
 | `cohub.bp.cross-space-context` | Pull context from another Space | [cross-space-context.md](./cross-space-context.md) |
+| `cohub.bp.dot-cohub-layers` | Configure .cohub and .agents with the right priority | [dot-cohub-layers.md](./dot-cohub-layers.md) |
 | `cohub.bp.egress-proxy` | Sandbox egress via WARP | [egress-proxy.md](./egress-proxy.md) |
 | `cohub.bp.execution-token-identity` | Execution token vs login identity | [execution-token-identity.md](./execution-token-identity.md) |
 | `cohub.bp.fork-and-proposal` | Fork a Save and explore safely | [fork-and-proposal.md](./fork-and-proposal.md) |
@@ -35,6 +36,6 @@ Executable practice cards.
 | `cohub.bp.work-kit-product` | Build a Work product with Work Kit | [work-kit-product.md](./work-kit-product.md) |
 | `cohub.bp.work-lifecycle` | Work lifecycle — publish, version, disable, visibility | [work-lifecycle.md](./work-lifecycle.md) |
 
-**30** items.
+**31** items.
 
 [中文](../zh/playbooks/README.md)

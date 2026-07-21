@@ -58,6 +58,9 @@ You run a Cohub deployment (or internal platform Space) and need **environment-w
 - Confusing platform Space with user `name=config` Space
 - Editing `/configs/platform` inside a sandbox (read-only projection)
 
+
+Also: [`.cohub` layers & priority](../concepts/dot-cohub-layers.md) · [playbook](../playbooks/dot-cohub-layers.md).
+
 ---
 
 [中文](../zh/playbooks/platform-config.md)

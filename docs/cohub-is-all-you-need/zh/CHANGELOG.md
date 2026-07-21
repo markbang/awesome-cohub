@@ -11,6 +11,13 @@ type: meta
 写法锚定当时的公开文档 + monorepo 行为；产品漂移时以产品文档为准并修指南。
 
 
+
+## v0.11 — 2026-07-21
+
+- 新增 **`.cohub` 分层与优先级**（concept + playbook）：models / space.json 主题与 new-chat 背景 / hooks vs **`.agents/prompts` 斜杠模板**
+- 合并顺序写清：skills & prompts `platform → mods → user → project`；models `platform → user`
+- 同步 config-layers 速查、glossary、AGENT_BRIEF、learning path
+
 ## v0.10 — 2026-07-21
 
 - 对照 monorepo 与官方 changelog 补缺口：

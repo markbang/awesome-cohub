@@ -178,8 +178,8 @@ Best-practice series for **builders** and **agents** — from first Save to Work
 | **Start** | [Learning path](docs/cohub-is-all-you-need/learning-path.md) · [AGENT_BRIEF](docs/cohub-is-all-you-need/AGENT_BRIEF.md) · [Cookbooks](docs/cohub-is-all-you-need/cookbooks/) · [FAQ](docs/cohub-is-all-you-need/cheatsheets/faq-and-troubleshooting.md) |
 | **Manifesto** | [EN](docs/cohub-is-all-you-need/manifesto.md) · [中文](docs/cohub-is-all-you-need/zh/manifesto.md) |
 | **Matrix** | [EN](docs/cohub-is-all-you-need/matrix.md) · [中文](docs/cohub-is-all-you-need/zh/matrix.md) |
-| **Playbooks** | [EN](docs/cohub-is-all-you-need/playbooks/) · [中文](docs/cohub-is-all-you-need/zh/playbooks/) (30) |
-| **Concepts / Anti-patterns / Cheatsheets** | [concepts](docs/cohub-is-all-you-need/concepts/) (20) · [anti-patterns](docs/cohub-is-all-you-need/anti-patterns/) (15) · [cheatsheets](docs/cohub-is-all-you-need/cheatsheets/) (6) |
+| **Playbooks** | [EN](docs/cohub-is-all-you-need/playbooks/) · [中文](docs/cohub-is-all-you-need/zh/playbooks/) (31) |
+| **Concepts / Anti-patterns / Cheatsheets** | [concepts](docs/cohub-is-all-you-need/concepts/) (21) · [anti-patterns](docs/cohub-is-all-you-need/anti-patterns/) (15) · [cheatsheets](docs/cohub-is-all-you-need/cheatsheets/) (6) |
 | **Banner** | [animated SVG](https://cdn.jsdelivr.net/gh/markbang/awesome-cohub@main/docs/cohub-is-all-you-need/assets/banner.svg) · [architecture](docs/cohub-is-all-you-need/assets/architecture.svg) |
 | **Changelog** | [guide CHANGELOG](docs/cohub-is-all-you-need/CHANGELOG.md) |
 

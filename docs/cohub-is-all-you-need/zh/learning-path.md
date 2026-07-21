@@ -20,6 +20,7 @@ type: guide
 
 1. [在 config Space 管好默认规则](./playbooks/user-config-and-rules.md)
 2. Cookbook：[配置常用 Skills](./cookbooks/config-skills-setup.md)
+2b. [`.cohub` / `.agents` 分层与优先级](./playbooks/dot-cohub-layers.md)
 3. [三层搜索](./playbooks/search-layers.md)
 4. [用 /skill: 发现技能](./playbooks/skill-slash-discovery.md)
 5. 可选：[经 WARP 出站](./playbooks/egress-proxy.md)

@@ -131,6 +131,9 @@ See [search-layers](./search-layers.md).
 - Giant User Rules that fight every project’s AGENTS.md
 - Multiple Spaces named `config`
 
+
+Also: [`.cohub` layers & priority](../concepts/dot-cohub-layers.md) · [playbook](../playbooks/dot-cohub-layers.md).
+
 ---
 
 [中文](../zh/playbooks/user-config-and-rules.md)

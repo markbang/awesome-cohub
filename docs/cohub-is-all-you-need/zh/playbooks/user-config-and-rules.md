@@ -120,6 +120,9 @@ See [search-layers](./search-layers.md).
 - Giant User Rules that fight every project’s AGENTS.md
 - Multiple Spaces named `config`
 
+
+另见：[`.cohub` 分层与优先级](../concepts/dot-cohub-layers.md) · [实践卡](../playbooks/dot-cohub-layers.md)。
+
 ---
 
 [English](../../playbooks/user-config-and-rules.md)

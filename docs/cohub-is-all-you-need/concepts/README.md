@@ -7,6 +7,7 @@ Lookup cards for core Cohub objects.
 | `cohub.concept.channel` | Channel | [channel.md](./channel.md) |
 | `cohub.concept.chat` | Chat (Session) | [chat.md](./chat.md) |
 | `cohub.concept.commerce` | Work commerce | [commerce.md](./commerce.md) |
+| `cohub.concept.dot-cohub-layers` | .cohub layers & priority | [dot-cohub-layers.md](./dot-cohub-layers.md) |
 | `cohub.concept.execution-token` | Execution token | [execution-token.md](./execution-token.md) |
 | `cohub.concept.home-space` | Home Space | [home-space.md](./home-space.md) |
 | `cohub.concept.hooks` | Space Hooks | [hooks.md](./hooks.md) |
@@ -25,6 +26,6 @@ Lookup cards for core Cohub objects.
 | `cohub.concept.work` | Work | [work.md](./work.md) |
 | `cohub.concept.work-presentation` | Work presentation (hideCohubBar) | [work-presentation.md](./work-presentation.md) |
 
-**20** items.
+**21** items.
 
 [中文](../zh/concepts/README.md)

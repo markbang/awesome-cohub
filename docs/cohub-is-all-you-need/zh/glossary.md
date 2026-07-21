@@ -31,6 +31,9 @@ type: guide
 | **Commerce** | 商业化 | Work 内付费能力/积分 | [commerce](./concepts/commerce.md) |
 | **Search layers** | 搜索分层 | 产品 vs 工作区 vs 网页 | [search-layers](./concepts/search-layers.md) |
 
+| **`.cohub/`** | `.cohub/` | 平台向 Space 配置：models、generations、space.json 主题/背景、hooks | [dot-cohub-layers](./concepts/dot-cohub-layers.md) |
+| **`.agents/prompts`** | 斜杠模板 | 斜杠 `/name` 模板（不在 `.cohub/`） | [dot-cohub-layers](./concepts/dot-cohub-layers.md) |
+
 ## 短原则
 
 - Space = 工作 · Save = 时间 · Work = 分享  

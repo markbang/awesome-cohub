@@ -89,6 +89,18 @@ Update existing wiki pages; do not only append raw forever.
 
 - Pro/Max: hide public footer bar via UI or `--hide-cohub-bar` — [hide-cohub-bar](./playbooks/hide-cohub-bar.md)
 
+
+## `.cohub` vs `.agents` (priority)
+
+```text
+skills & slash prompts: platform → mods → user → project   (later wins)
+models: platform → user
+space look: .cohub/space.json + theme.css (this Space only)
+slash templates: .agents/prompts/*.md   (NOT .cohub/)
+```
+
+Deep: [dot-cohub-layers](./playbooks/dot-cohub-layers.md)
+
 ## Jump links
 
 - [Learning path](./learning-path.md)

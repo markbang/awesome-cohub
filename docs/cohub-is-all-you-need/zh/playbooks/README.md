@@ -5,6 +5,7 @@
 | `cohub.bp.agent-with-skills` | 给 Agent 装 skill 并真实干活 | [agent-with-skills.md](./agent-with-skills.md) |
 | `cohub.bp.channel-ops` | 从外部频道运营 Space | [channel-ops.md](./channel-ops.md) |
 | `cohub.bp.cross-space-context` | 引用另一个 Space 的上下文 | [cross-space-context.md](./cross-space-context.md) |
+| `cohub.bp.dot-cohub-layers` | 按正确优先级配置 .cohub 与 .agents | [dot-cohub-layers.md](./dot-cohub-layers.md) |
 | `cohub.bp.egress-proxy` | 沙箱走 WARP 出口 | [egress-proxy.md](./egress-proxy.md) |
 | `cohub.bp.execution-token-identity` | Execution token 与登录身份 | [execution-token-identity.md](./execution-token-identity.md) |
 | `cohub.bp.fork-and-proposal` | Fork 存档并安全探索 | [fork-and-proposal.md](./fork-and-proposal.md) |
@@ -33,6 +34,6 @@
 | `cohub.bp.work-kit-product` | 用 Work Kit 做真 Work 产品 | [work-kit-product.md](./work-kit-product.md) |
 | `cohub.bp.work-lifecycle` | Work 生命周期 — 发布、版本、停用、可见性 | [work-lifecycle.md](./work-lifecycle.md) |
 
-**30** 项。
+**31** 项。
 
 [English](../../playbooks/README.md)

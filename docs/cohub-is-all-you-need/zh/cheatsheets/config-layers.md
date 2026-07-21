@@ -45,6 +45,22 @@ platform → mods → user config → workspace (.agents/skills)
 | Platform space id | Yes → `/configs/platform` |
 | Home / project | Checkpoint only (no user-config publish) |
 
+
+## `.cohub` vs `.agents`（目录与优先级）
+
+| 目录 | 路径 | 合并顺序（同名后者赢） |
+|------|------|------------------------|
+| Skills `/skill:` | `.agents/skills/` | platform → mods → user → project |
+| 斜杠 `/name` | **`.agents/prompts/*.md`**（不在 `.cohub/`） | platform → mods → user → project |
+| Models | **`.cohub/models.json`** | platform → user |
+| Generations | `.cohub/generations/` | platform/user Save 发布 |
+| Space 观感 | **`.cohub/space.json`**、**`.cohub/theme.css`** | **仅本 Space**（不走 catalog 合并） |
+| Hooks | `.cohub/hooks/*` | 当前 Space；FS 忽略 `.cohub/**` |
+
+config/platform Save 白名单：`AGENTS.md`、`CLAUDE.md`、`.agents/`、`.cohub/`。
+
+深卡：[dot-cohub-layers](../concepts/dot-cohub-layers.md) · 实践卡 [dot-cohub-layers](../playbooks/dot-cohub-layers.md)
+
 ## Related
 - `cohub.bp.user-config-and-rules`
 - `cohub.concept.user-config-space`

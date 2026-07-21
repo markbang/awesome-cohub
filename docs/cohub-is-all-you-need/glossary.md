@@ -31,6 +31,9 @@ Bilingual terms. Deep dives link to concept cards.
 | **Commerce** | 商业化 | Paid features/credits inside Works | [commerce](./concepts/commerce.md) |
 | **Search layers** | 搜索分层 | Product vs workspace vs web | [search-layers](./concepts/search-layers.md) |
 
+| **`.cohub/`** | `.cohub/` | Platform-facing Space config: models, generations, space.json theme/background, hooks | [dot-cohub-layers](./concepts/dot-cohub-layers.md) |
+| **`.agents/prompts`** | 斜杠模板 | Slash `/name` templates (not under `.cohub/`) | [dot-cohub-layers](./concepts/dot-cohub-layers.md) |
+
 ## Short principles
 
 - Space = work · Save = time · Work = share  

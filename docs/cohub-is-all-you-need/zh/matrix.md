@@ -51,6 +51,7 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | `cohub.bp.space-members-access` | 成员、host/builder/guest、访问策略 | Space 设置 | `cohub` | intermediate | builder, operator |
 | `cohub.bp.space-env-sandbox` | 环境变量 + 沙箱规格/idle | Space 设置, Sandbox | `cohub` | intermediate | builder, operator |
 | `cohub.bp.public-identity-slugs` | 用户名与 slug，拼公开 URL | Profile, Space, Works | `cohub` | starter | builder |
+| `cohub.bp.dot-cohub-layers` | 按优先级配置 `.cohub` / `.agents` | config Space、Space 文件、斜杠目录 | `cohub` | intermediate | builder, agent-author |
 
 ---
 

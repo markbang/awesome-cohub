@@ -46,6 +46,9 @@ sources:
 - Confusing platform Space with user `name=config` Space
 - Editing `/configs/platform` inside a sandbox (read-only projection)
 
+
+另见：[`.cohub` 分层与优先级](../concepts/dot-cohub-layers.md) · [实践卡](../playbooks/dot-cohub-layers.md)。
+
 ---
 
 [English](../../playbooks/platform-config.md)

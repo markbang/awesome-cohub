@@ -49,6 +49,7 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | `cohub.bp.space-members-access` | Members, host/builder/guest, access policy | Space settings | `cohub` | intermediate | builder, operator |
 | `cohub.bp.space-env-sandbox` | Env vars + sandbox spec/idle | Space settings, Sandbox | `cohub` | intermediate | builder, operator |
 | `cohub.bp.public-identity-slugs` | Username + space/work slugs for public URLs | Profile, Space, Works | `cohub` | starter | builder |
+| `cohub.bp.dot-cohub-layers` | Configure `.cohub` / `.agents` with merge priority | config Space, Space files, slash catalog | `cohub` | intermediate | builder, agent-author |
 
 ---
 

@@ -8,6 +8,7 @@
 | `auto` | 渠道 | [channel.md](./channel.md) |
 | `cohub.concept.chat` | Chat / Session（会话） | [chat.md](./chat.md) |
 | `cohub.concept.commerce` | Work 商业化 | [commerce.md](./commerce.md) |
+| `cohub.concept.dot-cohub-layers` | .cohub 分层与优先级 | [dot-cohub-layers.md](./dot-cohub-layers.md) |
 | `cohub.concept.execution-token` | Execution token（执行令牌） | [execution-token.md](./execution-token.md) |
 | `cohub.concept.home-space` | Home Space | [home-space.md](./home-space.md) |
 | `cohub.concept.hooks` | Space Hooks（空间钩子） | [hooks.md](./hooks.md) |
@@ -23,6 +24,6 @@
 | `cohub.concept.work` | Work（作品） | [work.md](./work.md) |
 | `cohub.concept.work-presentation` | Work 呈现（hideCohubBar） | [work-presentation.md](./work-presentation.md) |
 
-**20** 项。
+**21** 项。
 
 [English](../../concepts/README.md)

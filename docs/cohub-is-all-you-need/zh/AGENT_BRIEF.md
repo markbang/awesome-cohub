@@ -89,6 +89,18 @@ log.md   只追加时间线
 
 - Pro/Max：UI 或 `--hide-cohub-bar` 隐藏公开底栏 — [hide-cohub-bar](./playbooks/hide-cohub-bar.md)
 
+
+## `.cohub` vs `.agents`（优先级）
+
+```text
+skills 与斜杠 prompts: platform → mods → user → project   （同名后者赢）
+models: platform → user
+Space 观感: .cohub/space.json + theme.css（仅本 Space）
+斜杠模板: .agents/prompts/*.md   （不在 .cohub/）
+```
+
+深卡：[dot-cohub-layers](./playbooks/dot-cohub-layers.md)
+
 ## 跳转
 
 - [学习路径](./learning-path.md)

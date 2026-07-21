@@ -55,6 +55,9 @@ Every sandbox mounts (read-only):
 - Playbook: `cohub.bp.platform-config`
 - Cheat: `cohub.cheat.config-layers`
 
+
+Also: [`.cohub` layers & priority](./dot-cohub-layers.md) · [playbook](../playbooks/dot-cohub-layers.md).
+
 ---
 
 [中文](../zh/concepts/platform-config.md)

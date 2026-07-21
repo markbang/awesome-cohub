@@ -45,6 +45,22 @@ platform → mods → user config → workspace (.agents/skills)
 | Platform space id | Yes → `/configs/platform` |
 | Home / project | Checkpoint only (no user-config publish) |
 
+
+## `.cohub` vs `.agents` (catalog priority)
+
+| Catalog | Paths | Merge order (later wins) |
+|---------|-------|--------------------------|
+| Skills `/skill:` | `.agents/skills/` | platform → mods → user → project |
+| Slash `/name` | **`.agents/prompts/*.md`** (not `.cohub/`) | platform → mods → user → project |
+| Models | **`.cohub/models.json`** | platform → user |
+| Generations | `.cohub/generations/` | published from platform/user Save |
+| Space look | **`.cohub/space.json`**, **`.cohub/theme.css`** | **per Space only** (not catalog merge) |
+| Hooks | `.cohub/hooks/*` | current Space; FS ignores `.cohub/**` |
+
+Config/platform Save whitelist: `AGENTS.md`, `CLAUDE.md`, `.agents/`, `.cohub/`.
+
+Deep card: [dot-cohub-layers](../concepts/dot-cohub-layers.md) · playbook [dot-cohub-layers](../playbooks/dot-cohub-layers.md)
+
 ## Related
 - `cohub.bp.user-config-and-rules`
 - `cohub.concept.user-config-space`
