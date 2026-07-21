@@ -1,0 +1,78 @@
+---
+id: cohub.bp.home-and-sessions-inbox
+title: Home Space and Sessions inbox
+title_zh: Home Space 与 Sessions 收件箱
+type: playbook
+audience: [builder, agent]
+features: [space, chat, navigation]
+difficulty: starter
+related: [cohub.concept.space, cohub.concept.chat, cohub.bp.cross-space-context]
+sources:
+  - https://cohub.run/docs/learn/product-map
+  - https://cohub.run/docs/workspace/chats
+  - https://cohub.run/changelog#v1.94
+  - https://cohub.run/changelog#v1.98
+  - https://cohub.run/changelog#v1.101
+  - https://cohub.run/changelog#v1.105
+---
+
+# Home Space and Sessions inbox · Home Space 与 Sessions 收件箱
+
+## When · 何时用
+
+EN: You live across many Spaces and need a default landing place plus a cross-space Chat radar.
+中文：同时泡在很多 Space 里，需要默认落点 + 跨 Space 的 Chat 雷达。
+
+## Two surfaces · 两个表面
+
+### Home Space
+- Empty accounts get a real **Home** space (`slug=home`) via default-space resolution instead of a dead-end “new space only” wall.
+- Optional platform bootstrap: first-time Home may fork from `HOME_BOOTSTRAP_CHECKPOINT_ID` when configured; otherwise blank workspace.
+- Home is still a normal Space — files, Chats, Saves, Works apply.
+
+### Sessions inbox (`/sessions`)
+- Cross-space recent Chats (desktop split list + conversation).
+- **New chat from inbox** stays in inbox chrome: `/sessions/new?space=…` with space picker (does not always yank you into a random workspace shell mid-draft).
+- Continuity: restore last chat / scroll where the product supports it.
+
+## Outcome · 结果
+
+- You know where first login lands
+- You can triage Chats across Spaces without losing the thread
+- Project work still graduates into **named Spaces** (not infinite Home clutter)
+
+## Steps · 步骤
+
+### EN
+1. After sign-in, confirm your default/Home Space in the switcher.
+2. Use **Home** for lightweight notes, personal automation, or staging — not every production system.
+3. Create **named Spaces** per initiative (`launch-page`, `customer-x`, `wiki-context`).
+4. Use **`/sessions`** each day like an inbox: reply, label, jump to the owning Space when file work is needed.
+5. Start cross-space drafts from the inbox when you are still choosing where the work belongs; pin the Space before long agent runs.
+6. Don’t confuse inbox triage with knowledge capture — durable conclusions go to the target Space’s files/Saves.
+
+### 中文
+1. 登录后在切换器确认默认/Home Space。
+2. Home 放轻量笔记/个人自动化/中转，不要塞所有生产系统。
+3. 每个事项用**具名 Space**。
+4. 每天用 **`/sessions`** 当收件箱：回复、贴标签；要改文件再进对应 Space。
+5. 还没想好落点时，可在收件箱起稿并挑选 Space；长程 Agent 跑之前先固定 Space。
+6. 收件箱分诊 ≠ 知识沉淀；结论写进目标 Space 的文件/存档。
+
+## Agent notes · Agent 注意
+
+- Prefer explicit `-s <spaceId>` in CLI; don’t assume Home is the mission Space.
+- When user says “my chats”, they may mean inbox across spaces — ask which Space owns the files.
+- `COHUB_SPACE_ID` in a sandbox is the **current** Space, not necessarily Home.
+
+## Done when · 完成标准
+
+- [ ] Default/Home identified
+- [ ] At least one initiative has its own Space
+- [ ] Daily Chat triage path uses `/sessions` without losing file context
+
+## Avoid · 别这样做
+
+- Dumping every experiment into Home forever
+- Running destructive agents from the wrong Space because the inbox focused a foreign thread
+- Treating inbox order as project priority without labels/Saves

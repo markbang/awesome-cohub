@@ -212,6 +212,16 @@ One-time products on a **published Work**: feature unlocks and consumable credit
 
 Playbook: [work-commerce](../playbooks/work-commerce.md) · Guide: [work-commerce-guide.md](https://github.com/talesofai/cohub/blob/main/docs/work-commerce-guide.md)
 
+
+### 3.12 Home, Sessions inbox, Mods, `/skill:`
+
+- **Home Space** — default landing Space (`home`); optional bootstrap checkpoint; still a full Space.
+- **Sessions inbox (`/sessions`)** — cross-space Chat radar; new chat can target a Space without losing inbox chrome.
+- **Mods** — mount shared Spaces at `/mods/<slug>`; source owns writes; consumers read.
+- **`/skill:name`** — composer slash discovery across platform / mod / user / project skills (expand on send).
+
+Playbooks: [home-and-sessions-inbox](../playbooks/home-and-sessions-inbox.md) · [mod-mount](../playbooks/mod-mount.md) · [skill-slash-discovery](../playbooks/skill-slash-discovery.md)
+
 ## 4. Builder playbook (human)
 
 ### Start
@@ -306,7 +316,7 @@ Always start smaller than you think.
 |-------|-----|-------|
 | Manifesto | this file (v0.2) | revise with product changes |
 | [Matrix](../matrix.md) | scenario index | keep IDs stable |
-| [Playbooks](../playbooks/) | 16+ playbooks (matrix + commerce) | add new scenarios as product grows |
+| [Playbooks](../playbooks/) | 19 playbooks | add new scenarios as product grows |
 | [Concepts](../concepts/) | core nouns | add sparingly |
 | Knowledge-base pattern | §3.9 + playbook | evolve with real Spaces |
 

@@ -212,6 +212,16 @@ runtime/             # 可选：agent 路由、来源 registry、协议
 
 实践卡：[work-commerce](../playbooks/work-commerce.md) · 指南：[work-commerce-guide.md](https://github.com/talesofai/cohub/blob/main/docs/work-commerce-guide.md)
 
+
+### 3.12 Home、Sessions 收件箱、Mod、`/skill:`
+
+- **Home Space** — 默认落点（`home`）；可配置 bootstrap 存档；仍是完整 Space。
+- **Sessions 收件箱（`/sessions`）** — 跨 Space Chat 雷达；可在收件箱里选定 Space 起新聊。
+- **Mods** — 把共享 Space 挂到 `/mods/<slug>`；写入在源 Space，消费方只读。
+- **`/skill:name`** — Composer 斜杠发现平台/Mod/用户/项目技能（发送时展开）。
+
+实践卡：[home-and-sessions-inbox](../playbooks/home-and-sessions-inbox.md) · [mod-mount](../playbooks/mod-mount.md) · [skill-slash-discovery](../playbooks/skill-slash-discovery.md)
+
 ## 4. 给建造者（人）
 
 ### 开始
@@ -306,7 +316,7 @@ cohub -s "$COHUB_SPACE_ID" works publish <slug> \
 |----|------|------|
 | 主文 | 本文件（v0.2） | 随产品迭代修订 |
 | [矩阵](../matrix.md) | 场景索引 | 保持 ID 稳定 |
-| [实践卡](../playbooks/) | 16+ 张实践卡（矩阵 + 商业化） | 随产品增长追加新场景 |
+| [实践卡](../playbooks/) | 19 张实践卡 | 随产品增长追加新场景 |
 | [概念卡](../concepts/) | 核心名词 | 少而精 |
 | 知识库模式 | §3.9 + 实践卡 | 随真实 Space 演进 |
 

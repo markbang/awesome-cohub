@@ -13,29 +13,32 @@ Grounded in product docs ([/docs](https://cohub.run/docs)) and platform changes 
 | [manifesto/en.md](./manifesto/en.md) | English manifesto |
 | [manifesto/zh.md](./manifesto/zh.md) | 中文宣言 |
 | [matrix.md](./matrix.md) | Scenario matrix |
-| [playbooks/](./playbooks/) | Bilingual playbooks (matrix + commerce) |
-| [concepts/](./concepts/) | Concept lookup cards |
+| [playbooks/](./playbooks/) | Bilingual playbooks |
+| [concepts/](./concepts/) | Concept cards |
 | [anti-patterns/](./anti-patterns/) | Failure-mode cards |
-| [cheatsheets/](./cheatsheets/) | CLI + scopes cheatsheets |
+| [cheatsheets/](./cheatsheets/) | CLI + scopes |
 
 ## How to read
 
-1. Manifesto in your language  
-2. Matrix → scenario  
-3. Playbook for steps  
-4. Concepts / anti-patterns / cheatsheets as needed  
-5. Re-check `/docs` + `/changelog` when behavior may have changed  
+1. Manifesto → 2. Matrix → 3. Playbook → 4. Concepts / anti-patterns / cheatsheets  
+5. Re-check `/docs` + `/changelog` when something looks new  
 
 ## Status
 
 | Piece | Status |
 |-------|--------|
-| Manifesto EN/ZH | **v0.2** |
-| Scenario matrix | **v0.4** |
-| Playbooks | **v0.4** (16 cards) |
-| Concepts | **v0.4** (7 cards) |
+| Manifesto EN/ZH | **v0.3** |
+| Scenario matrix | **v0.5** |
+| Playbooks | **v0.5** (19 cards) |
+| Concepts | **v0.5** (9 cards) |
 | Anti-patterns | **v0.4** (9 cards) |
-| Cheatsheets | **v0.4** (CLI + scopes) |
+| Cheatsheets | **v0.4** |
+
+### Latest playbooks
+
+- [mod-mount](./playbooks/mod-mount.md) — Mods vs skills, `/mods/<slug>`
+- [skill-slash-discovery](./playbooks/skill-slash-discovery.md) — `/skill:` discovery & packaging
+- [home-and-sessions-inbox](./playbooks/home-and-sessions-inbox.md) — Home + `/sessions`
 
 ## Related
 

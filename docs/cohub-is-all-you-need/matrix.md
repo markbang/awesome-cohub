@@ -34,6 +34,9 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | `cohub.bp.channel-ops` | Operate from Discord / Feishu / WeChat · 外部频道入口 | Channels, Gateway | `cohub` | intermediate |
 | `cohub.bp.fork-and-proposal` | Fork a Save, explore, propose back · Fork 存档并回馈 | Checkpoint, Fork, Proposal | `cohub` | intermediate |
 | `cohub.bp.space-hooks-automation` | Event automation with Space Hooks · 用 Space Hooks 做事件自动化 | Hooks, Tasks, Files | `cohub` | advanced |
+| `cohub.bp.mod-mount` | Mount Mods for shared tooling · 挂载 Mod 共享工具 | Mods, Skills, Sandbox | `cohub` | intermediate |
+| `cohub.bp.skill-slash-discovery` | Discover skills with `/skill:` · 用 `/skill:` 发现技能 | Chat, Skills, Mods | `cohub` | starter |
+| `cohub.bp.home-and-sessions-inbox` | Home Space & Sessions inbox · Home 与会话收件箱 | Home, `/sessions` | `cohub` | starter |
 | `cohub.bp.port-preview` | Live port demo (dev, not default prod) · 端口预览（开发向） | Works (`port`), Sandbox ports | `cohub-works-share` | intermediate |
 
 ---

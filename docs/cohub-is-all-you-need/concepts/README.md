@@ -5,7 +5,9 @@ Short lookup cards aligned with product docs (UI nouns first).
 | Concept | File |
 |---------|------|
 | Space | [space.md](./space.md) |
+| Home Space | [home-space.md](./home-space.md) |
 | Chat / Session | [chat.md](./chat.md) |
+| Sessions inbox | [sessions-inbox.md](./sessions-inbox.md) |
 | Save / Checkpoint | [save.md](./save.md) |
 | Work | [work.md](./work.md) |
 | Skill & Mod | [skill-and-mod.md](./skill-and-mod.md) |
