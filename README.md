@@ -59,7 +59,7 @@ Inspired by the [Awesome](https://awesome.re) format and the VoltAgent awesome s
 
 - **[Cohub](https://cohub.run)** - Browser-first creative space for people and agents.
 - **[Cohub monorepo](https://github.com/talesofai/cohub)** - Source for API, agent, sandbox, gateway, web, and packages.
-- **[neta-art](https://github.com/neta-art)** - GitHub org around the Cohub / Neta ecosystem.
+- **[talesofai](https://github.com/talesofai)** - GitHub org for Cohub and related open-source projects.
 
 ## Core Concepts
 
