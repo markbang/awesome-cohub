@@ -71,7 +71,11 @@ AGENTS.md            # how agents should navigate this knowledge Space
 
 ## External wiki evidence · 外部百科证据
 
-For Fandom / MediaWiki lore dumps into `raw/` then distill to `wiki/`, use **[fandom-cli](https://github.com/kjx-talesofai/claude-skill-fandom-cli)** (API, not HTML scrape). Good companion to config-space skills.
+For Fandom / MediaWiki lore dumps into `raw/` then distill to `wiki/`:
+
+- **[fandom-wiki](https://github.com/markbang/wikis-skill)** — HTTP API (`fff-wiki.neta.art`), great for curl/agents
+- **[fandom-cli](https://github.com/kjx-talesofai/claude-skill-fandom-cli)** — local MediaWiki CLI alternative
+
 
 ## Avoid · 别这样做
 
