@@ -43,6 +43,7 @@ That bundle is Cohub. Everything else is a specialization on top.
 | **Skill** | skill | `/skill:name` reusable capability |
 | **Task** | task run | Async jobs, generations, hook runs |
 | **Space Hook** | `.cohub/hooks/*` | Event automation (fs / turn / save / workspace ready) |
+| **User config Space** | `name=config` | Publishes personal rules/skills to `/configs/user` on Save |
 
 ### The core loop
 
@@ -222,6 +223,24 @@ Playbook: [work-commerce](../playbooks/work-commerce.md) · Guide: [work-commerc
 
 Playbooks: [home-and-sessions-inbox](../playbooks/home-and-sessions-inbox.md) · [mod-mount](../playbooks/mod-mount.md) · [skill-slash-discovery](../playbooks/skill-slash-discovery.md)
 
+
+### 3.13 User config Space (not Home)
+
+Cohub has a dedicated **owner config Space** recognized when **`space.name === "config"`**.
+
+On **Save**, the worker publishes a whitelist (`AGENTS.md`, `CLAUDE.md`, `.agents/`, `.cohub/`) to owner storage and every sandbox mounts it read-only at **`/configs/user`**.
+
+Effects:
+
+- **User Rules** (`AGENTS.md`) enter chat system context automatically
+- **User skills** appear under `/configs/user/.agents/skills` and in `/skill:` discovery
+- Skill precedence: `platform → mods → user → workspace` (same name: later wins)
+
+**Home Space is not config.** Home does not publish user config on Save.  
+**Mods are not user config.** Mods share team/base tooling; config Space is personal defaults.
+
+Playbook: [user-config-and-rules](../playbooks/user-config-and-rules.md) · Concept: [user-config-space](../concepts/user-config-space.md) · Cheat: [config-layers](../cheatsheets/config-layers.md)
+
 ## 4. Builder playbook (human)
 
 ### Start
@@ -316,7 +335,7 @@ Always start smaller than you think.
 |-------|-----|-------|
 | Manifesto | this file (v0.2) | revise with product changes |
 | [Matrix](../matrix.md) | scenario index | keep IDs stable |
-| [Playbooks](../playbooks/) | 19 playbooks | add new scenarios as product grows |
+| [Playbooks](../playbooks/) | 20 playbooks | add new scenarios as product grows |
 | [Concepts](../concepts/) | core nouns | add sparingly |
 | Knowledge-base pattern | §3.9 + playbook | evolve with real Spaces |
 

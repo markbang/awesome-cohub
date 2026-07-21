@@ -43,6 +43,7 @@
 | **Skill** | skill | `/skill:name` 可复用能力 |
 | **Task** | task run | 异步任务、生成、hook 运行记录 |
 | **Space Hook** | `.cohub/hooks/*` | 事件自动化（文件/回合/存档/就绪） |
+| **User config Space** | `name=config` | 存档后把个人规则/skills 发布到 `/configs/user` |
 
 ### 主循环
 
@@ -222,6 +223,24 @@ runtime/             # 可选：agent 路由、来源 registry、协议
 
 实践卡：[home-and-sessions-inbox](../playbooks/home-and-sessions-inbox.md) · [mod-mount](../playbooks/mod-mount.md) · [skill-slash-discovery](../playbooks/skill-slash-discovery.md)
 
+
+### 3.13 用户 config Space（不是 Home）
+
+Cohub 有一类特殊的 **owner 配置 Space**：当 **`space.name === "config"`** 时被识别。
+
+对其 **Save** 时，worker 会把白名单（`AGENTS.md`、`CLAUDE.md`、`.agents/`、`.cohub/`）发布到用户配置存储，并在每个沙箱只读挂载为 **`/configs/user`**。
+
+影响：
+
+- **User Rules**（`AGENTS.md`）自动进入 chat 系统上下文
+- **个人 skills** 出现在 `/configs/user/.agents/skills` 与 `/skill:` 发现
+- Skill 优先级：`platform → mods → user → workspace`（同名后者覆盖）
+
+**Home 不是 config**——Home 存档不会发布 user config。  
+**Mod 不是 user config**——Mod 共享团队/基座能力；config Space 是个人默认。
+
+实践卡：[user-config-and-rules](../playbooks/user-config-and-rules.md) · 概念：[user-config-space](../concepts/user-config-space.md) · 速查：[config-layers](../cheatsheets/config-layers.md)
+
 ## 4. 给建造者（人）
 
 ### 开始
@@ -316,7 +335,7 @@ cohub -s "$COHUB_SPACE_ID" works publish <slug> \
 |----|------|------|
 | 主文 | 本文件（v0.2） | 随产品迭代修订 |
 | [矩阵](../matrix.md) | 场景索引 | 保持 ID 稳定 |
-| [实践卡](../playbooks/) | 19 张实践卡 | 随产品增长追加新场景 |
+| [实践卡](../playbooks/) | 20 张实践卡 | 随产品增长追加新场景 |
 | [概念卡](../concepts/) | 核心名词 | 少而精 |
 | 知识库模式 | §3.9 + 实践卡 | 随真实 Space 演进 |
 

@@ -4,7 +4,7 @@ Best-practice guide for **builders** and **agents** using Cohub.
 
 > Space is the unit of work. Checkpoint is the unit of time. Work is the unit of sharing.
 
-Grounded in product docs ([/docs](https://cohub.run/docs)) and platform changes ([/changelog](https://cohub.run/changelog)).
+Grounded in product docs ([/docs](https://cohub.run/docs)), changelog ([/changelog](https://cohub.run/changelog)), and monorepo behavior (config publish, sandbox mounts, prompt layering).
 
 ## Map
 
@@ -14,35 +14,34 @@ Grounded in product docs ([/docs](https://cohub.run/docs)) and platform changes 
 | [manifesto/zh.md](./manifesto/zh.md) | 中文宣言 |
 | [matrix.md](./matrix.md) | Scenario matrix |
 | [playbooks/](./playbooks/) | Bilingual playbooks |
-| [concepts/](./concepts/) | Concept cards |
+| [concepts/](./concepts/) | Concept cards (incl. **user config Space**) |
 | [anti-patterns/](./anti-patterns/) | Failure-mode cards |
-| [cheatsheets/](./cheatsheets/) | CLI + scopes |
+| [cheatsheets/](./cheatsheets/) | CLI, scopes, **config layers** |
 
 ## How to read
 
 1. Manifesto → 2. Matrix → 3. Playbook → 4. Concepts / anti-patterns / cheatsheets  
-5. Re-check `/docs` + `/changelog` when something looks new  
 
 ## Status
 
 | Piece | Status |
 |-------|--------|
-| Manifesto EN/ZH | **v0.3** |
-| Scenario matrix | **v0.5** |
-| Playbooks | **v0.5** (19 cards, matrix-aligned) |
-| Concepts | **v0.5** (9 cards) |
-| Anti-patterns | **v0.4** (9 cards) |
-| Cheatsheets | **v0.4** |
+| Manifesto EN/ZH | **v0.4** (config Space depth) |
+| Scenario matrix | **v0.6** |
+| Playbooks | **v0.6** (20 cards) |
+| Concepts | **v0.6** (10 cards) |
+| Anti-patterns | **v0.5** (11 cards) |
+| Cheatsheets | **v0.5** (3 sheets) |
 
-### Latest playbooks
+### Deep dives worth reading
 
-- [mod-mount](./playbooks/mod-mount.md) — Mods vs skills, `/mods/<slug>`
-- [skill-slash-discovery](./playbooks/skill-slash-discovery.md) — `/skill:` discovery & packaging
-- [home-and-sessions-inbox](./playbooks/home-and-sessions-inbox.md) — Home + `/sessions`
+- [User config Space](./concepts/user-config-space.md)
+- [Own agent defaults in config Space](./playbooks/user-config-and-rules.md)
+- [Config layers cheatsheet](./cheatsheets/config-layers.md)
+- [Mod mount](./playbooks/mod-mount.md) · [Home vs inbox](./playbooks/home-and-sessions-inbox.md)
 
 ## Related
 
 - https://cohub.run · https://cohub.run/docs · https://cohub.run/changelog  
 - https://github.com/talesofai/cohub  
 - https://github.com/markbang/awesome-cohub  
-- Skills: [wgetx](https://github.com/markbang/wgetx-skill) · [warp-proxy](https://github.com/markbang/warp-proxy-skill) · [cohub-work-skill](https://github.com/markbang/cohub-work-skill)

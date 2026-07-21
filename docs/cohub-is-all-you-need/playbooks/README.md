@@ -21,8 +21,9 @@ Executable bilingual practice cards.
 | `cohub.bp.social-research` | Social fetch into a Space knowledge base · 社媒采集写入 Space 知识库 | [social-research.md](./social-research.md) |
 | `cohub.bp.space-hooks-automation` | Automate with Space Hooks · 用 Space Hooks 做自动化 | [space-hooks-automation.md](./space-hooks-automation.md) |
 | `cohub.bp.space-knowledge-base` | Build a compounding wiki in a Space · 在 Space 里建复利知识库 | [space-knowledge-base.md](./space-knowledge-base.md) |
+| `cohub.bp.user-config-and-rules` | Own your agent defaults in the config Space · 用 config Space 管理个人 Agent 默认配置 | [user-config-and-rules.md](./user-config-and-rules.md) |
 | `cohub.bp.work-commerce` | Sell features and credits inside a Work · 在 Work 内售卖功能与积分 | [work-commerce.md](./work-commerce.md) |
 | `cohub.bp.work-kit-product` | Build a Work product with Work Kit · 用 Work Kit 做真 Work 产品 | [work-kit-product.md](./work-kit-product.md) |
 
-**19** playbooks.
+**20** playbooks.
 

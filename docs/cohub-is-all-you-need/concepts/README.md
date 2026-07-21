@@ -1,11 +1,12 @@
 # Concepts
 
-Short lookup cards aligned with product docs (UI nouns first).
+Short lookup cards aligned with product behavior and code paths.
 
 | Concept | File |
 |---------|------|
 | Space | [space.md](./space.md) |
 | Home Space | [home-space.md](./home-space.md) |
+| **User config Space** | [user-config-space.md](./user-config-space.md) |
 | Chat / Session | [chat.md](./chat.md) |
 | Sessions inbox | [sessions-inbox.md](./sessions-inbox.md) |
 | Save / Checkpoint | [save.md](./save.md) |

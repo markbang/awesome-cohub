@@ -38,6 +38,7 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | `cohub.bp.skill-slash-discovery` | Discover skills with `/skill:` · 用 `/skill:` 发现技能 | Chat, Skills, Mods | `cohub` | starter |
 | `cohub.bp.home-and-sessions-inbox` | Home Space & Sessions inbox · Home 与会话收件箱 | Home, `/sessions` | `cohub` | starter |
 | `cohub.bp.work-commerce` | Sell features/credits in a Work · Work 内售卖功能与积分 | Works, Billing, SDK | `cohub-work-kit` | advanced |
+| `cohub.bp.user-config-and-rules` | Own agent defaults in config Space · 用 config Space 管个人 Agent 默认 | config Space, User Rules, `/configs/user` | `cohub` | intermediate |
 | `cohub.bp.port-preview` | Live port demo (dev, not default prod) · 端口预览（开发向） | Works (`port`), Sandbox ports | `cohub-works-share` | intermediate |
 
 ---
