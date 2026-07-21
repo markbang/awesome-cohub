@@ -1,5 +1,15 @@
 # Cohub Is All You Need
 
+<p align="center">
+  <a href="https://github.com/markbang/awesome-cohub/tree/main/docs/cohub-is-all-you-need">
+    <img
+      width="1440"
+      alt="Cohub Is All You Need"
+      src="https://cdn.jsdelivr.net/gh/markbang/awesome-cohub@main/docs/cohub-is-all-you-need/assets/banner.svg"
+    />
+  </a>
+</p>
+
 Best-practice guide for **builders** and **agents** using Cohub.
 
 > Space is the unit of work. Checkpoint is the unit of time. Work is the unit of sharing.
