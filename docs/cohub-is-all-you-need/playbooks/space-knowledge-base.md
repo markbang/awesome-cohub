@@ -69,6 +69,10 @@ AGENTS.md            # how agents should navigate this knowledge Space
 - [ ] Log shows recent compounding updates
 - [ ] Raw evidence is linkable from wiki claims
 
+## External wiki evidence · 外部百科证据
+
+For Fandom / MediaWiki lore dumps into `raw/` then distill to `wiki/`, use **[fandom-cli](https://github.com/kjx-talesofai/claude-skill-fandom-cli)** (API, not HTML scrape). Good companion to config-space skills.
+
 ## Avoid · 别这样做
 
 - Archive pipeline that only adds files and never updates pages

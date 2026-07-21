@@ -124,6 +124,8 @@ Standard agent skills for the Cohub ecosystem. Install with [`npx skills`](https
 |---|---|---|
 | **warp-proxy** | [markbang/warp-proxy-skill](https://github.com/markbang/warp-proxy-skill) | WARP proxy scripts + skill (SOCKS5/HTTP `:10800`) |
 | **hyper-search** | [kjx-talesofai/claude-skill-hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search) | Recommended **config Space** web search (multi-provider fallback) |
+| **lark-lite** | [kjx-talesofai/claude-skill-lark-lite](https://github.com/kjx-talesofai/claude-skill-lark-lite) | Lightweight Feishu/Lark ops as **user identity** (not bot-first) via `lark-cli` |
+| **fandom-cli** | [kjx-talesofai/claude-skill-fandom-cli](https://github.com/kjx-talesofai/claude-skill-fandom-cli) | Query Fandom/MediaWiki wikis (pages, infobox, search, images) without HTML scraping |
 | **wgetx** | [markbang/wgetx-skill](https://github.com/markbang/wgetx-skill) | Pure ESM `.mjs` social fetch skill (no npm for default scrapers) |
 | **cohub-work-kit** | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | Scaffold Cohub Works (Vite + React + TanStack Query template bundled) |
 | **cohub-work-publish** | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | Build + publish directory Works with minimal scopes |
@@ -131,6 +133,30 @@ Standard agent skills for the Cohub ecosystem. Install with [`npx skills`](https
 ### Install (Codex)
 
 ```bash
+# --- config Space recommendations (install there, then Save to publish) ---
+
+# Web search
+npx skills add https://github.com/kjx-talesofai/claude-skill-hyper-search \
+  --skill "hyper-search" \
+  --agent codex \
+  --yes \
+  --copy
+
+# Feishu / Lark (user identity; needs @larksuite/cli)
+npx skills add https://github.com/kjx-talesofai/claude-skill-lark-lite \
+  --skill "lark-lite" \
+  --agent codex \
+  --yes \
+  --copy
+
+# Fandom / MediaWiki
+npx skills add https://github.com/kjx-talesofai/claude-skill-fandom-cli \
+  --skill "fandom-cli" \
+  --agent codex \
+  --yes \
+  --copy
+
+# --- sandbox / product skills ---
 
 # WARP proxy
 npx skills add https://github.com/markbang/warp-proxy-skill \
@@ -163,16 +189,26 @@ npx skills add https://github.com/markbang/cohub-work-skill \
 List skills in a package first:
 
 ```bash
+npx skills add https://github.com/kjx-talesofai/claude-skill-hyper-search --list
 npx skills add https://github.com/markbang/warp-proxy-skill --list
 npx skills add https://github.com/markbang/wgetx-skill --list
+npx skills add https://github.com/kjx-talesofai/claude-skill-lark-lite --list
+npx skills add https://github.com/kjx-talesofai/claude-skill-fandom-cli --list
 npx skills add https://github.com/markbang/cohub-work-skill --list
 ```
 
-> **Note:** `npx skills add` copies the whole skill directory. For `warp-proxy` and `wgetx`, runnable scripts ship under `skills/<name>/scripts/` and land in `.agents/skills/<name>/scripts/` after install.
+> **Note:** `hyper-search` / `lark-lite` / `fandom-cli` work well as **config Space** skills (Save to publish to `/configs/user`). `npx skills add` copies the whole skill directory. For `warp-proxy` and `wgetx`, runnable scripts ship under `skills/<name>/scripts/` and land in `.agents/skills/<name>/scripts/` after install.
 
 ### Post-install runtime deps
 
 ```bash
+# lark-lite
+npm install -g @larksuite/cli
+# then: lark-cli auth login --scope "$(cat lark-lite-scopes.txt)"  # see skill README; avoid --recommend alone
+
+# fandom-cli (sandbox-local venv recommended on Cohub)
+# python3 -m venv ~/venvs/fandom-cli && PIP_USER=false ~/venvs/fandom-cli/bin/pip install -e .agents/skills/fandom-cli
+
 # wgetx: pure ESM .mjs — no npm for default HTTP scrapers
 # optional browser flows only:
 #   cd .agents/skills/wgetx && npm init -y && npm i playwright && npx playwright install chromium
@@ -224,6 +260,9 @@ Community and adjacent projects that pair well with Cohub workflows.
 
 ### Ecosystem packages
 
+- **[kjx-talesofai/claude-skill-hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search)** — config Space web search.
+- **[kjx-talesofai/claude-skill-lark-lite](https://github.com/kjx-talesofai/claude-skill-lark-lite)** — Feishu/Lark lite (`lark-cli`, user identity).
+- **[kjx-talesofai/claude-skill-fandom-cli](https://github.com/kjx-talesofai/claude-skill-fandom-cli)** — Fandom/MediaWiki CLI skill.
 - **[markbang/warp-proxy-skill](https://github.com/markbang/warp-proxy-skill)** - Cloudflare WARP userspace proxy skill for sandboxes.
 - **[markbang/wgetx-skill](https://github.com/markbang/wgetx-skill)** - Multi-platform social media fetch skill + scripts.
 - **[markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill)** - Work Kit template + publish skills for Cohub Works.

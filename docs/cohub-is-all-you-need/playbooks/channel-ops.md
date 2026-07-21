@@ -50,6 +50,12 @@ EN: Humans already live in Discord / Feishu / WeChat / Telegram / QQ and should 
 - [ ] Channel chats findable in UI
 - [ ] On-call knows where durable outputs live
 
+## Feishu / Lark from Agent · 飞书
+
+For **user-identity** Feishu ops (not bot-first), prefer skill **[lark-lite](https://github.com/kjx-talesofai/claude-skill-lark-lite)** (`lark-cli`) — install into config Space, then Save. Avoid `lark-cli auth login --recommend` alone (missing high-frequency scopes); see skill README / `lark-lite-scopes.txt`.
+
+Cohub Channel binding (Space settings) is still the product “door” into a Space; lark-lite is for **operating Feishu itself**.
+
 ## Avoid · 别这样做
 
 - Channel-only ops with no Saves/Works
