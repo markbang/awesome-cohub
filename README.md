@@ -131,82 +131,30 @@ Standard agent skills for the Cohub ecosystem. Install with [`npx skills`](https
 | **cohub-work-kit** | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | Scaffold Cohub Works (Vite + React + TanStack Query template bundled) |
 | **cohub-work-publish** | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | Build + publish directory Works with minimal scopes |
 
-### Install (Codex)
+### Install (`.agents/`)
+
+Skills install into **`.agents/skills/<name>/`**. Full catalog is the tables above — pick a repo + skill name from there.
 
 ```bash
-# --- config Space recommendations (install there, then Save to publish) ---
-
-# Web search
+# example: config Space web search (then Save to publish → /configs/user)
 npx skills add https://github.com/kjx-talesofai/claude-skill-hyper-search \
   --skill "hyper-search" \
-  --agent codex \
   --yes \
   --copy
 
-# Feishu / Lark (user identity; needs @larksuite/cli)
-npx skills add https://github.com/kjx-talesofai/claude-skill-lark-lite \
-  --skill "lark-lite" \
-  --agent codex \
-  --yes \
-  --copy
-
-# Fandom / MediaWiki
-npx skills add https://github.com/kjx-talesofai/claude-skill-fandom-cli \
-  --skill "fandom-cli" \
-  --agent codex \
-  --yes \
-  --copy
-
-# Wikis HTTP API
-npx skills add https://github.com/markbang/wikis-skill \
-  --skill "wikis" \
-  --agent codex \
-  --yes \
-  --copy
-
-# --- sandbox / product skills ---
-
-# WARP proxy
-npx skills add https://github.com/markbang/warp-proxy-skill \
-  --skill "warp-proxy" \
-  --agent codex \
-  --yes \
-  --copy
-
-# Social media fetch
+# example: sandbox social fetch
 npx skills add https://github.com/markbang/wgetx-skill \
   --skill "wgetx" \
-  --agent codex \
-  --yes \
-  --copy
-
-# Cohub Work Kit (template + publish)
-npx skills add https://github.com/markbang/cohub-work-skill \
-  --skill "cohub-work-kit" \
-  --agent codex \
-  --yes \
-  --copy
-
-npx skills add https://github.com/markbang/cohub-work-skill \
-  --skill "cohub-work-publish" \
-  --agent codex \
   --yes \
   --copy
 ```
-
-List skills in a package first:
 
 ```bash
-npx skills add https://github.com/kjx-talesofai/claude-skill-hyper-search --list
-npx skills add https://github.com/markbang/warp-proxy-skill --list
+# list skills in a package first
 npx skills add https://github.com/markbang/wgetx-skill --list
-npx skills add https://github.com/kjx-talesofai/claude-skill-lark-lite --list
-npx skills add https://github.com/kjx-talesofai/claude-skill-fandom-cli --list
-npx skills add https://github.com/markbang/wikis-skill --list
-npx skills add https://github.com/markbang/cohub-work-skill --list
 ```
 
-> **Note:** `hyper-search` / `lark-lite` / `fandom-cli` / `wikis` work well as **config Space** skills (Save to publish to `/configs/user`). `npx skills add` copies the whole skill directory. For `warp-proxy` and `wgetx`, runnable scripts ship under `skills/<name>/scripts/` and land in `.agents/skills/<name>/scripts/` after install.
+> **Note:** Prefer **config Space** for personal defaults (`hyper-search`, `lark-lite`, `fandom-cli`, `wikis`) — install there, then **Save** so they publish to `/configs/user/.agents/skills/`. Project/sandbox tools (`warp-proxy`, `wgetx`, work-kit) can live in the Space workspace. `npx skills add --copy` copies the skill tree; scripts under `skills/<name>/scripts/` land in `.agents/skills/<name>/scripts/`.
 
 ### Post-install runtime deps
 
