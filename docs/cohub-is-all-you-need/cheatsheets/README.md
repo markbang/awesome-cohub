@@ -1,5 +1,5 @@
 # Cheatsheets
 
-Command and permission tables.
-
-Status: **planned**.
+| Sheet | File |
+|-------|------|
+| CLI ↔ UI & commands | [cli-and-ui.md](./cli-and-ui.md) |

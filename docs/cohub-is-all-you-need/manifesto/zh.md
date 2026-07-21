@@ -1,12 +1,14 @@
 # Cohub Is All You Need · Cohub 就是你需要的全部
 
-**v0.1** · 写给在 [Cohub](https://cohub.run) 里共创的人与 Agent 的最佳实践
+**v0.2** · 写给在 [Cohub](https://cohub.run) 里共创的人与 Agent 的最佳实践
 
 > 你的 Space：用来创造、玩耍，并与人、与 Agent 一起构建。
 
 这篇不是功能说明书，而是 **用法地图**：怎么建立心智、怎么选能力面、怎么交付，而不和产品较劲。
 
-配套：[场景矩阵](../matrix.md) · [English](./en.md)
+配套：[场景矩阵](../matrix.md) · [实践卡](../playbooks/) · [English](./en.md)
+
+官方：[产品文档](https://cohub.run/docs) · [Changelog](https://cohub.run/changelog)
 
 ---
 
@@ -28,15 +30,19 @@
 
 ## 1. 心智模型（先记住七个词）
 
-| 名词 | 含义 | 实践 |
-|------|------|------|
-| **Space** | 活的、隔离的创造容器 | 一个 Space ≈ 一个项目 / 实验 / 产品线 |
-| **Checkpoint（存档）** | 有意义时刻的不可变快照 | 冒险操作前存；“能用了”就存 |
-| **Session（Chat）** | Space 内的对话上下文 | 按任务拆会话，别无限续一个长聊 |
-| **Agent** | Space 沙箱里的协作者 | 给 skill + 文件；小范围冒烟验证 |
-| **Work** | 由文件 / 目录 / 端口发布的页面 | 演示与产品用公开 Work URL |
-| **Channel** | 进入 Space 的外部入口 | 同一 Space，不同的门 |
-| **Sandbox** | Space 背后的执行环境 | 命令、服务、skill 实际跑在这里 |
+| UI 名词 | 别名 | 实践 |
+|---------|------|------|
+| **Space** | space | 一个 Space ≈ 一个项目 / 实验 / 产品线 |
+| **Chat** | session | 一个任务一条 Chat；分叉探索用 Fork |
+| **Save** | checkpoint | 里程碑与高风险前存档；看 diff |
+| **Agent** | agent | skill + 文件 + 冒烟，而不是只靠长提示 |
+| **Work** | work | 用 file/directory/port 发布给别人打开 |
+| **Channel** | channel | 同一 Space，不同入口（Discord / 飞书 / …） |
+| **Sandbox** | sandbox | 命令、端口、skill 的执行处 |
+| **Mod** | mod | 只读挂载 `/mods/<slug>`，共享工具与技能 |
+| **Skill** | skill | `/skill:name` 可复用能力 |
+| **Task** | task run | 异步任务、生成、hook 运行记录 |
+| **Space Hook** | `.cohub/hooks/*` | 事件自动化（文件/回合/存档/就绪） |
 
 ### 主循环
 
@@ -179,6 +185,22 @@ runtime/             # 可选：agent 路由、来源 registry、协议
 
 这样团队和 agent 共享记忆，而不必每次把长文粘进 prompt。
 
+
+### 3.10 Space Hooks 与定时 Prompt
+
+**定时 Prompt** — 按时间复发（「每周一回顾」）。  
+**Space Hooks**（v1.103+）— 用文件声明的领域事件自动化：
+
+```text
+.cohub/hooks/*.yml
+```
+
+事件：`space.fs.changed` · `space.workspace.ready` · `session.turn.finalized` · `checkpoint.created`  
+动作：`run`（沙箱 shell）或 `prompt`（Chat/session）
+
+实践：一文件一 hook；FS 匹配忽略 `.cohub/**` 防自激；turn 用 `sessionIds` / `sources` 过滤。  
+实践卡：[space-hooks-automation](../playbooks/space-hooks-automation.md) · 文档：[space-hooks.md](https://github.com/talesofai/cohub/blob/main/docs/space-hooks.md)
+
 ## 4. 给建造者（人）
 
 ### 开始
@@ -269,10 +291,11 @@ cohub -s "$COHUB_SPACE_ID" works publish <slug> \
 
 | 层 | 现在 | 之后 |
 |----|------|------|
-| 主文 | 本文件 | 随产品迭代修订 |
-| [矩阵](../matrix.md) | 场景索引 | 每行扩成 playbook 卡 |
-| Playbooks / concepts | 目录已备 | 双语卡片 + frontmatter |
-| 知识库模式 | §3.9 + 矩阵行 | 独立 playbook 卡片 |
+| 主文 | 本文件（v0.2） | 随产品迭代修订 |
+| [矩阵](../matrix.md) | 场景索引 | 保持 ID 稳定 |
+| [实践卡](../playbooks/) | 6 张核心卡 | 按需补全矩阵其余行 |
+| [概念卡](../concepts/) | 核心名词 | 少而精 |
+| 知识库模式 | §3.9 + 实践卡 | 随真实 Space 演进 |
 
 ---
 
@@ -284,7 +307,7 @@ cohub -s "$COHUB_SPACE_ID" works publish <slug> \
 Space（做）→ Agent+Skills（干）→ Checkpoint（留）→ Work（享）→ Fork（再来）
 ```
 
-具体选哪条路，看 [场景矩阵](../matrix.md)。
+具体选哪条路，看 [场景矩阵](../matrix.md) 与 [实践卡](../playbooks/)。
 
 ---
 

@@ -33,6 +33,7 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | `cohub.bp.egress-proxy` | Exit via Cloudflare WARP · 沙箱走 WARP 出口 | Sandbox network | `warp-proxy` | starter |
 | `cohub.bp.channel-ops` | Operate from Discord / Feishu / WeChat · 外部频道入口 | Channels, Gateway | `cohub` | intermediate |
 | `cohub.bp.fork-and-proposal` | Fork a Save, explore, propose back · Fork 存档并回馈 | Checkpoint, Fork, Proposal | `cohub` | intermediate |
+| `cohub.bp.space-hooks-automation` | Event automation with Space Hooks · 用 Space Hooks 做事件自动化 | Hooks, Tasks, Files | `cohub` | advanced |
 | `cohub.bp.port-preview` | Live port demo (dev, not default prod) · 端口预览（开发向） | Works (`port`), Sandbox ports | `cohub-works-share` | intermediate |
 
 ---
@@ -51,6 +52,7 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | Team / agent shared memory | **In-Space knowledge base** (`raw` + `wiki` + append-only log) | Pasting giant notes into every prompt |
 | Agent that can run tools | Skills inside Space sandbox | Assuming host machine paths |
 | Recurring jobs | Scheduled prompt + state on disk | Hidden memory only in chat |
+| Event-driven automation | **Space Hooks** (`.cohub/hooks`) | Polling Chat manually forever |
 
 ### 中文
 
@@ -64,6 +66,7 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | 团队/Agent 共享记忆 | **Space 内知识库**（`raw` + `wiki` + 只追加 log） | 每次 prompt 粘贴超长笔记 |
 | 能跑工具的 agent | Space 内 skills | 假设宿主机路径 |
 | 周期性任务 | 定时 prompt + 磁盘状态 | 只靠聊天记忆 |
+| 事件驱动自动化 | **Space Hooks**（`.cohub/hooks`） | 永远靠人肉轮询 Chat |
 
 ---
 
@@ -125,8 +128,11 @@ npx skills add https://github.com/markbang/cohub-work-skill \
 
 ---
 
+## Playbooks ready · 已有实践卡
+
+See [playbooks/](./playbooks/) for: scratch→save, skills, static work, work-kit, knowledge base, space hooks.
+
 ## Next · 下一步
 
-1. Expand each matrix row into a playbook card under `playbooks/`
-2. Add concept cards under `concepts/`
-3. Keep the manifesto loop as the spine; cards stay short and executable
+1. Fill remaining matrix rows as cards when needed
+2. Keep manifesto + cards aligned with https://cohub.run/docs and https://cohub.run/changelog

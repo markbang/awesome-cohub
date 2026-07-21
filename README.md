@@ -239,16 +239,17 @@ Community and adjacent projects that pair well with Cohub workflows.
 
 ## Cohub Is All You Need
 
-Best-practice manifesto + scenario matrix for builders and agents.
+Best practices for builders and agents — manifesto, scenario matrix, playbooks, and concept cards.
 
 | | |
 |---|---|
 | **EN** | [docs/cohub-is-all-you-need/manifesto/en.md](docs/cohub-is-all-you-need/manifesto/en.md) |
 | **中文** | [docs/cohub-is-all-you-need/manifesto/zh.md](docs/cohub-is-all-you-need/manifesto/zh.md) |
 | **Matrix** | [docs/cohub-is-all-you-need/matrix.md](docs/cohub-is-all-you-need/matrix.md) |
+| **Playbooks** | [docs/cohub-is-all-you-need/playbooks/](docs/cohub-is-all-you-need/playbooks/) |
 | **Index** | [docs/cohub-is-all-you-need/README.md](docs/cohub-is-all-you-need/README.md) |
 
-> Playbooks and concept cards expand after the manifesto settles.
+Aligned with [cohub.run/docs](https://cohub.run/docs) and [changelog](https://cohub.run/changelog).
 
 ## Learning Resources
 

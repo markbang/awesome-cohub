@@ -4,44 +4,40 @@ Best-practice guide for **builders** and **agents** using Cohub.
 
 > Space is the unit of work. Checkpoint is the unit of time. Work is the unit of sharing.
 
-This folder is the home of the *Cohub Is All You Need* series:
+Grounded in product docs ([/docs](https://cohub.run/docs)) and recent platform changes ([/changelog](https://cohub.run/changelog)).
+
+## Map
 
 | Path | What |
 |------|------|
-| [`manifesto/en.md`](./manifesto/en.md) | English manifesto + capability map |
-| [`manifesto/zh.md`](./manifesto/zh.md) | 中文宣言 + 能力地图 |
-| [`matrix.md`](./matrix.md) | Bilingual scenario matrix（场景矩阵） |
-| `playbooks/` | Queryable practice cards *(later)* |
-| `concepts/` | Concept cards *(later)* |
-| `anti-patterns/` | Anti-patterns *(later)* |
-| `cheatsheets/` | Command / scope tables *(later)* |
-
-## Audience
-
-| Reader | What you get |
-|--------|----------------|
-| **Builder** | When to use Space / Checkpoint / Work / skills; ship demos, products, and in-Space knowledge bases |
-| **Agent** | Stable vocabulary, decision tables, executable loops, skill entry points |
+| [manifesto/en.md](./manifesto/en.md) | English manifesto |
+| [manifesto/zh.md](./manifesto/zh.md) | 中文宣言 |
+| [matrix.md](./matrix.md) | Scenario matrix（场景矩阵） |
+| [playbooks/](./playbooks/) | Executable bilingual playbooks |
+| [concepts/](./concepts/) | Concept lookup cards |
+| [cheatsheets/](./cheatsheets/) | CLI ↔ UI cheatsheet |
+| [anti-patterns/](./anti-patterns/) | Reserved for split anti-pattern cards |
 
 ## How to read
 
-1. Skim the manifesto in your language (`manifesto/zh.md` or `manifesto/en.md`)
-2. Open [`matrix.md`](./matrix.md) and pick a scenario
-3. Follow linked official docs + ecosystem skills
-4. Later: expand playbook cards under `playbooks/`
+1. Manifesto in your language  
+2. Matrix → pick a scenario  
+3. Open the linked playbook / concept  
+4. Verify against official docs + changelog when behavior may have changed  
 
 ## Status
 
 | Piece | Status |
 |-------|--------|
-| Manifesto (EN/ZH) | **v0.1** |
-| Scenario matrix | **v0.1** |
-| Playbook cards | planned |
-| Concept / anti-pattern cards | planned |
+| Manifesto EN/ZH | **v0.2** (hooks, docs site, knowledge base) |
+| Scenario matrix | **v0.2** |
+| Core playbooks (6) | **v0.2** |
+| Concepts (6) | **v0.2** |
+| Cheatsheet | **v0.2** |
 
 ## Related
 
-- Product: [cohub.run](https://cohub.run)
-- Monorepo: [talesofai/cohub](https://github.com/talesofai/cohub)
-- Ecosystem list: [awesome-cohub](https://github.com/markbang/awesome-cohub)
+- https://cohub.run · https://cohub.run/docs · https://cohub.run/changelog  
+- https://github.com/talesofai/cohub  
+- https://github.com/markbang/awesome-cohub  
 - Skills: [wgetx](https://github.com/markbang/wgetx-skill) · [warp-proxy](https://github.com/markbang/warp-proxy-skill) · [cohub-work-skill](https://github.com/markbang/cohub-work-skill)

@@ -1,12 +1,14 @@
 # Cohub Is All You Need
 
-**v0.1** · Best practices for people and agents building in [Cohub](https://cohub.run)
+**v0.2** · Best practices for people and agents building in [Cohub](https://cohub.run)
 
 > Your own space to create, play, and build with people and agents.
 
 This manifesto is not a feature catalog. It is a **practice map**: how to think, choose surfaces, and ship work without fighting the product.
 
-Companion: [Scenario matrix](../matrix.md) · [中文版](./zh.md)
+Companion: [Scenario matrix](../matrix.md) · [Playbooks](../playbooks/) · [中文版](./zh.md)
+
+Official: [Product docs](https://cohub.run/docs) · [Changelog](https://cohub.run/changelog)
 
 ---
 
@@ -28,15 +30,19 @@ That bundle is Cohub. Everything else is a specialization on top.
 
 ## 1. Mental model (learn these seven nouns)
 
-| Noun | Meaning | Practice |
-|------|---------|----------|
-| **Space** | Live, isolated creative container | One Space ≈ one project / experiment / product line |
-| **Checkpoint (Save)** | Immutable snapshot of a meaningful moment | Save before risky agent runs; Save when “this works” |
-| **Session (Chat)** | Conversation context inside a Space | Split long threads; don’t overload one chat forever |
-| **Agent** | Active collaborator inside the Space sandbox | Give skills + files; verify with small smoke tests |
-| **Work** | Published page from file / directory / port | Share demos and products via public Work URLs |
-| **Channel** | External entry into a Space | Same Space, different doors |
-| **Sandbox** | Execution runtime behind the Space | Where commands, servers, and skills actually run |
+| UI noun | Also called | Practice |
+|---------|-------------|----------|
+| **Space** | space | One Space ≈ one project / experiment / product line |
+| **Chat** | session | One mission per Chat; fork to explore alternatives |
+| **Save** | checkpoint | Save milestones & pre-risk states; read diffs |
+| **Agent** | agent | Skills + files + smoke tests, not essay-only prompts |
+| **Work** | work | Publish file / directory / port for others to open |
+| **Channel** | channel | Same Space, different doors (Discord / Feishu / …) |
+| **Sandbox** | sandbox | Where commands, ports, and skills execute |
+| **Mod** | mod | Read-only mount under `/mods/<slug>` for shared tooling |
+| **Skill** | skill | `/skill:name` reusable capability |
+| **Task** | task run | Async jobs, generations, hook runs |
+| **Space Hook** | `.cohub/hooks/*` | Event automation (fs / turn / save / workspace ready) |
 
 ### The core loop
 
@@ -179,6 +185,22 @@ Practice:
 
 This is how teams and agents share memory without pasting essays into every prompt.
 
+
+### 3.10 Space Hooks & scheduled prompts
+
+**Scheduled prompts** — time-based recurrence (“every Monday review”).  
+**Space Hooks** (v1.103+) — domain events declared as files:
+
+```text
+.cohub/hooks/*.yml
+```
+
+Events: `space.fs.changed` · `space.workspace.ready` · `session.turn.finalized` · `checkpoint.created`  
+Actions: `run` (sandbox shell) or `prompt` (Chat/session)
+
+Practice: one file per hook; FS matching ignores `.cohub/**` to prevent loops; filter turns with `sessionIds` / `sources`.  
+Playbook: [space-hooks-automation](../playbooks/space-hooks-automation.md) · Doc: [space-hooks.md](https://github.com/talesofai/cohub/blob/main/docs/space-hooks.md)
+
 ## 4. Builder playbook (human)
 
 ### Start
@@ -269,10 +291,11 @@ Always start smaller than you think.
 
 | Layer | Now | Later |
 |-------|-----|-------|
-| Manifesto | this file | revise with product changes |
-| [Matrix](../matrix.md) | scenario index | each row → playbook card |
-| Playbooks / concepts | folders ready | bilingual cards + frontmatter |
-| Knowledge-base pattern | section 3.9 + matrix row | dedicated playbook cards |
+| Manifesto | this file (v0.2) | revise with product changes |
+| [Matrix](../matrix.md) | scenario index | keep IDs stable |
+| [Playbooks](../playbooks/) | 6 core cards | fill remaining matrix rows as needed |
+| [Concepts](../concepts/) | core nouns | add sparingly |
+| Knowledge-base pattern | §3.9 + playbook | evolve with real Spaces |
 
 ---
 
@@ -284,7 +307,7 @@ Always start smaller than you think.
 Space (work) → Agent+Skills (do) → Checkpoint (keep) → Work (share) → Fork (again)
 ```
 
-Use the [scenario matrix](../matrix.md) to pick the next concrete path.
+Use the [scenario matrix](../matrix.md) and [playbooks](../playbooks/) to pick the next concrete path.
 
 ---
 

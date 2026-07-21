@@ -1,5 +1,5 @@
 # Anti-patterns
 
-Standalone anti-pattern cards split from the manifesto table.
+Canonical anti-pattern table lives in the manifesto (§6).
 
-Status: **planned**.
+Split cards can be added here later if individual patterns need deeper treatment.
