@@ -124,6 +124,17 @@ UI: Settings → **User Rules** edits/publishes personal rules from the config S
 - [ ] Personal skill appears in discovery and runs
 - [ ] Project rules still live in project Space, not only in user config
 
+## Recommended default skill · 推荐默认 skill
+
+**Web search:** install [hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search) into this config Space (not a random project), then Save:
+
+```bash
+npx skills add https://github.com/kjx-talesofai/claude-skill-hyper-search \
+  --skill hyper-search --agent codex --yes --copy
+```
+
+See [search-layers](./search-layers.md).
+
 ## Avoid · 别这样做
 
 - Confusing **Home** with **config** (Home does not publish user config on Save)

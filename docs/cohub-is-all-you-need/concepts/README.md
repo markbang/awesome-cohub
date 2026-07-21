@@ -12,6 +12,7 @@
 | Work | [work.md](./work.md) |
 | Skill & Mod | [skill-and-mod.md](./skill-and-mod.md) |
 | Skill discovery & cache | [skill-discovery.md](./skill-discovery.md) |
+| Search layers | [search-layers.md](./search-layers.md) |
 | Space Hooks | [hooks.md](./hooks.md) |
 | Work commerce | [commerce.md](./commerce.md) |
 | Execution token | [execution-token.md](./execution-token.md) |

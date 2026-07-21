@@ -72,6 +72,10 @@ Root-level `scripts/` next to `skills/` will **not** install.
 - [ ] Smoke action succeeded using skill assets
 - [ ] No mystery duplicate skill names
 
+## Example: web search on every Space · 示例
+
+Account-wide web search → put **hyper-search** in config Space (see [search-layers](./search-layers.md)), not only in one project.
+
 ## Avoid · 别这样做
 
 - Pasting entire SKILL.md into every prompt instead of invoking it

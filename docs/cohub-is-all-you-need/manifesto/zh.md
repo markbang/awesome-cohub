@@ -260,6 +260,20 @@ Agent 工具注入 **`COHUB_EXECUTION_TOKEN`**（签名 execution grant，**24h*
 
 实践卡：[execution-token-identity](../playbooks/execution-token-identity.md) · 概念：[execution-token](../concepts/execution-token.md)
 
+
+### 3.17 搜索分层（与 hyper-search）
+
+Cohub **有产品内搜索**（Space/Chat/回合/标签等，`/api/search`）。  
+**没有**一等公民的 **网页 SERP**，也没有托管式 wiki RAG。
+
+网页搜索请把 **[hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search)** 装进 **config Space**，存档发布后使用 `/skill:hyper-search` 或：
+
+```bash
+node /configs/user/.agents/skills/hyper-search/scripts/cli.js search "query"
+```
+
+实践卡：[search-layers](../playbooks/search-layers.md)
+
 ## 4. 给建造者（人）
 
 ### 开始
@@ -354,7 +368,7 @@ cohub -s "$COHUB_SPACE_ID" works publish <slug> \
 |----|------|------|
 | 主文 | 本文件（v0.2） | 随产品迭代修订 |
 | [矩阵](../matrix.md) | 场景索引 | 保持 ID 稳定 |
-| [实践卡](../playbooks/) | 23 张实践卡 | 随产品增长追加新场景 |
+| [实践卡](../playbooks/) | 24 张实践卡 | 随产品增长追加新场景 |
 | [概念卡](../concepts/) | 核心名词 | 少而精 |
 | 知识库模式 | §3.9 + 实践卡 | 随真实 Space 演进 |
 

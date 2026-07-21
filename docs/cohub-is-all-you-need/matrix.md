@@ -42,6 +42,7 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | `cohub.bp.platform-config` | Operate platform config Space · 运营平台配置 Space | platform config, skills | `cohub` | advanced |
 | `cohub.bp.skill-catalog-cache` | Debug `/skill:` catalog & cache · 排查技能目录缓存 | Skills API, Redis | `cohub` | advanced |
 | `cohub.bp.execution-token-identity` | Execution token vs login identity · 执行令牌与登录身份 | Auth, sandbox env | `cohub` | advanced |
+| `cohub.bp.search-layers` | Product vs workspace vs web search · 三层搜索；网页用 hyper-search | Search API, config skills | `hyper-search` | starter |
 | `cohub.bp.port-preview` | Live port demo (dev, not default prod) · 端口预览（开发向） | Works (`port`), Sandbox ports | `cohub-works-share` | intermediate |
 
 ---
@@ -107,6 +108,10 @@ See manifesto § knowledge base for the full practice.
 ## Install map · 安装速查
 
 ```bash
+# Web search (put in config Space, then Save)
+npx skills add https://github.com/kjx-talesofai/claude-skill-hyper-search \
+  --skill hyper-search --agent codex --yes --copy
+
 # Network
 npx skills add https://github.com/markbang/warp-proxy-skill \
   --skill warp-proxy --agent codex --yes --copy

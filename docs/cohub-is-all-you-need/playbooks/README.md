@@ -17,6 +17,7 @@
 | `cohub.bp.publish-static-work` | Publish a static Work · 发布静态 Work | [publish-static-work.md](./publish-static-work.md) |
 | `cohub.bp.scheduled-loop` | Recurring automation with scheduled prompts · 用定时 Prompt 做循环自动化 | [scheduled-loop.md](./scheduled-loop.md) |
 | `cohub.bp.scratch-to-checkpoint` | From blank Space to first Save · 从空白 Space 到第一次存档 | [scratch-to-checkpoint.md](./scratch-to-checkpoint.md) |
+| `cohub.bp.search-layers` | Three search layers (product vs workspace vs web) · 三层搜索（产品内 / 工作区 / 网页） | [search-layers.md](./search-layers.md) |
 | `cohub.bp.skill-catalog-cache` | Debug skill slash catalog and cache · 排查 /skill: 目录与缓存 | [skill-catalog-cache.md](./skill-catalog-cache.md) |
 | `cohub.bp.skill-slash-discovery` | Discover and invoke skills with /skill: · 用 /skill: 发现并调用技能 | [skill-slash-discovery.md](./skill-slash-discovery.md) |
 | `cohub.bp.social-research` | Social fetch into a Space knowledge base · 社媒采集写入 Space 知识库 | [social-research.md](./social-research.md) |
@@ -26,5 +27,5 @@
 | `cohub.bp.work-commerce` | Sell features and credits inside a Work · 在 Work 内售卖功能与积分 | [work-commerce.md](./work-commerce.md) |
 | `cohub.bp.work-kit-product` | Build a Work product with Work Kit · 用 Work Kit 做真 Work 产品 | [work-kit-product.md](./work-kit-product.md) |
 
-**23** playbooks.
+**24** playbooks.
 

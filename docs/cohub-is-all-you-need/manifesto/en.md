@@ -260,6 +260,20 @@ Agent tools inject **`COHUB_EXECUTION_TOKEN`** (signed execution grant, **24h TT
 
 Playbook: [execution-token-identity](../playbooks/execution-token-identity.md) · Concept: [execution-token](../concepts/execution-token.md)
 
+
+### 3.17 Search layers (and hyper-search)
+
+Cohub **includes product search** for Spaces/Chats/turns/labels (`/api/search`).  
+It does **not** ship a first-class **web SERP** or hosted RAG over your wiki.
+
+For web search, install **[hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search)** into your **config Space**, Save to publish, then use `/skill:hyper-search` or:
+
+```bash
+node /configs/user/.agents/skills/hyper-search/scripts/cli.js search "query"
+```
+
+Playbook: [search-layers](../playbooks/search-layers.md)
+
 ## 4. Builder playbook (human)
 
 ### Start
@@ -354,7 +368,7 @@ Always start smaller than you think.
 |-------|-----|-------|
 | Manifesto | this file (v0.2) | revise with product changes |
 | [Matrix](../matrix.md) | scenario index | keep IDs stable |
-| [Playbooks](../playbooks/) | 23 playbooks | add new scenarios as product grows |
+| [Playbooks](../playbooks/) | 24 playbooks | add new scenarios as product grows |
 | [Concepts](../concepts/) | core nouns | add sparingly |
 | Knowledge-base pattern | §3.9 + playbook | evolve with real Spaces |
 

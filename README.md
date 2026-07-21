@@ -123,6 +123,7 @@ Standard agent skills for the Cohub ecosystem. Install with [`npx skills`](https
 | Skill | Repo | Description |
 |---|---|---|
 | **warp-proxy** | [markbang/warp-proxy-skill](https://github.com/markbang/warp-proxy-skill) | WARP proxy scripts + skill (SOCKS5/HTTP `:10800`) |
+| **hyper-search** | [kjx-talesofai/claude-skill-hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search) | Recommended **config Space** web search (multi-provider fallback) |
 | **wgetx** | [markbang/wgetx-skill](https://github.com/markbang/wgetx-skill) | Pure ESM `.mjs` social fetch skill (no npm for default scrapers) |
 | **cohub-work-kit** | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | Scaffold Cohub Works (Vite + React + TanStack Query template bundled) |
 | **cohub-work-publish** | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | Build + publish directory Works with minimal scopes |

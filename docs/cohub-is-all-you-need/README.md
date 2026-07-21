@@ -23,13 +23,14 @@ Grounded in product docs, changelog, and monorepo paths (config publish, skills 
 |-------|--------|
 | Manifesto | **v0.5** |
 | Matrix | **v0.7** |
-| Playbooks | **v0.7** (23) |
-| Concepts | **v0.7** (13) |
+| Playbooks | **v0.8** (24) |
+| Concepts | **v0.8** (14) |
 | Anti-patterns | **v0.5** (11) |
 | Cheatsheets | **v0.6** (3) |
 
 ### Latest deep dives
 
+- [Search layers + hyper-search](./playbooks/search-layers.md) — product vs wiki vs web; recommend [hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search) in config Space
 1. [Platform config](./playbooks/platform-config.md) · [concept](./concepts/platform-config.md)
 2. [Skill catalog cache](./playbooks/skill-catalog-cache.md) · [discovery](./concepts/skill-discovery.md)
 3. [Execution token identity](./playbooks/execution-token-identity.md) · [concept](./concepts/execution-token.md)
@@ -39,3 +40,4 @@ Grounded in product docs, changelog, and monorepo paths (config publish, skills 
 
 - https://cohub.run/docs · https://cohub.run/changelog  
 - https://github.com/talesofai/cohub · https://github.com/markbang/awesome-cohub  
+- Web search skill: [hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search)  
