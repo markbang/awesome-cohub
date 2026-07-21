@@ -128,11 +128,12 @@ npx skills add https://github.com/markbang/cohub-work-skill \
 
 ---
 
-## Playbooks ready · 已有实践卡
+## Playbooks · 实践卡
 
-See [playbooks/](./playbooks/) for: scratch→save, skills, static work, work-kit, knowledge base, space hooks.
+All matrix scenario IDs now have cards under [playbooks/](./playbooks/).
 
-## Next · 下一步
+## Maintain · 维护
 
-1. Fill remaining matrix rows as cards when needed
-2. Keep manifesto + cards aligned with https://cohub.run/docs and https://cohub.run/changelog
+1. Keep IDs stable; add new rows rather than renumbering
+2. Align behavior notes with https://cohub.run/docs and https://cohub.run/changelog
+3. Prefer updating a card over growing the manifesto forever

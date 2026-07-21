@@ -4,7 +4,7 @@ Best-practice guide for **builders** and **agents** using Cohub.
 
 > Space is the unit of work. Checkpoint is the unit of time. Work is the unit of sharing.
 
-Grounded in product docs ([/docs](https://cohub.run/docs)) and recent platform changes ([/changelog](https://cohub.run/changelog)).
+Grounded in product docs ([/docs](https://cohub.run/docs)) and platform changes ([/changelog](https://cohub.run/changelog)).
 
 ## Map
 
@@ -13,26 +13,27 @@ Grounded in product docs ([/docs](https://cohub.run/docs)) and recent platform c
 | [manifesto/en.md](./manifesto/en.md) | English manifesto |
 | [manifesto/zh.md](./manifesto/zh.md) | 中文宣言 |
 | [matrix.md](./matrix.md) | Scenario matrix（场景矩阵） |
-| [playbooks/](./playbooks/) | Executable bilingual playbooks |
+| [playbooks/](./playbooks/) | **15** bilingual playbooks (full matrix) |
 | [concepts/](./concepts/) | Concept lookup cards |
 | [cheatsheets/](./cheatsheets/) | CLI ↔ UI cheatsheet |
-| [anti-patterns/](./anti-patterns/) | Reserved for split anti-pattern cards |
+| [anti-patterns/](./anti-patterns/) | Points at manifesto §6 |
 
 ## How to read
 
 1. Manifesto in your language  
 2. Matrix → pick a scenario  
-3. Open the linked playbook / concept  
-4. Verify against official docs + changelog when behavior may have changed  
+3. Open the playbook card  
+4. Use concepts/cheatsheets for nouns & commands  
+5. Re-check `/docs` + `/changelog` when something seems new  
 
 ## Status
 
 | Piece | Status |
 |-------|--------|
-| Manifesto EN/ZH | **v0.2** (hooks, docs site, knowledge base) |
-| Scenario matrix | **v0.2** |
-| Core playbooks (6) | **v0.2** |
-| Concepts (6) | **v0.2** |
+| Manifesto EN/ZH | **v0.2** |
+| Scenario matrix | **v0.3** (15 scenarios) |
+| Playbooks | **v0.3** (15/15 matrix coverage) |
+| Concepts | **v0.2** (6 cards) |
 | Cheatsheet | **v0.2** |
 
 ## Related

@@ -293,7 +293,7 @@ Always start smaller than you think.
 |-------|-----|-------|
 | Manifesto | this file (v0.2) | revise with product changes |
 | [Matrix](../matrix.md) | scenario index | keep IDs stable |
-| [Playbooks](../playbooks/) | 6 core cards | fill remaining matrix rows as needed |
+| [Playbooks](../playbooks/) | 15 cards (full matrix) | add new scenarios as product grows |
 | [Concepts](../concepts/) | core nouns | add sparingly |
 | Knowledge-base pattern | §3.9 + playbook | evolve with real Spaces |
 
