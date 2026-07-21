@@ -50,7 +50,6 @@ Inspired by the [Awesome](https://awesome.re) format and the VoltAgent awesome s
 - [Product Surface](#product-surface)
 - [CLI and SDK](#cli-and-sdk)
 - [Official Skills](#official-skills)
-- [Platform Architecture](#platform-architecture)
 - [Related Projects](#related-projects)
 - [Learning Resources](#learning-resources)
 - [Cohub Is All You Need](#cohub-is-all-you-need)
@@ -167,35 +166,6 @@ Cohub agents become useful when they know:
 4. how to run multimodal generation without inventing fake APIs
 5. how to pull external knowledge / social data / network egress tools on demand
 
-## Platform Architecture
-
-High-level shape of the Cohub monorepo:
-
-```text
-cohub/
-├── apps/
-│   ├── api/        # Hono API — orchestration, provisioning, session persistence
-│   ├── agent/      # Agent control service
-│   ├── sandbox/    # Sandbox executor
-│   ├── gateway/    # External channel gateway
-│   ├── web/        # SvelteKit web app
-│   └── worker/     # Cron and async task processing
-├── packages/
-│   ├── protocol/   # Shared types and protocols
-│   ├── sdk/        # Client SDK
-│   └── cli/        # Cohub CLI
-├── skills/         # Official agent skills
-└── docs/           # Product and architecture docs
-```
-
-### Stack
-
-- **Language**: TypeScript + Go
-- **Frontend**: SvelteKit
-- **Backend**: Hono
-- **Database**: PostgreSQL + Drizzle ORM
-- **Infra**: Kubernetes
-- **Package manager**: pnpm monorepo
 
 ## Related Projects
 
