@@ -48,3 +48,28 @@ platform → mods → user config → workspace (.agents/skills)
 ## Related
 - `cohub.bp.user-config-and-rules`
 - `cohub.concept.user-config-space`
+
+## Skill catalog cache
+
+- Redis TTL **24h** (`SKILLS_CACHE_TTL_SEC`)
+- User/platform Save → immediate Redis SET via `publishSkillsCacheFromDir`
+- Project/mod keys include revision hash (checkpoint meta)
+- API: `GET /api/skills?spaceId=`
+- Slash: `/skill:name` expanded in session prompt pipeline
+
+## Prompt skill inclusion
+
+```text
+includeUserSkills = (actorUserId === space.ownerUserId)
+```
+
+Members still get platform + mod + project skills.
+
+## Auth principal order (API bearer)
+
+1. Execution grant (`COHUB_EXECUTION_TOKEN`)
+2. Preview session (preview host)
+3. Work session
+4. Logto user session
+
+Execution grant TTL **24h**; not refreshable like OIDC.

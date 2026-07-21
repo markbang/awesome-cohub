@@ -241,6 +241,25 @@ Effects:
 
 Playbook: [user-config-and-rules](../playbooks/user-config-and-rules.md) · Concept: [user-config-space](../concepts/user-config-space.md) · Cheat: [config-layers](../cheatsheets/config-layers.md)
 
+
+### 3.14 Platform config Space
+
+Pinned by **`PLATFORM_SPACE_ID`**. Saving it publishes whitelist → `/configs/platform` and refreshes platform skill/prompt/model caches. Mounted read-only as `/configs/platform/.agents` in every sandbox.
+
+Playbook: [platform-config](../playbooks/platform-config.md)
+
+### 3.15 Skill catalog & `/skill:` cache
+
+`GET /api/skills` merges platform → mod → user → project. Redis catalogs TTL **24h**; user/platform Save **SETs** cache immediately; project/mod keys hash revisions. `/skill:name` expands server-side before the agent runs.
+
+Playbook: [skill-catalog-cache](../playbooks/skill-catalog-cache.md) · Concept: [skill-discovery](../concepts/skill-discovery.md)
+
+### 3.16 Execution token identity
+
+Agent tools inject **`COHUB_EXECUTION_TOKEN`** (signed execution grant, **24h TTL**, space/turn scoped). CLI env overrides Logto. API verifies execution grants before user sessions. **User skills enter the system prompt only if actor === space owner.**
+
+Playbook: [execution-token-identity](../playbooks/execution-token-identity.md) · Concept: [execution-token](../concepts/execution-token.md)
+
 ## 4. Builder playbook (human)
 
 ### Start
@@ -335,7 +354,7 @@ Always start smaller than you think.
 |-------|-----|-------|
 | Manifesto | this file (v0.2) | revise with product changes |
 | [Matrix](../matrix.md) | scenario index | keep IDs stable |
-| [Playbooks](../playbooks/) | 20 playbooks | add new scenarios as product grows |
+| [Playbooks](../playbooks/) | 23 playbooks | add new scenarios as product grows |
 | [Concepts](../concepts/) | core nouns | add sparingly |
 | Knowledge-base pattern | §3.9 + playbook | evolve with real Spaces |
 

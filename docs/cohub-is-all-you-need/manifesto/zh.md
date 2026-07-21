@@ -241,6 +241,25 @@ Cohub 有一类特殊的 **owner 配置 Space**：当 **`space.name === "config"
 
 实践卡：[user-config-and-rules](../playbooks/user-config-and-rules.md) · 概念：[user-config-space](../concepts/user-config-space.md) · 速查：[config-layers](../cheatsheets/config-layers.md)
 
+
+### 3.14 Platform config Space
+
+由 **`PLATFORM_SPACE_ID`** 钉死。对其存档会发布白名单到 `/configs/platform`，并刷新平台 skill/prompt/model 缓存。沙箱只读挂载 `/configs/platform/.agents`。
+
+实践卡：[platform-config](../playbooks/platform-config.md)
+
+### 3.15 Skill 目录与 `/skill:` 缓存
+
+`GET /api/skills` 合并 platform → mod → user → project。Redis 目录 TTL **24h**；user/platform 存档会**立即 SET**；project/mod key 带 revision 哈希。`/skill:name` 在进 Agent 前由服务端展开。
+
+实践卡：[skill-catalog-cache](../playbooks/skill-catalog-cache.md) · 概念：[skill-discovery](../concepts/skill-discovery.md)
+
+### 3.16 Execution token 身份
+
+Agent 工具注入 **`COHUB_EXECUTION_TOKEN`**（签名 execution grant，**24h**，绑定 space/turn）。CLI 环境变量会覆盖 Logto。API 先验 execution grant 再验用户会话。**仅当 actor === space owner 时，user skills 进入 system prompt。**
+
+实践卡：[execution-token-identity](../playbooks/execution-token-identity.md) · 概念：[execution-token](../concepts/execution-token.md)
+
 ## 4. 给建造者（人）
 
 ### 开始
@@ -335,7 +354,7 @@ cohub -s "$COHUB_SPACE_ID" works publish <slug> \
 |----|------|------|
 | 主文 | 本文件（v0.2） | 随产品迭代修订 |
 | [矩阵](../matrix.md) | 场景索引 | 保持 ID 稳定 |
-| [实践卡](../playbooks/) | 20 张实践卡 | 随产品增长追加新场景 |
+| [实践卡](../playbooks/) | 23 张实践卡 | 随产品增长追加新场景 |
 | [概念卡](../concepts/) | 核心名词 | 少而精 |
 | 知识库模式 | §3.9 + 实践卡 | 随真实 Space 演进 |
 

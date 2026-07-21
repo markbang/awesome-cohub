@@ -39,6 +39,9 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | `cohub.bp.home-and-sessions-inbox` | Home Space & Sessions inbox · Home 与会话收件箱 | Home, `/sessions` | `cohub` | starter |
 | `cohub.bp.work-commerce` | Sell features/credits in a Work · Work 内售卖功能与积分 | Works, Billing, SDK | `cohub-work-kit` | advanced |
 | `cohub.bp.user-config-and-rules` | Own agent defaults in config Space · 用 config Space 管个人 Agent 默认 | config Space, User Rules, `/configs/user` | `cohub` | intermediate |
+| `cohub.bp.platform-config` | Operate platform config Space · 运营平台配置 Space | platform config, skills | `cohub` | advanced |
+| `cohub.bp.skill-catalog-cache` | Debug `/skill:` catalog & cache · 排查技能目录缓存 | Skills API, Redis | `cohub` | advanced |
+| `cohub.bp.execution-token-identity` | Execution token vs login identity · 执行令牌与登录身份 | Auth, sandbox env | `cohub` | advanced |
 | `cohub.bp.port-preview` | Live port demo (dev, not default prod) · 端口预览（开发向） | Works (`port`), Sandbox ports | `cohub-works-share` | intermediate |
 
 ---
