@@ -8,10 +8,10 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 
 | Column | Meaning |
 |--------|---------|
-| ID | Stable id for later OKP / playbook cards |
+| ID | Stable id for later playbook cards |
 | Scenario | Human intent (EN / 中文) |
 | Surfaces | Cohub product surfaces |
-| Skills | Installable agent skills |
+| Skills | Installable agent skills (when relevant) |
 | Depth | starter / intermediate / advanced |
 
 ---
@@ -27,9 +27,9 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | `cohub.bp.publish-static-work` | Publish a static HTML/site Work · 发布静态 Work | Works (`file`/`directory`) | `cohub-works-share`, `public-share` | starter |
 | `cohub.bp.work-kit-product` | Build a real Work product with runtime · 用 Work Kit 做真产品 | Works, SDK, Scopes | `cohub-work-kit`, `cohub-work-publish` | intermediate |
 | `cohub.bp.minimal-scopes` | Ship with least privilege · 最小权限发布 | workScopes, viewerScopes | `cohub-work-publish` | intermediate |
-| `cohub.bp.scheduled-loop` | Recurring / outer-loop automation · 定时与 outer loop | Scheduled prompts, Tasks, Files-as-state | `cohub`, `cohub-loop` (if present) | advanced |
-| `cohub.bp.social-research` | Social fetch → distill knowledge · 社媒采集并蒸馏 | Sandbox, Files | `wgetx`, `okp-import` | intermediate |
-| `cohub.bp.knowledge-search` | Search structured knowledge · 检索结构化知识 | CLI / OKP | `okp-search` | starter |
+| `cohub.bp.scheduled-loop` | Recurring / outer-loop automation · 定时与 outer loop | Scheduled prompts, Tasks, Files-as-state | `cohub` | advanced |
+| `cohub.bp.space-knowledge-base` | Build a compounding wiki in a Space · 在 Space 里建复利知识库 | Files (`raw/` / `wiki/` / log), Sessions, Skills | `cohub` | intermediate |
+| `cohub.bp.social-research` | Social fetch → write into wiki · 社媒采集写入知识库 | Sandbox, Files, wiki pages | `wgetx` | intermediate |
 | `cohub.bp.egress-proxy` | Exit via Cloudflare WARP · 沙箱走 WARP 出口 | Sandbox network | `warp-proxy` | starter |
 | `cohub.bp.channel-ops` | Operate from Discord / Feishu / WeChat · 外部频道入口 | Channels, Gateway | `cohub` | intermediate |
 | `cohub.bp.fork-and-proposal` | Fork a Save, explore, propose back · Fork 存档并回馈 | Checkpoint, Fork, Proposal | `cohub` | intermediate |
@@ -48,9 +48,9 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | Something others can open | **Work** | Sending private sandbox URLs |
 | Static demo / site | Work `directory` + `base: "./"` | History API routes on static hosting |
 | Interactive product in Cohub shell | Work + SDK + minimal scopes | Broad full-access “just in case” |
+| Team / agent shared memory | **In-Space knowledge base** (`raw` + `wiki` + append-only log) | Pasting giant notes into every prompt |
 | Agent that can run tools | Skills inside Space sandbox | Assuming host machine paths |
 | Recurring jobs | Scheduled prompt + state on disk | Hidden memory only in chat |
-| Public knowledge reuse | OKP concepts | Pasting giant notes into every prompt |
 
 ### 中文
 
@@ -61,32 +61,54 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | 给别人直接打开 | **Work** | 发私有沙箱链接 |
 | 静态演示/站点 | `directory` Work + `base: "./"` | 静态托管上用 History 路由 |
 | Cohub 壳里的交互产品 | Work + SDK + 最小权限 | 一上来全开权限 |
+| 团队/Agent 共享记忆 | **Space 内知识库**（`raw` + `wiki` + 只追加 log） | 每次 prompt 粘贴超长笔记 |
 | 能跑工具的 agent | Space 内 skills | 假设宿主机路径 |
 | 周期性任务 | 定时 prompt + 磁盘状态 | 只靠聊天记忆 |
-| 可复用公共知识 | OKP 概念 | 每次 prompt 粘贴超长笔记 |
+
+---
+
+## Knowledge base pattern · 知识库模式（Space 内）
+
+Inspired by long-running context Spaces (wiki compound interest, not archive dumps):
+
+```text
+raw/          # immutable evidence: dumps, exports, mirrored sources
+wiki/         # compounding pages: topics, entities, analyses, index
+  index.md    # living catalog (update on every meaningful change)
+  log.md      # append-only timeline of ingest/query/decisions
+  topics/ entities/ analyses/ queries/ ...
+runtime/      # optional: agent routes, source registry, protocols
+.agents/skills/  # optional: operational skills for this knowledge Space
+```
+
+Rules of thumb:
+
+1. **New input updates existing wiki pages** (5–10 touches), not only `+1` raw file  
+2. **raw is evidence; wiki is current understanding**  
+3. **log is append-only** — what changed, when, why  
+4. **index is the query surface** for humans and agents  
+5. Prefer “semantic page first → confirm with evidence → then act”
+
+See manifesto § knowledge base for the full practice.
 
 ---
 
 ## Install map · 安装速查
 
 ```bash
-# Platform
-# (usually preinstalled in Cohub sandboxes)
-# cohub CLI: npm i -g @neta-art/cohub-cli
-
-# Knowledge
-npx skills add https://github.com/talesofai/okp --skill okp-search --agent codex --yes --copy
-npx skills add https://github.com/talesofai/okp --skill okp-import --agent codex --yes --copy
-
 # Network
-npx skills add https://github.com/markbang/warp-proxy-skill --skill warp-proxy --agent codex --yes --copy
+npx skills add https://github.com/markbang/warp-proxy-skill \
+  --skill warp-proxy --agent codex --yes --copy
 
 # Social fetch
-npx skills add https://github.com/markbang/wgetx-skill --skill wgetx --agent codex --yes --copy
+npx skills add https://github.com/markbang/wgetx-skill \
+  --skill wgetx --agent codex --yes --copy
 
 # Work products
-npx skills add https://github.com/markbang/cohub-work-skill --skill cohub-work-kit --agent codex --yes --copy
-npx skills add https://github.com/markbang/cohub-work-skill --skill cohub-work-publish --agent codex --yes --copy
+npx skills add https://github.com/markbang/cohub-work-skill \
+  --skill cohub-work-kit --agent codex --yes --copy
+npx skills add https://github.com/markbang/cohub-work-skill \
+  --skill cohub-work-publish --agent codex --yes --copy
 ```
 
 ---
@@ -105,6 +127,6 @@ npx skills add https://github.com/markbang/cohub-work-skill --skill cohub-work-p
 
 ## Next · 下一步
 
-1. Expand each matrix row into a playbook card under `playbooks/` (EN+ZH or bilingual body)
+1. Expand each matrix row into a playbook card under `playbooks/`
 2. Add concept cards under `concepts/`
-3. Draft `okp/domain-readme.md`, then import into OKP domain **`cohub`**
+3. Keep the manifesto loop as the spine; cards stay short and executable

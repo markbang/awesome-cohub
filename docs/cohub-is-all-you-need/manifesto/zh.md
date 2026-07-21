@@ -135,7 +135,6 @@ Web、CLI（`@neta-art/cohub-cli`）、频道应驱动 **同一个 Space**。
 
 | 技能包 | 作用 |
 |--------|------|
-| [talesofai/okp](https://github.com/talesofai/okp) | 结构化知识检索/导入 |
 | [markbang/wgetx-skill](https://github.com/markbang/wgetx-skill) | 社媒采集（默认纯 ESM，无需 npm） |
 | [markbang/warp-proxy-skill](https://github.com/markbang/warp-proxy-skill) | 沙箱 WARP 出口代理 |
 | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | Work 模板 + 发布流程 |
@@ -150,6 +149,35 @@ npx skills add <repo-url> --skill <name> --agent codex --yes --copy
 资源必须放在 `skills/<name>/` 内，安装才会带走。
 
 ---
+
+
+### 3.9 Space 内知识库（复利 wiki）
+
+开始沉淀上下文，不必先上外部知识产品。
+把文件按「可复用」组织时，**Space 本身就是知识库**。
+
+推荐布局（来自长期 context Space 的实践）：
+
+```text
+raw/                 # 不可变证据（导出、镜像、原始材料）
+wiki/                # 复利理解（原地更新）
+  index.md           # 活目录 — 有变更就维护
+  log.md             # 只追加时间线（ingest / 决策）
+  overview.md        # 这个知识 Space 是干什么的
+  topics/ entities/ analyses/ queries/ ...
+runtime/             # 可选：agent 路由、来源 registry、协议
+.agents/skills/      # 可选：服务这个知识 Space 的操作 skill
+```
+
+实践：
+
+1. **raw 是证据** — 不改写历史，只追加来源  
+2. **wiki 是当前理解** — 新输入应更新 5–10 个已有页面，而不是只 `+1` 文件  
+3. **log 只追加** — 发生了什么、何时、链回哪些页  
+4. **index 是查询面** — 人与 agent 都从这里起步  
+5. 路径：**先语义页 → 再回 raw 核对证据 → 再行动**
+
+这样团队和 agent 共享记忆，而不必每次把长文粘进 prompt。
 
 ## 4. 给建造者（人）
 
@@ -244,7 +272,7 @@ cohub -s "$COHUB_SPACE_ID" works publish <slug> \
 | 主文 | 本文件 | 随产品迭代修订 |
 | [矩阵](../matrix.md) | 场景索引 | 每行扩成 playbook 卡 |
 | Playbooks / concepts | 目录已备 | 双语卡片 + frontmatter |
-| OKP domain `cohub` | 尚未导入 | **文章稳定后再导入** |
+| 知识库模式 | §3.9 + 矩阵行 | 独立 playbook 卡片 |
 
 ---
 

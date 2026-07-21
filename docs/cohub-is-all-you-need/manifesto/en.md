@@ -135,7 +135,6 @@ Package: `@neta-art/cohub-cli` (npm scope) · monorepo [talesofai/cohub](https:/
 
 | Skill package | Role |
 |---------------|------|
-| [talesofai/okp](https://github.com/talesofai/okp) | Structured knowledge search/import |
 | [markbang/wgetx-skill](https://github.com/markbang/wgetx-skill) | Social fetch (ESM, no npm for defaults) |
 | [markbang/warp-proxy-skill](https://github.com/markbang/warp-proxy-skill) | WARP egress proxy in sandbox |
 | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | Work kit template + publish flow |
@@ -150,6 +149,35 @@ npx skills add <repo-url> --skill <name> --agent codex --yes --copy
 Skills must ship assets **inside** `skills/<name>/` so install copies them.
 
 ---
+
+
+### 3.9 In-Space knowledge base (wiki compound interest)
+
+Cohub does not require an external knowledge product to start compounding context.
+A Space **is** a knowledge base when files are structured for reuse.
+
+Recommended layout (pattern used by long-running context Spaces):
+
+```text
+raw/                 # immutable evidence (exports, dumps, mirrored sources)
+wiki/                # compounding understanding (edit in place)
+  index.md           # living catalog — update when content changes
+  log.md             # append-only timeline of ingests / decisions
+  overview.md        # what this knowledge Space is for
+  topics/ entities/ analyses/ queries/ ...
+runtime/             # optional agent routes, source registry, protocols
+.agents/skills/      # optional ops skills for this knowledge Space
+```
+
+Practice:
+
+1. **raw is evidence** — don’t rewrite history; add sources  
+2. **wiki is current understanding** — a new input should update 5–10 existing pages, not only create `+1` file  
+3. **log is append-only** — what changed, when, with links back to pages  
+4. **index is the query surface** — humans and agents start here  
+5. Path: **semantic page first → confirm with evidence in raw → then act**
+
+This is how teams and agents share memory without pasting essays into every prompt.
 
 ## 4. Builder playbook (human)
 
@@ -244,7 +272,7 @@ Always start smaller than you think.
 | Manifesto | this file | revise with product changes |
 | [Matrix](../matrix.md) | scenario index | each row → playbook card |
 | Playbooks / concepts | folders ready | bilingual cards + frontmatter |
-| OKP domain `cohub` | not imported yet | import after articles stabilize |
+| Knowledge-base pattern | section 3.9 + matrix row | dedicated playbook cards |
 
 ---
 

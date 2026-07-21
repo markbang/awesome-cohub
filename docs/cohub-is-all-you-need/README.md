@@ -15,13 +15,12 @@ This folder is the home of the *Cohub Is All You Need* series:
 | `concepts/` | Concept cards *(later)* |
 | `anti-patterns/` | Anti-patterns *(later)* |
 | `cheatsheets/` | Command / scope tables *(later)* |
-| `okp/` | OKP domain schema draft for later import |
 
 ## Audience
 
 | Reader | What you get |
 |--------|----------------|
-| **Builder** | When to use Space / Checkpoint / Work / skills; ship demos and products |
+| **Builder** | When to use Space / Checkpoint / Work / skills; ship demos, products, and in-Space knowledge bases |
 | **Agent** | Stable vocabulary, decision tables, executable loops, skill entry points |
 
 ## How to read
@@ -29,7 +28,7 @@ This folder is the home of the *Cohub Is All You Need* series:
 1. Skim the manifesto in your language (`manifesto/zh.md` or `manifesto/en.md`)
 2. Open [`matrix.md`](./matrix.md) and pick a scenario
 3. Follow linked official docs + ecosystem skills
-4. Later: playbook cards will be importable into OKP domain `cohub`
+4. Later: expand playbook cards under `playbooks/`
 
 ## Status
 
@@ -38,11 +37,11 @@ This folder is the home of the *Cohub Is All You Need* series:
 | Manifesto (EN/ZH) | **v0.1** |
 | Scenario matrix | **v0.1** |
 | Playbook cards | planned |
-| OKP domain `cohub` import | planned (write articles first, import last) |
+| Concept / anti-pattern cards | planned |
 
 ## Related
 
 - Product: [cohub.run](https://cohub.run)
 - Monorepo: [talesofai/cohub](https://github.com/talesofai/cohub)
 - Ecosystem list: [awesome-cohub](https://github.com/markbang/awesome-cohub)
-- Skills: [okp](https://github.com/talesofai/okp) · [wgetx](https://github.com/markbang/wgetx-skill) · [warp-proxy](https://github.com/markbang/warp-proxy-skill) · [cohub-work-skill](https://github.com/markbang/cohub-work-skill)
+- Skills: [wgetx](https://github.com/markbang/wgetx-skill) · [warp-proxy](https://github.com/markbang/warp-proxy-skill) · [cohub-work-skill](https://github.com/markbang/cohub-work-skill)

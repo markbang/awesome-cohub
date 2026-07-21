@@ -122,8 +122,6 @@ Standard agent skills for the Cohub ecosystem. Install with [`npx skills`](https
 
 | Skill | Repo | Description |
 |---|---|---|
-| **okp-search** | [talesofai/okp](https://github.com/talesofai/okp) | Search and navigate Open Knowledge Protocol domains |
-| **okp-import** | [talesofai/okp](https://github.com/talesofai/okp) | Clean and import structured knowledge into OKP |
 | **warp-proxy** | [markbang/warp-proxy-skill](https://github.com/markbang/warp-proxy-skill) | WARP proxy scripts + skill (SOCKS5/HTTP `:10800`) |
 | **wgetx** | [markbang/wgetx-skill](https://github.com/markbang/wgetx-skill) | Pure ESM `.mjs` social fetch skill (no npm for default scrapers) |
 | **cohub-work-kit** | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | Scaffold Cohub Works (Vite + React + TanStack Query template bundled) |
@@ -132,18 +130,6 @@ Standard agent skills for the Cohub ecosystem. Install with [`npx skills`](https
 ### Install (Codex)
 
 ```bash
-# Open Knowledge Protocol
-npx skills add https://github.com/talesofai/okp \
-  --skill "okp-search" \
-  --agent codex \
-  --yes \
-  --copy
-
-npx skills add https://github.com/talesofai/okp \
-  --skill "okp-import" \
-  --agent codex \
-  --yes \
-  --copy
 
 # WARP proxy
 npx skills add https://github.com/markbang/warp-proxy-skill \
@@ -176,7 +162,6 @@ npx skills add https://github.com/markbang/cohub-work-skill \
 List skills in a package first:
 
 ```bash
-npx skills add https://github.com/talesofai/okp --list
 npx skills add https://github.com/markbang/warp-proxy-skill --list
 npx skills add https://github.com/markbang/wgetx-skill --list
 npx skills add https://github.com/markbang/cohub-work-skill --list
@@ -187,9 +172,6 @@ npx skills add https://github.com/markbang/cohub-work-skill --list
 ### Post-install runtime deps
 
 ```bash
-# OKP CLI
-npm install -g @markbangwu/okp
-
 # wgetx: pure ESM .mjs — no npm for default HTTP scrapers
 # optional browser flows only:
 #   cd .agents/skills/wgetx && npm init -y && npm i playwright && npx playwright install chromium
@@ -241,7 +223,6 @@ Community and adjacent projects that pair well with Cohub workflows.
 
 ### Ecosystem packages
 
-- **[talesofai/okp](https://github.com/talesofai/okp)** - Open Knowledge Protocol for people and AI agents (`okp-search` / `okp-import` skills).
 - **[markbang/warp-proxy-skill](https://github.com/markbang/warp-proxy-skill)** - Cloudflare WARP userspace proxy skill for sandboxes.
 - **[markbang/wgetx-skill](https://github.com/markbang/wgetx-skill)** - Multi-platform social media fetch skill + scripts.
 - **[markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill)** - Work Kit template + publish skills for Cohub Works.
@@ -267,7 +248,7 @@ Best-practice manifesto + scenario matrix for builders and agents.
 | **Matrix** | [docs/cohub-is-all-you-need/matrix.md](docs/cohub-is-all-you-need/matrix.md) |
 | **Index** | [docs/cohub-is-all-you-need/README.md](docs/cohub-is-all-you-need/README.md) |
 
-> Playbooks / OKP domain `cohub` import come after the articles settle.
+> Playbooks and concept cards expand after the manifesto settles.
 
 ## Learning Resources
 
@@ -276,43 +257,6 @@ Best-practice manifesto + scenario matrix for builders and agents.
 - **[Works guide](https://github.com/talesofai/cohub/blob/main/docs/works-guide.md)** - Publishing public Works.
 - **[Self-hosting notes](https://github.com/talesofai/cohub/blob/main/docs/self-hosting.md)** - Deployment-oriented docs from the monorepo.
 
-## Banner Assets
-
-Primary header is an **animated SVG** — vector, no GIF palette crush, sharp at any zoom.
-
-| File | Purpose |
-|---|---|
-| `assets/banner.svg` | **Main** animated vector banner (SMIL) |
-| `assets/banner.png` | Static poster / Open Graph fallback |
-| `assets/banner@2x.png` | Retina still |
-| `assets/banner.gif` | Optional raster fallback |
-| `assets/cohub-mark.svg` | Official-style Cohub mark |
-
-### Embed
-
-README uses jsDelivr so the asset is served as real `image/svg+xml`:
-
-```html
-<a href="https://cohub.run">
-  <img
-    width="1440"
-    alt="Awesome Cohub"
-    src="https://cdn.jsdelivr.net/gh/markbang/awesome-cohub@main/assets/banner.svg"
-  />
-</a>
-```
-
-Repo-relative:
-
-```html
-<img width="1440" alt="Awesome Cohub" src="assets/banner.svg" />
-```
-
-### Animation note
-
-- SVG is the lossless path (no GIF dither / color banding).
-- SMIL plays when the SVG is opened directly in a browser, or embedded in normal HTML.
-- `github.com` Markdown sometimes freezes SMIL via its image proxy. If the header looks static on GitHub, open the [raw SVG](https://cdn.jsdelivr.net/gh/markbang/awesome-cohub@main/assets/banner.svg) — motion is there. GIF remains as fallback.
 
 ## Contributing
 
