@@ -7,12 +7,8 @@
       <stop offset="100%" stop-color="#160E0B"/>
     </linearGradient>
     <radialGradient id="glow" cx="42%" cy="34%" r="48%">
-      <stop offset="0%" stop-color="#FF4500" stop-opacity="0">
-        <animate attributeName="stop-opacity" values="0;0.36;0.28" keyTimes="0;0.45;1" dur="7.2s" fill="freeze"/>
-      </stop>
-      <stop offset="60%" stop-color="#FF4500" stop-opacity="0">
-        <animate attributeName="stop-opacity" values="0;0.1;0.08" keyTimes="0;0.5;1" dur="7.2s" fill="freeze"/>
-      </stop>
+      <stop offset="0%" stop-color="#FF4500" stop-opacity="0.22"/>
+      <stop offset="60%" stop-color="#FF4500" stop-opacity="0.07"/>
       <stop offset="100%" stop-color="#FF4500" stop-opacity="0"/>
     </radialGradient>
     <linearGradient id="title" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -21,9 +17,9 @@
       <stop offset="100%" stop-color="#FFB08A"/>
     </linearGradient>
     <linearGradient id="railGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#FF4500" stop-opacity="0.2"/>
+      <stop offset="0%" stop-color="#FF4500" stop-opacity="0.25"/>
       <stop offset="50%" stop-color="#FF4500" stop-opacity="1"/>
-      <stop offset="100%" stop-color="#FFB08A" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#FFB08A" stop-opacity="0.95"/>
     </linearGradient>
     <filter id="blob" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
       <feGaussianBlur stdDeviation="22"/>
@@ -39,222 +35,208 @@
     </symbol>
   </defs>
 
-  <!-- static base -->
+  <!-- Timeline (one-shot, no loop):
+       0.0–2.6s  ACT A — brand + title lands and holds
+       2.7s+     ACT B — path / nodes / pulse play once, freeze end state
+  -->
+
   <rect width="1440" height="520" fill="url(#bg)"/>
   <rect width="1440" height="520" fill="url(#glow)"/>
 
-  <!-- grid fades in once -->
+  <!-- quiet grid (static after fade) -->
   <g stroke="#FFFFFF" stroke-width="1" stroke-opacity="0">
-    <animate attributeName="stroke-opacity" values="0;0.045" keyTimes="0;1" dur="1.2s" fill="freeze"/>
+    <animate attributeName="stroke-opacity" values="0;0.04" dur="0.9s" fill="freeze"/>
     <path d="M0 80H1440M0 160H1440M0 240H1440M0 320H1440M0 400H1440M0 480H1440"/>
     <path d="M120 0V520M240 0V520M360 0V520M480 0V520M600 0V520M720 0V520M840 0V520M960 0V520M1080 0V520M1200 0V520M1320 0V520"/>
   </g>
 
-  <!-- ===== ACT 1: morphing stage forms grow in (0–2.2s) then hold ===== -->
+  <!-- soft ambient blobs: appear once with title, then hold (no morph loop) -->
   <g filter="url(#blob)" opacity="0">
-    <animate attributeName="opacity" values="0;1" dur="1.4s" fill="freeze"/>
-    <path fill="#FF4500" fill-opacity="0.2">
-      <animate attributeName="d" dur="2.4s" fill="freeze" calcMode="spline"
-        keyTimes="0;0.55;1" keySplines="0.22 1 0.36 1;0.22 1 0.36 1"
-        values="M200,160C200,160,200,160,200,160C200,160,200,160,200,160C200,160,200,160,200,160Z;
-                M150,140C230,40,370,55,390,160C410,265,300,320,200,290C100,260,70,240,150,140Z;
-                M165,125C245,50,360,70,375,155C390,240,295,285,205,260C115,235,85,200,165,125Z"/>
-    </path>
-    <path fill="#FF4500" fill-opacity="0.14">
-      <animate attributeName="d" dur="2.6s" begin="0.15s" fill="freeze" calcMode="spline"
-        keyTimes="0;0.55;1" keySplines="0.22 1 0.36 1;0.22 1 0.36 1"
-        values="M1240,360C1240,360,1240,360,1240,360C1240,360,1240,360,1240,360C1240,360,1240,360,1240,360Z;
-                M1180,300C1290,220,1430,270,1390,390C1350,510,1200,530,1130,460C1060,390,1070,380,1180,300Z;
-                M1200,320C1300,250,1415,290,1380,385C1345,480,1220,500,1155,450C1090,400,1100,390,1200,320Z"/>
-    </path>
+    <animate attributeName="opacity" values="0;1" dur="1.2s" fill="freeze"/>
+    <path fill="#FF4500" fill-opacity="0.18"
+      d="M165,125C245,50,360,70,375,155C390,240,295,285,205,260C115,235,85,200,165,125Z"/>
+    <path fill="#FF4500" fill-opacity="0.12"
+      d="M1200,320C1300,250,1415,290,1380,385C1345,480,1220,500,1155,450C1090,400,1100,390,1200,320Z"/>
   </g>
 
-  <!-- ===== ACT 1b: constellation draws on right (0.6–2.8s) ===== -->
-  <g transform="translate(1020 70)" opacity="0">
-    <animate attributeName="opacity" values="0;1" dur="0.6s" begin="0.5s" fill="freeze"/>
-    <path id="const" fill="none" stroke="#FF4500" stroke-width="1.8" stroke-linejoin="round" stroke-opacity="0.55"
-      pathLength="600" stroke-dasharray="600" stroke-dashoffset="600"
-      d="M20,55 L100,18 L185,60 L155,150 L40,140 Z">
-      <animate attributeName="stroke-dashoffset" values="600;0" dur="1.8s" begin="0.6s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/>
-      <!-- after drawn, morph once to final shape and hold -->
-      <animate attributeName="d" dur="1.6s" begin="2.3s" fill="freeze" calcMode="spline"
-        keyTimes="0;1" keySplines="0.22 1 0.36 1"
-        values="M20,55 L100,18 L185,60 L155,150 L40,140 Z;
-                M28,40 L110,22 L180,50 L140,155 L25,125 Z"/>
-    </path>
-    <g opacity="0">
-      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="1.5s" fill="freeze"/>
-      <circle r="5" fill="#FF4500">
-        <animate attributeName="cx" values="20;28" dur="1.6s" begin="2.3s" fill="freeze"/>
-        <animate attributeName="cy" values="55;40" dur="1.6s" begin="2.3s" fill="freeze"/>
-      </circle>
-      <circle r="5" fill="#FFFFFF">
-        <animate attributeName="cx" values="100;110" dur="1.6s" begin="2.3s" fill="freeze"/>
-        <animate attributeName="cy" values="18;22" dur="1.6s" begin="2.3s" fill="freeze"/>
-      </circle>
-      <circle r="5" fill="#FF4500">
-        <animate attributeName="cx" values="185;180" dur="1.6s" begin="2.3s" fill="freeze"/>
-        <animate attributeName="cy" values="60;50" dur="1.6s" begin="2.3s" fill="freeze"/>
-      </circle>
-      <circle r="5" fill="#FFFFFF">
-        <animate attributeName="cx" values="155;140" dur="1.6s" begin="2.3s" fill="freeze"/>
-        <animate attributeName="cy" values="150;155" dur="1.6s" begin="2.3s" fill="freeze"/>
-      </circle>
-      <circle r="5" fill="#FF4500">
-        <animate attributeName="cx" values="40;25" dur="1.6s" begin="2.3s" fill="freeze"/>
-        <animate attributeName="cy" values="140;125" dur="1.6s" begin="2.3s" fill="freeze"/>
-      </circle>
-    </g>
-  </g>
-
-  <!-- ===== ACT 2: LOGO (0.3–1.8s) ===== -->
+  <!-- ===== ACT A: LOGO ===== -->
   <g transform="translate(280 95)">
-    <circle cx="48" cy="48" r="0" fill="#FF4500" fill-opacity="0.25" filter="url(#halo)">
-      <animate attributeName="r" values="0;62;54" keyTimes="0;0.65;1" dur="1.4s" begin="0.2s" fill="freeze" calcMode="spline" keySplines="0.2 0.9 0.2 1;0.4 0 0.2 1"/>
+    <circle cx="48" cy="48" r="0" fill="#FF4500" fill-opacity="0.28" filter="url(#halo)">
+      <animate attributeName="r" values="0;58;52" keyTimes="0;0.6;1" dur="1.1s" begin="0.15s" fill="freeze"
+        calcMode="spline" keySplines="0.2 0.9 0.2 1;0.4 0 0.2 1"/>
     </circle>
     <rect x="0" y="0" width="96" height="96" rx="28" fill="none" stroke="#FF4500" stroke-width="2.5"
       pathLength="400" stroke-dasharray="400" stroke-dashoffset="400">
-      <animate attributeName="stroke-dashoffset" values="400;0" dur="1.1s" begin="0.25s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/>
+      <animate attributeName="stroke-dashoffset" values="400;0" dur="0.95s" begin="0.2s" fill="freeze"
+        calcMode="spline" keySplines="0.4 0 0.2 1"/>
     </rect>
     <g opacity="0">
-      <animate attributeName="opacity" values="0;1" dur="0.35s" begin="0.55s" fill="freeze"/>
+      <animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.45s" fill="freeze"/>
       <g>
-        <animateTransform attributeName="transform" type="scale" values="0.75;1.07;1" keyTimes="0;0.55;1" dur="0.85s" begin="0.55s" fill="freeze" additive="sum" calcMode="spline" keySplines="0.2 0.85 0.2 1;0.4 0 0.2 1"/>
+        <animateTransform attributeName="transform" type="scale"
+          values="0.78;1.06;1" keyTimes="0;0.55;1" dur="0.75s" begin="0.45s" fill="freeze"
+          additive="sum" calcMode="spline" keySplines="0.2 0.85 0.2 1;0.4 0 0.2 1"/>
         <use href="#mark" width="96" height="96"/>
       </g>
     </g>
   </g>
 
-  <!-- ===== ACT 2b: TITLE WORDS (1.0–2.6s) one-way ===== -->
+  <!-- ===== ACT A: TITLE WORDS (finish ~2.4s) ===== -->
   <g font-family="ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Inter,Helvetica,Arial,sans-serif"
      font-size="56" font-weight="780" letter-spacing="-1.5" fill="url(#title)">
     <text x="420" y="150">
-      <tspan opacity="0"><animate attributeName="opacity" values="0;1" dur="0.35s" begin="1.0s" fill="freeze"/>Cohub</tspan>
-      <tspan dx="16" opacity="0"><animate attributeName="opacity" values="0;1" dur="0.35s" begin="1.25s" fill="freeze"/>Is</tspan>
-      <tspan dx="16" opacity="0"><animate attributeName="opacity" values="0;1" dur="0.35s" begin="1.5s" fill="freeze"/>All</tspan>
-      <tspan dx="16" opacity="0"><animate attributeName="opacity" values="0;1" dur="0.35s" begin="1.75s" fill="freeze"/>You</tspan>
-      <tspan dx="16" opacity="0"><animate attributeName="opacity" values="0;1" dur="0.35s" begin="2.0s" fill="freeze"/>Need</tspan>
+      <tspan opacity="0"><animate attributeName="opacity" values="0;1" dur="0.28s" begin="0.85s" fill="freeze"/>Cohub</tspan>
+      <tspan dx="16" opacity="0"><animate attributeName="opacity" values="0;1" dur="0.28s" begin="1.12s" fill="freeze"/>Is</tspan>
+      <tspan dx="16" opacity="0"><animate attributeName="opacity" values="0;1" dur="0.28s" begin="1.38s" fill="freeze"/>All</tspan>
+      <tspan dx="16" opacity="0"><animate attributeName="opacity" values="0;1" dur="0.28s" begin="1.64s" fill="freeze"/>You</tspan>
+      <tspan dx="16" opacity="0"><animate attributeName="opacity" values="0;1" dur="0.28s" begin="1.90s" fill="freeze"/>Need</tspan>
     </text>
   </g>
 
-  <!-- underline after title complete -->
   <path d="M422 172 H 1010" fill="none" stroke="#FF4500" stroke-width="3.2" stroke-linecap="round"
     pathLength="600" stroke-dasharray="600" stroke-dashoffset="600">
-    <animate attributeName="stroke-dashoffset" values="600;0" dur="0.7s" begin="2.25s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/>
+    <animate attributeName="stroke-dashoffset" values="600;0" dur="0.55s" begin="2.15s" fill="freeze"
+      calcMode="spline" keySplines="0.4 0 0.2 1"/>
   </path>
 
   <text x="424" y="206" opacity="0"
     font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif"
     font-size="18" font-weight="560" fill="#C9C9D2">
-    <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2.6s" fill="freeze"/>
+    <animate attributeName="opacity" values="0;1" dur="0.4s" begin="2.35s" fill="freeze"/>
     Best practices for builders &amp; agents
   </text>
 
-  <!-- ===== ACT 3: after text done — loop graph builds (2.8s–6.2s), then HOLD ===== -->
-  <!-- base ghost rail -->
+  <!-- ===== ACT B: motion starts AFTER text is done (begin 2.75s) — once, then hold ===== -->
+
+  <!-- right constellation draws once -->
+  <g transform="translate(1020 70)" opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.35s" begin="2.75s" fill="freeze"/>
+    <path fill="none" stroke="#FF4500" stroke-width="1.8" stroke-linejoin="round" stroke-opacity="0.55"
+      pathLength="600" stroke-dasharray="600" stroke-dashoffset="600"
+      d="M28,40 L110,22 L180,50 L140,155 L25,125 Z">
+      <animate attributeName="stroke-dashoffset" values="600;0" dur="1.4s" begin="2.8s" fill="freeze"
+        calcMode="spline" keySplines="0.4 0 0.2 1"/>
+    </path>
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.35s" begin="3.6s" fill="freeze"/>
+      <circle cx="28" cy="40" r="5" fill="#FF4500"/>
+      <circle cx="110" cy="22" r="5" fill="#FFFFFF"/>
+      <circle cx="180" cy="50" r="5" fill="#FF4500"/>
+      <circle cx="140" cy="155" r="5" fill="#FFFFFF"/>
+      <circle cx="25" cy="125" r="5" fill="#FF4500"/>
+    </g>
+  </g>
+
+  <!-- ghost rail -->
   <path d="M160 400 C 360 330, 520 330, 660 400 S 940 470, 1080 400 S 1280 330, 1360 370"
     fill="none" stroke="#FF4500" stroke-opacity="0" stroke-width="2.5">
-    <animate attributeName="stroke-opacity" values="0;0.16" dur="0.4s" begin="2.85s" fill="freeze"/>
+    <animate attributeName="stroke-opacity" values="0;0.16" dur="0.3s" begin="2.85s" fill="freeze"/>
   </path>
 
-  <!-- main rail draw-on -->
+  <!-- main rail draw-on once -->
   <path d="M160 400 C 360 330, 520 330, 660 400 S 940 470, 1080 400 S 1280 330, 1360 370"
     fill="none" stroke="url(#railGrad)" stroke-width="3.5" stroke-linecap="round"
     pathLength="1200" stroke-dasharray="1200" stroke-dashoffset="1200">
-    <animate attributeName="stroke-dashoffset" values="1200;0" dur="2.4s" begin="2.9s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/>
+    <animate attributeName="stroke-dashoffset" values="1200;0" dur="2.2s" begin="2.9s" fill="freeze"
+      calcMode="spline" keySplines="0.4 0 0.2 1"/>
   </path>
 
-  <!-- morphing secondary ribbon appears while rail draws, ends in final curve -->
-  <path fill="none" stroke="#FF4500" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0">
-    <animate attributeName="stroke-opacity" values="0;0.4" dur="0.3s" begin="3.1s" fill="freeze"/>
-    <animate attributeName="d" dur="2.2s" begin="3.1s" fill="freeze" calcMode="spline"
-      keyTimes="0;0.5;1" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"
+  <!-- secondary ribbon settles once -->
+  <path fill="none" stroke="#FF4500" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0"
+    d="M160,412 C360,355 520,375 660,412 S940,448 1080,412 S1280,352 1360,382">
+    <animate attributeName="stroke-opacity" values="0;0.38" dur="0.35s" begin="3.1s" fill="freeze"/>
+    <animate attributeName="d" dur="1.8s" begin="3.1s" fill="freeze" calcMode="spline"
+      keyTimes="0;1" keySplines="0.4 0 0.2 1"
       values="M160,410 C360,350 520,370 660,410 S940,450 1080,410 S1280,350 1360,380;
-              M160,405 C360,340 520,360 660,405 S940,460 1080,405 S1280,340 1360,375;
               M160,412 C360,355 520,375 660,412 S940,448 1080,412 S1280,352 1360,382"/>
   </path>
 
-  <!-- energy particle travels once along rail then vanishes at end? or stops at Work -->
+  <!-- particle travels ONCE along rail, stays at Work -->
   <circle r="5" fill="#FFFFFF" opacity="0">
-    <animate attributeName="opacity" values="0;1;1;1" keyTimes="0;0.05;0.95;1" dur="2.5s" begin="2.95s" fill="freeze"/>
-    <animateMotion dur="2.5s" begin="2.95s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"
+    <animate attributeName="opacity" values="0;1;1" keyTimes="0;0.06;1" dur="2.3s" begin="2.95s" fill="freeze"/>
+    <animateMotion dur="2.3s" begin="2.95s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"
       path="M160 400 C 360 330, 520 330, 660 400 S 940 470, 1080 400 S 1280 330, 1360 370"/>
   </circle>
 
-  <!-- nodes pop once in sequence, stay -->
-  <g font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#F2F2F6">
-    <!-- Space -->
+  <!-- nodes pop once in sequence -->
+  <g font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif"
+     font-size="13" font-weight="700" fill="#F2F2F6">
     <g opacity="0" transform="translate(160 400)">
-      <animate attributeName="opacity" values="0;1" dur="0.25s" begin="3.05s" fill="freeze"/>
+      <animate attributeName="opacity" values="0;1" dur="0.22s" begin="3.05s" fill="freeze"/>
       <circle r="0" fill="none" stroke="#FF4500" stroke-width="2">
-        <animate attributeName="r" values="0;30;22" keyTimes="0;0.55;1" dur="0.7s" begin="3.05s" fill="freeze" calcMode="spline" keySplines="0.2 0.9 0.2 1;0.4 0 0.2 1"/>
-        <animate attributeName="stroke-opacity" values="0;0.9;0.45" keyTimes="0;0.55;1" dur="0.7s" begin="3.05s" fill="freeze"/>
+        <animate attributeName="r" values="0;30;22" keyTimes="0;0.55;1" dur="0.65s" begin="3.05s" fill="freeze"
+          calcMode="spline" keySplines="0.2 0.9 0.2 1;0.4 0 0.2 1"/>
+        <animate attributeName="stroke-opacity" values="0;0.9;0.45" keyTimes="0;0.55;1" dur="0.65s" begin="3.05s" fill="freeze"/>
       </circle>
       <circle r="0" fill="#FF4500">
-        <animate attributeName="r" values="0;10;8" keyTimes="0;0.45;1" dur="0.45s" begin="3.05s" fill="freeze"/>
+        <animate attributeName="r" values="0;10;8" keyTimes="0;0.45;1" dur="0.4s" begin="3.05s" fill="freeze"/>
       </circle>
       <text text-anchor="middle" y="48" opacity="0">
-        <animate attributeName="opacity" values="0;1" dur="0.3s" begin="3.2s" fill="freeze"/>Space
+        <animate attributeName="opacity" values="0;1" dur="0.25s" begin="3.2s" fill="freeze"/>Space
       </text>
     </g>
-    <!-- Skills -->
+
     <g opacity="0" transform="translate(660 400)">
-      <animate attributeName="opacity" values="0;1" dur="0.25s" begin="3.7s" fill="freeze"/>
+      <animate attributeName="opacity" values="0;1" dur="0.22s" begin="3.65s" fill="freeze"/>
       <circle r="0" fill="none" stroke="#FF4500" stroke-width="2">
-        <animate attributeName="r" values="0;30;22" keyTimes="0;0.55;1" dur="0.7s" begin="3.7s" fill="freeze" calcMode="spline" keySplines="0.2 0.9 0.2 1;0.4 0 0.2 1"/>
-        <animate attributeName="stroke-opacity" values="0;0.9;0.45" keyTimes="0;0.55;1" dur="0.7s" begin="3.7s" fill="freeze"/>
+        <animate attributeName="r" values="0;30;22" keyTimes="0;0.55;1" dur="0.65s" begin="3.65s" fill="freeze"
+          calcMode="spline" keySplines="0.2 0.9 0.2 1;0.4 0 0.2 1"/>
+        <animate attributeName="stroke-opacity" values="0;0.9;0.45" keyTimes="0;0.55;1" dur="0.65s" begin="3.65s" fill="freeze"/>
       </circle>
       <circle r="0" fill="#FFFFFF">
-        <animate attributeName="r" values="0;10;8" keyTimes="0;0.45;1" dur="0.45s" begin="3.7s" fill="freeze"/>
+        <animate attributeName="r" values="0;10;8" keyTimes="0;0.45;1" dur="0.4s" begin="3.65s" fill="freeze"/>
       </circle>
       <text text-anchor="middle" y="48" opacity="0">
-        <animate attributeName="opacity" values="0;1" dur="0.3s" begin="3.85s" fill="freeze"/>Skills
+        <animate attributeName="opacity" values="0;1" dur="0.25s" begin="3.8s" fill="freeze"/>Skills
       </text>
     </g>
-    <!-- Save -->
+
     <g opacity="0" transform="translate(1080 400)">
-      <animate attributeName="opacity" values="0;1" dur="0.25s" begin="4.35s" fill="freeze"/>
+      <animate attributeName="opacity" values="0;1" dur="0.22s" begin="4.25s" fill="freeze"/>
       <circle r="0" fill="none" stroke="#FF4500" stroke-width="2">
-        <animate attributeName="r" values="0;30;22" keyTimes="0;0.55;1" dur="0.7s" begin="4.35s" fill="freeze" calcMode="spline" keySplines="0.2 0.9 0.2 1;0.4 0 0.2 1"/>
-        <animate attributeName="stroke-opacity" values="0;0.9;0.45" keyTimes="0;0.55;1" dur="0.7s" begin="4.35s" fill="freeze"/>
+        <animate attributeName="r" values="0;30;22" keyTimes="0;0.55;1" dur="0.65s" begin="4.25s" fill="freeze"
+          calcMode="spline" keySplines="0.2 0.9 0.2 1;0.4 0 0.2 1"/>
+        <animate attributeName="stroke-opacity" values="0;0.9;0.45" keyTimes="0;0.55;1" dur="0.65s" begin="4.25s" fill="freeze"/>
       </circle>
       <circle r="0" fill="#FF4500">
-        <animate attributeName="r" values="0;10;8" keyTimes="0;0.45;1" dur="0.45s" begin="4.35s" fill="freeze"/>
+        <animate attributeName="r" values="0;10;8" keyTimes="0;0.45;1" dur="0.4s" begin="4.25s" fill="freeze"/>
       </circle>
       <text text-anchor="middle" y="48" opacity="0">
-        <animate attributeName="opacity" values="0;1" dur="0.3s" begin="4.5s" fill="freeze"/>Save
+        <animate attributeName="opacity" values="0;1" dur="0.25s" begin="4.4s" fill="freeze"/>Save
       </text>
     </g>
-    <!-- Work -->
+
     <g opacity="0" transform="translate(1360 370)">
-      <animate attributeName="opacity" values="0;1" dur="0.25s" begin="5.0s" fill="freeze"/>
+      <animate attributeName="opacity" values="0;1" dur="0.22s" begin="4.85s" fill="freeze"/>
       <circle r="0" fill="none" stroke="#FF4500" stroke-width="2">
-        <animate attributeName="r" values="0;32;22" keyTimes="0;0.55;1" dur="0.75s" begin="5.0s" fill="freeze" calcMode="spline" keySplines="0.2 0.9 0.2 1;0.4 0 0.2 1"/>
-        <animate attributeName="stroke-opacity" values="0;0.95;0.5" keyTimes="0;0.55;1" dur="0.75s" begin="5.0s" fill="freeze"/>
+        <animate attributeName="r" values="0;32;22" keyTimes="0;0.55;1" dur="0.7s" begin="4.85s" fill="freeze"
+          calcMode="spline" keySplines="0.2 0.9 0.2 1;0.4 0 0.2 1"/>
+        <animate attributeName="stroke-opacity" values="0;0.95;0.5" keyTimes="0;0.55;1" dur="0.7s" begin="4.85s" fill="freeze"/>
       </circle>
       <circle r="0" fill="#FFFFFF">
-        <animate attributeName="r" values="0;11;8" keyTimes="0;0.45;1" dur="0.5s" begin="5.0s" fill="freeze"/>
+        <animate attributeName="r" values="0;11;8" keyTimes="0;0.45;1" dur="0.45s" begin="4.85s" fill="freeze"/>
       </circle>
       <text text-anchor="middle" y="48" opacity="0">
-        <animate attributeName="opacity" values="0;1" dur="0.3s" begin="5.15s" fill="freeze"/>Work
+        <animate attributeName="opacity" values="0;1" dur="0.25s" begin="5.0s" fill="freeze"/>Work
       </text>
     </g>
   </g>
 
-  <!-- subtitle loop line after graph complete -->
+  <!-- tagline after graph completes -->
   <text x="424" y="238" opacity="0"
     font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Helvetica,Arial,sans-serif"
     font-size="16" font-weight="600" fill="#FFB08A">
-    <animate attributeName="opacity" values="0;1" dur="0.55s" begin="5.4s" fill="freeze"/>
-    Space → Skills → Save → Work → Fork again
+    <animate attributeName="opacity" values="0;1" dur="0.45s" begin="5.25s" fill="freeze"/>
+    Space → Skills → Save → Work
   </text>
 
-  <!-- final progress bar fills once and stays full -->
+  <!-- progress bar fills once during Act B, stays full -->
   <g transform="translate(160 492)" opacity="0">
-    <animate attributeName="opacity" values="0;1" dur="0.3s" begin="2.85s" fill="freeze"/>
+    <animate attributeName="opacity" values="0;1" dur="0.25s" begin="2.85s" fill="freeze"/>
     <rect width="1120" height="5" rx="2.5" fill="#FFFFFF" fill-opacity="0.07"/>
     <rect width="0" height="5" rx="2.5" fill="#FF4500">
-      <animate attributeName="width" values="0;1120" dur="3.3s" begin="2.9s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/>
+      <animate attributeName="width" values="0;1120" dur="2.5s" begin="2.9s" fill="freeze"
+        calcMode="spline" keySplines="0.4 0 0.2 1"/>
     </rect>
   </g>
 </svg>
