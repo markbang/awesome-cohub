@@ -12,6 +12,11 @@ Assumptions are pinned to public docs + monorepo behavior at write time. When pr
 
 
 
+## v0.12 — 2026-07-22
+
+- Add [talesofai/okp](https://github.com/talesofai/okp) ecosystem skills: `okp-search` and `okp-import`
+- Record the required `@markbangwu/okp` CLI and sync EN/ZH skill catalogs
+
 ## v0.11 — 2026-07-21
 
 - Add **`.cohub` layers & priority** (concept + playbook): models / space.json theme & new-chat background / hooks vs **`.agents/prompts` slash templates**

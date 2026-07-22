@@ -145,6 +145,7 @@ Web、CLI（`@neta-art/cohub-cli`）、频道应驱动 **同一个 Space**。
 | [markbang/wgetx-skill](https://github.com/markbang/wgetx-skill) | 社媒采集（默认纯 ESM，无需 npm） |
 | [markbang/warp-proxy-skill](https://github.com/markbang/warp-proxy-skill) | 沙箱 WARP 出口代理 |
 | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | Work 模板 + 发布流程 |
+| [talesofai/okp](https://github.com/talesofai/okp) | `okp-search` + `okp-import`，用于结构化知识检索、导航与导入 |
 | 平台 monorepo skills | `cohub`、`cohub-generate`、works/public share 等 |
 
 安装模式：

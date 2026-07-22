@@ -12,6 +12,11 @@ type: meta
 
 
 
+## v0.12 — 2026-07-22
+
+- 收录 [talesofai/okp](https://github.com/talesofai/okp) 生态 Skills：`okp-search`、`okp-import`
+- 记录所需 `@markbangwu/okp` CLI，并同步 EN/ZH Skill 目录
+
 ## v0.11 — 2026-07-21
 
 - 新增 **`.cohub` 分层与优先级**（concept + playbook）：models / space.json 主题与 new-chat 背景 / hooks vs **`.agents/prompts` 斜杠模板**
