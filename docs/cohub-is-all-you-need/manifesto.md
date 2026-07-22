@@ -145,7 +145,7 @@ Package: `@neta-art/cohub-cli` (npm scope) · monorepo [talesofai/cohub](https:/
 | [markbang/wgetx-skill](https://github.com/markbang/wgetx-skill) | Social fetch (ESM, no npm for defaults) |
 | [markbang/warp-proxy-skill](https://github.com/markbang/warp-proxy-skill) | WARP egress proxy in sandbox |
 | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | Work kit template + publish flow |
-| [talesofai/okp](https://github.com/talesofai/okp) | `okp-search` + `okp-import` for structured knowledge navigation and ingestion |
+| [talesofai/okp](https://github.com/talesofai/okp) | `okp` — structured knowledge search, navigation, and ingestion |
 | Platform skills in monorepo | `cohub`, `cohub-generate`, works/public share |
 
 Install pattern:

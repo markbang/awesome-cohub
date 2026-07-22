@@ -14,8 +14,8 @@ type: meta
 
 ## v0.12 — 2026-07-22
 
-- 收录 [talesofai/okp](https://github.com/talesofai/okp) 生态 Skills：`okp-search`、`okp-import`
-- 记录所需 `@markbangwu/okp` CLI，并同步 EN/ZH Skill 目录
+- 将 [talesofai/okp](https://github.com/talesofai/okp) 作为单条 `okp` 收录进生态 Skill 目录
+- 记录所需 `@markbangwu/okp` CLI，并同步 EN/ZH 目录
 
 ## v0.11 — 2026-07-21
 

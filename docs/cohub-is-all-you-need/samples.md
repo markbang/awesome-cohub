@@ -25,7 +25,7 @@ Concrete starting points. Prefer cloning patterns into **your** Space over treat
 | warp-proxy | [markbang/warp-proxy-skill](https://github.com/markbang/warp-proxy-skill) |
 | wgetx | [markbang/wgetx-skill](https://github.com/markbang/wgetx-skill) |
 | wikis | [markbang/wikis-skill](https://github.com/markbang/wikis-skill) |
-| okp-search + okp-import | [talesofai/okp](https://github.com/talesofai/okp) |
+| okp | [talesofai/okp](https://github.com/talesofai/okp) |
 | work-kit + publish | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) |
 | hyper-search | [kjx-talesofai/claude-skill-hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search) |
 | lark-lite | [kjx-talesofai/claude-skill-lark-lite](https://github.com/kjx-talesofai/claude-skill-lark-lite) |

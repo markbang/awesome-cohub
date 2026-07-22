@@ -58,4 +58,4 @@
 - 网页搜索：[hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search)  
 - 飞书：[lark-lite](https://github.com/kjx-talesofai/claude-skill-lark-lite)  
 - 维基 API：[wikis-skill](https://github.com/markbang/wikis-skill)（`wikis`）  
-- Open Knowledge Protocol：[talesofai/okp](https://github.com/talesofai/okp)（`okp-search`、`okp-import`）
+- Open Knowledge Protocol：[talesofai/okp](https://github.com/talesofai/okp)（`okp`）

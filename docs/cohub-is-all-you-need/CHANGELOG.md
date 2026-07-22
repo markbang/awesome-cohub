@@ -14,8 +14,8 @@ Assumptions are pinned to public docs + monorepo behavior at write time. When pr
 
 ## v0.12 — 2026-07-22
 
-- Add [talesofai/okp](https://github.com/talesofai/okp) ecosystem skills: `okp-search` and `okp-import`
-- Record the required `@markbangwu/okp` CLI and sync EN/ZH skill catalogs
+- Add [talesofai/okp](https://github.com/talesofai/okp) to the ecosystem skill catalog as a single `okp` entry
+- Record the required `@markbangwu/okp` CLI and sync EN/ZH catalogs
 
 ## v0.11 — 2026-07-21
 
