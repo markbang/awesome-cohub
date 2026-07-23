@@ -16,6 +16,7 @@
   </strong>
   <br />
   <br />
+  English · <a href="README_zh_CN.md">简体中文</a>
 </div>
 
 <div align="center">
