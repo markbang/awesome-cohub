@@ -12,6 +12,13 @@ type: meta
 
 
 
+
+## v0.13 — 2026-07-29
+
+- 新增 **Board 运行时 v2.0-v2.4**（概念 + 实践卡）：PixiJS 2.5D 无限画布、`file` 文件节点、无头导出 (`cohub boards export`) 与自动播放策略
+- 新增 **思考等级与模型状态** 概念：单 Prompt `thinkingLevel` 与模型实时可用性点阵图
+- 更新最新规模：**32** 篇实践卡，**23** 篇概念卡
+
 ## v0.12 — 2026-07-22
 
 - 将 [talesofai/okp](https://github.com/talesofai/okp) 作为单条 `okp` 收录进生态 Skill 目录

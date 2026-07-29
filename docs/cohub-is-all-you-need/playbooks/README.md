@@ -1,10 +1,11 @@
 # Playbooks
 
-Executable practice cards.
+Curated playbooks.
 
 | ID | Title | File |
 |----|-------|------|
 | `cohub.bp.agent-with-skills` | Equip an agent and do real work | [agent-with-skills.md](./agent-with-skills.md) |
+| `cohub.bp.board-export-and-playback` | Master Board exports, playback policy, and live file nodes | [board-export-and-playback.md](./board-export-and-playback.md) |
 | `cohub.bp.channel-ops` | Operate a Space from external channels | [channel-ops.md](./channel-ops.md) |
 | `cohub.bp.cross-space-context` | Pull context from another Space | [cross-space-context.md](./cross-space-context.md) |
 | `cohub.bp.dot-cohub-layers` | Configure .cohub and .agents with the right priority | [dot-cohub-layers.md](./dot-cohub-layers.md) |
@@ -36,6 +37,6 @@ Executable practice cards.
 | `cohub.bp.work-kit-product` | Build a Work product with Work Kit | [work-kit-product.md](./work-kit-product.md) |
 | `cohub.bp.work-lifecycle` | Work lifecycle — publish, version, disable, visibility | [work-lifecycle.md](./work-lifecycle.md) |
 
-**31** items.
+**32** items.
 
 [中文](../zh/playbooks/README.md)

@@ -1,9 +1,10 @@
 # Concepts
 
-Lookup cards for core Cohub objects.
+Curated concepts.
 
 | ID | Title | File |
 |----|-------|------|
+| `cohub.concept.board-runtime` | Board runtime & PixiJS canvas | [board-runtime.md](./board-runtime.md) |
 | `cohub.concept.channel` | Channel | [channel.md](./channel.md) |
 | `cohub.concept.chat` | Chat (Session) | [chat.md](./chat.md) |
 | `cohub.concept.commerce` | Work commerce | [commerce.md](./commerce.md) |
@@ -22,10 +23,11 @@ Lookup cards for core Cohub objects.
 | `cohub.concept.space` | Space | [space.md](./space.md) |
 | `cohub.concept.space-roles` | Space roles (host / builder / guest) | [space-roles.md](./space-roles.md) |
 | `cohub.concept.task-schedule` | Task & scheduled prompt | [task-and-schedule.md](./task-and-schedule.md) |
+| `cohub.concept.thinking-level-and-models-status` | Per-prompt thinking level & live model status | [thinking-level-and-models-status.md](./thinking-level-and-models-status.md) |
 | `cohub.concept.user-config-space` | User config Space | [user-config-space.md](./user-config-space.md) |
 | `cohub.concept.work` | Work | [work.md](./work.md) |
 | `cohub.concept.work-presentation` | Work presentation (hideCohubBar) | [work-presentation.md](./work-presentation.md) |
 
-**21** items.
+**23** items.
 
 [中文](../zh/concepts/README.md)

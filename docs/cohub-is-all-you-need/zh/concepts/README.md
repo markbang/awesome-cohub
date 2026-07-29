@@ -2,10 +2,11 @@
 
 | ID | 标题 | 文件 |
 |----|------|------|
-| `auto` | 任务与定时 | [task-and-schedule.md](./task-and-schedule.md) |
+| `auto` | 渠道 | [channel.md](./channel.md) |
 | `auto` | 标签 | [labels.md](./labels.md) |
 | `auto` | 沙箱 | [sandbox.md](./sandbox.md) |
-| `auto` | 渠道 | [channel.md](./channel.md) |
+| `auto` | 任务与定时 | [task-and-schedule.md](./task-and-schedule.md) |
+| `cohub.concept.board-runtime` | Board 运行时与 PixiJS 无限画布 | [board-runtime.md](./board-runtime.md) |
 | `cohub.concept.chat` | Chat / Session（会话） | [chat.md](./chat.md) |
 | `cohub.concept.commerce` | Work 商业化 | [commerce.md](./commerce.md) |
 | `cohub.concept.dot-cohub-layers` | .cohub 分层与优先级 | [dot-cohub-layers.md](./dot-cohub-layers.md) |
@@ -20,10 +21,11 @@
 | `cohub.concept.skill-discovery` | Skill 发现与缓存 | [skill-discovery.md](./skill-discovery.md) |
 | `cohub.concept.space` | Space（空间） | [space.md](./space.md) |
 | `cohub.concept.space-roles` | Space 角色（host / builder / guest） | [space-roles.md](./space-roles.md) |
+| `cohub.concept.thinking-level-and-models-status` | 单 Prompt 思考等级与模型实时状态 | [thinking-level-and-models-status.md](./thinking-level-and-models-status.md) |
 | `cohub.concept.user-config-space` | 用户 config Space | [user-config-space.md](./user-config-space.md) |
 | `cohub.concept.work` | Work（作品） | [work.md](./work.md) |
 | `cohub.concept.work-presentation` | Work 呈现（hideCohubBar） | [work-presentation.md](./work-presentation.md) |
 
-**21** 项。
+**23** 项。
 
 [English](../../concepts/README.md)

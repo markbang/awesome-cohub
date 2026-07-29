@@ -12,6 +12,13 @@ Assumptions are pinned to public docs + monorepo behavior at write time. When pr
 
 
 
+
+## v0.13 — 2026-07-29
+
+- Add **Board runtime v2.0-v2.4** updates (concept + playbook): PixiJS 2.5D infinite canvas, `file` nodes, live export (`cohub boards export`), and autoplay policy
+- Add **Thinking level & Models status** concept: per-prompt `thinkingLevel` and live model availability metrics
+- Update total count: **32** Playbooks, **23** Concepts
+
 ## v0.12 — 2026-07-22
 
 - Add [talesofai/okp](https://github.com/talesofai/okp) to the ecosystem skill catalog as a single `okp` entry
