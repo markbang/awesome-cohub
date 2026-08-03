@@ -146,6 +146,7 @@ Web、CLI（`@neta-art/cohub-cli`）、频道应驱动 **同一个 Space**。
 | [markbang/warp-proxy-skill](https://github.com/markbang/warp-proxy-skill) | 沙箱 WARP 出口代理 |
 | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | Work 模板 + 发布流程 |
 | [talesofai/okp](https://github.com/talesofai/okp) | `okp` — 结构化知识检索、导航与导入 |
+| [markbang/temp-mail-skill](https://github.com/markbang/temp-mail-skill) | `temp-mail` — 测试新手流程的临时邮箱 |
 | 平台 monorepo skills | `cohub`、`cohub-generate`、works/public share 等 |
 
 安装模式：

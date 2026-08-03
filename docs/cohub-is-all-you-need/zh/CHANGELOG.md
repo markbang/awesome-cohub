@@ -14,6 +14,10 @@ type: meta
 
 
 
+## v0.15 — 2026-08-03
+
+- 将 [markbang/temp-mail-skill](https://github.com/markbang/temp-mail-skill) 作为单条 `temp-mail` 收录（reusable.email / temp-mail.org 临时邮箱）
+
 ## v0.14 — 2026-08-03
 
 - 同步 **v2.5-v2.7** 更新：

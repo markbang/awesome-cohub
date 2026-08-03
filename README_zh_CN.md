@@ -126,6 +126,7 @@ Cohub 生态的标准 Agent Skills。使用 [`npx skills`](https://github.com/ve
 | **lark-lite** | [kjx-talesofai/claude-skill-lark-lite](https://github.com/kjx-talesofai/claude-skill-lark-lite) | 通过 `lark-cli` 以**用户身份**进行轻量飞书/Lark 操作，而非 Bot 优先 |
 | **fandom-cli** | [kjx-talesofai/claude-skill-fandom-cli](https://github.com/kjx-talesofai/claude-skill-fandom-cli) | 无需抓取 HTML 即可查询 Fandom/MediaWiki 页面、信息框、搜索和图片 |
 | **wikis** | [markbang/wikis-skill](https://github.com/markbang/wikis-skill) | 面向 25 万+ 社区 Wiki 的 HTTP API Skill，支持搜索、Markdown、信息框和图片代理 |
+| **temp-mail** | [markbang/temp-mail-skill](https://github.com/markbang/temp-mail-skill) | 临时邮箱：基于 reusable.email（免 key）+ 可选 temp-mail.org provider |
 | **okp** | [talesofai/okp](https://github.com/talesofai/okp) | 用于结构化知识搜索、导航与导入的 Open Knowledge Protocol 工具 |
 | **wgetx** | [markbang/wgetx-skill](https://github.com/markbang/wgetx-skill) | 纯 ESM `.mjs` 社交平台采集 Skill，默认采集器无需 npm 依赖 |
 | **cohub-work-kit** | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | 搭建 Cohub Works，内置 Vite + React + TanStack Query 模板 |
@@ -154,7 +155,7 @@ npx skills add https://github.com/markbang/wgetx-skill \
 npx skills add https://github.com/markbang/wgetx-skill --list
 ```
 
-> **注意：** 个人默认能力（`hyper-search`、`lark-lite`、`fandom-cli`、`wikis`、`okp`）优先安装到 **config Space**，再 **Save** 发布到 `/configs/user/.agents/skills/`。OKP 需要 `okp` CLI（`npm install -g @markbangwu/okp`）。项目/Sandbox 工具（`warp-proxy`、`wgetx`、work-kit）可以放在当前 Space 工作区。`npx skills add --copy` 会复制整个 Skill 树；`skills/<name>/scripts/` 下的脚本会进入 `.agents/skills/<name>/scripts/`。
+> **注意：** 个人默认能力（`hyper-search`、`lark-lite`、`fandom-cli`、`wikis`、`okp`、`temp-mail`）优先安装到 **config Space**，再 **Save** 发布到 `/configs/user/.agents/skills/`。OKP 需要 `okp` CLI（`npm install -g @markbangwu/okp`）。项目/Sandbox 工具（`warp-proxy`、`wgetx`、work-kit）可以放在当前 Space 工作区。`npx skills add --copy` 会复制整个 Skill 树；`skills/<name>/scripts/` 下的脚本会进入 `.agents/skills/<name>/scripts/`。
 
 ### Skills 为什么重要
 

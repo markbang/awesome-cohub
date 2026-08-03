@@ -21,10 +21,10 @@ Grounded in product docs ([/docs](https://cohub.run/docs)), changelog ([/changel
 
 ## Start here
 
-1. **[Learning path](./learning-path.md)** — 30 min / half day / advanced  
-2. **[AGENT_BRIEF.md](./AGENT_BRIEF.md)** — one page for agents  
-3. **[Cookbooks](./cookbooks/)** — end-to-end outcomes  
-4. **[FAQ & troubleshooting](./cheatsheets/faq-and-troubleshooting.md)** — when stuck  
+1. **[Learning path](./learning-path.md)** — 30 min / half day / advanced
+2. **[AGENT_BRIEF.md](./AGENT_BRIEF.md)** — one page for agents
+3. **[Cookbooks](./cookbooks/)** — end-to-end outcomes
+4. **[FAQ & troubleshooting](./cheatsheets/faq-and-troubleshooting.md)** — when stuck
 
 ## Map
 
@@ -46,10 +46,10 @@ Grounded in product docs ([/docs](https://cohub.run/docs)), changelog ([/changel
 
 ## How to read
 
-1. [Learning path](./learning-path.md) or [Manifesto](./manifesto.md)  
-2. [Matrix](./matrix.md) / [Cookbook](./cookbooks/) → pick a scenario  
-3. Open the [playbook](./playbooks/)  
-4. Use [concepts](./concepts/) / [anti-patterns](./anti-patterns/) / [cheatsheets](./cheatsheets/) / [FAQ](./cheatsheets/faq-and-troubleshooting.md) as needed  
+1. [Learning path](./learning-path.md) or [Manifesto](./manifesto.md)
+2. [Matrix](./matrix.md) / [Cookbook](./cookbooks/) → pick a scenario
+3. Open the [playbook](./playbooks/)
+4. Use [concepts](./concepts/) / [anti-patterns](./anti-patterns/) / [cheatsheets](./cheatsheets/) / [FAQ](./cheatsheets/faq-and-troubleshooting.md) as needed
 
 ## Layout (i18n)
 
@@ -64,10 +64,11 @@ docs/cohub-is-all-you-need/     # English (default)
 
 ## Related
 
-- https://cohub.run · https://cohub.run/docs · https://cohub.run/changelog  
-- https://github.com/talesofai/cohub · https://github.com/markbang/awesome-cohub  
-- Web search: [hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search)  
-- Feishu: [lark-lite](https://github.com/kjx-talesofai/claude-skill-lark-lite)  
-- Wikis API: [wikis-skill](https://github.com/markbang/wikis-skill) (`wikis`)  
+- https://cohub.run · https://cohub.run/docs · https://cohub.run/changelog
+- https://github.com/talesofai/cohub · https://github.com/markbang/awesome-cohub
+- Web search: [hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search)
+- Feishu: [lark-lite](https://github.com/kjx-talesofai/claude-skill-lark-lite)
+- Wikis API: [wikis-skill](https://github.com/markbang/wikis-skill) (`wikis`)
 - Open Knowledge Protocol: [talesofai/okp](https://github.com/talesofai/okp) (`okp`)
-- Fandom CLI: [fandom-cli](https://github.com/kjx-talesofai/claude-skill-fandom-cli)  
+- Temp mail: [temp-mail-skill](https://github.com/markbang/temp-mail-skill) (`temp-mail`)
+- Fandom CLI: [fandom-cli](https://github.com/kjx-talesofai/claude-skill-fandom-cli)

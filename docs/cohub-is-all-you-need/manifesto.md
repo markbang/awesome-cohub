@@ -146,6 +146,7 @@ Package: `@neta-art/cohub-cli` (npm scope) · monorepo [talesofai/cohub](https:/
 | [markbang/warp-proxy-skill](https://github.com/markbang/warp-proxy-skill) | WARP egress proxy in sandbox |
 | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | Work kit template + publish flow |
 | [talesofai/okp](https://github.com/talesofai/okp) | `okp` — structured knowledge search, navigation, and ingestion |
+| [markbang/temp-mail-skill](https://github.com/markbang/temp-mail-skill) | `temp-mail` — disposable email for onboarding flow tests |
 | Platform skills in monorepo | `cohub`, `cohub-generate`, works/public share |
 
 Install pattern:

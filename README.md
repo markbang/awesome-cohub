@@ -126,6 +126,7 @@ Standard agent skills for the Cohub ecosystem. Install with [`npx skills`](https
 | **lark-lite** | [kjx-talesofai/claude-skill-lark-lite](https://github.com/kjx-talesofai/claude-skill-lark-lite) | Lightweight Feishu/Lark ops as **user identity** (not bot-first) via `lark-cli` |
 | **fandom-cli** | [kjx-talesofai/claude-skill-fandom-cli](https://github.com/kjx-talesofai/claude-skill-fandom-cli) | Query Fandom/MediaWiki wikis (pages, infobox, search, images) without HTML scraping |
 | **wikis** | [markbang/wikis-skill](https://github.com/markbang/wikis-skill) | HTTP API skill for 250K+ community wikis (search, md, infobox, image proxy) |
+| **temp-mail** | [markbang/temp-mail-skill](https://github.com/markbang/temp-mail-skill) | Disposable email via reusable.email (keyless) + optional temp-mail.org provider |
 | **okp** | [talesofai/okp](https://github.com/talesofai/okp) | Open Knowledge Protocol tooling for structured knowledge search, navigation, and ingestion |
 | **wgetx** | [markbang/wgetx-skill](https://github.com/markbang/wgetx-skill) | Pure ESM `.mjs` social fetch skill (no npm for default scrapers) |
 | **cohub-work-kit** | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | Scaffold Cohub Works (Vite + React + TanStack Query template bundled) |
@@ -154,7 +155,7 @@ npx skills add https://github.com/markbang/wgetx-skill \
 npx skills add https://github.com/markbang/wgetx-skill --list
 ```
 
-> **Note:** Prefer **config Space** for personal defaults (`hyper-search`, `lark-lite`, `fandom-cli`, `wikis`, `okp`) — install there, then **Save** so they publish to `/configs/user/.agents/skills/`. OKP requires the `okp` CLI (`npm install -g @markbangwu/okp`). Project/sandbox tools (`warp-proxy`, `wgetx`, work-kit) can live in the Space workspace. `npx skills add --copy` copies the skill tree; scripts under `skills/<name>/scripts/` land in `.agents/skills/<name>/scripts/`.
+> **Note:** Prefer **config Space** for personal defaults (`hyper-search`, `lark-lite`, `fandom-cli`, `wikis`, `okp`, `temp-mail`) — install there, then **Save** so they publish to `/configs/user/.agents/skills/`. OKP requires the `okp` CLI (`npm install -g @markbangwu/okp`). Project/sandbox tools (`warp-proxy`, `wgetx`, work-kit) can live in the Space workspace. `npx skills add --copy` copies the skill tree; scripts under `skills/<name>/scripts/` land in `.agents/skills/<name>/scripts/`.
 
 
 ### Why skills matter

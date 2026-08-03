@@ -14,6 +14,10 @@ Assumptions are pinned to public docs + monorepo behavior at write time. When pr
 
 
 
+## v0.15 — 2026-08-03
+
+- Add [markbang/temp-mail-skill](https://github.com/markbang/temp-mail-skill) as single `temp-mail` catalog entry (disposable email via reusable.email / temp-mail.org)
+
 ## v0.14 — 2026-08-03
 
 - Add **v2.5-v2.7** updates:

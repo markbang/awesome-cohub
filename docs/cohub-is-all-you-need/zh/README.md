@@ -21,10 +21,10 @@
 
 ## 从这里开始
 
-1. **[学习路径](./learning-path.md)** — 30 分钟 / 半天 / 进阶  
-2. **[AGENT_BRIEF.md](./AGENT_BRIEF.md)** — Agent 一页简报  
-3. **[Cookbooks](./cookbooks/)** — 端到端旅程  
-4. **[FAQ 与排障](./cheatsheets/faq-and-troubleshooting.md)** — 卡住时  
+1. **[学习路径](./learning-path.md)** — 30 分钟 / 半天 / 进阶
+2. **[AGENT_BRIEF.md](./AGENT_BRIEF.md)** — Agent 一页简报
+3. **[Cookbooks](./cookbooks/)** — 端到端旅程
+4. **[FAQ 与排障](./cheatsheets/faq-and-troubleshooting.md)** — 卡住时
 
 ## 目录
 
@@ -46,16 +46,17 @@
 
 ## 阅读路径
 
-1. [学习路径](./learning-path.md) 或 [主文](./manifesto.md)  
-2. [矩阵](./matrix.md) / [Cookbook](./cookbooks/) 选场景  
-3. 打开对应 [实践卡](./playbooks/)  
-4. 需要时查 [概念](./concepts/) / [反模式](./anti-patterns/) / [速查](./cheatsheets/) / [FAQ](./cheatsheets/faq-and-troubleshooting.md)  
+1. [学习路径](./learning-path.md) 或 [主文](./manifesto.md)
+2. [矩阵](./matrix.md) / [Cookbook](./cookbooks/) 选场景
+3. 打开对应 [实践卡](./playbooks/)
+4. 需要时查 [概念](./concepts/) / [反模式](./anti-patterns/) / [速查](./cheatsheets/) / [FAQ](./cheatsheets/faq-and-troubleshooting.md)
 
 ## 相关链接
 
-- https://cohub.run · https://cohub.run/docs · https://cohub.run/changelog  
-- https://github.com/talesofai/cohub · https://github.com/markbang/awesome-cohub  
-- 网页搜索：[hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search)  
-- 飞书：[lark-lite](https://github.com/kjx-talesofai/claude-skill-lark-lite)  
-- 维基 API：[wikis-skill](https://github.com/markbang/wikis-skill)（`wikis`）  
+- https://cohub.run · https://cohub.run/docs · https://cohub.run/changelog
+- https://github.com/talesofai/cohub · https://github.com/markbang/awesome-cohub
+- 网页搜索：[hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search)
+- 飞书：[lark-lite](https://github.com/kjx-talesofai/claude-skill-lark-lite)
+- 维基 API：[wikis-skill](https://github.com/markbang/wikis-skill)（`wikis`）
+- 临时邮箱：[temp-mail-skill](https://github.com/markbang/temp-mail-skill)（`temp-mail`）
 - Open Knowledge Protocol：[talesofai/okp](https://github.com/talesofai/okp)（`okp`）
