@@ -13,6 +13,18 @@ Assumptions are pinned to public docs + monorepo behavior at write time. When pr
 
 
 
+
+## v0.14 — 2026-08-03
+
+- Add **v2.5-v2.7** updates:
+  - Space invitations & join links (`cohub spaces invites create/ls/revoke`, `/username/space-slug/join/<token>`)
+  - Recoverable context compaction (v2.5): runs at any LLM round boundary, rolls back on failure
+  - Space turn browsing (v2.6): `GET /api/spaces/:id/turns`, `cohub spaces turns ls`
+  - 1 GiB Work publishes and 500 MB gateway attachments (v2.6)
+  - Mod resources served from checkpoint snapshots + `COHUB_MODEL_PROVIDER` / `COHUB_MODEL_ID` in sandbox (v2.7/v2.6)
+  - Mod skill provenance (v2.5) and live-workspace project skills (v2.7)
+- Total: **32** Playbooks, **26** Concepts
+
 ## v0.13 — 2026-07-29
 
 - Add **Board runtime v2.0-v2.4** updates (concept + playbook): PixiJS 2.5D infinite canvas, `file` nodes, live export (`cohub boards export`), and autoplay policy

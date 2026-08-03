@@ -31,6 +31,17 @@ The agent needs API keys, model endpoints, or a different sandbox size/idle poli
 4. Changing **Mods** may restart the sandbox — plan around that.
 5. Verify in a prompt: `printenv | sort` (redact in logs) or a minimal script that reads only required keys.
 
+## Model context (v2.6)
+
+Sandbox commands receive two injected variables describing the model driving the current turn:
+
+```text
+COHUB_MODEL_PROVIDER   # e.g. openai / anthropic / local
+COHUB_MODEL_ID         # model id of the current turn
+```
+
+Tools and scripts can branch on these to adapt output, formatting, or cost behavior without guessing.
+
 ## Done when
 
 - [ ] Required keys exist in the running sandbox  

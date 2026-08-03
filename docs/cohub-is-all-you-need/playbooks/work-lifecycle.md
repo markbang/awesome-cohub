@@ -46,7 +46,7 @@ Requires username + space slug + work slug (cannot clear username/slug once set)
 
 | Target | Rules |
 |--------|--------|
-| **file** | `.html`/`.htm`, 1 byte–**5 MB** |
+| **file / html / board / directory** | up to **1 GiB** (v2.6; previously 5 MB assets / 100 MB sites) |
 | **directory** | must include `index.html`, 1–**1000** files, total ≤ **100 MB** |
 | **port** | supported public sandbox ports only |
 

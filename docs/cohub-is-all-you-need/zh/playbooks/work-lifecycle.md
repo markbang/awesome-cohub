@@ -22,8 +22,7 @@ URL：`/:username/:spaceSlug/w/:workSlug`
 
 | 目标 | 规则 |
 |------|------|
-| file | html，≤ **5 MB** |
-| directory | 含 `index.html`，≤1000 文件、≤ **100 MB** |
+| file / html / board / directory | 最高 **1 GiB**（v2.6；此前资源 5 MB / 站点 100 MB） |
 | port | 仅支持的公开沙箱端口 |
 
 ## CLI 要点

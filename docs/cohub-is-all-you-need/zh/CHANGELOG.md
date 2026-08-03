@@ -13,6 +13,18 @@ type: meta
 
 
 
+
+## v0.14 — 2026-08-03
+
+- 同步 **v2.5-v2.7** 更新：
+  - Space 邀请与加入链接（`cohub spaces invites create/ls/revoke`、`/username/space-slug/join/<token>`）
+  - 可恢复上下文压缩（v2.5）：任意 LLM 回合边界触发，失败自动回滚
+  - Space 回合浏览（v2.6）：`GET /api/spaces/:id/turns`、`cohub spaces turns ls`
+  - Work 发布提升至 1 GiB、Gateway 附件 500 MB（v2.6）
+  - Mod 资源改为从 checkpoint 快照提供 + 沙箱注入 `COHUB_MODEL_PROVIDER` / `COHUB_MODEL_ID`（v2.7/v2.6）
+  - Mod skill 来源标注（v2.5）与项目 skills 直读 live workspace（v2.7）
+- 现有规模：**32** 篇实践卡，**26** 篇概念卡
+
 ## v0.13 — 2026-07-29
 
 - 新增 **Board 运行时 v2.0-v2.4**（概念 + 实践卡）：PixiJS 2.5D 无限画布、`file` 文件节点、无头导出 (`cohub boards export`) 与自动播放策略

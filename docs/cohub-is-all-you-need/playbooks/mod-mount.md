@@ -49,6 +49,15 @@ Several Spaces should share the **same** skills, prompts, templates, or base too
 6. For installable public kits, you can still `npx skills add` **or** mount a Space that vendors the same tree — don’t double-maintain without a source of truth.
 7. Copy-on-write only when you must diverge; otherwise fix upstream mod.
 
+## Snapshot semantics (v2.7)
+
+Mod resources are served from the **`latest` checkpoint cache**, not the live workspace:
+
+- The agent loads mod skills, rules, and append-system prompts from one immutable snapshot.
+- Mounted mods and sandboxes always agree on the same revision — no half-published state.
+- Deploy manifests mount `CHECKPOINT_CACHE_ROOT` read-only.
+- Edit the **source Space** and Save; consumers pick up the new snapshot on remount / sandbox restart.
+
 ## Permissions note
 
 Filtered file view can be enough for some mod setups; don’t assume every mount needs full unrestricted file power. Follow current product permission labels.

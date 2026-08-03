@@ -45,6 +45,15 @@ sources:
 6. 公开可安装包与 Space Mod 二选一作权威源，避免双份维护。
 7. 必须分叉再拷贝；否则改上游。
 
+## 快照语义（v2.7）
+
+Mod 资源从 **`latest` checkpoint 缓存** 提供，不再读 live workspace：
+
+- Agent 从同一个不可变快照加载 mod 的 skills、rules 与 append-system prompts。
+- 挂载的 mod 与沙箱永远对齐同一版本，杜绝半发布状态。
+- 部署清单以只读方式挂载 `CHECKPOINT_CACHE_ROOT`。
+- 修改 **源 Space** 并 Save；消费者在重挂载 / 沙箱重启后拿到新快照。
+
 ## 权限
 
 Filtered file view can be enough for some mod setups; don’t assume every mount needs full unrestricted file power. Follow current product permission labels.

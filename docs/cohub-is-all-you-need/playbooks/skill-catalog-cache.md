@@ -46,7 +46,8 @@ Empty without auth+space is expected.
 ### 4) Cache freshness
 - Redis TTL **24 hours** if nothing republishes.
 - User/platform Save → `publishSkillsCacheFromDir` overwrites cache key.
-- Project/mod keys include **revision hash**; new checkpoint meta usually busts cache.
+- **Mod skills carry structured provenance** (v2.5): the slash menu and `cohub skills` show which mod Space + mount slug a skill comes from.
+- **Project skills load directly from the live workspace** (v2.7): the revision-keyed Redis layer is gone, so edits are fresh immediately.
 - If still stale: Save again, remount mod, hard refresh composer, new Chat (system prompt skill list rebuilds per identity state).
 
 ### 5) Owner vs collaborator
