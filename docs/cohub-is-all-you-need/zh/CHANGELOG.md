@@ -14,6 +14,10 @@ type: meta
 
 
 
+## v0.16 — 2026-08-04
+
+- 将 [markbang/cohub-pr-skill](https://github.com/markbang/cohub-pr-skill) 作为单条 `pr-workflow` 收录（基于 git worktree + 每 PR 一个 Cohub session 的并行 PR 开发）
+
 ## v0.15 — 2026-08-03
 
 - 将 [markbang/temp-mail-skill](https://github.com/markbang/temp-mail-skill) 作为单条 `temp-mail` 收录（reusable.email / temp-mail.org 临时邮箱）

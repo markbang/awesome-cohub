@@ -131,6 +131,7 @@ Cohub 生态的标准 Agent Skills。使用 [`npx skills`](https://github.com/ve
 | **wgetx** | [markbang/wgetx-skill](https://github.com/markbang/wgetx-skill) | 纯 ESM `.mjs` 社交平台采集 Skill，默认采集器无需 npm 依赖 |
 | **cohub-work-kit** | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | 搭建 Cohub Works，内置 Vite + React + TanStack Query 模板 |
 | **cohub-work-publish** | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | 以最小权限构建并发布目录 Works |
+| **pr-workflow** | [markbang/cohub-pr-skill](https://github.com/markbang/cohub-pr-skill) | 基于 git worktree + 每 PR 一个 Cohub session 的并行 PR 开发 |
 
 ### 安装（`.agents/`）
 
@@ -155,7 +156,7 @@ npx skills add https://github.com/markbang/wgetx-skill \
 npx skills add https://github.com/markbang/wgetx-skill --list
 ```
 
-> **注意：** 个人默认能力（`hyper-search`、`lark-lite`、`fandom-cli`、`wikis`、`okp`、`temp-mail`）优先安装到 **config Space**，再 **Save** 发布到 `/configs/user/.agents/skills/`。OKP 需要 `okp` CLI（`npm install -g @markbangwu/okp`）。项目/Sandbox 工具（`warp-proxy`、`wgetx`、work-kit）可以放在当前 Space 工作区。`npx skills add --copy` 会复制整个 Skill 树；`skills/<name>/scripts/` 下的脚本会进入 `.agents/skills/<name>/scripts/`。
+> **注意：** 个人默认能力（`hyper-search`、`lark-lite`、`fandom-cli`、`wikis`、`okp`、`temp-mail`）优先安装到 **config Space**，再 **Save** 发布到 `/configs/user/.agents/skills/`。OKP 需要 `okp` CLI（`npm install -g @markbangwu/okp`）。项目/Sandbox 工具（`warp-proxy`、`wgetx`、`pr-workflow`、work-kit）可以放在当前 Space 工作区。`npx skills add --copy` 会复制整个 Skill 树；`skills/<name>/scripts/` 下的脚本会进入 `.agents/skills/<name>/scripts/`。
 
 ### Skills 为什么重要
 

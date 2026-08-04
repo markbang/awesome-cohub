@@ -59,4 +59,5 @@
 - 飞书：[lark-lite](https://github.com/kjx-talesofai/claude-skill-lark-lite)
 - 维基 API：[wikis-skill](https://github.com/markbang/wikis-skill)（`wikis`）
 - 临时邮箱：[temp-mail-skill](https://github.com/markbang/temp-mail-skill)（`temp-mail`）
+- 并行 PR 开发：[cohub-pr-skill](https://github.com/markbang/cohub-pr-skill)（`pr-workflow`）
 - Open Knowledge Protocol：[talesofai/okp](https://github.com/talesofai/okp)（`okp`）

@@ -147,6 +147,7 @@ Package: `@neta-art/cohub-cli` (npm scope) · monorepo [talesofai/cohub](https:/
 | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | Work kit template + publish flow |
 | [talesofai/okp](https://github.com/talesofai/okp) | `okp` — structured knowledge search, navigation, and ingestion |
 | [markbang/temp-mail-skill](https://github.com/markbang/temp-mail-skill) | `temp-mail` — disposable email for onboarding flow tests |
+| [markbang/cohub-pr-skill](https://github.com/markbang/cohub-pr-skill) | `pr-workflow` — parallel PR development with git worktrees + one session per PR |
 | Platform skills in monorepo | `cohub`, `cohub-generate`, works/public share |
 
 Install pattern:

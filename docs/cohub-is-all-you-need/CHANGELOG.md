@@ -14,6 +14,10 @@ Assumptions are pinned to public docs + monorepo behavior at write time. When pr
 
 
 
+## v0.16 — 2026-08-04
+
+- Add [markbang/cohub-pr-skill](https://github.com/markbang/cohub-pr-skill) as single `pr-workflow` catalog entry (parallel PR development with git worktrees + one Cohub session per PR)
+
 ## v0.15 — 2026-08-03
 
 - Add [markbang/temp-mail-skill](https://github.com/markbang/temp-mail-skill) as single `temp-mail` catalog entry (disposable email via reusable.email / temp-mail.org)

@@ -131,6 +131,7 @@ Standard agent skills for the Cohub ecosystem. Install with [`npx skills`](https
 | **wgetx** | [markbang/wgetx-skill](https://github.com/markbang/wgetx-skill) | Pure ESM `.mjs` social fetch skill (no npm for default scrapers) |
 | **cohub-work-kit** | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | Scaffold Cohub Works (Vite + React + TanStack Query template bundled) |
 | **cohub-work-publish** | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | Build + publish directory Works with minimal scopes |
+| **pr-workflow** | [markbang/cohub-pr-skill](https://github.com/markbang/cohub-pr-skill) | Parallel PR development via git worktrees + one Cohub session per PR |
 
 ### Install (`.agents/`)
 
@@ -155,7 +156,7 @@ npx skills add https://github.com/markbang/wgetx-skill \
 npx skills add https://github.com/markbang/wgetx-skill --list
 ```
 
-> **Note:** Prefer **config Space** for personal defaults (`hyper-search`, `lark-lite`, `fandom-cli`, `wikis`, `okp`, `temp-mail`) — install there, then **Save** so they publish to `/configs/user/.agents/skills/`. OKP requires the `okp` CLI (`npm install -g @markbangwu/okp`). Project/sandbox tools (`warp-proxy`, `wgetx`, work-kit) can live in the Space workspace. `npx skills add --copy` copies the skill tree; scripts under `skills/<name>/scripts/` land in `.agents/skills/<name>/scripts/`.
+> **Note:** Prefer **config Space** for personal defaults (`hyper-search`, `lark-lite`, `fandom-cli`, `wikis`, `okp`, `temp-mail`) — install there, then **Save** so they publish to `/configs/user/.agents/skills/`. OKP requires the `okp` CLI (`npm install -g @markbangwu/okp`). Project/sandbox tools (`warp-proxy`, `wgetx`, `pr-workflow`, work-kit) can live in the Space workspace. `npx skills add --copy` copies the skill tree; scripts under `skills/<name>/scripts/` land in `.agents/skills/<name>/scripts/`.
 
 
 ### Why skills matter

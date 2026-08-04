@@ -27,6 +27,7 @@ type: guide
 | wikis | [markbang/wikis-skill](https://github.com/markbang/wikis-skill) |
 | okp | [talesofai/okp](https://github.com/talesofai/okp) |
 | temp-mail | [markbang/temp-mail-skill](https://github.com/markbang/temp-mail-skill) |
+| pr-workflow | [markbang/cohub-pr-skill](https://github.com/markbang/cohub-pr-skill) |
 | work-kit + publish | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) |
 | hyper-search | [kjx-talesofai/claude-skill-hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search) |
 | lark-lite | [kjx-talesofai/claude-skill-lark-lite](https://github.com/kjx-talesofai/claude-skill-lark-lite) |
