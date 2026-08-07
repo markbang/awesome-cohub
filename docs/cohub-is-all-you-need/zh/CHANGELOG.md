@@ -16,7 +16,8 @@ type: meta
 
 ## v0.16 — 2026-08-04
 
-- 将 [markbang/cohub-pr-skill](https://github.com/markbang/cohub-pr-skill) 作为单条 `pr-workflow` 收录（基于 git worktree + 每 PR 一个 Cohub session 的并行 PR 开发）
+- 将 [markbang/cohub-pr-skill](https://github.com/markbang/cohub-pr-skill) 作为单条 `pr-workflow` 收录（基于 git worktree 的并行 PR 开发 + 每个 PR 独立 Cohub Session）
+- 将 [kjx-talesofai/claude-skill-rtb-advisor](https://github.com/kjx-talesofai/claude-skill-rtb-advisor) 作为单条 `rtb-advisor` 收录（品牌策略 "Reason to Believe" 质询）
 
 ## v0.15 — 2026-08-03
 

@@ -148,6 +148,7 @@ Package: `@neta-art/cohub-cli` (npm scope) · monorepo [talesofai/cohub](https:/
 | [talesofai/okp](https://github.com/talesofai/okp) | `okp` — structured knowledge search, navigation, and ingestion |
 | [markbang/temp-mail-skill](https://github.com/markbang/temp-mail-skill) | `temp-mail` — disposable email for onboarding flow tests |
 | [markbang/cohub-pr-skill](https://github.com/markbang/cohub-pr-skill) | `pr-workflow` — parallel PR development with git worktrees + one session per PR |
+| [kjx-talesofai/claude-skill-rtb-advisor](https://github.com/kjx-talesofai/claude-skill-rtb-advisor) | `rtb-advisor` — brand strategist for "Reason to Believe" |
 | Platform skills in monorepo | `cohub`, `cohub-generate`, works/public share |
 
 Install pattern:

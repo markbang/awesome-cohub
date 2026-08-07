@@ -17,6 +17,7 @@ Assumptions are pinned to public docs + monorepo behavior at write time. When pr
 ## v0.16 — 2026-08-04
 
 - Add [markbang/cohub-pr-skill](https://github.com/markbang/cohub-pr-skill) as single `pr-workflow` catalog entry (parallel PR development with git worktrees + one Cohub session per PR)
+- Add [kjx-talesofai/claude-skill-rtb-advisor](https://github.com/kjx-talesofai/claude-skill-rtb-advisor) as single `rtb-advisor` catalog entry (brand strategist for "Reason to Believe")
 
 ## v0.15 — 2026-08-03
 

@@ -127,6 +127,7 @@ Standard agent skills for the Cohub ecosystem. Install with [`npx skills`](https
 | **fandom-cli** | [kjx-talesofai/claude-skill-fandom-cli](https://github.com/kjx-talesofai/claude-skill-fandom-cli) | Query Fandom/MediaWiki wikis (pages, infobox, search, images) without HTML scraping |
 | **wikis** | [markbang/wikis-skill](https://github.com/markbang/wikis-skill) | HTTP API skill for 250K+ community wikis (search, md, infobox, image proxy) |
 | **temp-mail** | [markbang/temp-mail-skill](https://github.com/markbang/temp-mail-skill) | Disposable email via reusable.email (keyless) + optional temp-mail.org provider |
+| **rtb-advisor** | [kjx-talesofai/claude-skill-rtb-advisor](https://github.com/kjx-talesofai/claude-skill-rtb-advisor) | Brand strategist for the "Reason to Believe" question in product copy & pitches |
 | **okp** | [talesofai/okp](https://github.com/talesofai/okp) | Open Knowledge Protocol tooling for structured knowledge search, navigation, and ingestion |
 | **wgetx** | [markbang/wgetx-skill](https://github.com/markbang/wgetx-skill) | Pure ESM `.mjs` social fetch skill (no npm for default scrapers) |
 | **cohub-work-kit** | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | Scaffold Cohub Works (Vite + React + TanStack Query template bundled) |

@@ -127,6 +127,7 @@ Cohub 生态的标准 Agent Skills。使用 [`npx skills`](https://github.com/ve
 | **fandom-cli** | [kjx-talesofai/claude-skill-fandom-cli](https://github.com/kjx-talesofai/claude-skill-fandom-cli) | 无需抓取 HTML 即可查询 Fandom/MediaWiki 页面、信息框、搜索和图片 |
 | **wikis** | [markbang/wikis-skill](https://github.com/markbang/wikis-skill) | 面向 25 万+ 社区 Wiki 的 HTTP API Skill，支持搜索、Markdown、信息框和图片代理 |
 | **temp-mail** | [markbang/temp-mail-skill](https://github.com/markbang/temp-mail-skill) | 临时邮箱：基于 reusable.email（免 key）+ 可选 temp-mail.org provider |
+| **rtb-advisor** | [kjx-talesofai/claude-skill-rtb-advisor](https://github.com/kjx-talesofai/claude-skill-rtb-advisor) | 品牌策略顾问：产品文案与 Pitch 中的 "Reason to Believe" 质询 |
 | **okp** | [talesofai/okp](https://github.com/talesofai/okp) | 用于结构化知识搜索、导航与导入的 Open Knowledge Protocol 工具 |
 | **wgetx** | [markbang/wgetx-skill](https://github.com/markbang/wgetx-skill) | 纯 ESM `.mjs` 社交平台采集 Skill，默认采集器无需 npm 依赖 |
 | **cohub-work-kit** | [markbang/cohub-work-skill](https://github.com/markbang/cohub-work-skill) | 搭建 Cohub Works，内置 Vite + React + TanStack Query 模板 |
