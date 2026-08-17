@@ -14,6 +14,19 @@ type: meta
 
 
 
+
+## v0.17 — 2026-08-17
+
+同步 **v2.8–v2.21** 重大更新：
+
+- **Board** v2.8–v2.21：节点间连接（v2.16）、任务节点 + 板内媒体生成（v2.19）、音频节点（v2.20）、原生 Board 节点契约（v2.21）
+- **实时房间**（v2.11）：Works 通过 `client.work.realtime` 运行多人状态，无需后端
+- **Work 分析**（v2.14）：`cohub works stats`、`GET /api/works/:id/stats`、按来源浏览量细分
+- **Space 任务钩子**（v2.18）：`task.updated` 转换钩子
+- **cohub.live 域名**（v2.21）：主域名迁移至 cohub.live；cohub.run 为历史备用域名
+- 更新 board-runtime 概念卡；新增 realtime-rooms 概念卡
+- 现有规模：**32** 篇实践卡，**27** 篇概念卡
+
 ## v0.16 — 2026-08-04
 
 - 将 [markbang/cohub-pr-skill](https://github.com/markbang/cohub-pr-skill) 作为单条 `pr-workflow` 收录（基于 git worktree 的并行 PR 开发 + 每个 PR 独立 Cohub Session）

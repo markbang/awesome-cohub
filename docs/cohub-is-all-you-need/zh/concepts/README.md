@@ -15,6 +15,7 @@
 | `cohub.concept.home-space` | Home Space | [home-space.md](./home-space.md) |
 | `cohub.concept.hooks` | Space Hooks（空间钩子） | [hooks.md](./hooks.md) |
 | `cohub.concept.platform-config` | 平台配置（platform config） | [platform-config.md](./platform-config.md) |
+| `cohub.concept.realtime-rooms` | Works 实时房间 | [realtime-rooms.md](./realtime-rooms.md) |
 | `cohub.concept.save` | Save / Checkpoint（存档） | [save.md](./save.md) |
 | `cohub.concept.search-layers` | 搜索分层 | [search-layers.md](./search-layers.md) |
 | `cohub.concept.sessions-inbox` | Sessions 收件箱 | [sessions-inbox.md](./sessions-inbox.md) |
@@ -29,6 +30,6 @@
 | `cohub.concept.work` | Work（作品） | [work.md](./work.md) |
 | `cohub.concept.work-presentation` | Work 呈现（hideCohubBar） | [work-presentation.md](./work-presentation.md) |
 
-**26** 项。
+**27** 项。
 
 [English](../../concepts/README.md)

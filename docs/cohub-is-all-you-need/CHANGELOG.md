@@ -14,6 +14,19 @@ Assumptions are pinned to public docs + monorepo behavior at write time. When pr
 
 
 
+
+## v0.17 — 2026-08-17
+
+Sync **v2.8–v2.21** major updates:
+
+- **Board** v2.8–v2.21: Board connections (v2.16), task nodes + in-board media generation (v2.19), audio nodes (v2.20), native Board node contract (v2.21)
+- **Realtime rooms** (v2.11): Works run multiplayer state via `client.work.realtime` with no backend
+- **Work analytics** (v2.14): `cohub works stats`, `GET /api/works/:id/stats`, per-source view breakdown
+- **Space task hooks** (v2.18): `task.updated` transition hooks
+- **cohub.live domain** (v2.21): primary domain migrated to cohub.live; cohub.run is legacy secondary
+- Updated board-runtime concept; new realtime-rooms concept
+- Total: **32** Playbooks, **27** Concepts
+
 ## v0.16 — 2026-08-04
 
 - Add [markbang/cohub-pr-skill](https://github.com/markbang/cohub-pr-skill) as single `pr-workflow` catalog entry (parallel PR development with git worktrees + one Cohub session per PR)

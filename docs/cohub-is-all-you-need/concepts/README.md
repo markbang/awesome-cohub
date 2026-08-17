@@ -15,6 +15,7 @@ Curated concepts.
 | `cohub.concept.hooks` | Space Hooks | [hooks.md](./hooks.md) |
 | `cohub.concept.labels` | Labels | [labels.md](./labels.md) |
 | `cohub.concept.platform-config` | Platform config | [platform-config.md](./platform-config.md) |
+| `cohub.concept.realtime-rooms` | Realtime rooms for Works | [realtime-rooms.md](./realtime-rooms.md) |
 | `cohub.concept.sandbox` | Sandbox | [sandbox.md](./sandbox.md) |
 | `cohub.concept.save` | Save (Checkpoint) | [save.md](./save.md) |
 | `cohub.concept.search-layers` | Search layers | [search-layers.md](./search-layers.md) |
@@ -31,6 +32,6 @@ Curated concepts.
 | `cohub.concept.work` | Work | [work.md](./work.md) |
 | `cohub.concept.work-presentation` | Work presentation (hideCohubBar) | [work-presentation.md](./work-presentation.md) |
 
-**26** items.
+**27** items.
 
 [中文](../zh/concepts/README.md)

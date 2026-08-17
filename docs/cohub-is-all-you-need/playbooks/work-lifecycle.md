@@ -70,7 +70,20 @@ cohub -s <spaceId> works update <workId> --hide-cohub-bar --json
 # inspect
 cohub -s <spaceId> works get <workId> --json
 cohub -s <spaceId> works versions <workId> --json
+
+# view analytics (v2.14)
+cohub works stats <workId> --json
 ```
+
+## View analytics (v2.14)
+
+Published Works record views per version, hour, and source (Web, CLI, API) into an hourly rollup.
+
+- REST: `GET /api/works/:id/stats`
+- SDK: `works.getStats()`
+- CLI: `cohub works stats <workId>`
+
+Work detail panel shows total, 24h/7d windows, 30-day trend, and source breakdown for space editors.
 
 ## UI
 
