@@ -6,7 +6,7 @@ type: meta
 
 # Cohub Is All You Need — 变更日志
 
-记录的是**本指南**，不是 Cohub 产品。产品变更见 [cohub.run/changelog](https://cohub.run/changelog)。
+记录的是**本指南**，不是 Cohub 产品。产品变更见 [cohub.live/changelog](https://cohub.live/changelog)。
 
 写法锚定当时的公开文档 + monorepo 行为；产品漂移时以产品文档为准并修指南。
 
@@ -15,15 +15,32 @@ type: meta
 
 
 
+## v0.18 — 2026-08-26
+
+同步 **v2.22-v2.30** 重大更新：
+
+- **Board 语义化编辑**（v2.22、v2.25-v2.27）：Item 取代旧线上 Node 结构；原子命令覆盖 Item、连接、效果与 Composition，并提供 capabilities、dry-run 诊断、版本校验与持久幂等回执
+- **Board 媒体与呈现**：类型化生成引用、可配置背景、语义化镜头聚焦、组合动画播放、批量刷新，以及一致的 Checkpoint/Work 快照
+- **Task Browser**（v2.26、v2.30）：专门的多模态 Task Run 界面、按权限的 Space/Mine 视图、按身份隔离的 stale-while-revalidate 缓存，生成任务跟踪从 Chat 移出
+- **Direct Generation**（v2.23）：Agent/Create 模式、一等生成回合、`clientMessageId` 去重、时间线屏障、实时投影与明确费用状态
+- **Work 操作**（v2.22-v2.24）：不可变 UTM 推广链接与聚合漏斗统计、实时预览刷新、`desktop open` 可调用界面与校验下载
+- **工作区预览与媒体**（v2.22-v2.24）：Markdown 相对媒体资源、`file://` / `work://` 预览目标、`:create` Composer 模式，以及不销毁运行时即可恢复的挂起预览
+- **权限与运行时安全**：明确 App scopes/viewer grant 模型；execution token 权限从 v2.29 起与账号权限相加；Sandbox 写入支持版本化乐观并发与原子 `fs.edit`
+- **实时操作**（v2.28-v2.30）：独立 desktop 事件路由、编译期事件域校验、Task Browser 刷新保护，以及降低常规 auth/task-sync 日志噪声
+- **配置与上下文**：Prompt 系统变量（`{{cohub.session.id}}`、`{{cohub.space.id}}`、`{{cohub.user.uuid}}`）与 `.cohub/model-tasks.json` 辅助任务模型
+- 更新 EN/ZH Board、Work、生成、授权、execution-token、Sandbox、Hooks 与排障卡；新增 `board-semantic-authoring`、`task-browser`、`direct-generation`、`work-promotions`
+- 产品链接统一使用 `cohub.live`；`cohub.run` 仍是历史备用域名
+- 现有规模：**33** 篇实践卡，**30** 篇概念卡
+
 ## v0.17 — 2026-08-17
 
 同步 **v2.8–v2.21** 重大更新：
 
 - **Board** v2.8–v2.21：节点间连接（v2.16）、任务节点 + 板内媒体生成（v2.19）、音频节点（v2.20）、原生 Board 节点契约（v2.21）
-- **实时房间**（v2.11）：Works 通过 `client.work.realtime` 运行多人状态，无需后端
-- **Work 分析**（v2.14）：`cohub works stats`、`GET /api/works/:id/stats`、按来源浏览量细分
+- **实时房间**（v2.11）：Works/Apps 通过 `client.app.realtime` 运行多人状态，无需后端
+- **Work 分析**（v2.14）：`cohub apps stats`、`GET /api/works/:id/stats`、按来源浏览量细分
 - **Space 任务钩子**（v2.18）：`task.updated` 转换钩子
-- **cohub.live 域名**（v2.21）：主域名迁移至 cohub.live；cohub.run 为历史备用域名
+- **cohub.live 域名**（v2.21）：主域名迁移至 cohub.live；cohub.run 仍是历史备用域名
 - 更新 board-runtime 概念卡；新增 realtime-rooms 概念卡
 - 现有规模：**32** 篇实践卡，**27** 篇概念卡
 

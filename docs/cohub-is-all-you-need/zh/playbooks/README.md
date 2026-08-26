@@ -34,7 +34,8 @@
 | `cohub.bp.work-commerce` | 在 Work 内售卖功能与积分 | [work-commerce.md](./work-commerce.md) |
 | `cohub.bp.work-kit-product` | 用 Work Kit 做真 Work 产品 | [work-kit-product.md](./work-kit-product.md) |
 | `cohub.bp.work-lifecycle` | Work 生命周期 — 发布、版本、停用、可见性 | [work-lifecycle.md](./work-lifecycle.md) |
+| `cohub.bp.work-promotions` | 衡量 Work 推广且不泄露观众数据 | [work-promotions.md](./work-promotions.md) |
 
-**32** 项。
+**33** 项。
 
 [English](../../playbooks/README.md)

@@ -8,6 +8,7 @@ sources:
   - apps/worker/src/config-publish.ts
   - apps/worker/src/config.ts (PLATFORM_SPACE_ID)
   - apps/api/src/templates/sandbox-pod.ts
+  - docs/model-tasks.md
 ---
 
 # 平台配置
@@ -39,6 +40,7 @@ Every sandbox mounts (read-only):
 | Platform skills | `.agents/skills` → slash/API catalog scope `platform` |
 | Platform prompts | prompts dirs under platform tree |
 | Platform models | `.cohub/models.json` |
+| Auxiliary task models | `.cohub/model-tasks.json` |
 | Platform generations | `.cohub` generations declarations |
 | Explore / other | e.g. `.cohub/explore.json` (API readers) |
 

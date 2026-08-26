@@ -7,7 +7,7 @@ features: [space, chat, files, save]
 difficulty: starter
 related: [cohub.concept.space, cohub.concept.save, cohub.bp.agent-with-skills]
 sources:
-  - https://cohub.run/docs/learn/quick-start
+  - https://cohub.live/docs/learn/quick-start
   - https://github.com/talesofai/cohub/blob/main/docs/product/en/learn/quick-start.md
 ---
 

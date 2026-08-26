@@ -7,7 +7,7 @@ features: [config-space, skills, agents-md, sandbox]
 difficulty: intermediate
 related: [cohub.concept.user-config-space, cohub.concept.home-space, cohub.bp.skill-slash-discovery, cohub.bp.mod-mount]
 sources:
-  - https://cohub.run/changelog (User Rules, owner-scoped user config)
+  - https://cohub.live/changelog (User Rules, owner-scoped user config)
   - apps/worker/src/config-publish.ts
   - apps/worker/src/tasks/save-checkpoint-task.ts
   - apps/agent/src/runtime/system-prompt-builder.ts

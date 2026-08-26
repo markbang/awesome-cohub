@@ -15,7 +15,7 @@ Cross-space Chat radar at `/sessions`.
 
 ## See also
 - Playbook: `cohub.bp.home-and-sessions-inbox`
-- https://cohub.run/docs/learn/product-map
+- https://cohub.live/docs/learn/product-map
 
 ---
 

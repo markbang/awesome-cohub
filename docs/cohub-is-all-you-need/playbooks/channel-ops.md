@@ -7,9 +7,9 @@ features: [channel, chat, space, label]
 difficulty: intermediate
 related: [cohub.concept.chat, cohub.concept.space, cohub.bp.scheduled-loop]
 sources:
-  - https://cohub.run/docs/workspace/spaces
-  - https://cohub.run/docs/learn/core-concepts
-  - https://cohub.run/changelog#v1.91
+  - https://cohub.live/docs/workspace/spaces
+  - https://cohub.live/docs/learn/core-concepts
+  - https://cohub.live/changelog#v1.91
 ---
 
 # Operate a Space from external channels

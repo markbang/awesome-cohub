@@ -34,9 +34,20 @@ type: guide
 3. [最小权限](./playbooks/minimal-scopes.md)
 4. [隐藏 Cohub 底栏](./playbooks/hide-cohub-bar.md)（Pro/Max）
 5. [Work 生命周期](./playbooks/work-lifecycle.md)
-6. 反模式：[静态 Work 上的 BrowserRouter](./anti-patterns/browser-router-static.md)、[把沙箱 URL 当上线](./anti-patterns/raw-sandbox-launch.md)
+6. [Work/App 呈现](./concepts/work-presentation.md)
+7. 反模式：[静态 Work 上的 BrowserRouter](./anti-patterns/browser-router-static.md)、[把沙箱 URL 当上线](./anti-patterns/raw-sandbox-launch.md)
 
 **完成标志：** directory Work 公网可开、权限收敛。
+
+## 半天 — Board 与生成界面
+
+1. [Board 语义化编辑](./concepts/board-semantic-authoring.md)
+2. [编辑、导出与播放 Board](./playbooks/board-export-and-playback.md)
+3. [直接生成回合](./concepts/direct-generation.md)
+4. [Task Browser](./concepts/task-browser.md)
+5. 需要衡量公开流量时阅读 [Work 推广](./playbooks/work-promotions.md)
+
+**完成标志：** Board 快照发布前通过校验，生成 Task Run 可查看，并且 Work 漏斗有明确的归因策略。
 
 ## 进阶 — 自治与运维
 

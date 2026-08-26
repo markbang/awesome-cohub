@@ -7,9 +7,9 @@ features: [chat, space, references, files]
 difficulty: intermediate
 related: [cohub.concept.chat, cohub.concept.space, cohub.bp.agent-with-skills]
 sources:
-  - https://cohub.run/docs/workspace/chats
-  - https://cohub.run/changelog#v1.101
-  - https://cohub.run/changelog#v1.102
+  - https://cohub.live/docs/workspace/chats
+  - https://cohub.live/changelog#v1.101
+  - https://cohub.live/changelog#v1.102
 ---
 
 # 引用另一个 Space 的上下文

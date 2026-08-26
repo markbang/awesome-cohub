@@ -7,8 +7,8 @@ features: [sandbox, work, files]
 difficulty: intermediate
 related: [cohub.concept.work, cohub.bp.publish-static-work]
 sources:
-  - https://cohub.run/docs/workspace/files-and-sandbox
-  - https://cohub.run/docs/create/works
+  - https://cohub.live/docs/workspace/files-and-sandbox
+  - https://cohub.live/docs/create/works
 ---
 
 # 端口预览与 port Work

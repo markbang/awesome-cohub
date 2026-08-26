@@ -6,7 +6,7 @@ type: meta
 
 # Cohub Is All You Need — changelog
 
-This tracks **the guide**, not the Cohub product. Product changes: [cohub.run/changelog](https://cohub.run/changelog).
+This tracks **the guide**, not the Cohub product. Product changes: [cohub.live/changelog](https://cohub.live/changelog).
 
 Assumptions are pinned to public docs + monorepo behavior at write time. When product drifts, prefer product docs and file a guide fix.
 
@@ -15,15 +15,32 @@ Assumptions are pinned to public docs + monorepo behavior at write time. When pr
 
 
 
+## v0.18 — 2026-08-26
+
+Sync **v2.22-v2.30** major updates:
+
+- **Semantic Board authoring** (v2.22, v2.25-v2.27): Items replace the legacy wire-level Node shape; atomic commands cover items, connections, effects, and Compositions with capabilities, dry-run diagnostics, version checks, and durable idempotency receipts
+- **Board media and presentation**: typed generation references, configurable backgrounds, semantic camera focus, composition playback, batched refreshes, and consistent checkpoint/Work snapshots
+- **Task Browser** (v2.26, v2.30): dedicated multimodal Task Run surface, scope-aware Space/Mine views, identity-scoped stale-while-revalidate cache, and generation-task tracking moved out of Chat
+- **Direct Generation** (v2.23): Agent/Create mode, first-class generation turns, `clientMessageId` deduplication, timeline barriers, realtime projection, and explicit cost states
+- **Work operations** (v2.22-v2.24): immutable UTM promotion links and aggregate funnel analytics, live preview refresh, `desktop open` callable surfaces, and verified artifact downloads
+- **Workspace previews and media** (v2.22-v2.24): relative Markdown media assets, `file://` / `work://` preview targets, `:create` composer mode, and suspended previews that restore without disposing runtimes
+- **Permissions and runtime safety**: App scopes/viewer-grant model clarified, execution-token permissions now merge additively with account access (v2.29), and Sandbox writes support versioned optimistic concurrency plus atomic `fs.edit`
+- **Realtime operations** (v2.28-v2.30): dedicated desktop event routing, compile-time event-domain checks, Task Browser refresh guards, and quieter routine auth/task-sync logging
+- **Configuration and context**: prompt system variables (`{{cohub.session.id}}`, `{{cohub.space.id}}`, `{{cohub.user.uuid}}`) and `.cohub/model-tasks.json` auxiliary task models
+- Updated EN/ZH Board, Work, generation, authorization, execution-token, Sandbox, Hooks, and troubleshooting cards; added `board-semantic-authoring`, `task-browser`, `direct-generation`, and `work-promotions`
+- Canonical product links now use `cohub.live`; `cohub.run` remains a legacy secondary domain
+- Total: **33** Playbooks, **30** Concepts
+
 ## v0.17 — 2026-08-17
 
 Sync **v2.8–v2.21** major updates:
 
 - **Board** v2.8–v2.21: Board connections (v2.16), task nodes + in-board media generation (v2.19), audio nodes (v2.20), native Board node contract (v2.21)
-- **Realtime rooms** (v2.11): Works run multiplayer state via `client.work.realtime` with no backend
-- **Work analytics** (v2.14): `cohub works stats`, `GET /api/works/:id/stats`, per-source view breakdown
+- **Realtime rooms** (v2.11): Works/Apps run multiplayer state via `client.app.realtime` with no backend
+- **Work analytics** (v2.14): `cohub apps stats`, `GET /api/works/:id/stats`, per-source view breakdown
 - **Space task hooks** (v2.18): `task.updated` transition hooks
-- **cohub.live domain** (v2.21): primary domain migrated to cohub.live; cohub.run is legacy secondary
+- **cohub.live domain** (v2.21): primary domain migrated to cohub.live; cohub.run remains a legacy secondary domain
 - Updated board-runtime concept; new realtime-rooms concept
 - Total: **32** Playbooks, **27** Concepts
 

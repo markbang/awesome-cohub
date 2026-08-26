@@ -8,7 +8,7 @@ difficulty: intermediate
 related: [cohub.bp.publish-static-work, cohub.bp.minimal-scopes]
 sources:
   - https://github.com/markbang/cohub-work-skill
-  - https://cohub.run/docs/create/works
+  - https://cohub.live/docs/create/works
 ---
 
 # Build a Work product with Work Kit

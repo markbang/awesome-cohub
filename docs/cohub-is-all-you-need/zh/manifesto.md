@@ -1,6 +1,6 @@
 # Cohub Is All You Need · Cohub 就是你需要的全部
 
-**v0.2** · 写给在 [Cohub](https://cohub.run) 里共创的人与 Agent 的最佳实践
+**v0.2** · 写给在 [Cohub](https://cohub.live) 里共创的人与 Agent 的最佳实践
 
 > 你的 Space：用来创造、玩耍，并与人、与 Agent 一起构建。
 
@@ -8,7 +8,7 @@
 
 配套：[场景矩阵](./matrix.md) · [实践卡](./playbooks/) · [English](../manifesto.md)
 
-官方：[产品文档](https://cohub.run/docs) · [Changelog](https://cohub.run/changelog)
+官方：[产品文档](https://cohub.live/docs) · [Changelog](https://cohub.live/changelog)
 
 ---
 
@@ -74,8 +74,8 @@
 **Work** 是给观众的。演示与产品优先发 Work。
 
 ### P4 — 默认最小权限
-`workScopes`：Work 始终需要的安全只读。  
-`viewerScopes`：仅在 **用户手势** 下再请求 prompt / 生成 / 账号级能力。
+`appScopes`：App 自己所在 Space 的直接、有限授权。
+viewer grant：仅在**用户手势**下再请求 prompt、生成、账户级能力或其他 Space 访问。
 
 ### P5 — Agent 需要 skill 和文件系统，不是长篇作文
 没有 skill/文件的长系统提示很脆。  
@@ -117,13 +117,15 @@ Web、CLI（`@neta-art/cohub-cli`）、频道应驱动 **同一个 Space**。
 | `directory` | 站点 / 构建产物 | 需 `index.html`；推荐 `base: "./"` + Hash 路由 |
 | `port` | 在线开发服务 | 预览很好；默认生产形态仍偏静态目录 |
 
-运行时事实：`cohub.context()` / 授权 / 商业能力在 **已发布 Work 壳** 内可用，不是裸静态资源 URL。
+运行时事实：`cohub.context()` / 授权 / 商业能力在**已发布 Work/App 壳**内可用，不是裸静态资源 URL。
+
+从 v2.26 起，**App** 是 SDK/API 的规范术语（`client.apps`、`appScopes`）；Work 与 `/w/` 仍是面向用户的称呼和兼容 URL。file/directory 发布带不可变 manifest，可校验下载；Board 与 port 是运行时界面，不是可恢复的文件 bundle。查询参数和 hash 会转发给嵌入 Work，但 `cohub_*` 命名空间由宿主保留。
 
 官方：[works-guide.md](https://github.com/talesofai/cohub/blob/main/docs/works-guide.md)
 
 ### 3.5 生成（Generations）
 **用于：** 在 Space 上下文中做图/视频/音乐等。  
-**实践：** 产物写入文件；好结果存档；关注积分与成本。  
+**实践：** 产物写入文件；好结果存档；关注积分与成本。Direct Generation / Create 模式把主要媒体请求作为时间线一等回合；Task Browser 负责异步历史与详情。`generation.create` 与 `taskrun.view` 是分开的权限。
 **Skill：** `cohub-generate`  
 官方：[generations.md](https://github.com/talesofai/cohub/blob/main/docs/generations.md)
 
@@ -200,7 +202,7 @@ runtime/             # 可选：agent 路由、来源 registry、协议
 .cohub/hooks/*.yml
 ```
 
-事件：`space.fs.changed` · `space.workspace.ready` · `session.turn.finalized` · `checkpoint.created`  
+事件：`space.fs.changed` · `space.workspace.ready` · `session.turn.finalized` · `checkpoint.created` · `work.version.published` · `task.updated`
 动作：`run`（沙箱 shell）或 `prompt`（Chat/session）
 
 实践：一文件一 hook；FS 匹配忽略 `.cohub/**` 防自激；turn 用 `sessionIds` / `sources` 过滤。  
@@ -209,13 +211,14 @@ runtime/             # 可选：agent 路由、来源 registry、协议
 
 ### 3.11 Work 商业化
 
-在**已发布 Work** 上售卖一次性商品：功能解锁与可消耗积分。
+在**已发布 Work/App**上售卖一次性商品：功能解锁与可消耗积分。
 
-- 仅在 Cohub Work 壳内可用（`context()` / `work.commerce.*`）
+- 仅在已发布壳内可用（`context()` / `app.commerce.*`）
 - 结账回流状态由宿主负责；Work 负责展示门槛/余额并触发购买/扣费
 - 商品 key 版本化；不要原地改价；积分扣费使用 `operationId` 保证幂等
+- 购买重试复用 `purchaseAttemptId`；可选 Cohub Balance 是全局 USD 余额组件
 
-实践卡：[work-commerce](./playbooks/work-commerce.md) · 指南：[work-commerce-guide.md](https://github.com/talesofai/cohub/blob/main/docs/work-commerce-guide.md)
+实践卡：[work-commerce](./playbooks/work-commerce.md) · 推广：[work-promotions](./playbooks/work-promotions.md) · 指南：[work-commerce-guide.md](https://github.com/talesofai/cohub/blob/main/docs/work-commerce-guide.md)
 
 
 ### 3.12 Home、Sessions 收件箱、Mod、`/skill:`
@@ -277,6 +280,14 @@ node /configs/user/.agents/skills/hyper-search/scripts/cli.js search "query"
 ```
 
 实践卡：[search-layers](./playbooks/search-layers.md)
+
+### 3.18 最近的运行时界面（v2.22-v2.30）
+
+- **Board 语义化编辑**：Item、连接、效果与 Composition 共享带版本的原子变更、dry-run 诊断与持久回执。
+- **Task Browser**：专门的多模态 Task Run 历史，按身份缓存并提供 Space/Mine 权限视图。
+- **Direct Generation**：Create 模式回合、client message 幂等提交、时间线屏障与明确的生成费用状态。
+- **Work 操作**：不可变推广链接、聚合漏斗统计、实时预览刷新、可调用界面与校验下载。
+- **运行时安全**：按路径乐观并发与 `fs.edit`、execution token 权限并集，以及 Prompt 上下文变量（`{{cohub.session.id}}`、`{{cohub.space.id}}`、`{{cohub.user.uuid}}`）。
 
 ## 4. 给建造者（人）
 
@@ -359,8 +370,8 @@ cohub -s "$COHUB_SPACE_ID" works publish <slug> \
 ```
 
 ### 权限心智（当前拆分）
-- **workScopes**（发布者直接给 Work）：如 `space.view`、`session.view`、`file.view`、`taskrun.view`
-- **viewerScopes**（观众可授权）：如 `session.prompt.*`、`generation.create`、`user.*`
+- **appScopes**（发布者直接给 App 自己的 Space）：如 `space.view`、`session.view`、`file.view`、`taskrun.view`
+- **viewer grant**（观众按 Space 同意）：如 `session.prompt.*`、`generation.create`、`user.*`；`allowedViewerScopes` 已弃用
 
 永远从你以为的「更小」开始。
 
@@ -372,8 +383,8 @@ cohub -s "$COHUB_SPACE_ID" works publish <slug> \
 |----|------|------|
 | 主文 | 本文件（v0.2） | 随产品迭代修订 |
 | [矩阵](./matrix.md) | 场景索引 | 保持 ID 稳定 |
-| [实践卡](./playbooks/) | 24 张实践卡 | 随产品增长追加新场景 |
-| [概念卡](./concepts/) | 核心名词 | 少而精 |
+| [实践卡](./playbooks/) | 33 张实践卡 | 随产品增长追加新场景 |
+| [概念卡](./concepts/) | 30 个核心名词 | 少而精 |
 | 知识库模式 | §3.9 + 实践卡 | 随真实 Space 演进 |
 
 ---

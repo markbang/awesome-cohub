@@ -1,6 +1,6 @@
 # Cohub Is All You Need
 
-**v0.2** · Best practices for people and agents building in [Cohub](https://cohub.run)
+**v0.2** · Best practices for people and agents building in [Cohub](https://cohub.live)
 
 > Your own space to create, play, and build with people and agents.
 
@@ -8,7 +8,7 @@ This manifesto is not a feature catalog. It is a **practice map**: how to think,
 
 Companion: [Scenario matrix](./matrix.md) · [Playbooks](./playbooks/) · [中文](./zh/manifesto.md)
 
-Official: [Product docs](https://cohub.run/docs) · [Changelog](https://cohub.run/changelog)
+Official: [Product docs](https://cohub.live/docs) · [Changelog](https://cohub.live/changelog)
 
 ---
 
@@ -74,8 +74,8 @@ Sandbox links and local previews are for authors.
 **Works** are for viewers. Prefer published Works for demos and products.
 
 ### P4 — Least privilege by default
-Grant `workScopes` for safe reads the Work always needs.  
-Request `viewerScopes` only on **user gesture** for prompt / generation / account-level actions.
+Grant `appScopes` for safe reads the App always needs.
+Request viewer grants only on **user gesture** for prompt / generation / account-level actions.
 
 ### P5 — Agents need skills and filesystem, not essays
 Long system prompts without skills/files are fragile.  
@@ -117,13 +117,15 @@ Targets:
 | `directory` | Sites / built apps | needs `index.html`; prefer `base: "./"` + hash routes |
 | `port` | Live dev servers | great for preview; not the default production shape |
 
-Runtime truth: `cohub.context()` / auth / commerce work **inside the published Work shell**, not on raw static asset URLs.
+Runtime truth: `cohub.context()` / auth / commerce work **inside the published Work/App shell**, not on raw static asset URLs.
+
+Since v2.26, **App** is the canonical SDK/API term (`client.apps`, `appScopes`); Work and `/w/` remain the user-facing vocabulary and compatibility URL. File and directory publishes have immutable manifests and verified downloads; Board and port publishes are runtime surfaces, not restorable file bundles. Query/hash parameters are forwarded to embedded Works, except the reserved `cohub_*` namespace.
 
 Official guide: [works-guide.md](https://github.com/talesofai/cohub/blob/main/docs/works-guide.md)
 
 ### 3.5 Generations
 **Use for:** image / video / music (and related multimodal tasks) in Space context.  
-**Practice:** write outputs into Space files; Save good results; track cost/credits.  
+**Practice:** write outputs into Space files; Save good results; track cost/credits. Direct Generation / Create mode makes a primary media request a first-class timeline turn; Task Browser owns asynchronous history and inspection. `generation.create` and `taskrun.view` are separate permissions.
 **Skill:** `cohub-generate`  
 Official: [generations.md](https://github.com/talesofai/cohub/blob/main/docs/generations.md)
 
@@ -200,7 +202,7 @@ This is how teams and agents share memory without pasting essays into every prom
 .cohub/hooks/*.yml
 ```
 
-Events: `space.fs.changed` · `space.workspace.ready` · `session.turn.finalized` · `checkpoint.created`  
+Events: `space.fs.changed` · `space.workspace.ready` · `session.turn.finalized` · `checkpoint.created` · `work.version.published` · `task.updated`
 Actions: `run` (sandbox shell) or `prompt` (Chat/session)
 
 Practice: one file per hook; FS matching ignores `.cohub/**` to prevent loops; filter turns with `sessionIds` / `sources`.  
@@ -209,13 +211,14 @@ Playbook: [space-hooks-automation](./playbooks/space-hooks-automation.md) · Doc
 
 ### 3.11 Work commerce
 
-One-time products on a **published Work**: feature unlocks and consumable credits.
+One-time products on a **published Work/App**: feature unlocks and consumable credits.
 
-- Runtime only inside Cohub Work shell (`context()` / `work.commerce.*`)
+- Runtime only inside the published shell (`context()` / `app.commerce.*`)
 - Host owns checkout redirect state; Work displays gates/balances and triggers purchase/consume
-- Version product keys; never mutate price in place; `operationId` for idempotent credit consumes
+- Version product keys; never mutate price in place; `operationId` makes credit consumes idempotent
+- Reuse `purchaseAttemptId` on purchase retries; optional Cohub Balance is a global USD component
 
-Playbook: [work-commerce](./playbooks/work-commerce.md) · Guide: [work-commerce-guide.md](https://github.com/talesofai/cohub/blob/main/docs/work-commerce-guide.md)
+Playbook: [work-commerce](./playbooks/work-commerce.md) · Promotion: [work-promotions](./playbooks/work-promotions.md) · Guide: [work-commerce-guide.md](https://github.com/talesofai/cohub/blob/main/docs/work-commerce-guide.md)
 
 
 ### 3.12 Home, Sessions inbox, Mods, `/skill:`
@@ -277,6 +280,14 @@ node /configs/user/.agents/skills/hyper-search/scripts/cli.js search "query"
 ```
 
 Playbook: [search-layers](./playbooks/search-layers.md)
+
+### 3.18 Recent runtime surfaces (v2.22-v2.30)
+
+- **Semantic Board authoring**: Items, connections, effects, and Compositions share atomic, versioned mutations with dry-run diagnostics and durable receipts.
+- **Task Browser**: dedicated multimodal Task Run history with identity-scoped stale-while-revalidate caching and scope-aware Space/Mine views.
+- **Direct Generation**: Create-mode turns, idempotent client message submission, timeline barriers, and explicit generation cost states.
+- **Work operations**: immutable promotion links, aggregate funnel analytics, live preview refresh, UI callable surfaces, and verified artifact downloads.
+- **Runtime safety**: per-path optimistic concurrency with `fs.edit`, additive execution-token permissions, and prompt context variables (`{{cohub.session.id}}`, `{{cohub.space.id}}`, `{{cohub.user.uuid}}`).
 
 ## 4. Builder playbook (human)
 
@@ -359,8 +370,8 @@ cohub -s "$COHUB_SPACE_ID" works publish <slug> \
 ```
 
 ### Work permissions (current mental split)
-- **workScopes** (publisher grants to Work): e.g. `space.view`, `session.view`, `file.view`, `taskrun.view`
-- **viewerScopes** (viewer may allow): e.g. `session.prompt.*`, `generation.create`, `user.*`
+- **appScopes** (publisher grants to the App's own Space): e.g. `space.view`, `session.view`, `file.view`, `taskrun.view`
+- **viewer grants** (viewer consents per Space): e.g. `session.prompt.*`, `generation.create`, `user.*`; `allowedViewerScopes` is deprecated
 
 Always start smaller than you think.
 
@@ -372,8 +383,8 @@ Always start smaller than you think.
 |-------|-----|-------|
 | Manifesto | this file (v0.2) | revise with product changes |
 | [Matrix](./matrix.md) | scenario index | keep IDs stable |
-| [Playbooks](./playbooks/) | 24 playbooks | add new scenarios as product grows |
-| [Concepts](./concepts/) | core nouns | add sparingly |
+| [Playbooks](./playbooks/) | 33 playbooks | add new scenarios as product grows |
+| [Concepts](./concepts/) | 30 core nouns | add sparingly |
 | Knowledge-base pattern | §3.9 + playbook | evolve with real Spaces |
 
 ---

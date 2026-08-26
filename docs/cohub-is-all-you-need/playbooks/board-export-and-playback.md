@@ -1,72 +1,96 @@
 ---
 id: cohub.bp.board-export-and-playback
-title: Master Board exports, playback policy, and live file nodes
+title: Author, export, and play semantic Boards
 type: playbook
 audience: [builder, agent]
-features: [board, cli, export, playback, pdf]
+features: [board, cli, export, playback, composition]
 difficulty: intermediate
 related:
   - cohub.concept.board-runtime
+  - cohub.concept.board-semantic-authoring
   - cohub.concept.space
 sources:
-  - https://cohub.run/changelog (v2.0-v2.4)
+  - https://cohub.live/changelog (v2.0-v2.27)
+  - https://github.com/talesofai/cohub/blob/main/packages/protocol/src/board-authoring.ts
 ---
 
-# Master Board exports, playback policy, and live file nodes
+# Author, export, and play semantic Boards
 
 ## When
 
-You want to organize workspace files visually on a Board, configure autoplay loops for demos, or export high-resolution PNG/WebP images via CLI.
+You want to arrange Space files and generated media on a Board, add connections or animation, and publish or export a deterministic result.
 
 ## Outcome
 
-- Workspace files (PDFs, images, code, binaries) placed cleanly as interactive Board nodes  
-- Autoplay sequence policies configured for unattended Board presentations  
-- Clean headless PNG/JPEG/WebP renders exported via `cohub boards export`  
+- A semantic Board snapshot contains Items, connections, effects, compositions, and playback policy.
+- Mutations are validated, version-aware, and safe to retry.
+- Browser previews, checkpoints, published Board Works, and headless exports use the same model.
 
 ## Steps
 
-### A. Place live files on a Board
+### A. Inspect before editing
 
-1. In Chat or CLI, drag or reference any workspace file path onto a Board.
-2. Binary and code files automatically generate path-based preview cards.
-3. PDF files render continuous-scroll paginated previews.
+```bash
+cohub boards inspect <board> --json
+cohub boards capabilities <board> --json
+```
 
-### B. Configure Board Autoplay Policy
+Use capabilities to discover supported Item types, animation channels, clip/effect kinds, coordinate spaces, and render limits.
 
-Add an autoplay policy to your Board metadata so viewers see animated playback immediately:
+### B. Create semantic content
+
+```bash
+cohub boards examples item image > hero.json
+cohub boards items create <board> --input hero.json --dry-run
+cohub boards items create <board> --input hero.json --mutation-id <stable-id>
+cohub boards items patch <board> <item-id> --input patch.json
+```
+
+Connections, effects, and compositions use the same atomic mutation protocol. Reuse `mutationId` when retrying a timed-out request; use `baseVersion` when chaining from a known snapshot.
+
+### C. Configure composition playback
+
+Compositions hold tracks, keyframes, procedural clips, and markers. Board metadata selects the composition rather than the removed legacy `sequenceId` shape:
 
 ```json
 {
-  "autoplay": {
-    "sequenceId": "demo-intro",
-    "delayMs": 500,
-    "loop": true
+  "playback": {
+    "compositionId": "intro",
+    "delayMs": 500
   }
 }
 ```
 
-### C. Headless Board Export via CLI
+```bash
+cohub boards play <board> intro
+cohub boards pause <board> <playback-id>
+cohub boards seek <board> <playback-id> 400
+```
 
-Export specific Board regions or full documents without opening a browser GUI:
+### D. Export
 
 ```bash
-# Export full board as 2x PNG
-cohub boards export <boardId> -o out.png --scale 2
+# Full board
+cohub boards export <board> -o out.png --scale 2 --theme dark
 
-# Export specific items or frame rects
-cohub boards export <boardId> --rect 0,0,1920,1080 --theme dark -o frame.webp
+# Selected Items or a world-space rectangle
+cohub boards export <board> --items title,hero -o selection.webp
+cohub boards export <board> --rect 0,0,1920,1080 -o frame.png
 ```
 
 ## Done when
 
-- [ ] Workspace files display clear preview cards on the Board
-- [ ] `cohub boards export` produces crisp renders matching the active space theme
-- [ ] Board links in chat open directly in the Board preview surface
+- [ ] The semantic snapshot passes `capabilities` and dry-run validation
+- [ ] A retry uses the same mutation id
+- [ ] Playback honors the current reduced-motion policy
+- [ ] Exported output matches the Board preview and referenced assets
 
-## See also
+## Avoid
 
-- Concept: [board-runtime](../concepts/board-runtime.md)
+- Writing the removed legacy Node/Sequence wire shape
+- Treating a screenshot as the Board source of truth
+- Replacing a timed-out mutation with a new id
+- Publishing unreferenced workspace assets just to satisfy a Board preview
 
 ---
 

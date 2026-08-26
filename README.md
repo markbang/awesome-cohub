@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://cohub.run">
+  <a href="https://cohub.live">
     <img
       width="1440"
       alt="Awesome Cohub"
@@ -22,7 +22,7 @@
 <div align="center">
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
-[![Cohub](https://img.shields.io/badge/Cohub-Ecosystem-FF4500?style=flat-square)](https://cohub.run)
+[![Cohub](https://img.shields.io/badge/Cohub-Ecosystem-FF4500?style=flat-square)](https://cohub.live)
 [![CLI](https://img.shields.io/npm/v/@neta-art/cohub-cli?label=cohub-cli&color=FF4500&style=flat-square)](https://www.npmjs.com/package/@neta-art/cohub-cli)
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg?style=flat-square)](LICENSE)
 
@@ -32,7 +32,7 @@
 
 > Your own space to create, play, and build with people and agents.
 
-[Cohub](https://cohub.run) is a living Space for people and agents. Start anywhere, make in any medium, share as Works.
+[Cohub](https://cohub.live) is a living Space for people and agents. Start anywhere, make in any medium, share as Works.
 
 This repository curates the best public entry points into the Cohub ecosystem:
 
@@ -57,7 +57,7 @@ Inspired by the [Awesome](https://awesome.re) format and the VoltAgent awesome s
 
 ## Official
 
-- **[Cohub](https://cohub.run)** - Browser-first creative space for people and agents.
+- **[Cohub](https://cohub.live)** - Browser-first creative space for people and agents.
 - **[Cohub monorepo](https://github.com/talesofai/cohub)** - Source for API, agent, sandbox, gateway, web, and packages.
 - **[talesofai](https://github.com/talesofai)** - GitHub org for Cohub and related open-source projects.
 
@@ -77,14 +77,15 @@ Inspired by the [Awesome](https://awesome.re) format and the VoltAgent awesome s
 - **Spaces** - Create, fork, save, and collaborate in isolated environments.
 - **Checkpoints / Saves** - Freeze progress and remix from a stable base.
 - **Works** - Publish demos, pages, and live previews with shareable URLs.
-- **Multimodal generation** - Text, image, video, and music generation from Space context.
+- **Multimodal generation** - Text, image, video, and music generation from Space context, with Direct Generation and Task Browser workflows.
+- **Boards** - Semantic Items, connections, compositions, effects, media, and deterministic exports.
 - **External channels** - Talk to a Space from chat apps and CLIs.
 - **Cross-space references** - Point agents at other Spaces with `@space` context.
 
 ## CLI and SDK
 
 - **[@neta-art/cohub-cli](https://www.npmjs.com/package/@neta-art/cohub-cli)** - Official CLI for spaces, sessions, prompts, files, generation, and automation.
-- **[@neta-art/cohub](https://www.npmjs.com/package/@neta-art/cohub)** - TypeScript SDK for spaces, sessions, checkpoints, and realtime collaboration.
+- **[@neta-art/cohub](https://www.npmjs.com/package/@neta-art/cohub)** - TypeScript SDK for spaces, sessions, Apps/Works, Boards, tasks, and realtime collaboration.
 - **[cohub-desktop](https://github.com/markbang/cohub-desktop)** - Desktop companion prototype for Cohub.
 
 ### Install CLI
@@ -183,8 +184,8 @@ Best-practice series for **builders** and **agents** — from first Save to Work
 | **Start** | [Learning path](docs/cohub-is-all-you-need/learning-path.md) · [AGENT_BRIEF](docs/cohub-is-all-you-need/AGENT_BRIEF.md) · [Cookbooks](docs/cohub-is-all-you-need/cookbooks/) · [FAQ](docs/cohub-is-all-you-need/cheatsheets/faq-and-troubleshooting.md) |
 | **Manifesto** | [EN](docs/cohub-is-all-you-need/manifesto.md) · [中文](docs/cohub-is-all-you-need/zh/manifesto.md) |
 | **Matrix** | [EN](docs/cohub-is-all-you-need/matrix.md) · [中文](docs/cohub-is-all-you-need/zh/matrix.md) |
-| **Playbooks** | [EN](docs/cohub-is-all-you-need/playbooks/) · [中文](docs/cohub-is-all-you-need/zh/playbooks/) (32) |
-| **Concepts / Anti-patterns / Cheatsheets** | [concepts](docs/cohub-is-all-you-need/concepts/) (27) · [anti-patterns](docs/cohub-is-all-you-need/anti-patterns/) (15) · [cheatsheets](docs/cohub-is-all-you-need/cheatsheets/) (6) |
+| **Playbooks** | [EN](docs/cohub-is-all-you-need/playbooks/) · [中文](docs/cohub-is-all-you-need/zh/playbooks/) (33) |
+| **Concepts / Anti-patterns / Cheatsheets** | [concepts](docs/cohub-is-all-you-need/concepts/) (30) · [anti-patterns](docs/cohub-is-all-you-need/anti-patterns/) (15) · [cheatsheets](docs/cohub-is-all-you-need/cheatsheets/) (6) |
 | **Banner** | [animated SVG](https://cdn.jsdelivr.net/gh/markbang/awesome-cohub@main/docs/cohub-is-all-you-need/assets/banner.svg) · [architecture](docs/cohub-is-all-you-need/assets/architecture.svg) |
 | **Changelog** | [guide CHANGELOG](docs/cohub-is-all-you-need/CHANGELOG.md) |
 
@@ -215,5 +216,5 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 ---
 
 <div align="center">
-  <sub>Built for the Cohub ecosystem · <a href="https://cohub.run">cohub.run</a></sub>
+  <sub>Built for the Cohub ecosystem · <a href="https://cohub.live">cohub.live</a></sub>
 </div>

@@ -7,8 +7,8 @@ features: [space, members, access]
 difficulty: intermediate
 related: [cohub.concept.space, cohub.bp.channel-ops, cohub.bp.minimal-scopes]
 sources:
-  - https://cohub.run/docs/workspace/spaces
-  - https://cohub.run/docs/learn/core-concepts
+  - https://cohub.live/docs/workspace/spaces
+  - https://cohub.live/docs/learn/core-concepts
 ---
 
 # Space members, roles, and access policy
@@ -39,7 +39,7 @@ Exact capability matrix follows product; treat host as owner-operator.
 2. Invite by account; assign the least role that works.
 3. Open **Access**: set defaults for signed-in visitors and anonymous users (when the Space is exposed).
 4. Prefer **labels + separate Spaces** over one mega-shared Home.
-5. For public **Works**, remember Work scopes are a **second** permission layer — member role ≠ Work runtime scope.
+5. For public **Work/Apps**, remember App scopes are a **second** permission layer - membership role != Work runtime scope.
 
 ## Done when
 

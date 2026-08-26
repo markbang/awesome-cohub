@@ -14,7 +14,7 @@ A **Chat** is a conversation context inside a Space. CLI/API name: **session**.
 - `/skill:name` expands skills; `@space` pulls cross-space context deliberately
 
 ## See also
-- https://cohub.run/docs/workspace/chats
+- https://cohub.live/docs/workspace/chats
 
 ---
 

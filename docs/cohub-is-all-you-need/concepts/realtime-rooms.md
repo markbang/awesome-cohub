@@ -1,36 +1,53 @@
 ---
 id: cohub.concept.realtime-rooms
-title: Realtime rooms for Works
+title: Realtime rooms for Work Apps
 type: concept
 related:
   - cohub.concept.work
   - cohub.concept.work-presentation
+  - cohub.concept.task-browser
 sources:
-  - https://cohub.run/changelog (v2.11 realtime rooms)
+  - https://cohub.live/changelog (v2.11)
+  - https://github.com/talesofai/cohub/blob/main/packages/sdk/docs/work-runtime-guide.md
 ---
 
-# Realtime rooms for Works
+# Realtime rooms for Work Apps
 
-**Realtime rooms** (v2.11) let published Works run multiplayer state with no backend of their own.
+**Realtime rooms** let a published Work/App run multiplayer state without deploying a separate backend. The current SDK surface is `client.app.realtime`; rooms use the published App runtime identity and need no additional scope.
 
 ## How it works
 
-- Works create or join code-scoped rooms through `client.work.realtime`.
-- Rooms exchange generic JSON events over the existing Gateway WebSocket.
-- Member presence, room-scoped sequencing, publish ACKs, and short-lived admission tickets are built in.
+- Create or join a code-scoped room through `client.app.realtime`.
+- Exchange generic JSON events over the Cohub Gateway WebSocket.
+- Use presence, room-scoped sequencing, membership snapshots, publish acknowledgments, and short-lived admission tickets supplied by the runtime.
+
+```ts
+const room = await client.app.realtime.createRoom({
+  code: "TEAM-ALPHA",
+  seatPerUser: true,
+});
+
+const stop = room.subscribe("shared.state.updated", (event) => {
+  render(event.data);
+});
+await room.publish("shared.state.updated", { value: 42 });
+stop();
+await room.leave();
+```
 
 ## Key features
 
-- **High-frequency sends**: `room.send()` omits per-event ACK round trips, suitable for input frames and high-rate traffic (~1000/RTT events/sec).
-- **Per-viewer seats**: rooms created with `seatPerUser` give each viewer at most one seat — a second tab or rejoin takes over the existing seat.
-- **Opaque userKey**: members carry an opaque `userKey` so applications can group a viewer's connections without seeing the account id.
-- **Redis-only infrastructure**: renewable membership leases, bounded serialized mutation queue, rate limits, 16 KB payload caps, and absolute 24-hour lifetime.
-- **Quota**: each Work is limited to 512 active rooms (HTTP 429 `ROOM_QUOTA_EXCEEDED`).
+- **High-frequency sends**: `room.send()` avoids the per-event ACK round trip; failures are reported through `room.onSendError()`.
+- **Per-viewer seats**: `seatPerUser` lets a second tab or reconnect take over the viewer's existing seat instead of consuming another one.
+- **Opaque `userKey`**: group a viewer's connections without seeing the account id.
+- **Reconnect signals**: use `onStateChange()` and `onOutOfSync()` to resync authoritative application state; room events are not replayed.
+- **Limits**: default lifetime is 2 hours (60 seconds to 24 hours), default participants are 16 (2 to 128), payloads are 16 KB, presence is 2 KB, and each App may have 512 active rooms.
+- **Runtime-only**: normal server auth and the CLI cannot create or join these rooms.
 
 ## Use cases
 
 - Multiplayer games and collaborative experiences published as Works.
-- Real-time dashboards and shared state without deploying a separate backend.
+- Real-time dashboards and shared state without a custom websocket service.
 
 ---
 

@@ -17,7 +17,7 @@ Best-practice guide for **builders** and **agents** using Cohub.
 
 **Language:** English (default) · [中文](./zh/README.md)
 
-Grounded in product docs ([/docs](https://cohub.run/docs)), changelog ([/changelog](https://cohub.run/changelog)), and monorepo behavior.
+Grounded in product docs ([/docs](https://cohub.live/docs)), changelog ([/changelog](https://cohub.live/changelog)), and monorepo behavior.
 
 ## Start here
 
@@ -36,8 +36,8 @@ Grounded in product docs ([/docs](https://cohub.run/docs)), changelog ([/changel
 | [cookbooks/](./cookbooks/) | End-to-end journeys |
 | [manifesto.md](./manifesto.md) | Manifesto |
 | [matrix.md](./matrix.md) | Scenario matrix (+ role) |
-| [playbooks/](./playbooks/) | Practice cards (32) |
-| [concepts/](./concepts/) | Concept cards (27) |
+| [playbooks/](./playbooks/) | Practice cards (33) |
+| [concepts/](./concepts/) | Concept cards (30) |
 | [anti-patterns/](./anti-patterns/) | Failure modes (15) |
 | [cheatsheets/](./cheatsheets/) | CLI · paths · FAQ · packaging |
 | [samples.md](./samples.md) | Links & pattern templates |
@@ -64,7 +64,7 @@ docs/cohub-is-all-you-need/     # English (default)
 
 ## Related
 
-- https://cohub.run · https://cohub.run/docs · https://cohub.run/changelog
+- https://cohub.live · https://cohub.live/docs · https://cohub.live/changelog
 - https://github.com/talesofai/cohub · https://github.com/markbang/awesome-cohub
 - Web search: [hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search)
 - Feishu: [lark-lite](https://github.com/kjx-talesofai/claude-skill-lark-lite)

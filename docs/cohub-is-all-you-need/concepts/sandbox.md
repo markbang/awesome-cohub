@@ -3,26 +3,33 @@ id: cohub.concept.sandbox
 title: Sandbox
 type: concept
 related: [cohub.concept.execution-token, cohub.cheat.paths-mounts]
+sources:
+  - https://cohub.live/changelog (v2.9, v2.22)
 ---
 
 # Sandbox
 
-Isolated runtime where the Space agent executes commands, skills, and previews.
+A Sandbox is the runtime where a Space Agent executes commands, skills, previews, and filesystem operations. Paths, network, and identity are Sandbox-shaped, not your laptop's.
 
-## Why it matters
+## Filesystem concurrency (v2.22)
 
-Paths, network, and identity are **sandbox-shaped**, not “your laptop”. Assume:
+- File writes are serialized per path.
+- Versioned writes can include the expected size and `mtime`; stale overwrites fail with `CONFLICT` instead of silently losing a concurrent edit.
+- `fs.edit` applies a batch of text replacements atomically under the same path lock.
+- Read the current version, apply a small edit, and retry from fresh content after a conflict. Do not blindly overwrite a newer draft.
 
-- Project files under `/workspace`
-- Published config under `/configs/*` (read-only)
-- Optional mods under `/mods/*`
-- Execution token for API identity
+## Runtime assumptions
+
+- Project files are under `/workspace`.
+- Published config mounts under `/configs/*` are read-only.
+- Mounted Mods are under `/mods/<slug>`.
+- Agent tool calls carry an execution token for API identity.
 
 ## Practice
 
-- [paths-and-mounts](../cheatsheets/paths-and-mounts.md)  
-- [execution-token](./execution-token.md)  
-- [egress-proxy](../playbooks/egress-proxy.md) when outbound network needs help  
+- [paths-and-mounts](../cheatsheets/paths-and-mounts.md)
+- [execution-token](./execution-token.md)
+- [egress-proxy](../playbooks/egress-proxy.md) when outbound network needs help
 
 ---
 

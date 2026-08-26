@@ -7,7 +7,7 @@ features: [chat, skill, mod, sandbox, files]
 difficulty: starter
 related: [cohub.concept.skill, cohub.concept.mod, cohub.bp.scratch-to-checkpoint]
 sources:
-  - https://cohub.run/docs/workspace/chats
+  - https://cohub.live/docs/workspace/chats
   - https://github.com/talesofai/cohub/blob/main/docs/product/en/workspace/chats.md
 ---
 

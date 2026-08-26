@@ -17,7 +17,8 @@ sources:
   - apps/api/src/lib/channel-model-config.ts
   - packages/protocol/src/space-config.ts
   - packages/protocol/src/space-style.ts
-  - https://cohub.run/changelog
+  - docs/model-tasks.md
+  - https://cohub.live/changelog
 ---
 
 # `.cohub` layers & priority
@@ -50,6 +51,7 @@ CLAUDE.md
 |------|--------|
 | `.cohub/models.json` | Environment model catalog (Redis cache) |
 | `.cohub/generations/` | Generation declarations |
+| `.cohub/model-tasks.json` | Auxiliary task models such as session titles and image-to-text |
 | `.cohub/explore.json` (etc.) | Other platform readers |
 | `.agents/skills/` | Platform skills |
 | `.agents/prompts/*.md` | Platform slash templates |
@@ -60,6 +62,7 @@ CLAUDE.md
 |------|--------|
 | `.cohub/models.json` | **Owner** model overrides / catalog merge |
 | `.cohub/generations/` | User generation declarations |
+| `.cohub/model-tasks.json` | User overrides for auxiliary task models |
 | `.agents/skills/` | Personal skills (owner path) |
 | `.agents/prompts/*.md` | Personal slash templates |
 | `AGENTS.md` | User Rules |
@@ -98,6 +101,12 @@ platform → mods → user → project
 - Files: **`.agents/prompts/<name>.md`**
 - Expansion: leading `/foo` (not `/skill:…`) loads template `foo`
 - Body supports `$1`, `$@` / `$ARGUMENTS` style arg substitution
+
+### Prompt context variables and auxiliary model tasks
+
+Prompt templates can use the system variables `{{cohub.session.id}}`, `{{cohub.space.id}}`, and `{{cohub.user.uuid}}`. They are rendered by the shared prompt-template path across API and worker.
+
+Auxiliary model tasks are declared in `.cohub/model-tasks.json`. Platform and user definitions merge in the same config flow; user settings can disable a task or override its model. The built-in `imageToText` task must use a vision-capable model.
 
 ### Models
 
@@ -142,7 +151,8 @@ These do not replace the account **appearance** theme picker; they style **this 
 2. **This product’s slash recipes** → project `.agents/prompts/*.md`.  
 3. **This product’s look** → project `.cohub/space.json` / `theme.css`.  
 4. **Team shared tooling** → Mod mount, not copy-paste into every config.  
-5. Never “fix” live mounts under `/configs/user` or `/configs/platform`; edit source Space + Save.
+5. For prompt templates that need request identity, use the `{{cohub.*}}` variables instead of copying IDs into files.
+6. Never “fix” live mounts under `/configs/user` or `/configs/platform`; edit source Space + Save.
 
 ## See also
 

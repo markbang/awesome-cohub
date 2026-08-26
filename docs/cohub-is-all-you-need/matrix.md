@@ -22,10 +22,10 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | `cohub.bp.scratch-to-checkpoint` | From blank Space to first Save | Space, Files, Chat, Checkpoint | `cohub` | starter | builder |
 | `cohub.bp.agent-with-skills` | Equip an agent and do real work | Space, Sandbox, Skills, CLI | `cohub`, any ecosystem skill | starter | builder, agent-author |
 | `cohub.bp.cross-space-context` | Pull context from another Space | `@space`, Sessions, Files | `cohub` | intermediate | builder, operator |
-| `cohub.bp.multimodal-pipeline` | Generate image/video/music into Space assets | Generation, Files | `cohub-generate` | starter | builder |
+| `cohub.bp.multimodal-pipeline` | Generate, inspect, and materialize multimodal assets | Generation, Files, Tasks | `cohub-generate` | starter | builder |
 | `cohub.bp.publish-static-work` | Publish a static HTML/site Work | Works (`file`/`directory`) | `cohub-works-share`, `public-share` | starter | builder |
 | `cohub.bp.work-kit-product` | Build a real Work product with runtime | Works, SDK, Scopes | `cohub-work-kit`, `cohub-work-publish` | intermediate | builder |
-| `cohub.bp.minimal-scopes` | Ship with least privilege | workScopes, viewerScopes | `cohub-work-publish` | intermediate | builder |
+| `cohub.bp.minimal-scopes` | Ship Work Apps with least privilege | appScopes, viewer grants | `cohub-work-publish` | intermediate | builder |
 | `cohub.bp.scheduled-loop` | Recurring / outer-loop automation | Scheduled prompts, Tasks, Files-as-state | `cohub` | advanced | operator, agent-author |
 | `cohub.bp.space-knowledge-base` | Build a compounding wiki in a Space | Files (`raw/` / `wiki/` / log), Sessions, Skills | `cohub` | intermediate | builder, agent-author |
 | `cohub.bp.social-research` | Social fetch → write into wiki | Sandbox, Files, wiki pages | `wgetx` | intermediate | builder |
@@ -33,10 +33,11 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | `cohub.bp.channel-ops` | Operate from Discord / Feishu / WeChat | Channels, Gateway | `cohub` | intermediate | operator |
 | `cohub.bp.fork-and-proposal` | Fork a Save, explore, propose back | Checkpoint, Fork, Proposal | `cohub` | intermediate | builder |
 | `cohub.bp.space-hooks-automation` | Event automation with Space Hooks | Hooks, Tasks, Files | `cohub` | advanced | operator, agent-author |
+| `cohub.bp.work-promotions` | Measure Work promotion funnels | Works/Apps, analytics, commerce | `cohub` | advanced | builder, operator |
 | `cohub.bp.mod-mount` | Mount Mods for shared tooling | Mods, Skills, Sandbox | `cohub` | intermediate | builder, operator |
 | `cohub.bp.skill-slash-discovery` | Discover skills with `/skill:` | Chat, Skills, Mods | `cohub` | starter | builder, agent-author |
 | `cohub.bp.home-and-sessions-inbox` | Home Space & Sessions inbox | Home, `/sessions` | `cohub` | starter | builder |
-| `cohub.bp.work-commerce` | Sell features/credits in a Work | Works, Billing, SDK | `cohub-work-kit` | advanced | builder |
+| `cohub.bp.work-commerce` | Sell features/credits in a Work | Works/Apps, Billing, SDK | `cohub-work-kit` | advanced | builder |
 | `cohub.bp.user-config-and-rules` | Own agent defaults in config Space | config Space, User Rules, `/configs/user` | `cohub` | intermediate | builder, agent-author |
 | `cohub.bp.platform-config` | Operate platform config Space | platform config, skills | `cohub` | advanced | operator |
 | `cohub.bp.skill-catalog-cache` | Debug `/skill:` catalog & cache | Skills API, Redis | `cohub` | advanced | operator, agent-author |
@@ -44,8 +45,8 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | `cohub.bp.search-layers` | Product vs workspace vs web search | Search API, config skills | `hyper-search` | starter | builder, agent-author |
 | `cohub.bp.port-preview` | Live port demo (dev, not default prod) | Works (`port`), Sandbox ports | `cohub-works-share` | intermediate | builder |
 | `cohub.bp.hide-cohub-bar` | Hide Cohub footer bar on public Work | Works, billing entitlement | `cohub` CLI | starter | builder |
-| `cohub.bp.work-lifecycle` | Publish / version / disable / visibility | Works | `cohub` | intermediate | builder |
-| `cohub.bp.viewer-auth-user-scopes` | Viewer consent + `user.*` scopes | Works, SDK | `cohub` | advanced | builder, agent-author |
+| `cohub.bp.work-lifecycle` | Publish / version / disable / visibility | Works/Apps | `cohub` | intermediate | builder |
+| `cohub.bp.viewer-auth-user-scopes` | Viewer consent + account scopes | Works/Apps, SDK | `cohub` | advanced | builder, agent-author |
 | `cohub.bp.space-members-access` | Members, host/builder/guest, access policy | Space settings | `cohub` | intermediate | builder, operator |
 | `cohub.bp.space-env-sandbox` | Env vars + sandbox spec/idle | Space settings, Sandbox | `cohub` | intermediate | builder, operator |
 | `cohub.bp.public-identity-slugs` | Username + space/work slugs for public URLs | Profile, Space, Works | `cohub` | starter | builder |
@@ -167,7 +168,7 @@ All matrix scenario IDs now have cards under [playbooks/](./playbooks/).
 ## Maintain
 
 1. Keep IDs stable; add new rows rather than renumbering
-2. Align behavior notes with https://cohub.run/docs and https://cohub.run/changelog
+2. Align behavior notes with https://cohub.live/docs and https://cohub.live/changelog
 3. Prefer updating a card over growing the manifesto forever
 4. Anti-patterns live under [anti-patterns/](./anti-patterns/)
 

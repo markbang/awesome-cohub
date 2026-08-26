@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://cohub.run">
+  <a href="https://cohub.live">
     <img
       width="1440"
       alt="Awesome Cohub"
@@ -22,7 +22,7 @@
 <div align="center">
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
-[![Cohub](https://img.shields.io/badge/Cohub-Ecosystem-FF4500?style=flat-square)](https://cohub.run)
+[![Cohub](https://img.shields.io/badge/Cohub-Ecosystem-FF4500?style=flat-square)](https://cohub.live)
 [![CLI](https://img.shields.io/npm/v/@neta-art/cohub-cli?label=cohub-cli&color=FF4500&style=flat-square)](https://www.npmjs.com/package/@neta-art/cohub-cli)
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg?style=flat-square)](LICENSE)
 
@@ -32,7 +32,7 @@
 
 > 属于你的空间，与人和 Agent 一起创造、玩耍和构建。
 
-[Cohub](https://cohub.run) 是人与 Agent 共同工作的活态 Space。你可以从任何地方开始，用任何媒介创作，并将成果分享为 Works。
+[Cohub](https://cohub.live) 是人与 Agent 共同工作的活态 Space。你可以从任何地方开始，用任何媒介创作，并将成果分享为 Works。
 
 本仓库精选 Cohub 生态中最值得使用的公开入口：
 
@@ -57,7 +57,7 @@
 
 ## 官方入口
 
-- **[Cohub](https://cohub.run)** - 面向人与 Agent 的浏览器优先创作空间。
+- **[Cohub](https://cohub.live)** - 面向人与 Agent 的浏览器优先创作空间。
 - **[Cohub monorepo](https://github.com/talesofai/cohub)** - API、Agent、Sandbox、Gateway、Web 和各 packages 的源码。
 - **[talesofai](https://github.com/talesofai)** - Cohub 及相关开源项目的 GitHub 组织。
 
@@ -77,14 +77,15 @@
 - **Spaces** - 在隔离环境中创建、Fork、Save 和协作。
 - **Checkpoints / Saves** - 冻结进度，并从稳定基线继续 Remix。
 - **Works** - 将 Demo、页面和实时预览发布为可分享 URL。
-- **多模态生成** - 基于 Space 上下文生成文本、图片、视频和音乐。
+- **多模态生成** - 基于 Space 上下文生成文本、图片、视频和音乐，并支持 Direct Generation 与 Task Browser 流程。
+- **Boards** - 语义化 Item、连接、组合动画、效果、媒体与确定性导出。
 - **外部 Channels** - 从聊天应用和 CLI 与 Space 对话。
 - **跨 Space 引用** - 用 `@space` 上下文将 Agent 指向其他 Space。
 
 ## CLI 与 SDK
 
 - **[@neta-art/cohub-cli](https://www.npmjs.com/package/@neta-art/cohub-cli)** - 用于 Spaces、Sessions、Prompts、Files、生成与自动化的官方 CLI。
-- **[@neta-art/cohub](https://www.npmjs.com/package/@neta-art/cohub)** - 用于 Spaces、Sessions、Checkpoints 与实时协作的 TypeScript SDK。
+- **[@neta-art/cohub](https://www.npmjs.com/package/@neta-art/cohub)** - 用于 Spaces、Sessions、Apps/Works、Boards、Tasks 与实时协作的 TypeScript SDK。
 - **[cohub-desktop](https://github.com/markbang/cohub-desktop)** - Cohub 桌面伴侣原型。
 
 ### 安装 CLI
@@ -180,8 +181,8 @@ npx skills add https://github.com/markbang/wgetx-skill --list
 | **开始** | [学习路径](docs/cohub-is-all-you-need/zh/learning-path.md) · [AGENT_BRIEF](docs/cohub-is-all-you-need/zh/AGENT_BRIEF.md) · [Cookbooks](docs/cohub-is-all-you-need/zh/cookbooks/) · [FAQ](docs/cohub-is-all-you-need/zh/cheatsheets/faq-and-troubleshooting.md) |
 | **宣言** | [英文](docs/cohub-is-all-you-need/manifesto.md) · [中文](docs/cohub-is-all-you-need/zh/manifesto.md) |
 | **矩阵** | [英文](docs/cohub-is-all-you-need/matrix.md) · [中文](docs/cohub-is-all-you-need/zh/matrix.md) |
-| **实践卡** | [英文](docs/cohub-is-all-you-need/playbooks/) · [中文](docs/cohub-is-all-you-need/zh/playbooks/)（31） |
-| **概念 / 反模式 / 速查** | [概念](docs/cohub-is-all-you-need/zh/concepts/)（21）· [反模式](docs/cohub-is-all-you-need/zh/anti-patterns/)（15）· [速查](docs/cohub-is-all-you-need/zh/cheatsheets/)（6） |
+| **实践卡** | [英文](docs/cohub-is-all-you-need/playbooks/) · [中文](docs/cohub-is-all-you-need/zh/playbooks/)（33） |
+| **概念 / 反模式 / 速查** | [概念](docs/cohub-is-all-you-need/zh/concepts/)（30）· [反模式](docs/cohub-is-all-you-need/zh/anti-patterns/)（15）· [速查](docs/cohub-is-all-you-need/zh/cheatsheets/)（6） |
 | **Banner** | [动画 SVG](https://cdn.jsdelivr.net/gh/markbang/awesome-cohub@main/docs/cohub-is-all-you-need/assets/banner.svg) · [架构图](docs/cohub-is-all-you-need/assets/architecture.svg) |
 | **变更日志** | [指南 CHANGELOG](docs/cohub-is-all-you-need/zh/CHANGELOG.md) |
 
@@ -210,5 +211,5 @@ npx skills add https://github.com/markbang/wgetx-skill --list
 ---
 
 <div align="center">
-  <sub>为 Cohub 生态构建 · <a href="https://cohub.run">cohub.run</a></sub>
+  <sub>为 Cohub 生态构建 · <a href="https://cohub.live">cohub.live</a></sub>
 </div>

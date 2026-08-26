@@ -12,8 +12,8 @@ Concrete starting points. Prefer cloning patterns into **your** Space over treat
 
 | What | Link |
 |------|------|
-| Product docs | https://cohub.run/docs |
-| Changelog | https://cohub.run/changelog |
+| Product docs | https://cohub.live/docs |
+| Changelog | https://cohub.live/changelog |
 | Monorepo | https://github.com/talesofai/cohub |
 | Awesome list | https://github.com/markbang/awesome-cohub |
 
@@ -41,6 +41,9 @@ Concrete starting points. Prefer cloning patterns into **your** Space over treat
 | Knowledge base layout | [space-knowledge-base](./playbooks/space-knowledge-base.md) · matrix “Knowledge base pattern” |
 | Config publish | [user-config-and-rules](./playbooks/user-config-and-rules.md) |
 | Work Kit app | [work-kit-product](./playbooks/work-kit-product.md) |
+| Semantic Board authoring | [board-semantic-authoring](./concepts/board-semantic-authoring.md) · [board-export-and-playback](./playbooks/board-export-and-playback.md) |
+| Direct Generation and Task Browser | [direct-generation](./concepts/direct-generation.md) · [task-browser](./concepts/task-browser.md) |
+| Work promotion funnel | [work-promotions](./playbooks/work-promotions.md) |
 | Research → wiki | [cookbook](./cookbooks/research-agent-wiki.md) |
 | Weekend Work | [cookbook](./cookbooks/weekend-static-work.md) |
 

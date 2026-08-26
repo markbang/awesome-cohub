@@ -1,45 +1,50 @@
 ---
 id: cohub.cheat.scopes
-title: Work scopes cheatsheet
+title: App and viewer scopes cheatsheet
 type: cheatsheet
 ---
 
-# Work scopes cheatsheet
+# App and viewer scopes cheatsheet
 
-## workScopes (publisher → Work)
+## Direct App scopes
 
-Common direct grants (see current works guide for the live list):
+Publisher grants these at publish time; they apply only to the App's own Space:
 
-| Scope | Typical use |
-|-------|-------------|
-| `space.view` | Read space config / identity |
-| `file.view` | Read workspace files/tree |
-| `session.view` | List/read sessions metadata the Work is allowed to |
-| `taskrun.view` | Inspect task runs |
+```text
+space.view  session.view  file.view  file.edit
+taskrun.view  session.prompt.readonly  session.prompt.fullaccess  command.execute
+```
 
-## allowedViewerScopes (Work may request)
+## Viewer-grant-only examples
 
 | Scope | Typical use |
 |-------|-------------|
-| `session.prompt.readonly` | Limited prompt patterns |
-| `session.prompt.fullaccess` | Full prompt power |
-| `generation.create` | Multimodal generation |
-| `user.space.list` | Viewer’s spaces list (account-level) |
-| `user.session.list` | Viewer’s sessions across spaces |
-| `user.usage.read` | Viewer usage aggregates |
+| `generation.create` | Create a multimodal generation task |
+| `user.space.list` | List the viewer's Spaces |
+| `user.session.list` | List the viewer's Sessions across Spaces |
+| `user.taskrun.list` | List Task Runs owned by the viewer |
+| `user.usage.read` | Read the viewer's activity |
+| Other Space/admin scopes | Actions or reads outside the App's direct grant |
 
-`user.*` is **not** bound to the Work’s Space. Justify carefully.
+`allowedViewerScopes` is deprecated and no longer limits runtime consent. Viewer grants are still constrained by the viewer's current access to the selected Space.
+
+## Pair operations correctly
+
+| Operation | Needed |
+|-----------|--------|
+| Create generation | `generation.create` |
+| Poll/read generation Task Run | `taskrun.view` |
+| Send prompt | Matching `session.prompt.readonly` or `session.prompt.fullaccess` |
+| Read prompt result | `session.view` |
+| Realtime rooms / Work commerce | Published App runtime; no extra scope |
 
 ## Rules
 
-1. Static demos: start with **no** special scopes  
-2. Never auth on load  
-3. Every scope ↔ a visible UI feature  
-4. Commerce does not imply prompt/generation scopes  
-
-## See also
-- Playbook: `cohub.bp.minimal-scopes`
-- Works guide: https://github.com/talesofai/cohub/blob/main/docs/works-guide.md
+1. Static Apps usually need no special scopes.
+2. Request viewer grants only on a user gesture.
+3. Every scope must map to a visible feature.
+4. A grant for Space A does not authorize Space B.
+5. Check `context().permissions.viewerGrants` for display; use `auth.request` to act.
 
 ---
 

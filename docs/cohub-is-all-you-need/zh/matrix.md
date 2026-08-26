@@ -24,10 +24,10 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | `cohub.bp.scratch-to-checkpoint` | 从空白 Space 到第一次存档 | Space, Files, Chat, Checkpoint | `cohub` | starter | builder |
 | `cohub.bp.agent-with-skills` | 给 agent 装 skill 干活 | Space, Sandbox, Skills, CLI | `cohub`, any ecosystem skill | starter | builder, agent-author |
 | `cohub.bp.cross-space-context` | 引用另一个 Space 的上下文 | `@space`, Sessions, Files | `cohub` | intermediate | builder, operator |
-| `cohub.bp.multimodal-pipeline` | 多模态生成并落盘 | Generation, Files | `cohub-generate` | starter | builder |
+| `cohub.bp.multimodal-pipeline` | 生成、查看并落盘多模态资产 | Generation, Files, Tasks | `cohub-generate` | starter | builder |
 | `cohub.bp.publish-static-work` | 发布静态 Work | Works (`file`/`directory`) | `cohub-works-share`, `public-share` | starter | builder |
 | `cohub.bp.work-kit-product` | 用 Work Kit 做真产品 | Works, SDK, Scopes | `cohub-work-kit`, `cohub-work-publish` | intermediate | builder |
-| `cohub.bp.minimal-scopes` | 最小权限发布 | workScopes, viewerScopes | `cohub-work-publish` | intermediate | builder |
+| `cohub.bp.minimal-scopes` | 以最小权限发布 Work App | appScopes, viewer grants | `cohub-work-publish` | intermediate | builder |
 | `cohub.bp.scheduled-loop` | 定时与 outer loop | Scheduled prompts, Tasks, Files-as-state | `cohub` | advanced | operator, agent-author |
 | `cohub.bp.space-knowledge-base` | 在 Space 里建复利知识库 | Files (`raw/` / `wiki/` / log), Sessions, Skills | `cohub` | intermediate | builder, agent-author |
 | `cohub.bp.social-research` | 社媒采集写入知识库 | Sandbox, Files, wiki pages | `wgetx` | intermediate | builder |
@@ -35,10 +35,11 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | `cohub.bp.channel-ops` | 外部频道入口 | Channels, Gateway | `cohub` | intermediate | operator |
 | `cohub.bp.fork-and-proposal` | Fork 存档并回馈 | Checkpoint, Fork, Proposal | `cohub` | intermediate | builder |
 | `cohub.bp.space-hooks-automation` | 用 Space Hooks 做事件自动化 | Hooks, Tasks, Files | `cohub` | advanced | operator, agent-author |
+| `cohub.bp.work-promotions` | 衡量 Work 推广漏斗 | Works/Apps, analytics, commerce | `cohub` | advanced | builder, operator |
 | `cohub.bp.mod-mount` | 挂载 Mod 共享工具 | Mods, Skills, Sandbox | `cohub` | intermediate | builder, operator |
 | `cohub.bp.skill-slash-discovery` | 用 `/skill:` 发现技能 | Chat, Skills, Mods | `cohub` | starter | builder, agent-author |
 | `cohub.bp.home-and-sessions-inbox` | Home 与会话收件箱 | Home, `/sessions` | `cohub` | starter | builder |
-| `cohub.bp.work-commerce` | Work 内售卖功能与积分 | Works, Billing, SDK | `cohub-work-kit` | advanced | builder |
+| `cohub.bp.work-commerce` | Work 内售卖功能与积分 | Works/Apps, Billing, SDK | `cohub-work-kit` | advanced | builder |
 | `cohub.bp.user-config-and-rules` | 用 config Space 管个人 Agent 默认 | config Space, User Rules, `/configs/user` | `cohub` | intermediate | builder, agent-author |
 | `cohub.bp.platform-config` | 运营平台配置 Space | platform config, skills | `cohub` | advanced | operator |
 | `cohub.bp.skill-catalog-cache` | 排查技能目录缓存 | Skills API, Redis | `cohub` | advanced | operator, agent-author |
@@ -46,8 +47,8 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | `cohub.bp.search-layers` | 三层搜索；网页用 hyper-search | Search API, config skills | `hyper-search` | starter | builder, agent-author |
 | `cohub.bp.port-preview` | 端口预览（开发向） | Works (`port`), Sandbox ports | `cohub-works-share` | intermediate | builder |
 | `cohub.bp.hide-cohub-bar` | 隐藏公开 Work 的 Cohub 底栏 | Works, 计费权益 | `cohub` CLI | starter | builder |
-| `cohub.bp.work-lifecycle` | 发布 / 版本 / 停用 / 可见性 | Works | `cohub` | intermediate | builder |
-| `cohub.bp.viewer-auth-user-scopes` | 访客授权 + `user.*` | Works, SDK | `cohub` | advanced | builder, agent-author |
+| `cohub.bp.work-lifecycle` | 发布 / 版本 / 停用 / 可见性 | Works/Apps | `cohub` | intermediate | builder |
+| `cohub.bp.viewer-auth-user-scopes` | 访客授权 + 账户级权限 | Works/Apps, SDK | `cohub` | advanced | builder, agent-author |
 | `cohub.bp.space-members-access` | 成员、host/builder/guest、访问策略 | Space 设置 | `cohub` | intermediate | builder, operator |
 | `cohub.bp.space-env-sandbox` | 环境变量 + 沙箱规格/idle | Space 设置, Sandbox | `cohub` | intermediate | builder, operator |
 | `cohub.bp.public-identity-slugs` | 用户名与 slug，拼公开 URL | Profile, Space, Works | `cohub` | starter | builder |
@@ -169,7 +170,7 @@ All matrix scenario IDs now have cards under [playbooks/](./playbooks/).
 ## 维护
 
 1. Keep IDs stable; add new rows rather than renumbering
-2. Align behavior notes with https://cohub.run/docs and https://cohub.run/changelog
+2. Align behavior notes with https://cohub.live/docs and https://cohub.live/changelog
 3. Prefer updating a card over growing the manifesto forever
 4. Anti-patterns live under [anti-patterns/](./anti-patterns/)
 

@@ -7,9 +7,9 @@ features: [work, billing, presentation]
 difficulty: starter
 related: [cohub.bp.publish-static-work, cohub.bp.work-kit-product, cohub.concept.work]
 sources:
-  - https://cohub.run/docs/create/works
+  - https://cohub.live/docs/create/works
   - https://github.com/talesofai/cohub/blob/main/docs/works-guide.md
-  - https://cohub.run/changelog
+  - https://cohub.live/changelog
 ---
 
 # Hide the Cohub bar on a public Work

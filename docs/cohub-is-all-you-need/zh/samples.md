@@ -12,8 +12,8 @@ type: guide
 
 | 内容 | 链接 |
 |------|------|
-| 产品文档 | https://cohub.run/docs |
-| Changelog | https://cohub.run/changelog |
+| 产品文档 | https://cohub.live/docs |
+| Changelog | https://cohub.live/changelog |
 | Monorepo | https://github.com/talesofai/cohub |
 | Awesome | https://github.com/markbang/awesome-cohub |
 
@@ -41,6 +41,9 @@ type: guide
 | 知识库布局 | [space-knowledge-base](./playbooks/space-knowledge-base.md) |
 | 配置发布 | [user-config-and-rules](./playbooks/user-config-and-rules.md) |
 | Work Kit 应用 | [work-kit-product](./playbooks/work-kit-product.md) |
+| Board 语义化编辑 | [board-semantic-authoring](./concepts/board-semantic-authoring.md) · [board-export-and-playback](./playbooks/board-export-and-playback.md) |
+| Direct Generation 与 Task Browser | [direct-generation](./concepts/direct-generation.md) · [task-browser](./concepts/task-browser.md) |
+| Work 推广漏斗 | [work-promotions](./playbooks/work-promotions.md) |
 | 调研 → wiki | [cookbook](./cookbooks/research-agent-wiki.md) |
 | 周末 Work | [cookbook](./cookbooks/weekend-static-work.md) |
 

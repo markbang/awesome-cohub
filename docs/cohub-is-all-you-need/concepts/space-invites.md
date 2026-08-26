@@ -7,7 +7,7 @@ related:
   - cohub.bp.space-members-access
   - cohub.concept.public-identity-slugs
 sources:
-  - https://cohub.run/changelog (v2.7 friendly invitations)
+  - https://cohub.live/changelog (v2.7 friendly invitations)
 ---
 
 # Space invitations & join links

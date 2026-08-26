@@ -1,72 +1,84 @@
 ---
 id: cohub.bp.viewer-auth-user-scopes
-title: Viewer authorization and user.* scopes
+title: Viewer authorization and account scopes
 type: playbook
 audience: [builder, agent-author]
-features: [work, sdk, auth]
+features: [work, app, sdk, auth, scopes]
 difficulty: advanced
-related: [cohub.bp.minimal-scopes, cohub.bp.work-kit-product, cohub.cheat.scopes]
+related: [cohub.bp.minimal-scopes, cohub.bp.work-kit-product, cohub.concept.task-browser]
 sources:
   - https://github.com/talesofai/cohub/blob/main/docs/works-guide.md
-  - https://cohub.run/docs/developers/sdk
-  - https://cohub.run/docs/create/works
+  - https://github.com/talesofai/cohub/blob/main/packages/sdk/docs/work-runtime-guide.md
+  - https://cohub.live/docs/developers/sdk
 ---
 
-# Viewer authorization and user.* scopes
+# Viewer authorization and account scopes
 
 ## When
 
-A published Work must call Cohub APIs **as the viewer** (or with viewer consent), not only with publisher-granted `workScopes`.
+A published Work/App must call Cohub APIs as the viewer, access another Space, or perform an action that cannot be pre-granted by the publisher.
 
-## Outcome
+## Grant rules
 
-- Correct split: **workScopes** vs **allowedViewerScopes**  
-- Consent only on user gesture (never on load)  
-- Understand silent re-auth cache for returning viewers  
+- App scopes are direct publisher grants, limited to the App's own Space.
+- Viewer grants are requested with `client.auth.request()` or `client.auth.requestSpace()` from a user gesture.
+- The viewer must currently hold every requested permission on the target Space at grant time and use time.
+- Grants are per Space and last 14 days. Revocation is immediate; silent reuse cannot revive a revoked grant.
+- `allowedViewerScopes` is a deprecated compatibility field, not a current allow-list boundary.
 
-## Two layers
+## Request pattern
 
-| Layer | Who grants | Examples |
-|-------|------------|----------|
-| `workScopes` | Publisher at publish time | `space.view`, `file.view`, `session.view`, `taskrun.view` |
-| `allowedViewerScopes` | Publisher allow-list; **viewer** approves | `session.prompt.*`, `generation.create`, `user.*` |
+```js
+const ctx = await client.context();
 
-### user.* (account-level)
+// Known target Space; silent if an existing grant covers the request.
+await client.auth.request({
+  scopes: ["generation.create"],
+  reason: "Generate an image for this action.",
+});
+
+// Let the viewer choose a Space in the same consent flow.
+const result = await client.auth.requestSpace({
+  scopes: ["file.view", "session.view"],
+  reason: "Read the Space you choose.",
+});
+if (result.granted && result.space) {
+  const space = client.space(result.space.id);
+}
+```
+
+Use `alwaysAsk: true` when the viewer must explicitly reconfirm or choose a different Space. Read `ctx.permissions.viewerGrants` to render state without opening a dialog.
+
+## Account-level scopes
 
 | Scope | Enables |
 |-------|---------|
-| `user.space.list` | `cohub.spaces.list()` |
-| `user.session.list` | `cohub.user.listSessions()` across spaces viewer can already see |
-| `user.usage.read` | `cohub.user.getUsage()` |
+| `user.space.list` | `client.spaces.list()` |
+| `user.session.list` | `client.user.listSessions()` |
+| `user.taskrun.list` | Unscoped `client.tasks.list()` for Task Runs owned by the viewer |
+| `user.usage.read` | `client.user.getActivity()` |
 
-These are **not** bound to the Work’s Space. They do not widen space-scoped Work permissions.
+These scopes are viewer-grant-only and are not bound to the App's Space. Listing a Space or an owned Task Run does not grant access to that Space or to other users' data.
 
-## Pattern
+## Scope pairing
 
-```js
-const cohub = createCohubClient();
-const ctx = await cohub.context(); // null outside published shell
-
-// only after a click/gesture:
-await cohub.auth.request({
-  scopes: ["session.prompt.readonly"],
-  reason: "Read session context for this viewer.",
-});
-```
-
-Returning viewers may **silently reuse** cached grants (periodic re-consent) — still declare allow-list correctly.
+- `generation.create` creates a generation task; `taskrun.view` reads or polls it.
+- `session.prompt.*` sends a prompt; `session.view` reads the resulting turn.
+- A viewer grant for Space A does not authorize the same call against Space B.
 
 ## Done when
 
-- [ ] Allow-list includes only scopes you request  
-- [ ] No auth wall on first paint  
-- [ ] 403 on user.* → missing viewer grant, not “broken SDK”  
+- [ ] Authorization happens after a meaningful user action
+- [ ] The consent reason names the user-visible operation
+- [ ] Cross-Space targets are explicit
+- [ ] 403s are diagnosed as missing or stale grants rather than hidden retries
 
 ## Avoid
 
-- Auth on load ([auth-on-load](../anti-patterns/auth-on-load.md))  
-- Rebuilding Cohub login inside the iframe ([rebuild-auth-in-work](../anti-patterns/rebuild-auth-in-work.md))  
-- Broad `user.*` “just in case”  
+- Auth on load
+- A second login system inside the iframe
+- Treating `viewerScopes` in a token as authoritative grant state
+- Requesting account-wide scopes for a Space-local feature
 
 ---
 

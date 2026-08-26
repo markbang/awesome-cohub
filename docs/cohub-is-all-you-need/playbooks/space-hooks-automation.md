@@ -3,66 +3,74 @@ id: cohub.bp.space-hooks-automation
 title: Automate with Space Hooks
 type: playbook
 audience: [builder, agent]
-features: [hooks, sandbox, chat, files]
+features: [hooks, sandbox, chat, files, task]
 difficulty: advanced
-related: [cohub.bp.scheduled-loop, cohub.concept.task]
+related: [cohub.bp.scheduled-loop, cohub.concept.hooks, cohub.concept.task-schedule]
 sources:
   - https://github.com/talesofai/cohub/blob/main/docs/space-hooks.md
-  - https://cohub.run/changelog#v1.103
-  - https://cohub.run/changelog#v1.104
+  - https://cohub.live/changelog (v1.103-v2.18)
 ---
 
 # Automate with Space Hooks
 
 ## When
 
-File changes, new Saves, or finished turns should trigger shell work or a follow-up prompt **inside the Space**.
+A file change, Save, finalized turn, published Work version, or Task Run transition should trigger work inside the Space.
 
 ## Outcome
 
 - Declarative hooks under `.cohub/hooks/*`
-- Events matched without self-trigger loops
-- Runs visible as tasks; failures don’t storm the parent work
+- Event matching without self-trigger loops
+- Runs visible as Tasks with curated event context
 
 ## Steps
 
-1. Read supported events: `space.fs.changed`, `space.workspace.ready`, `session.turn.finalized`, `checkpoint.created`.
-2. Add one file per hook:
+1. Choose an event:
+   ```text
+   space.fs.changed
+   space.workspace.ready
+   session.turn.finalized
+   checkpoint.created
+   work.version.published
+   task.updated
+   ```
+2. Add one YAML/JSON file per hook. Exactly one `run` or `prompt` action is required:
+   ```yaml
+   schema: cohub.space-hook.v1
+   on:
+     event: task.updated
+   run: |
+     echo "task=$COHUB_HOOK_TASK_ID status=$COHUB_HOOK_TASK_STATUS"
+   ```
+3. Use `paths`, `ignore`, `kinds`, `sessionIds`, `sources`, or label filters under `on` where supported. `prompt.sessionId` is the action target, not a trigger filter.
+4. Remember that FS matching ignores `.cohub/**`, and `task.updated` filters out `space_hook` tasks and their `run_command` children to prevent re-entry.
+5. Read event context from `COHUB_HOOK_*` variables. Optional values are exported as empty strings; file paths and changed fields are bounded.
+6. Verify the resulting Task Run in the Tasks surface.
 
-```yaml
-# .cohub/hooks/on-src-change.yml
-schema: cohub.space-hook.v1
-on:
-  event: space.fs.changed
-  paths: ["src/**"]
-  ignore: ["src/generated/**"]
-run: |
-  npm test
-```
+## `task.updated` payload
 
-3. Remember: `.cohub/**` is ignored for FS matching (prevents loops).
-4. For turn hooks, filter with `sessionIds` / `sources` (`web_app`, `cli`, …) under `on` — orthogonal to `prompt.sessionId` action target.
-5. Prefer `set -u` safe scripts; optional env keys are exported as empty strings (`COHUB_HOOK_*`).
-6. Verify via Tasks UI / task runs after a real event.
+The v2.18 event fires on Task Run state transitions (`pending` -> `running` -> `completed`/`failed`) and exposes the task id/type/status, changed fields, and error. Use it to launch follow-up validation or notification work without polling generation or Chat state.
 
 ## Scheduled prompts vs Hooks
 
 | Mechanism | Good for |
 |-----------|----------|
-| **Scheduled prompt** | Time-based recurrence (“every Monday”) |
-| **Space Hooks** | Domain events (fs/save/turn/workspace ready) |
+| **Scheduled prompt** | Time-based recurrence |
+| **Space Hooks** | Domain events and state transitions |
 
 ## Done when
 
-- [ ] Hook file committed in Space workspace
-- [ ] One successful triggered run observed
-- [ ] No retry storm / self-trigger loop
+- [ ] The hook file is in the Space workspace
+- [ ] A real event produces one expected Task Run
+- [ ] Filters and action target are distinct
+- [ ] No retry storm or self-trigger loop occurs
 
 ## Avoid
 
-- Writing hooks that modify matched paths unboundedly (feedback loops)
-- Putting secrets in hook YAML (use Space env)
-- Using hooks as a substitute for product permissions design
+- Modifying matched paths without an exit condition
+- Putting secrets in hook YAML instead of Space env
+- Polling Chat when `task.updated` provides the event boundary
+- Using hooks as a substitute for product permission design
 
 ---
 

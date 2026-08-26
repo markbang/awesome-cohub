@@ -39,7 +39,7 @@ platform → mods → user config → workspace
 ## 身份
 
 - 沙箱 **execution token** ≠ 浏览器登录 cookie 故事
-- Work 运行时靠 scopes（`workScopes` / `viewerScopes`）— 最小权限
+- Work 运行时使用 `appScopes` 与按 Space 的 viewer grant（旧 `workScopes` / `viewerScopes` 仍是兼容别名）— 最小权限
 - 不要在 Work 里重做一套 Cohub 登录；用平台会话/SDK
 
 ## 知识习惯
@@ -75,19 +75,24 @@ log.md   只追加时间线
 7. 定时循环状态只活在聊天里  
 8. skill 脚本/资源只放仓根（安装会丢）  
 9. 把实时 API 数据烤进静态 `dist/`  
-10. 首屏就鉴权墙、没有公开壳  
+10. 首屏就鉴权墙、没有公开壳
+11. 直接写已移除的 Board Node/Sequence 线上结构，而不是语义化 Item/Composition
 
 ## 优先做
 
 - 破坏性自治前先 Save；之后看 diff  
 - 可扫读的存档备注（`v0-landing-working`）  
-- 最小 scopes + Work Kit 模式  
+- 最小 scopes + Work Kit 模式
+- 使用 capabilities 与变更回执进行 Board 语义化编辑
+- 用 Task Browser 管理异步生成历史
+- 触发重复工具调用保护时重新评估，不要强行继续循环
 - 循环写磁盘状态（`runtime/state.json`、wiki log）  
 - 教人时引用 playbook id（`cohub.bp.*`）  
 
 ## Work 呈现
 
 - Pro/Max：UI 或 `--hide-cohub-bar` 隐藏公开底栏 — [hide-cohub-bar](./playbooks/hide-cohub-bar.md)
+- Work/App 预览可接收 invocation 上下文，只暴露明确注册的方法 — [work-presentation](./concepts/work-presentation.md)
 
 
 ## `.cohub` vs `.agents`（优先级）

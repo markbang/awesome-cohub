@@ -36,7 +36,8 @@ Curated playbooks.
 | `cohub.bp.work-commerce` | Sell features and credits inside a Work | [work-commerce.md](./work-commerce.md) |
 | `cohub.bp.work-kit-product` | Build a Work product with Work Kit | [work-kit-product.md](./work-kit-product.md) |
 | `cohub.bp.work-lifecycle` | Work lifecycle — publish, version, disable, visibility | [work-lifecycle.md](./work-lifecycle.md) |
+| `cohub.bp.work-promotions` | Measure Work promotions without leaking visitor data | [work-promotions.md](./work-promotions.md) |
 
-**32** items.
+**33** items.
 
 [中文](../zh/playbooks/README.md)

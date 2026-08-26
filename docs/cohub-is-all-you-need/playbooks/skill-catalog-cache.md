@@ -39,7 +39,7 @@ Frontmatter `name:` should match `/skill:name` (valid name regex enforced).
 ```bash
 # authenticated
 curl -sS -H "Authorization: Bearer $TOKEN" \
-  "https://api.cohub.run/api/skills?spaceId=$SPACE_ID" | jq .
+  "https://api.cohub.live/api/skills?spaceId=$SPACE_ID" | jq .
 ```
 Empty without auth+space is expected.
 

@@ -6,7 +6,7 @@ related:
   - cohub.concept.user-config-space
   - cohub.bp.dot-cohub-layers
 sources:
-  - https://cohub.run/changelog (v1.108 - v1.110)
+  - https://cohub.live/changelog (v1.108 - v1.110)
 ---
 
 # Per-prompt thinking level & live model status

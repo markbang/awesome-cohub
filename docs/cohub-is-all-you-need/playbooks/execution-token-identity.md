@@ -11,65 +11,64 @@ sources:
   - apps/agent/src/runtime/session-runtime.ts (shouldIncludeUserSkills)
   - packages/cli/src/auth.ts
   - apps/api/src/index.ts (principal order)
+  - https://cohub.live/changelog (v2.29)
 ---
 
 # Execution token vs login identity
 
 ## When
 
-Debugging “CLI works logged-in but agent subprocess 401”, “collaborator doesn’t get my user skills”, or “which identity did this tool call use?”.
+Debugging a CLI call that works interactively but fails in an Agent subprocess, a collaborator's skill set, or a request that sees the wrong resources.
 
 ## Three identities
 
 | Identity | Typical carrier | Use |
 |----------|-----------------|-----|
 | **Interactive user** | Logto access token (`cohub auth login`) | Humans in CLI/UI |
-| **Execution grant** | `COHUB_EXECUTION_TOKEN` | Agent/tool/run_command acting inside a turn |
-| **Work / preview principal** | work session / preview cookie | Published Work or preview host |
+| **Execution grant** | `COHUB_EXECUTION_TOKEN` | Agent/tool/`run_command` work inside a turn |
+| **Work/App runtime** | Work session or preview cookie | Published App or workspace preview |
 
-API resolves token in rough order: **execution grant → preview session (preview host) → work session → Logto user**.
+The API resolves principals in rough order: execution grant -> preview session -> Work/App session -> Logto user.
 
 ## Rules of thumb
 
-1. Inside Agent tool shells, prefer the injected **execution token**; don’t assume `~/.config/cohub/auth.json` exists in the sandbox.
-2. `COHUB_EXECUTION_TOKEN` in your laptop shell **overrides** Logto for CLI until unset — easy foot-gun in local envs.
-3. You **cannot** `cohub auth refresh` an execution token; it’s not a refreshable OIDC session.
-4. Execution grants are **space-bound** (+ optional session/turn). Cross-space CLI needs a grant/token valid for that space or a real user session with rights.
-5. **User skills in prompts** only when actor is the **space owner**:
-   ```ts
-   shouldIncludeUserSkills = actorUserId === spaceOwnerUserId
-   ```
-   Members/guests: project + mod + platform skills still apply; owner personal skills are not injected into their prompt.
-6. Token streams are redacted in tool output — don’t chase “missing token” in logs.
+1. In Agent tool shells, use the injected execution token; do not assume `~/.config/cohub/auth.json` exists in the Sandbox.
+2. `COHUB_EXECUTION_TOKEN` in a laptop shell overrides stored Logto auth until it is unset.
+3. An execution token is not an OIDC session and cannot be refreshed with `cohub auth refresh`.
+4. Execution grants remain bound to their Space and optional session/turn.
+5. Since v2.29, scoped execution permissions are **additive** with the actor's own account access. They do not replace it; filtering and direct checks use the same union.
+6. User-config skills enter the system prompt only when `actorUserId === spaceOwnerUserId`. Project, Mod, and platform skills still apply to collaborators.
+7. Token values are redacted from tool output; do not diagnose a missing token by copying secrets into logs.
 
 ## Playbook
 
-1. Print auth source in CLI:
+1. Identify the auth source:
    ```bash
    cohub auth whoami
-   # note execution-token vs logto
    env | rg "COHUB_EXECUTION_TOKEN|COHUB_USER_UUID|COHUB_SPACE_ID"
    ```
-2. For human ops, unset execution token and login:
+2. For human CLI operations, unset the execution token and use the interactive session:
    ```bash
    unset COHUB_EXECUTION_TOKEN
    cohub auth login
    ```
-3. For agent-driven automation, pass through platform-injected env; don’t mint random long-lived tokens into files.
-4. When collaborators “lose” skills, check ownership vs membership before debugging Redis.
-5. When Work prompts agent, remember delegated/work auth scopes gate execution scopes (`getPromptAuthScopes`).
+3. For Agent automation, use platform-injected turn credentials and keep them out of files.
+4. If visibility differs, compare the target Space, session/turn binding, and the additive permission union before changing application code.
+5. If collaborators lack personal skills, check ownership; this is an intentional system-prompt boundary.
 
 ## Done when
 
-- [ ] You can state which principal a failing call used
-- [ ] No accidental local `COHUB_EXECUTION_TOKEN` shadowing Logto
-- [ ] Owner vs member skill expectations match `shouldIncludeUserSkills`
+- [ ] The failing request's principal and target Space are known
+- [ ] No local execution token is shadowing intended Logto auth
+- [ ] Account access and execution scopes are interpreted as a union
+- [ ] Owner/member skill expectations match the actor identity
 
 ## Avoid
 
 - Committing execution tokens
-- Assuming sandbox has your laptop Logto session
-- Expecting members to load the owner’s `/configs/user` skills in system prompt
+- Assuming the Sandbox has a laptop login session
+- Treating an execution grant as a general-purpose user token
+- Expecting members to receive the owner's `/configs/user` skills
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-id: auto
+id: cohub.concept.task-schedule
 title: 任务与定时
 type: concept
 ---

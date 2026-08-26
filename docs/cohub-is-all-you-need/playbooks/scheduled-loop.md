@@ -7,8 +7,8 @@ features: [scheduled-prompt, files, chat, task]
 difficulty: advanced
 related: [cohub.bp.space-hooks-automation, cohub.bp.space-knowledge-base]
 sources:
-  - https://cohub.run/docs/developers/cli
-  - https://cohub.run/docs/learn/core-concepts
+  - https://cohub.live/docs/developers/cli
+  - https://cohub.live/docs/learn/core-concepts
 ---
 
 # Recurring automation with scheduled prompts

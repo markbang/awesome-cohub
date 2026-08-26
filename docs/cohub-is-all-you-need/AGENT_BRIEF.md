@@ -39,7 +39,7 @@ platform → mods → user config → workspace
 ## Identity
 
 - Sandbox **execution token** ≠ browser login cookie story.
-- Work runtime uses scopes (`workScopes` / `viewerScopes`) — request least privilege.
+- Work runtime uses `appScopes` plus per-Space viewer grants (legacy `workScopes` / `viewerScopes` aliases exist) — request least privilege.
 - Do not rebuild Cohub auth inside a Work; use platform session/SDK.
 
 ## Knowledge habit
@@ -75,19 +75,24 @@ Update existing wiki pages; do not only append raw forever.
 7. Scheduled loops with state only in chat  
 8. Skill scripts/assets only at repo root (install drops them)  
 9. Bake live API data into static `dist/`  
-10. Auth wall on first paint without a public shell  
+10. Auth wall on first paint without a public shell
+11. Writing the removed Board Node/Sequence wire shape instead of semantic Items/Compositions
 
 ## Prefer
 
 - Save before destructive autonomy; read diffs after  
 - Scannable Save notes (`v0-landing-working`)  
-- Minimal scopes + Work Kit patterns  
+- Minimal scopes + Work Kit patterns
+- Semantic Board authoring with capabilities and mutation receipts
+- Task Browser for asynchronous generation history
+- Let the repeated-tool-call guard trigger reassessment instead of forcing a loop
 - Disk state for loops (`runtime/state.json`, wiki log)  
 - Cite playbooks by id (`cohub.bp.*`) when teaching humans  
 
 ## Work presentation
 
 - Pro/Max: hide public footer bar via UI or `--hide-cohub-bar` — [hide-cohub-bar](./playbooks/hide-cohub-bar.md)
+- Work/App previews can receive invocation context and expose only explicitly registered callable methods — [work-presentation](./concepts/work-presentation.md)
 
 
 ## `.cohub` vs `.agents` (priority)

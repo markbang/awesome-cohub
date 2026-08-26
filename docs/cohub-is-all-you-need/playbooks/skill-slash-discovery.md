@@ -7,8 +7,8 @@ features: [skill, chat, mod]
 difficulty: starter
 related: [cohub.bp.agent-with-skills, cohub.bp.mod-mount, cohub.concept.skill]
 sources:
-  - https://cohub.run/docs/workspace/chats
-  - https://cohub.run/changelog#v1.97
+  - https://cohub.live/docs/workspace/chats
+  - https://cohub.live/changelog#v1.97
 ---
 
 # Discover and invoke skills with /skill:

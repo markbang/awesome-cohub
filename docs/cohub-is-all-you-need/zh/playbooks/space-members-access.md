@@ -23,7 +23,7 @@ type: playbook
 1. **Space 设置 → Members** 邀请并给最小角色  
 2. **Access**：登录用户 / 匿名默认  
 3. 用标签 + 分 Space，别把 Home 当共享垃圾桶  
-4. 公开 **Work** 还有第二层权限：member ≠ workScopes  
+4. 公开 **Work/App** 还有第二层权限：member ≠ appScopes
 
 ## 完成标志
 

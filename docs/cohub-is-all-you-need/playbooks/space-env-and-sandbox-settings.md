@@ -7,8 +7,8 @@ features: [space, sandbox, env]
 difficulty: intermediate
 related: [cohub.concept.sandbox, cohub.bp.egress-proxy, cohub.cheat.paths-mounts]
 sources:
-  - https://cohub.run/docs/workspace/spaces
-  - https://cohub.run/docs/workspace/files-and-sandbox
+  - https://cohub.live/docs/workspace/spaces
+  - https://cohub.live/docs/workspace/files-and-sandbox
 ---
 
 # Space env vars and sandbox settings

@@ -1,5 +1,5 @@
 ---
-id: auto
+id: cohub.concept.labels
 title: 标签
 type: concept
 ---

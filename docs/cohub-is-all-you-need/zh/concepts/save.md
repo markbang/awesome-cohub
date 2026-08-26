@@ -14,7 +14,7 @@ A **Save** is an immutable workspace snapshot. CLI/API name: **checkpoint**.
 - Notes for the next reader: `before-auth-refactor`, `demo-2026-07-18`
 
 ## See also
-- https://cohub.run/docs/workspace/saves
+- https://cohub.live/docs/workspace/saves
 
 ---
 

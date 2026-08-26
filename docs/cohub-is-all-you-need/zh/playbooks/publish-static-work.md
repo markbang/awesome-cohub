@@ -7,9 +7,9 @@ features: [work, files, save]
 difficulty: starter
 related: [cohub.concept.work, cohub.bp.minimal-scopes, cohub.bp.work-kit-product, cohub.bp.hide-cohub-bar, cohub.bp.work-lifecycle, cohub.bp.public-identity-slugs]
 sources:
-  - https://cohub.run/docs/create/works
+  - https://cohub.live/docs/create/works
   - https://github.com/talesofai/cohub/blob/main/docs/works-guide.md
-  - https://cohub.run/changelog#v1.105
+  - https://cohub.live/changelog#v1.105
 ---
 
 # 发布静态 Work
@@ -69,7 +69,7 @@ Publish also extracts title/description/icon for OG/share meta (see changelog v1
 
 - Sharing private sandbox port links as “production”
 - Baking live secrets into static `dist`
-- Broad `viewerScopes` for a static brochure page
+- 为静态宣传页申请过宽的 viewer grant
 
 ---
 

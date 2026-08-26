@@ -7,8 +7,8 @@ features: [save, space, chat]
 difficulty: intermediate
 related: [cohub.concept.save, cohub.concept.space, cohub.bp.scratch-to-checkpoint]
 sources:
-  - https://cohub.run/docs/workspace/saves
-  - https://cohub.run/docs/learn/core-concepts
+  - https://cohub.live/docs/workspace/saves
+  - https://cohub.live/docs/learn/core-concepts
 ---
 
 # Fork a Save and explore safely

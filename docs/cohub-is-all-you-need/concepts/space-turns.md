@@ -6,7 +6,7 @@ related:
   - cohub.concept.chat
   - cohub.bp.channel-ops
 sources:
-  - https://cohub.run/changelog (v2.6 turn browsing)
+  - https://cohub.live/changelog (v2.6 turn browsing)
 ---
 
 # Space turn browsing

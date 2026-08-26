@@ -7,12 +7,12 @@ features: [space, chat, navigation]
 difficulty: starter
 related: [cohub.concept.space, cohub.concept.chat, cohub.bp.cross-space-context]
 sources:
-  - https://cohub.run/docs/learn/product-map
-  - https://cohub.run/docs/workspace/chats
-  - https://cohub.run/changelog#v1.94
-  - https://cohub.run/changelog#v1.98
-  - https://cohub.run/changelog#v1.101
-  - https://cohub.run/changelog#v1.105
+  - https://cohub.live/docs/learn/product-map
+  - https://cohub.live/docs/workspace/chats
+  - https://cohub.live/changelog#v1.94
+  - https://cohub.live/changelog#v1.98
+  - https://cohub.live/changelog#v1.101
+  - https://cohub.live/changelog#v1.105
 ---
 
 # Home Space 与 Sessions 收件箱

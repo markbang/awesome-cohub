@@ -7,8 +7,8 @@ features: [profile, space, work]
 difficulty: starter
 related: [cohub.bp.publish-static-work, cohub.bp.work-lifecycle, cohub.concept.work]
 sources:
-  - https://cohub.run/docs/workspace/spaces
-  - https://cohub.run/docs/create/works
+  - https://cohub.live/docs/workspace/spaces
+  - https://cohub.live/docs/create/works
   - https://github.com/talesofai/cohub/blob/main/docs/works-guide.md
 ---
 

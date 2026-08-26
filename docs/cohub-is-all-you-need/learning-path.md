@@ -34,9 +34,20 @@ Pick a track. Each step links to an existing playbook or cookbook.
 3. [Minimal scopes](./playbooks/minimal-scopes.md)
 4. [Hide Cohub bar](./playbooks/hide-cohub-bar.md) (Pro/Max presentation)
 5. [Work lifecycle](./playbooks/work-lifecycle.md)
-6. Skim anti-patterns: [BrowserRouter on static Works](./anti-patterns/browser-router-static.md), [Raw sandbox URL as launch](./anti-patterns/raw-sandbox-launch.md)
+6. [Work/App presentation](./concepts/work-presentation.md)
+7. Skim anti-patterns: [BrowserRouter on static Works](./anti-patterns/browser-router-static.md), [Raw sandbox URL as launch](./anti-patterns/raw-sandbox-launch.md)
 
 **Done when:** directory Work opens on a public URL with least privilege.
+
+## Half day — Board and generation surfaces
+
+1. [Semantic Board authoring](./concepts/board-semantic-authoring.md)
+2. [Author, export, and play Boards](./playbooks/board-export-and-playback.md)
+3. [Direct Generation turns](./concepts/direct-generation.md)
+4. [Task Browser](./concepts/task-browser.md)
+5. [Work promotions](./playbooks/work-promotions.md) when measuring public traffic
+
+**Done when:** a Board snapshot validates before publish, a generation Task Run is inspectable, and a Work funnel has an explicit attribution policy.
 
 ## Advanced — autonomy & ops
 

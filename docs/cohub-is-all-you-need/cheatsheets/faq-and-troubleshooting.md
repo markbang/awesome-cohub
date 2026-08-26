@@ -1,70 +1,66 @@
 ---
 id: cohub.cheat.faq
-title: FAQ & troubleshooting
+title: FAQ and troubleshooting
 type: cheatsheet
 ---
 
-# FAQ & troubleshooting
+# FAQ and troubleshooting
 
-## Skills
+## Skills and config
 
 | Symptom | Likely cause | Fix |
 |---------|--------------|-----|
-| `/skill:foo` missing | Not installed in this Space / not published from config | Install into project **or** config Space + **Save**; see [skill-slash-discovery](../playbooks/skill-slash-discovery.md) |
-| Skill exists on disk, slash empty | Catalog/cache lag | [skill-catalog-cache](../playbooks/skill-catalog-cache.md); reopen chat / wait for index |
-| Scripts missing after `npx skills add` | Assets lived at repo root | [skill-packaging](./skill-packaging.md) · [skill-assets-at-repo-root](../anti-patterns/skill-assets-at-repo-root.md) |
-| Wrong skill wins | Name collision in merge order | platform → mods → user → workspace; rename or override intentionally |
+| `/skill:foo` missing | Not installed in this Space / not published from config | Install into project or config Space + Save |
+| Skill exists on disk, slash empty | Catalog/cache lag | Check [skill-catalog-cache](../playbooks/skill-catalog-cache.md); reopen Chat / wait for index |
+| Scripts missing after install | Assets lived at repo root | Keep them under `skills/<name>/scripts/` |
+| Wrong skill wins | Layer collision | platform -> mods -> user -> workspace |
 
-## Config publish
-
-| Symptom | Fix |
-|---------|-----|
-| Edited `/configs/user` and it reset | Mount is **read-only publish**; edit **config Space** + Save ([edit-configs-user](../anti-patterns/edit-configs-user-in-project.md)) |
-| Used Home as config | Create `name=config` Space ([home-as-config](../anti-patterns/home-as-config.md)) |
-| Skills installed but other Spaces lack them | Forgot Save on config Space |
-
-## Works
+## Works / Apps
 
 | Symptom | Fix |
 |---------|-----|
-| Share link is sandbox host | Publish a **Work**; don’t ship raw sandbox ([raw-sandbox-launch](../anti-patterns/raw-sandbox-launch.md)) |
-| Refresh 404 on routes | Static hosting + History API — use hash/prerender ([browser-router-static](../anti-patterns/browser-router-static.md)) |
-| White screen | Check `base: "./"`, asset paths, browser console; rebuild `dist/` |
-| 401 / scope errors | Tighten to required scopes only; re-publish ([minimal-scopes](../playbooks/minimal-scopes.md)) |
-| Commerce “works” only on preview | Need runtime Work ([commerce-on-static-preview](../anti-patterns/commerce-on-static-preview.md)) |
-| Cannot hide Cohub footer bar | Not Pro/Max, or not on published Work | [hide-cohub-bar](../playbooks/hide-cohub-bar.md); CLI `--hide-cohub-bar` |
-| Public URL will not form | Missing username or space/work slug | [public-identity-slugs](../playbooks/public-identity-slugs.md) |
-| File/dir publish rejected | Size/count limits | file ≤5MB; dir ≤1000 files / ≤100MB + `index.html` — [work-lifecycle](../playbooks/work-lifecycle.md) |
-| Viewer API 403 | Scope not allow-listed or not granted | [viewer-auth-and-user-scopes](../playbooks/viewer-auth-and-user-scopes.md) |
-| Target edited but public unchanged | Need publish-version | [work-lifecycle](../playbooks/work-lifecycle.md) |
+| Share link is a Sandbox host | Publish a Work/App; do not ship a raw Sandbox URL |
+| Refresh 404 on routes | Static hosting + History API; use hash routing or prerender |
+| White screen | Check `base: "./"`, asset paths, browser console, and rebuild `dist/` |
+| File/dir publish rejected | File/directory limit or missing `index.html`; current limit is 1 GiB and directory count is 1-1000 |
+| Target edited but public page is unchanged | Publish an explicit new version |
+| Work preview turns blank after an update | Current preview should retain content on refresh failure; use its Retry action and inspect version state |
+| `desktop open --call` does nothing | The App must register that exact method and be opened from an approved Cohub origin |
+| Viewer API 403 | Check whether the call needs an App scope or a viewer grant on the target Space |
+| `generation.create` succeeds but polling is 403 | Add/request `taskrun.view`; creation and result reading are separate permissions |
+| Task Browser Mine view is empty | Request viewer-only `user.taskrun.list`; Space view uses `taskrun.view` instead |
+| Commerce works only in preview | Use a published Work/App runtime; raw assets and local previews have no runtime context |
 
-
-## Network / fetch
-
-| Symptom | Fix |
-|---------|-----|
-| Outbound blocked / geo issues | [egress-proxy](../playbooks/egress-proxy.md) + `warp-proxy` |
-| wgetx / browser skills fail | Playwright browsers installed? ffmpeg/whisper only if you use those flags |
-
-## Identity
+## Board
 
 | Symptom | Fix |
 |---------|-----|
-| API thinks wrong user | [execution-token-identity](../playbooks/execution-token-identity.md) — token ≠ browser cookie story |
-| Work re-implements login | Use platform session/SDK ([rebuild-auth-in-work](../anti-patterns/rebuild-auth-in-work.md)) |
+| Legacy node/sequence payload rejected | Use semantic Items/Compositions and `boards capabilities` |
+| Board mutation duplicated after retry | Reuse the same `mutationId`; inspect the receipt |
+| Board mutation conflicts | Re-read the current version and retry with a fresh `baseVersion` |
+| Composition renders differently after publish | Keep referenced assets in the Space and validate the semantic snapshot before publish |
+
+## Files and identity
+
+| Symptom | Fix |
+|---------|-----|
+| Concurrent edit was rejected | Handle `CONFLICT`: read the latest version, then use a smaller edit or `fs.edit` |
+| API sees the wrong user | Check [execution-token-identity](../playbooks/execution-token-identity.md); execution scopes add to account access |
+| Work re-implements login | Use the platform session/SDK |
 
 ## Autonomy
 
 | Symptom | Fix |
 |---------|-----|
-| Loop forgets progress | Persist `runtime/state.json` / wiki log ([loop-without-disk-state](../anti-patterns/loop-without-disk-state.md)) |
-| Agent wrecked the tree | Save/fork before autonomy ([no-save-before-autonomy](../anti-patterns/no-save-before-autonomy.md)) |
+| Loop forgets progress | Persist `runtime/state.json` or a wiki log |
+| Agent wrecked the tree | Save/fork before high-autonomy work |
+| Hook re-enters itself | Check `.cohub/**` ignores and `task.updated` filtering |
 
 ## Still stuck
 
-1. Product docs: https://cohub.run/docs  
-2. [Paths & mounts](./paths-and-mounts.md)  
-3. [AGENT_BRIEF](../AGENT_BRIEF.md)  
+1. Product docs: https://cohub.live/docs
+2. [Paths and mounts](./paths-and-mounts.md)
+3. [AGENT_BRIEF](../AGENT_BRIEF.md)
 
 ---
 

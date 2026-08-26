@@ -7,9 +7,9 @@ features: [mod, skill, space, sandbox]
 difficulty: intermediate
 related: [cohub.concept.skill, cohub.bp.agent-with-skills, cohub.bp.space-knowledge-base]
 sources:
-  - https://cohub.run/docs/workspace/spaces
-  - https://cohub.run/docs/learn/core-concepts
-  - https://cohub.run/changelog#v1.99
+  - https://cohub.live/docs/workspace/spaces
+  - https://cohub.live/docs/learn/core-concepts
+  - https://cohub.live/changelog#v1.99
 ---
 
 # Mount Mods for shared tooling

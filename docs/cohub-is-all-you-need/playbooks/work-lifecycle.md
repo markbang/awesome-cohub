@@ -1,110 +1,89 @@
 ---
 id: cohub.bp.work-lifecycle
-title: Work lifecycle — publish, version, disable, visibility
+title: Work lifecycle - publish, version, disable, visibility
 type: playbook
 audience: [builder]
-features: [work]
+features: [work, app, publish, analytics]
 difficulty: intermediate
-related: [cohub.bp.publish-static-work, cohub.bp.hide-cohub-bar, cohub.bp.port-preview]
+related:
+  - cohub.bp.publish-static-work
+  - cohub.bp.hide-cohub-bar
+  - cohub.bp.port-preview
+  - cohub.bp.work-promotions
 sources:
-  - https://cohub.run/docs/create/works
+  - https://cohub.live/docs/create/works
   - https://github.com/talesofai/cohub/blob/main/docs/works-guide.md
+  - https://cohub.live/changelog (v2.14, v2.22, v2.24)
 ---
 
-# Work lifecycle — publish, version, disable, visibility
+# Work lifecycle - publish, version, disable, visibility
 
 ## When
 
-You manage a Work beyond “first publish”: iterate, take offline, or change who can open it.
-
-## Outcome
-
-- Know `status` vs `visibility` vs **version snapshot**
-- Can disable without deleting; republish from current target
-- Know target limits (file / directory / port)
+You manage a Work/App beyond its first publish: iterate, preview, measure, take it offline, or change who can open it.
 
 ## Model
 
 | Field | Meaning |
 |-------|---------|
 | `slug` | Public name segment |
-| `status` | `published` \| `disabled` |
-| `visibility` | e.g. `public` \| `space` (CLI `--visibility`) |
-| `targetType` | `file` \| `directory` \| `port` |
-| `targetRef` | path or port |
-| version | Snapshot created on publish / publish-version |
+| `status` | `published` or `disabled` |
+| `visibility` | For example `public` or `space` |
+| `targetType` | `file`, `directory`, or `port` |
+| `targetRef` | File path, directory path, or port |
+| version | Immutable snapshot created on publish / publish-version |
 
-URL:
+The public URL is `/:username/:spaceSlug/w/:workSlug`. The owner needs a username and the Space needs a slug; neither identity component can be cleared once set.
 
-```text
-/:username/:spaceSlug/w/:workSlug
-```
+## Limits and artifact behavior
 
-Requires username + space slug + work slug (cannot clear username/slug once set).
-
-## Limits (works guide)
-
-| Target | Rules |
-|--------|--------|
-| **file / html / board / directory** | up to **1 GiB** (v2.6; previously 5 MB assets / 100 MB sites) |
-| **directory** | must include `index.html`, 1–**1000** files, total ≤ **100 MB** |
-| **port** | supported public sandbox ports only |
+- A file, HTML page, Board, or directory is limited to **1 GiB**.
+- A directory needs `index.html`, contains 1 to 1000 files, and totals 1 byte to 1 GiB.
+- A Board publish captures the Board state and only the workspace assets it references.
+- File and directory publishes include an immutable manifest and can be downloaded with checksum verification. Board and port Works are not downloadable artifacts.
+- A port must use a supported public Sandbox port.
 
 ## CLI
 
 ```bash
-# create/publish
-cohub -s <spaceId> works publish demo --dir dist --json
-cohub -s <spaceId> works publish one --file index.html --json
-cohub -s <spaceId> works publish live --port 5173 --json
+# Publish and release a new version
+cohub -s <spaceId> apps publish site --dir dist --json
+cohub -s <spaceId> apps publish-version <appId> --json
 
-# new version from current target
-cohub -s <spaceId> works publish-version <workId> --json
+# Manage state
+cohub -s <spaceId> apps update <appId> --status disabled --json
+cohub -s <spaceId> apps update <appId> --status published --json
 
-# settings
-cohub -s <spaceId> works update <workId> --status disabled --json
-cohub -s <spaceId> works update <workId> --status published --json
-cohub -s <spaceId> works update <workId> --visibility space --json
-cohub -s <spaceId> works update <workId> --hide-cohub-bar --json
-
-# inspect
-cohub -s <spaceId> works get <workId> --json
-cohub -s <spaceId> works versions <workId> --json
-
-# view analytics (v2.14)
-cohub works stats <workId> --json
+# Preview, inspect, measure, and restore file artifacts
+cohub ui preview work://<owner>/<space>/<app>
+cohub apps get <appId|url|owner/space/app> --json
+cohub apps stats <appId|url|owner/space/app> --json
+cohub apps download <appId|url|owner/space/app> --output <path>
 ```
 
-## View analytics (v2.14)
+`works` and `workScopes` spellings remain compatibility aliases in clients that still expose them.
 
-Published Works record views per version, hour, and source (Web, CLI, API) into an hourly rollup.
+## Release rules
 
-- REST: `GET /api/works/:id/stats`
-- SDK: `works.getStats()`
-- CLI: `cohub works stats <workId>`
-
-Work detail panel shows total, 24h/7d windows, 30-day trend, and source breakdown for space editors.
-
-## UI
-
-Management page: `/spaces/:spaceId/works/:workId`
-
-- Edit slug/target/permissions  
-- Disable removes public by-slug access  
-- Delete removes management record, grants, versions  
-- Editing target only affects the **next** published version  
+- Editing a target changes the source for the **next** version; it does not hot-swap the public page.
+- Preview refresh is version-aware. A failed refresh keeps the existing content and offers retry instead of blanking the panel.
+- Disable removes public by-slug access without deleting the management record, grants, or versions.
+- Promotions point to the current published version; use [work-promotions](./work-promotions.md) when attribution is needed.
 
 ## Done when
 
-- [ ] You can take a Work offline without deleting  
-- [ ] Republish updates what the public URL serves  
-- [ ] Failures map to limit/slug/runtime checks  
+- [ ] The public URL opens the intended published version
+- [ ] A target change was followed by an explicit publish-version
+- [ ] Limits and referenced Board assets pass validation
+- [ ] Stats or a verified download confirms the release when relevant
+- [ ] Disable/restore behavior is understood before sharing widely
 
 ## Avoid
 
-- Expecting target edit to hot-swap production without publish-version  
-- Port Works as default production ([port-preview](./port-preview.md))  
-- Skipping username/space slug setup  
+- Treating a target edit as a production release
+- Using a raw Sandbox URL as the product
+- Expecting Board or port Works to download as file bundles
+- Leaving secrets or access tokens in query parameters
 
 ---
 

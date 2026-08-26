@@ -11,7 +11,7 @@ related: [cohub.bp.minimal-scopes, cohub.bp.work-kit-product]
 Consent fatigue, over-permission, blocked first paint, scary demos.
 
 ## Do this instead
-Request viewer scopes **on gesture** with a clear `reason`. Keep workScopes to safe reads.
+Request viewer grants **on gesture** with a clear `reason`. Keep `appScopes` to bounded direct reads.
 
 ## Smell test
 A first-time viewer should understand the page before any auth dialog.

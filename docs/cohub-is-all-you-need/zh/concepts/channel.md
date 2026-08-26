@@ -1,5 +1,5 @@
 ---
-id: auto
+id: cohub.concept.channel
 title: 渠道
 type: concept
 ---

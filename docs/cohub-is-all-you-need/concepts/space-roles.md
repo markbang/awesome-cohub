@@ -15,7 +15,7 @@ Product roles for collaboration inside a Space:
 
 Separate from **Work scopes** (runtime permissions on a published surface).
 
-Docs: https://cohub.run/docs/learn/core-concepts · https://cohub.run/docs/workspace/spaces
+Docs: https://cohub.live/docs/learn/core-concepts · https://cohub.live/docs/workspace/spaces
 
 ---
 
