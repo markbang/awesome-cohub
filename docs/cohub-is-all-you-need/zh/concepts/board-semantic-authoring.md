@@ -6,30 +6,24 @@ related:
   - cohub.concept.board-runtime
   - cohub.bp.board-export-and-playback
 sources:
-  - https://cohub.live/changelog（v2.22-v2.27）
+  - https://cohub.live/changelog（v2.22-v2.38）
   - https://github.com/talesofai/cohub/blob/main/packages/protocol/src/board-authoring.ts
   - https://github.com/talesofai/cohub/blob/main/packages/protocol/src/board-composition.ts
 ---
 
 # Board 语义化编辑
 
-从 v2.22-v2.27 起，Board 编辑采用由 API、SDK、CLI、Web 编辑器、Checkpoint 与已发布 Work 共享的语义文档协议。稳定模型描述 Board 的含义，渲染器再从该模型推导几何与媒体呈现。
+Board 编辑采用由 API、SDK、CLI、Web 编辑器、Checkpoint 与已发布 App 共享的语义文档协议。稳定模型描述 Board 的含义，渲染器再从中推导几何与呈现。
 
 ## 文档模型
 
-Board 快照包含：
+Board 快照包含 Item、连接、效果、Composition 与 Playback。内置 Item 包括文本、几何图形、手绘、箭头、画框、图片、视频、音频、文件与任务。媒体 Item 使用安全的相对 Space 文件引用；任务 Item 携带用于显示的 task-run 快照。
 
-- **Items**：文本、几何图形、手绘、箭头、画框、图片、视频、音频、文件与任务。
-- **Connections**：Item 之间的关系，包含锚点、方向、标签、路由与样式。
-- **Effects**：可复用的类型化视觉效果，包含生命周期、目标、参数与资源引用。
-- **Compositions**：由属性轨道、关键帧、过程片段与标记组成的原子动画时间线。
-- **Playback**：显式的循环、结束行为、减少动态效果策略与共享播放状态。
+线上词汇使用 **Item**，不再使用已移除的泛化 Node/Sequence 结构。实时 `board.changed` 事件携带语义化 changed 投影；纯动画变更可以携带 `animationPatch`，无需重新读取完整 Board。
 
-线上的词汇现在使用 **item**，不再使用过去泛化的 node/sequence 表示。Checkpoint 与已发布的 Board Work 保存相同的语义 Item 快照。
+## 原子命令与批次
 
-## 原子变更
-
-语义变更是由多个命令组成的单个事务，例如：
+语义变更支持以下命令：
 
 ```text
 board.patch
@@ -39,41 +33,53 @@ effect.apply / effect.delete
 composition.apply / composition.delete
 ```
 
-每次变更都带有稳定的 `mutationId` 和预期的 `baseVersion`。服务端在写入前统一校验 schema、引用、版本、级联规则与能力。`dryRun` 执行相同的服务端校验但不持久化。持久化回执使重试可以安全重放；未变化的组合轨道重新应用时可以成为 no-op。
+变更带稳定的 `mutationId`、预期 `baseVersion`、命令列表与可选 `dryRun`。`boards batch` 在一次原子往返中发送多条命令。服务端写入前检查 schema、引用、版本、级联规则与 capabilities。持久回执让重试可以安全重放；未变化的组合轨道重新应用时可成为 no-op。
 
-机器可读诊断与 `boards capabilities` 会暴露支持的 Item 类型、颜色、坐标约定、动画通道、片段类型、效果类型与渲染限制。实时更新使用语义化的 `board.changed` 投影，而不是原始线上操作。Agent 应先发现能力，不要猜测扩展字段。
+## 校验契约
+
+`boards capabilities` 与公开 SDK 的 `BoardSemanticCommandSchema` 暴露编辑契约：支持的类型、字段、坐标空间、动画通道、片段/效果类型与限制。校验失败包含机器可读 code 和类似 `items.0.props.text` 的路径；codec 抛出 `BoardItemValidationError`。服务端失败使用稳定错误结构、diagnostics 数组与 `requestId`。
+
+本地和服务端使用同一 schema。不要猜测扩展字段，也不要把内部渲染对象直接当成编辑 JSON。
 
 ## CLI 流程
 
 ```bash
-# 查看语义快照与支持的 schema
-cohub boards inspect <board> --json
-cohub boards capabilities <board> --json
+# 发现并校验完整批次
+cohub boards capabilities <board-or-path> --json
+cohub boards examples create > board.json
+cohub boards batch <board-or-path> --input changes.json --dry-run
+cohub boards batch <board-or-path> --input changes.json \
+  --base-version 12 --mutation-id <stable-id> --json
 
-# 用 JSON 创建或修改 Item；写入前先校验
-cohub boards examples item text > item.json
-cohub boards items create <board> --input item.json --dry-run
-cohub boards items create <board> --input item.json --mutation-id <stable-id>
-cohub boards items patch <board> <item-id> --input patch.json
-
-# 应用效果或组合动画
-cohub boards examples composition fade > intro.json
-cohub boards compositions apply <board> --input intro.json
-cohub boards effects apply <board> --input effect.json
+# 读取单个语义资源
+cohub boards items get <board-or-path> <item-id> --json
+cohub boards connections get <board-or-path> <connection-id> --json
+cohub boards effects get <board-or-path> <effect-id> --json
+cohub boards compositions get <board-or-path> <composition-id> --json
 ```
 
-串联已知快照的写入时使用 `--base-version`。遇到版本冲突后重新读取；除非客户端辅助函数已实现文档所述的幂等重试。
+播放命令现在统一在 `boards playback` 下：
 
-## 组合动画心智模型
+```bash
+cohub boards playback play <board-or-path> <composition-id> --time-scale 1
+cohub boards playback pause <board-or-path> <playback-id>
+cohub boards playback seek <board-or-path> <playback-id> 400
+cohub boards playback stop <board-or-path> <playback-id>
+```
 
-使用轨道插值属性，例如透明度或位置；使用过程片段表达文字显现、运动路径、粒子与镜头聚焦。资源保存在 Space 文件中，并通过类型化引用连接。相同组合动画可以预览、无头导出、发布，并按照 Board 播放策略播放。
+## 重试规则
+
+- 超时后复用相同的 `mutationId`。
+- 使用 `baseVersion` 明确预期快照。
+- 遇到 `VERSION_CONFLICT` 时读取最新 Board，并重新应用原意命令。
+- 遇到校验错误时修复报告的编辑路径，不要原样重试。
 
 ## 避免
 
 - 直接写入已移除的旧 Sequence/Node 线上结构。
-- 把 Board 渲染结果当作真相，而不是语义快照。
-- 超时后生成新的 ID 重试；应复用相同的 `mutationId`。
-- 不查询 `capabilities` 就发送无界 JSON 或扩展类型。
+- 把截图或渲染缓存当作真相来源。
+- 用新 ID 替换超时的批次重试。
+- 发送无界 JSON 或不受支持的 capability。
 
 ---
 

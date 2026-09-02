@@ -1,64 +1,64 @@
 ---
 id: cohub.concept.board-runtime
-title: Board runtime & PixiJS canvas
+title: Board runtime and semantic canvas
 type: concept
 related:
   - cohub.concept.board-semantic-authoring
-  - cohub.concept.space
+  - cohub.concept.app-center
   - cohub.bp.board-export-and-playback
   - cohub.cheat.config-layers
 sources:
-  - https://cohub.live/changelog (v2.0-v2.27 Board runtime evolution)
+  - https://cohub.live/changelog (v2.0-v2.38 Board runtime evolution)
 ---
 
-# Board runtime & PixiJS canvas
+# Board runtime and semantic canvas
 
-The **Board runtime** (v2.0+, formerly `.covas` / canvas) is Cohub's infinite 2.5D visual surface for spatial collaboration, live file cards, media, task outputs, and headless exports. Since v2.22, semantic authoring is the source of truth shared by the API, SDK, CLI, Web editor, checkpoints, and published Works.
+The **Board runtime** is Cohub's infinite 2.5D visual surface for spatial collaboration, live file cards, media, task outputs, animation, and headless exports. Its semantic document is shared by the API, SDK, CLI, Web editor, checkpoints, and published Apps.
 
 ## Core concepts
 
 | Term | Description |
 |------|-------------|
-| **Board** | Space-scoped infinite canvas document (`.board` / board domain) |
-| **Item** | Semantic Board element: text, geo, draw, arrow, frame, image, video, audio, file, or task |
-| **Task item** (v2.19) | Generation task output card with image, video, audio, or text previews |
-| **Connections** (v2.16) | Semantic item relations with anchors, routing, direction, and labels |
-| **Effect** | Typed visual behavior targeting an item, with lifecycle and parameters |
-| **Composition** (v2.26) | Atomic animation timeline of property tracks, keyframes, procedural clips, and markers |
-| **File item** | Live preview wrapper for a workspace file mapped to its path |
-| **Playback** | Explicit composition loop, end behavior, reduced-motion policy, and shared state |
-| **Export** | CLI and headless rendering of full boards, item selections, or world rectangles |
+| **Board** | Space-scoped infinite canvas document (`.board`) |
+| **Item** | Semantic element: text, geo, draw, arrow, frame, image, video, audio, file, or task |
+| **Connection** | Semantic relation between Items with anchors, direction, labels, routing, and style |
+| **Effect** | Typed visual behavior targeting an Item, with lifecycle and parameters |
+| **Composition** | Atomic animation timeline of property tracks, keyframes, procedural clips, and markers |
+| **Playback** | Shared composition control with play, pause, seek, stop, time scale, and reduced-motion policy |
+| **Board capability** | Versioned schema/renderer contract exposed for machine validation and authoring discovery |
+| **Export** | Headless rendering of a full Board, Item selection, frame, or world rectangle |
 
-`Node` and `Sequence` are historical names from the removed legacy wire shape. New integrations should use `Item` and `Composition`.
+`Node` and `Sequence` are historical names from the removed legacy wire shape. New integrations use `Item` and `Composition`.
 
-## Key features (v2.8-v2.27)
+## Key features (v2.22-v2.38)
 
-- **Semantic authoring**: atomic mutations cover board metadata, items, connections, effects, and compositions; server diagnostics and capability discovery make the contract machine-readable.
-- **Task and media items**: generation tasks can be placed on Boards with live status and multimodal previews; audio has deterministic waveform previews and unified playback.
-- **In-board generation**: a Board composer accepts model parameters and typed references from selected items.
-- **Connections**: Connect-tool gestures, auto or pinned anchors, routing, labels, clipboard/duplicate support, realtime awareness, exports, and checkpoints.
-- **Compositions and effects**: property tracks, procedural clips, camera focus, particles, text reveal, and reduced-motion-aware playback replace ad hoc animation sequences.
-- **Appearance and camera**: solid or public-image backgrounds, fit/position/opacity controls, semantic camera focus, and consistent browser/headless export behavior.
-- **File references**: published Board Works include only workspace assets actually referenced by the Board.
-- **Rendering scale**: viewport culling, texture LRU cooling, PixiJS spatial indexing, batched refreshes, and headless task-card rendering support dense boards.
-- **Mobile-safe navigation**: touch input defaults to hand-panning; tap-to-select uses pointer checks and an 8px slop threshold.
+- **Semantic authoring**: atomic mutations cover Board metadata, Items, connections, effects, and compositions. `boards batch` applies many commands in one round trip with strict optimistic concurrency and idempotent replay.
+- **Structured validation**: codec and API errors expose stable codes, JSON-mapped diagnostic paths, and `requestId` for server failures; the SDK exports the public command schema and `BoardItemValidationError`.
+- **Task and media Items**: generation tasks, audio, typed references, waveform previews, and unified playback are first-class Board content.
+- **Animation realtime sync**: small pure effect/composition changes can arrive as a server-authored `animationPatch` inside `board.changed`, avoiding a full snapshot refetch.
+- **Appearance and camera**: solid or public-image backgrounds, fit/position/opacity controls, semantic camera focus, and consistent browser/headless rendering.
+- **Rendering quality**: freehand paths use segment tessellation with round joins and reveal progress; viewport culling, texture LRU cooling, spatial indexing, batched refreshes, and headless task cards support dense boards.
+- **Published App capture**: a Board App includes the Board state and only the workspace assets it references.
 
 ## CLI crumbs
 
 ```bash
-# Inspect the semantic document and its supported contract
-cohub boards inspect <board> --json
-cohub boards capabilities <board> --json
+# A Board resolves by id or .board path
+cohub boards inspect <board-or-path> --json
+cohub boards capabilities <board-or-path> --json
 
-# Export a complete board or selected items
-cohub boards export <board> -o out.png --scale 2 --theme dark
-cohub boards export <board> --items title,hero -o selection.webp
+# Apply a validated atomic batch
+cohub boards batch <board-or-path> --input changes.json --dry-run
+cohub boards batch <board-or-path> --input changes.json --base-version 12 --mutation-id <stable-id>
 
-# Shared playback uses a composition id
-cohub boards play <board> <composition-id>
+# Inspect relations and control shared playback
+cohub boards connections list <board-or-path> --json
+cohub boards connections get <board-or-path> <connection-id> --json
+cohub boards playback play <board-or-path> <composition-id>
+cohub boards playback pause <board-or-path> <playback-id>
 ```
 
-For authoring commands, validation, mutation receipts, and JSON templates, see [semantic Board authoring](./board-semantic-authoring.md).
+For mutation shape, diagnostics, and retry rules, see [semantic Board authoring](./board-semantic-authoring.md).
 
 ---
 

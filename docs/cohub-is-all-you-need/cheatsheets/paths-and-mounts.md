@@ -17,7 +17,7 @@ related: [cohub.cheat.config-layers]
 | `/configs/user/.agents/` | User skills/rules publish | **no** | `USER_AGENTS_DIR` |
 | `/configs/platform` | Platform config publish | **no** | `PLATFORM_AGENTS_DIR` |
 | `/mods/<slug>` | Mounted mod checkpoint | **no** | Shared toolkits |
-| `/public` | Public share prefix | special | Work/public assets |
+| `/public` | Public share prefix | special | App/public assets |
 | `/sessions` | Session artifacts | **no** | Inbox-related |
 
 ## Skill merge order

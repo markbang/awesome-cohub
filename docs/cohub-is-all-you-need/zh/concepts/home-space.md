@@ -8,9 +8,9 @@ type: concept
 
 Default personal Space many accounts land in (`slug=home` when bootstrapped).
 
-- Still a full Space (files, Chats, Saves, Works)
+- Still a full Space (files, Chats, Saves, Apps)
 - May be created empty or forked from a platform bootstrap checkpoint
-- Best as hub/staging — spin named Spaces for real initiatives
+- Best as a hub/staging area - spin up named Spaces for real initiatives
 
 ## See also
 - Playbook: `cohub.bp.home-and-sessions-inbox`

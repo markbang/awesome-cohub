@@ -39,7 +39,7 @@ Rules:
 
 - `Add resource: cohub-desktop`
 - `Docs: clarify Works section`
-- `Add skill: public-share`
+- `Add skill: public-files`
 
 ## Banner / assets
 

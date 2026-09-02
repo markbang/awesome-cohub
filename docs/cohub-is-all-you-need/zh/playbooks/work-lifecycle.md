@@ -1,6 +1,6 @@
 ---
 id: cohub.bp.work-lifecycle
-title: Work 生命周期 - 发布、版本、停用、可见性
+title: App 生命周期 - 发布、版本、停用、可见性
 type: playbook
 audience: [builder]
 features: [work, app, publish, analytics]
@@ -10,17 +10,18 @@ related:
   - cohub.bp.hide-cohub-bar
   - cohub.bp.port-preview
   - cohub.bp.work-promotions
+  - cohub.concept.app-center
 sources:
-  - https://cohub.live/docs/create/works
-  - https://github.com/talesofai/cohub/blob/main/docs/works-guide.md
-  - https://cohub.live/changelog（v2.14、v2.22、v2.24）
+  - https://cohub.live/docs/apps
+  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
+  - https://cohub.live/changelog（v2.14、v2.22、v2.24、v2.37）
 ---
 
-# Work 生命周期 - 发布、版本、停用、可见性
+# App 生命周期 - 发布、版本、停用、可见性
 
 ## 何时使用
 
-你需要管理 Work/App 的完整生命周期：首次发布之后继续迭代、预览、统计、下线，或改变访问范围。
+你需要在首次发布后继续管理 App：校验目标、预览、统计、下线，或改变访问者范围。
 
 ## 模型
 
@@ -28,19 +29,20 @@ sources:
 |------|------|
 | `slug` | 公开 URL 片段 |
 | `status` | `published` 或 `disabled` |
-| `visibility` | 例如 `public` 或 `space` |
+| `visibility` | `public` 或 `space` |
 | `targetType` | `file`、`directory` 或 `port` |
-| `targetRef` | 文件路径、目录路径或端口 |
+| `targetRef` | Space 文件路径、目录路径或端口 |
 | version | 发布 / publish-version 时创建的不可变快照 |
 
-公开 URL 为 `/:username/:spaceSlug/w/:workSlug`。用户需要 username，Space 需要 slug；设置后这两个身份字段都不能清空。
+公开 URL：`/:username/:spaceSlug/w/:appSlug`。用户需要 username，Space 需要 slug；设置后都不能清空。
 
 ## 限制与产物行为
 
 - file、HTML、Board 或 directory 上限均为 **1 GiB**。
 - directory 必须有 `index.html`，包含 1 到 1000 个文件，总大小为 1 byte 到 1 GiB。
-- Board 发布会捕获 Board 状态，以及它实际引用的工作区资源。
-- file 与 directory 发布带不可变 manifest，可下载并校验 checksum；Board 与 port Work 不是可下载文件产物。
+- Board App 捕获 Board 状态以及它实际引用的工作区资源。
+- file/directory App 带不可变 manifest，支持 checksum 校验下载；Board 与 port App 不是可下载文件产物。
+- `--file` 与 `--dir` 使用的是 Space 工作区路径，不是运行 CLI 的本机路径；发布前置检查会明确报告目标不存在或无效。
 - port 必须使用受支持的公开 Sandbox 端口。
 
 ## CLI
@@ -54,8 +56,9 @@ cohub -s <spaceId> apps publish-version <appId> --json
 cohub -s <spaceId> apps update <appId> --status disabled --json
 cohub -s <spaceId> apps update <appId> --status published --json
 
-# 预览、查看、统计与恢复文件产物
-cohub ui preview work://<owner>/<space>/<app>
+# 解析、预览、统计与恢复文件产物
+cohub apps resolve <appSlug> --owner <username> --space-slug <space> --json
+cohub desktop open app://<owner>/<space>/<app>
 cohub apps get <appId|url|owner/space/app> --json
 cohub apps stats <appId|url|owner/space/app> --json
 cohub apps download <appId|url|owner/space/app> --output <path>
@@ -67,8 +70,9 @@ cohub apps download <appId|url|owner/space/app> --output <path>
 
 - 修改 target 只改变**下一版**的来源，不会热更新公开页面。
 - 预览刷新按版本合并；刷新失败时保留当前内容并提供重试，不会清空面板。
-- disable 会移除 by-slug 公开访问，但不会删除管理记录、授权或版本。
+- disable 会移除 by-slug 公开访问，但不会删除 App 记录、授权或版本。
 - 推广链接指向当前已发布版本；需要归因时使用 [work-promotions](./work-promotions.md)。
+- App Center 的已安装列表独立于此生命周期；从一个 Space 卸载不会删除已发布 App。
 
 ## 完成标准
 
@@ -82,7 +86,7 @@ cohub apps download <appId|url|owner/space/app> --output <path>
 
 - 把 target 修改当作生产发布
 - 把原始 Sandbox URL 当作产品入口
-- 期待 Board 或 port Work 下载为文件 bundle
+- 期待 Board 或 port App 下载为文件 bundle
 - 把密钥或 access token 放进查询参数
 
 ---

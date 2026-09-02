@@ -6,15 +6,16 @@ related:
   - cohub.concept.task-schedule
   - cohub.concept.direct-generation
   - cohub.bp.minimal-scopes
+  - cohub.concept.app-center
 sources:
-  - https://cohub.live/changelog (v2.26-v2.30)
-  - https://github.com/talesofai/cohub/blob/main/docs/model-tasks.md
-  - https://github.com/talesofai/cohub/blob/main/packages/sdk/docs/work-runtime-guide.md
+  - https://cohub.live/changelog (v2.26, v2.30)
+  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
+  - https://github.com/talesofai/cohub/blob/main/packages/sdk/docs/app-runtime-guide.md
 ---
 
 # Task Browser
 
-The **Task Browser** is the dedicated multimodal task surface for finding and inspecting generation and other Task Runs. It is delivered as a repository-managed Work and replaces the in-chat generation task tray as the primary place to follow asynchronous generation work.
+The **Task Browser** is the dedicated multimodal task surface for finding and inspecting generation and other Task Runs. It is a repository-managed App and the primary place to follow asynchronous generation work after the in-Chat task tray was removed.
 
 ## Two useful scopes
 
@@ -23,12 +24,12 @@ The **Task Browser** is the dedicated multimodal task surface for finding and in
 | **Mine** | viewer grant `user.taskrun.list` | Every Task Run owned by the current viewer, including runs from Spaces no longer accessible |
 | **Space / session** | `taskrun.view` on the target Space | Task Runs visible in that Space or session |
 
-A generation app typically needs `generation.create` to create a task and `taskrun.view` to poll or inspect its result. Creating a task does not imply permission to read it.
+An App that creates a generation typically needs viewer grant `generation.create` to create it and `taskrun.view` to poll or inspect it. Creating a task does not imply permission to read it.
 
 ## Runtime behavior
 
 - The browser requests the smallest grant for the active view: account-level access for **Mine**, or a per-Space grant for a Space/session.
-- `client.auth.requestSpace()` lets a viewer choose another Space in one consent flow; the app learns only the selected Space.
+- `client.auth.requestSpace()` lets a viewer choose another Space in one consent flow; the App learns only the selected Space.
 - Results render immediately from an identity-scoped local cache, then refresh silently in the background.
 - A failed refresh can keep showing the last cached result instead of blanking the browser; treat cached data as stale until refreshed.
 - Session Chat no longer owns a generation-task tray. Use the Task Browser or `client.tasks` APIs for task history and detail.
@@ -44,7 +45,7 @@ Published Apps can use `client.tasks.list()` / `client.tasks.get()` with the cor
 
 ## Privacy boundary
 
-Task visibility follows the grant's Space and viewer identity. Account-level **Mine** access exposes Task Runs owned by the viewer, not every task in every Space and not other users' runs. Published Apps should request only the view they render.
+Task visibility follows the grant's Space and viewer identity. Account-level **Mine** access exposes Task Runs owned by the viewer, not every task in every Space and not other users' runs. Apps should request only the view they render.
 
 ---
 

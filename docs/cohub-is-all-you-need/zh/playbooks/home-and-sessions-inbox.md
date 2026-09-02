@@ -26,11 +26,11 @@ sources:
 ### Home Space
 - Empty accounts get a real **Home** space (`slug=home`) via default-space resolution instead of a dead-end “new space only” wall.
 - Optional platform bootstrap: first-time Home may fork from `HOME_BOOTSTRAP_CHECKPOINT_ID` when configured; otherwise blank workspace.
-- Home is still a normal Space — files, Chats, Saves, Works apply.
+- Home is still a normal Space - files, Chats, Saves, Apps apply.
 
 ### Sessions inbox (`/sessions`)
 - Cross-space recent Chats (desktop split list + conversation).
-- **New chat from inbox** stays in inbox chrome: `/sessions/new?space=…` with space picker (does not always yank you into a random workspace shell mid-draft).
+- **从 Space 根路径新建 Chat** 直接使用 `/spaces/:id`；旧 `/sessions/new` 仅作为兼容导航，预览在切换时保持挂载。
 - Continuity: restore last chat / scroll where the product supports it.
 
 ## 结果

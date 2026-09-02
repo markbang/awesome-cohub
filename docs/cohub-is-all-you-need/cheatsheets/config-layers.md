@@ -54,6 +54,7 @@ platform → mods → user config → workspace (.agents/skills)
 | Slash `/name` | **`.agents/prompts/*.md`** (not `.cohub/`) | platform → mods → user → project |
 | Models | **`.cohub/models.json`** | platform → user |
 | Generations | `.cohub/generations/` | published from platform/user Save |
+| Installed Apps | `.cohub/apps.json` | current Space only; validated manifest |
 | Space look | **`.cohub/space.json`**, **`.cohub/theme.css`** | **per Space only** (not catalog merge) |
 | Hooks | `.cohub/hooks/*` | current Space; FS ignores `.cohub/**` |
 
@@ -85,7 +86,7 @@ Members still get platform + mod + project skills.
 
 1. Execution grant (`COHUB_EXECUTION_TOKEN`)
 2. Preview session (preview host)
-3. Work session
+3. App session
 4. Logto user session
 
 Execution grant TTL **24h**; not refreshable like OIDC.

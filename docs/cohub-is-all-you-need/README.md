@@ -13,7 +13,7 @@
 
 Best-practice guide for **builders** and **agents** using Cohub.
 
-> Space is the unit of work. Checkpoint is the unit of time. Work is the unit of sharing.
+> Space is the unit of work. Checkpoint is the unit of time. App is the unit of sharing.
 
 **Language:** English (default) · [中文](./zh/README.md)
 
@@ -36,8 +36,8 @@ Grounded in product docs ([/docs](https://cohub.live/docs)), changelog ([/change
 | [cookbooks/](./cookbooks/) | End-to-end journeys |
 | [manifesto.md](./manifesto.md) | Manifesto |
 | [matrix.md](./matrix.md) | Scenario matrix (+ role) |
-| [playbooks/](./playbooks/) | Practice cards (33) |
-| [concepts/](./concepts/) | Concept cards (30) |
+| [playbooks/](./playbooks/) | Practice cards (35) |
+| [concepts/](./concepts/) | Concept cards (33) |
 | [anti-patterns/](./anti-patterns/) | Failure modes (15) |
 | [cheatsheets/](./cheatsheets/) | CLI · paths · FAQ · packaging |
 | [samples.md](./samples.md) | Links & pattern templates |
@@ -65,6 +65,7 @@ docs/cohub-is-all-you-need/     # English (default)
 ## Related
 
 - https://cohub.live · https://cohub.live/docs · https://cohub.live/changelog
+- Apps guide: https://cohub.live/docs/apps
 - https://github.com/talesofai/cohub · https://github.com/markbang/awesome-cohub
 - Web search: [hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search)
 - Feishu: [lark-lite](https://github.com/kjx-talesofai/claude-skill-lark-lite)

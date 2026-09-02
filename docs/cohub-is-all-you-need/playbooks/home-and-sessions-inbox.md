@@ -26,11 +26,11 @@ You live across many Spaces and need a default landing place plus a cross-space 
 ### Home Space
 - Empty accounts get a real **Home** space (`slug=home`) via default-space resolution instead of a dead-end “new space only” wall.
 - Optional platform bootstrap: first-time Home may fork from `HOME_BOOTSTRAP_CHECKPOINT_ID` when configured; otherwise blank workspace.
-- Home is still a normal Space — files, Chats, Saves, Works apply.
+- Home is still a normal Space - files, Chats, Saves, Apps apply.
 
 ### Sessions inbox (`/sessions`)
 - Cross-space recent Chats (desktop split list + conversation).
-- **New chat from inbox** stays in inbox chrome: `/sessions/new?space=…` with space picker (does not always yank you into a random workspace shell mid-draft).
+- **New Chat from the Space root** uses `/spaces/:id` directly; the old `/sessions/new` route is compatibility navigation, and previews stay mounted across the transition.
 - Continuity: restore last chat / scroll where the product supports it.
 
 ## Outcome

@@ -6,30 +6,24 @@ related:
   - cohub.concept.board-runtime
   - cohub.bp.board-export-and-playback
 sources:
-  - https://cohub.live/changelog (v2.22-v2.27)
+  - https://cohub.live/changelog (v2.22-v2.38)
   - https://github.com/talesofai/cohub/blob/main/packages/protocol/src/board-authoring.ts
   - https://github.com/talesofai/cohub/blob/main/packages/protocol/src/board-composition.ts
 ---
 
 # Semantic Board authoring
 
-Since v2.22-v2.27, Board editing is a semantic document protocol shared by the API, SDK, CLI, Web editor, checkpoints, and published Works. The stable model describes what a Board means; the renderer derives geometry and media presentation from that model.
+Board editing is a semantic document protocol shared by the API, SDK, CLI, Web editor, checkpoints, and published Apps. The stable model describes what a Board means; renderers derive geometry and presentation from it.
 
 ## Document model
 
-A Board snapshot contains:
+A Board snapshot contains Items, connections, effects, compositions, and playback. Built-in Items include text, geo, draw, arrow, frame, image, video, audio, file, and task. Media Items use safe relative Space-file references; task Items carry a task-run snapshot for display.
 
-- **Items**: text, geo, draw, arrow, frame, image, video, audio, file, and task items.
-- **Connections**: relations between items with anchors, direction, labels, routing, and style.
-- **Effects**: reusable, typed visual effects with lifecycle, target, parameters, and asset references.
-- **Compositions**: atomic animation timelines made from property tracks, keyframes, procedural clips, and markers.
-- **Playback**: explicit loop, end behavior, reduced-motion, and shared playback state.
+The wire vocabulary uses **Item** rather than the removed generic Node/Sequence representation. Realtime `board.changed` events carry a semantic changed projection; pure animation updates may carry an `animationPatch` that can be applied without refetching the full Board.
 
-The wire vocabulary now uses **item** rather than the former generic node/sequence representation. Checkpoints and published Board Works persist the same semantic Item snapshot.
+## Atomic commands and batches
 
-## Atomic mutations
-
-Semantic mutations are one transaction containing commands such as:
+Semantic mutations accept commands such as:
 
 ```text
 board.patch
@@ -39,41 +33,53 @@ effect.apply / effect.delete
 composition.apply / composition.delete
 ```
 
-Each mutation carries a stable `mutationId` and an expected `baseVersion`. The server validates schemas, references, versions, cascade rules, and capabilities before writing. `dryRun` performs the same server-side validation without persistence. A durable receipt makes retries replay-safe; unchanged composition tracks can be re-applied as a no-op.
+A mutation has a stable `mutationId`, an expected `baseVersion`, a command list, and optional `dryRun`. `boards batch` sends many commands in one atomic round trip. The server checks schemas, references, versions, cascade rules, and capabilities before writing. A durable receipt makes retries replay-safe; unchanged composition tracks can be re-applied as a no-op.
 
-Machine-readable diagnostics and `boards capabilities` expose supported item types, colors, coordinate conventions, animation channels, clip kinds, effect kinds, and render limits. Realtime updates use the semantic `board.changed` projection rather than raw wire operations. Agents should discover capabilities instead of guessing extension fields.
+## Validation contract
+
+`boards capabilities` and the public SDK `BoardSemanticCommandSchema` expose the authoring contract: supported types, fields, coordinate spaces, animation channels, clip/effect kinds, and limits. Validation failures include machine-readable codes and paths such as `items.0.props.text`; the codec raises `BoardItemValidationError`. Server failures use a stable error shape with a diagnostic array and `requestId`.
+
+Use the same schema locally and on the server. Do not guess extension fields or turn an internal renderer object into authoring JSON.
 
 ## CLI workflow
 
 ```bash
-# Inspect the semantic snapshot and supported schemas
-cohub boards inspect <board> --json
-cohub boards capabilities <board> --json
+# Discover and validate a complete batch
+cohub boards capabilities <board-or-path> --json
+cohub boards examples create > board.json
+cohub boards batch <board-or-path> --input changes.json --dry-run
+cohub boards batch <board-or-path> --input changes.json \
+  --base-version 12 --mutation-id <stable-id> --json
 
-# Create or patch an item from JSON; validate before writing
-cohub boards examples item text > item.json
-cohub boards items create <board> --input item.json --dry-run
-cohub boards items create <board> --input item.json --mutation-id <stable-id>
-cohub boards items patch <board> <item-id> --input patch.json
-
-# Apply an effect or composition
-cohub boards examples composition fade > intro.json
-cohub boards compositions apply <board> --input intro.json
-cohub boards effects apply <board> --input effect.json
+# Read individual semantic resources
+cohub boards items get <board-or-path> <item-id> --json
+cohub boards connections get <board-or-path> <connection-id> --json
+cohub boards effects get <board-or-path> <effect-id> --json
+cohub boards compositions get <board-or-path> <composition-id> --json
 ```
 
-Use `--base-version` when chaining writes from a known snapshot. Re-read after a version conflict unless the client helper performs the documented idempotent retry.
+Playback commands are now grouped under `boards playback`:
 
-## Composition mental model
+```bash
+cohub boards playback play <board-or-path> <composition-id> --time-scale 1
+cohub boards playback pause <board-or-path> <playback-id>
+cohub boards playback seek <board-or-path> <playback-id> 400
+cohub boards playback stop <board-or-path> <playback-id>
+```
 
-Use tracks for interpolated properties such as opacity or position. Use procedural clips for behavior such as text reveal, motion paths, particles, and camera focus. Keep assets in Space files and refer to them through typed references. The same composition can be previewed, exported headlessly, published, and played with the Board playback policy.
+## Retry rules
+
+- Reuse the same `mutationId` after a timeout.
+- Use `baseVersion` to make an expected snapshot explicit.
+- On `VERSION_CONFLICT`, read the latest Board and rebase the intended commands.
+- On a validation error, fix the reported authoring path; do not retry unchanged JSON.
 
 ## Avoid
 
 - Writing the removed legacy Sequence/Node wire shape directly.
-- Treating a Board render as the source of truth instead of its semantic snapshot.
-- Retrying a mutation with a new id after a timeout; reuse the same `mutationId`.
-- Sending unbounded JSON or extension kinds without checking `capabilities`.
+- Treating a screenshot or renderer cache as the source of truth.
+- Replacing a timed-out batch with a new id.
+- Sending unbounded JSON or unsupported capabilities.
 
 ---
 

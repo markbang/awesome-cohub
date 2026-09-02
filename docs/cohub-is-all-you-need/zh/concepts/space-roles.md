@@ -10,7 +10,7 @@ type: concept
 - **builder** — 创建编辑项目工作  
 - **guest** — 按访问策略有限参与  
 
-与 **Work scopes**（已发布面的运行时权限）是两回事。
+与 **App scopes**（已发布 App 上的运行时权限）是两回事。
 
 ---
 

@@ -20,7 +20,7 @@ You need:
 
 1. a **live place** to work (Space)
 2. a **time machine** for good moments (Checkpoint / Save)
-3. a **shareable surface** for others (Work)
+3. a **shareable surface** for others (App, formerly Work)
 4. **agents and skills** that operate in the same place
 5. **optional doors** (CLI, Discord, Feishu, WeChat, …)
 
@@ -36,7 +36,7 @@ That bundle is Cohub. Everything else is a specialization on top.
 | **Chat** | session | One mission per Chat; fork to explore alternatives |
 | **Save** | checkpoint | Save milestones & pre-risk states; read diffs |
 | **Agent** | agent | Skills + files + smoke tests, not essay-only prompts |
-| **Work** | work | Publish file / directory / port for others to open |
+| **App** | work | Publish file / directory / port for others to open; older product docs call it Work |
 | **Channel** | channel | Same Space, different doors (Discord / Feishu / …) |
 | **Sandbox** | sandbox | Where commands, ports, and skills execute |
 | **Mod** | mod | Read-only mount under `/mods/<slug>` for shared tooling |
@@ -51,7 +51,7 @@ That bundle is Cohub. Everything else is a specialization on top.
 open / fork Space
   → talk + edit files with agents
   → Save (Checkpoint) when it matters
-  → publish a Work when others should open it
+  → publish an App when others should open it
   → fork again / propose back / iterate
 ```
 
@@ -69,9 +69,9 @@ Put code, prompts, outputs, and agent state in the **Space files**.
 A Save is not “git, but worse”. It is a **product moment**: playable, forkable, restorable.  
 Save when a human would say “keep this version”.
 
-### P3 — Work is the unit of sharing
+### P3 — App is the unit of sharing
 Sandbox links and local previews are for authors.  
-**Works** are for viewers. Prefer published Works for demos and products.
+**Apps** are for viewers; older user-facing docs may call them Works. Prefer published Apps for demos and products.
 
 ### P4 — Least privilege by default
 Grant `appScopes` for safe reads the App always needs.
@@ -83,11 +83,11 @@ Install skills, write small state files, run commands, verify outputs.
 
 ### P6 — Mutable truth stays out of `dist/`
 Published static assets are snapshots.  
-Live data belongs in Space files, sessions, billing, or APIs the Work is allowed to call.
+Live data belongs in Space files, sessions, billing, or APIs the App is allowed to call.
 
 ### P7 — Same product surface, many doors
 Web UI, CLI (`@neta-art/cohub-cli`), and channels should drive the **same Space**.  
-Don’t invent a second ops path that bypasses Saves/Works.
+Don’t invent a second ops path that bypasses Saves/Apps.
 
 ---
 
@@ -108,7 +108,7 @@ Don’t invent a second ops path that bypasses Saves/Works.
 **Practice:** Save before big refactors / publish / untrusted agent autonomy.  
 **Avoid:** zero Saves until disaster.
 
-### 3.4 Works
+### 3.4 Apps (formerly Works)
 Targets:
 
 | Target | Good for | Notes |
@@ -117,15 +117,15 @@ Targets:
 | `directory` | Sites / built apps | needs `index.html`; prefer `base: "./"` + hash routes |
 | `port` | Live dev servers | great for preview; not the default production shape |
 
-Runtime truth: `cohub.context()` / auth / commerce work **inside the published Work/App shell**, not on raw static asset URLs.
+Runtime truth: `cohub.context()` / auth / commerce work **inside the published App shell**, not on raw static asset URLs.
 
-Since v2.26, **App** is the canonical SDK/API term (`client.apps`, `appScopes`); Work and `/w/` remain the user-facing vocabulary and compatibility URL. File and directory publishes have immutable manifests and verified downloads; Board and port publishes are runtime surfaces, not restorable file bundles. Query/hash parameters are forwarded to embedded Works, except the reserved `cohub_*` namespace.
+Since v2.37, **App** is the canonical SDK/API term (`client.apps`, `appScopes`); Work and `/w/` remain the legacy user-facing vocabulary and compatibility URL. File and directory publishes have immutable manifests and verified downloads; Board and port publishes are runtime surfaces, not restorable file bundles. Query/hash parameters are forwarded to embedded Apps, except the reserved `cohub_*` namespace.
 
-Official guide: [works-guide.md](https://github.com/talesofai/cohub/blob/main/docs/works-guide.md)
+Official guide: [apps-guide.md](https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md)
 
 ### 3.5 Generations
 **Use for:** image / video / music (and related multimodal tasks) in Space context.  
-**Practice:** write outputs into Space files; Save good results; track cost/credits. Direct Generation / Create mode makes a primary media request a first-class timeline turn; Task Browser owns asynchronous history and inspection. `generation.create` and `taskrun.view` are separate permissions.
+**Practice:** write outputs into Space files; Save good results; track cost/credits. Direct Generation / Create mode makes a primary media request a first-class timeline turn; Task Browser owns asynchronous history and inspection. `generation.create` and `taskrun.view` are separate permissions. Use the live model catalog and keep provider cost/retry status visible.
 **Skill:** `cohub-generate`  
 Official: [generations.md](https://github.com/talesofai/cohub/blob/main/docs/generations.md)
 
@@ -136,7 +136,7 @@ Package: `@neta-art/cohub-cli` (npm scope) · monorepo [talesofai/cohub](https:/
 
 ### 3.7 Channels
 **Use for:** meeting people where they already chat.  
-**Practice:** channel → same Space → same files/Saves/Works.  
+**Practice:** channel → same Space → same files/Saves/Apps.
 **Avoid:** channel-only workflows with no Space filesystem.
 
 ### 3.8 Mods & Skills
@@ -151,7 +151,7 @@ Package: `@neta-art/cohub-cli` (npm scope) · monorepo [talesofai/cohub](https:/
 | [markbang/temp-mail-skill](https://github.com/markbang/temp-mail-skill) | `temp-mail` — disposable email for onboarding flow tests |
 | [markbang/cohub-pr-skill](https://github.com/markbang/cohub-pr-skill) | `pr-workflow` — parallel PR development with git worktrees + one session per PR |
 | [kjx-talesofai/claude-skill-rtb-advisor](https://github.com/kjx-talesofai/claude-skill-rtb-advisor) | `rtb-advisor` — brand strategist for "Reason to Believe" |
-| Platform skills in monorepo | `cohub`, `cohub-generate`, works/public share |
+| Platform skills in monorepo | `cohub`, `cohub-generate`, `cohub-apps`, `public-files` |
 
 Install pattern:
 
@@ -209,16 +209,16 @@ Practice: one file per hook; FS matching ignores `.cohub/**` to prevent loops; f
 Playbook: [space-hooks-automation](./playbooks/space-hooks-automation.md) · Doc: [space-hooks.md](https://github.com/talesofai/cohub/blob/main/docs/space-hooks.md)
 
 
-### 3.11 Work commerce
+### 3.11 App commerce
 
-One-time products on a **published Work/App**: feature unlocks and consumable credits.
+One-time products on a **published App**: feature unlocks and consumable credits.
 
 - Runtime only inside the published shell (`context()` / `app.commerce.*`)
-- Host owns checkout redirect state; Work displays gates/balances and triggers purchase/consume
+- Host owns checkout redirect state; App displays gates/balances and triggers purchase/consume
 - Version product keys; never mutate price in place; `operationId` makes credit consumes idempotent
 - Reuse `purchaseAttemptId` on purchase retries; optional Cohub Balance is a global USD component
 
-Playbook: [work-commerce](./playbooks/work-commerce.md) · Promotion: [work-promotions](./playbooks/work-promotions.md) · Guide: [work-commerce-guide.md](https://github.com/talesofai/cohub/blob/main/docs/work-commerce-guide.md)
+Playbook: [app-commerce](./playbooks/work-commerce.md) · Promotion: [app-promotions](./playbooks/work-promotions.md) · Guide: [app-commerce-guide.md](https://github.com/talesofai/cohub/blob/main/docs/app-commerce-guide.md)
 
 
 ### 3.12 Home, Sessions inbox, Mods, `/skill:`
@@ -281,13 +281,15 @@ node /configs/user/.agents/skills/hyper-search/scripts/cli.js search "query"
 
 Playbook: [search-layers](./playbooks/search-layers.md)
 
-### 3.18 Recent runtime surfaces (v2.22-v2.30)
+### 3.18 Recent runtime surfaces (v2.22-v2.38)
 
 - **Semantic Board authoring**: Items, connections, effects, and Compositions share atomic, versioned mutations with dry-run diagnostics and durable receipts.
 - **Task Browser**: dedicated multimodal Task Run history with identity-scoped stale-while-revalidate caching and scope-aware Space/Mine views.
 - **Direct Generation**: Create-mode turns, idempotent client message submission, timeline barriers, and explicit generation cost states.
-- **Work operations**: immutable promotion links, aggregate funnel analytics, live preview refresh, UI callable surfaces, and verified artifact downloads.
-- **Runtime safety**: per-path optimistic concurrency with `fs.edit`, additive execution-token permissions, and prompt context variables (`{{cohub.session.id}}`, `{{cohub.space.id}}`, `{{cohub.user.uuid}}`).
+- **App operations**: immutable promotion links, aggregate funnel analytics, live preview refresh, UI callable surfaces, and verified artifact downloads.
+- **Runtime safety**: per-path optimistic concurrency with `fs.edit`, recoverable edits, explicit command-output truncation, additive execution-token permissions, and prompt context variables (`{{cohub.session.id}}`, `{{cohub.space.id}}`, `{{cohub.user.uuid}}`).
+- **App ecosystem**: App Center and Marketplace installation through validated `.cohub/apps.json`, with enable/disable/uninstall state separate from published App records.
+- **Space navigation and insight**: personal-relevance command palette, Recent/All/Mine/Pinned filters, quick-action Prompt buttons, Space-root new Chat, and Space Activity summaries.
 
 ## 4. Builder playbook (human)
 
@@ -302,8 +304,8 @@ Playbook: [search-layers](./playbooks/search-layers.md)
 6. Prefer small agent loops with verification commands  
 
 ### Ship
-7. For static demos: build → publish **directory Work**  
-8. For Cohub-interactive products: Work Kit runtime + minimal scopes  
+7. For static demos: build → publish **directory App**
+8. For Cohub-interactive products: App runtime + minimal scopes
 9. Put the public URL in the Space README  
 
 ### Operate
@@ -326,9 +328,9 @@ Playbook: [search-layers](./playbooks/search-layers.md)
 - Smoke-test with low limits before large crawls/generations  
 
 ### When publishing
-- Confirm `base: "./"` and hash routing for static Works  
+- Confirm `base: "./"` and hash routing for static Apps
 - List scopes explicitly; refuse “full access just in case”  
-- Return public Work URL + how to verify `ready`  
+- Return public App URL + how to verify `ready`
 
 ### When stuck
 - Save progress  
@@ -344,19 +346,19 @@ See also expanded cards in [anti-patterns/](./anti-patterns/).
 | Anti-pattern | Why it hurts | Do this instead |
 |--------------|--------------|-----------------|
 | Chat-only project | No durable truth | Files + Saves |
-| Raw sandbox URL as “launch” | Unstable, wrong audience | Publish a Work |
-| BrowserRouter on static Work | Asset/route 404s | HashRouter + `base: "./"` |
+| Raw sandbox URL as “launch” | Unstable, wrong audience | Publish an App |
+| BrowserRouter on static App | Asset/route 404s | HashRouter + `base: "./"` |
 | Baking live data into `dist` | Stale + insecure | Read Space files/API at runtime |
 | Auth on page load | Bad UX + over-permission | Gesture + viewer scopes |
 | Mega skill dump unused | Noise, risk, cost | Install per mission |
 | No Saves before agent autonomy | Hard to recover | Checkpoint first |
-| Rebuilding Cohub auth in the Work | Duplicate identity | SDK `auth.request` |
+| Rebuilding Cohub auth in the App | Duplicate identity | SDK `auth.request` |
 
 ---
 
 ## 7. Cheatsheet
 
-### Public Work URL
+### Public App URL
 ```text
 /:username/:spaceSlug/w/:workSlug
 ```
@@ -364,9 +366,9 @@ See also expanded cards in [anti-patterns/](./anti-patterns/).
 ### Minimal static publish intent
 ```bash
 pnpm build   # or your builder
-cohub -s "$COHUB_SPACE_ID" works publish <slug> \
+cohub -s "$COHUB_SPACE_ID" apps publish <slug> \
   --dir <space-relative-dist> \
-  --work-scope file.view
+  --app-scope file.view
 ```
 
 ### Work permissions (current mental split)
@@ -383,8 +385,8 @@ Always start smaller than you think.
 |-------|-----|-------|
 | Manifesto | this file (v0.2) | revise with product changes |
 | [Matrix](./matrix.md) | scenario index | keep IDs stable |
-| [Playbooks](./playbooks/) | 33 playbooks | add new scenarios as product grows |
-| [Concepts](./concepts/) | 30 core nouns | add sparingly |
+| [Playbooks](./playbooks/) | 35 playbooks | add new scenarios as product grows |
+| [Concepts](./concepts/) | 33 core nouns | add sparingly |
 | Knowledge-base pattern | §3.9 + playbook | evolve with real Spaces |
 
 ---
@@ -394,7 +396,7 @@ Always start smaller than you think.
 **Cohub is all you need** when your loop is:
 
 ```text
-Space (work) → Agent+Skills (do) → Checkpoint (keep) → Work (share) → Fork (again)
+Space (work) → Agent+Skills (do) → Checkpoint (keep) → App (share) → Fork (again)
 ```
 
 Use the [scenario matrix](./matrix.md) and [playbooks](./playbooks/) to pick the next concrete path.

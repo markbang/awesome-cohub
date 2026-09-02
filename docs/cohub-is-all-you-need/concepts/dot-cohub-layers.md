@@ -23,7 +23,7 @@ sources:
 
 # `.cohub` layers & priority
 
-`.cohub/` is **platform-facing Space config** (presentation, hooks, published models/generations).  
+`.cohub/` is **platform-facing Space config** (presentation, hooks, published models/generations, and installed-App state).
 **Slash prompt templates** live under **`.agents/prompts/`**, not under `.cohub/`.  
 Both participate in layered merge — and **priority is intentional**.
 
@@ -31,7 +31,7 @@ Both participate in layered merge — and **priority is intentional**.
 
 | Tree | Typical job | Publish on config/platform Save? |
 |------|-------------|----------------------------------|
-| **`.cohub/`** | Space presentation, hooks, models/generations catalogs | **Yes** (whitelist with `AGENTS.md`, `.agents/`) |
+| **`.cohub/`** | Space presentation, hooks, models/generations catalogs, installed Apps | **Yes** (whitelist with `AGENTS.md`, `.agents/`) |
 | **`.agents/`** | Skills, **prompt templates** (slash `/name`), agent extras | **Yes** |
 
 Config / platform Save whitelist:
@@ -73,6 +73,7 @@ CLAUDE.md
 |------|--------|
 | **`.cohub/space.json`** | Space presentation, e.g. **new chat background** payloads |
 | **`.cohub/theme.css`** | Space custom theme CSS |
+| `.cohub/apps.json` | Validated installed-App manifest for this Space |
 | **`.cohub/hooks/*`** | Space Hooks automation |
 | `.cohub/system/…` | Platform bookkeeping (e.g. checkpoint meta) — not for hand-editing |
 | `.agents/skills/` | Project skills |
@@ -101,6 +102,7 @@ platform → mods → user → project
 - Files: **`.agents/prompts/<name>.md`**
 - Expansion: leading `/foo` (not `/skill:…`) loads template `foo`
 - Body supports `$1`, `$@` / `$ARGUMENTS` style arg substitution
+- `quick-action: true` can expose a template as a button above the Chat composer; `button-label`, `argument-hint`, and `order` control its presentation
 
 ### Prompt context variables and auxiliary model tasks
 
@@ -152,7 +154,8 @@ These do not replace the account **appearance** theme picker; they style **this 
 3. **This product’s look** → project `.cohub/space.json` / `theme.css`.  
 4. **Team shared tooling** → Mod mount, not copy-paste into every config.  
 5. For prompt templates that need request identity, use the `{{cohub.*}}` variables instead of copying IDs into files.
-6. Never “fix” live mounts under `/configs/user` or `/configs/platform`; edit source Space + Save.
+6. Treat `.cohub/apps.json` as current-Space installed state, not a published App registry.
+7. Never “fix” live mounts under `/configs/user` or `/configs/platform`; edit source Space + Save.
 
 ## See also
 

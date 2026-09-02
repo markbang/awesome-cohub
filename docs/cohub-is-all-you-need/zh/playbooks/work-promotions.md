@@ -1,9 +1,9 @@
 ---
 id: cohub.bp.work-promotions
-title: 在不泄露观众数据的前提下衡量 Work 推广
+title: 在不泄露观众数据的前提下衡量 App 推广
 type: playbook
 audience: [builder, operator]
-features: [work, analytics, promotion, commerce]
+features: [work, app, analytics, promotion, commerce]
 difficulty: advanced
 related:
   - cohub.bp.work-lifecycle
@@ -11,28 +11,28 @@ related:
   - cohub.concept.work
 sources:
   - https://cohub.live/changelog（v2.22-v2.23）
-  - https://github.com/talesofai/cohub/blob/main/docs/works-guide.md
+  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
 ---
 
-# 在不泄露观众数据的前提下衡量 Work 推广
+# 在不泄露观众数据的前提下衡量 App 推广
 
-## 适用场景
+## 何时使用
 
-你需要把流量和漏斗行为归因到已发布的 Work，同时不建立访客级别的跟踪数据库。
+你需要把流量和漏斗行为归因到已发布的 App，同时不建立访客级别的跟踪数据库。
 
 ## 结果
 
-- 不可变的 UTM 推广链接指向当前已发布的 Work。
-- Landing、就绪、注册、付费墙与结账行为按推广、Work 版本、来源和小时聚合。
+- 不可变的 UTM 推广链接指向当前已发布的 App。
+- Landing、就绪、注册、付费墙与结账行为按推广、App 版本、来源和小时聚合。
 - 可选启用 Meta Pixel / Conversions API；使用通用分析时不加载第三方服务商。
 
 ## 步骤
 
-1. 先发布并验证 Work。推广链接始终打开当前已发布版本，不能替代版本发布。
+1. 先发布并验证 App。推广链接始终打开当前已发布版本，不能替代版本发布。
 2. 使用明确的 UTM 字段创建推广：
 
 ```bash
-cohub apps promotions create <work> \
+cohub apps promotions create <app> \
   --name "Launch video A" \
   --provider generic \
   --utm-source instagram \
@@ -44,13 +44,13 @@ cohub apps promotions create <work> \
 3. 查看链接与聚合统计：
 
 ```bash
-cohub apps promotions list <work>
-cohub apps promotions stats <work> <promotion-id>
+cohub apps promotions list <app>
+cohub apps promotions stats <app> <promotion-id>
 ```
 
-4. 认证或结账跳转时，使用浏览器保留的 30 天 Work 作用域最近触点归因。
+4. 认证或结账跳转时，使用浏览器保留的 30 天 App 作用域最近触点归因。
 5. 只有部署配置了 Meta Pixel 与 Conversions API 凭据时，才使用 `--provider meta`。正式流量前用可选的 Meta 测试事件代码验证集成。
-6. 把统计当作聚合漏斗证据。Cohub 保留提供事件的不可变版本，不保留访客级推广记录。
+6. 把统计当作聚合漏斗证据。Cohub 保留提供事件的不可变 App 版本，不保留访客级推广记录。
 
 ## 事件契约
 
@@ -58,7 +58,7 @@ cohub apps promotions stats <work> <promotion-id>
 
 ## 完成标准
 
-- [ ] 推广链接能解析到已发布 Work
+- [ ] 推广链接能解析到已发布 App
 - [ ] UTM 字段能识别一个活动和创意
 - [ ] 统计显示版本与按小时的来源细分
 - [ ] 生产流量前已验证 Meta 凭据与测试事件
@@ -66,10 +66,10 @@ cohub apps promotions stats <work> <promotion-id>
 
 ## 避免
 
-- 把推广链接当作不可变的 Work 版本
+- 把推广链接当作不可变的 App 版本
 - 发送浏览器不允许记录的转化事件
 - 通用聚合统计已经够用时仍添加 Meta 脚本
-- 把 Pixel 或 CAPI 凭据放进 Work bundle
+- 把 Pixel 或 CAPI 凭据放进 App bundle
 
 ---
 

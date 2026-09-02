@@ -1,48 +1,47 @@
 ---
 id: cohub.cb.weekend-static-work
-title: Weekend static Work
+title: Weekend static App
 type: cookbook
 audience: [builder]
 difficulty: starter
 related: [cohub.bp.scratch-to-checkpoint, cohub.bp.publish-static-work, cohub.bp.work-kit-product, cohub.bp.minimal-scopes]
 ---
 
-# Weekend static Work
+# Weekend static App
 
-Ship something people can open without a sandbox invite.
+Ship something people can open without a Sandbox invite.
 
 ## Outcome
 
-- A Space with a real site (or SPA with **hash** / static-friendly routing)
+- A Space with a real site (or SPA with hash/static-friendly routing)
 - At least one Save
-- A **directory** Work URL you can send
+- A **directory** App URL you can send
 
 ## Path
 
-1. **Space + Save habit** — [scratch-to-checkpoint](../playbooks/scratch-to-checkpoint.md)  
-   Name the Space for the product (`portfolio-v1`), not `test`.
-2. **Build in `/workspace`**  
-   - Simple: static `index.html` + assets  
-   - App-shaped: [work-kit-product](../playbooks/work-kit-product.md) then `build` → `dist/`
-3. **Routing check** — anti-pattern [browser-router-static](../anti-patterns/browser-router-static.md)  
-   Prefer `HashRouter` or pre-rendered paths; set Work `base: "./"` when needed.
-4. **Publish** — [publish-static-work](../playbooks/publish-static-work.md)  
-   Use `cohub-works-share` / Work Kit publish; never send raw sandbox URL ([raw-sandbox-launch](../anti-patterns/raw-sandbox-launch.md)).
-5. **Scopes** — [minimal-scopes](../playbooks/minimal-scopes.md)  
-   Static brochure → tiny scopes; interactive later.
-6. **Save** again with note `v0-work-public`.
+1. **Space + Save habit** - [scratch-to-checkpoint](../playbooks/scratch-to-checkpoint.md)
+2. **Build in `/workspace`**
+   - Simple: static `index.html` + assets
+   - App-shaped: [work-kit-product](../playbooks/work-kit-product.md), then `build` -> `dist/`
+3. **Routing check** - [browser-router-static](../anti-patterns/browser-router-static.md)
+   Prefer `HashRouter` or pre-rendered paths; set App `base: "./"` when needed.
+4. **Publish** - [publish-static-work](../playbooks/publish-static-work.md)
+   Use `cohub-apps` / Work Kit publish; never send a raw Sandbox URL.
+5. **Scopes** - [minimal-scopes](../playbooks/minimal-scopes.md)
+   Static brochure -> no special scopes; add only what an interactive App uses.
+6. **Save** again with note `v0-app-public`.
 
 ## Done when
 
-- [ ] Incognito/private window opens the Work URL
-- [ ] Refresh on deep links does not 404 (or you use hash routes)
-- [ ] Save exists you would restore from
+- [ ] An incognito/private window opens the App URL
+- [ ] Deep-link refresh does not 404, or the App uses hash routes
+- [ ] A Save exists that you would restore from
 
 ## Avoid
 
-- Testing only inside sandbox preview  
-- Baking private API data into `dist/` ([bake-live-data-dist](../anti-patterns/bake-live-data-dist.md))  
-- Auth wall on first paint ([auth-on-load](../anti-patterns/auth-on-load.md))
+- Testing only inside Sandbox preview
+- Baking private API data into `dist/`
+- An auth wall on first paint
 
 ---
 

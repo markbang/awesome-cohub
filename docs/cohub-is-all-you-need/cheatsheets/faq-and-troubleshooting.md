@@ -30,12 +30,19 @@ type: cheatsheet
 | `generation.create` succeeds but polling is 403 | Add/request `taskrun.view`; creation and result reading are separate permissions |
 | Task Browser Mine view is empty | Request viewer-only `user.taskrun.list`; Space view uses `taskrun.view` instead |
 | Commerce works only in preview | Use a published Work/App runtime; raw assets and local previews have no runtime context |
+| App is missing from the Space Apps panel | Check `.cohub/apps.json`, the installed entry's `enabled` flag, and Marketplace permissions |
+| App install overwrites someone else's change | Reload the manifest and retry with the latest file revision; do not replace a stale snapshot |
+| Space Activity costs are zero | Cost fields are intentionally redacted for viewers without Space-management access |
+| Command palette default list flickers | Let the local/IndexedDB cache render first; inspect the overview request only if the stale snapshot cannot refresh |
 
 ## Board
 
 | Symptom | Fix |
 |---------|-----|
 | Legacy node/sequence payload rejected | Use semantic Items/Compositions and `boards capabilities` |
+| Board batch fails with a diagnostic | Fix the reported authoring path (for example `items.0.props.text`) before retrying |
+| Board API error lacks context | Capture the stable error code, diagnostics, and `requestId` |
+| Board animation update refetches unnecessarily | Apply the `animationPatch` from `board.changed` when the update is a pure effect/composition patch |
 | Board mutation duplicated after retry | Reuse the same `mutationId`; inspect the receipt |
 | Board mutation conflicts | Re-read the current version and retry with a fresh `baseVersion` |
 | Composition renders differently after publish | Keep referenced assets in the Space and validate the semantic snapshot before publish |
@@ -45,6 +52,9 @@ type: cheatsheet
 | Symptom | Fix |
 |---------|-----|
 | Concurrent edit was rejected | Handle `CONFLICT`: read the latest version, then use a smaller edit or `fs.edit` |
+| Edit fails after harmless formatting drift | Retry with the normalized current snapshot; recoverable edits tolerate line endings, BOM, and trailing whitespace, but ambiguous matches still fail |
+| Command output appears incomplete | Check the explicit truncation flag/details before treating the output as a complete result |
+| CLI updates while a command is running | Self-updates are detached and apply on the next invocation; set `COHUB_CLI_AUTO_UPDATE=0` to disable them |
 | API sees the wrong user | Check [execution-token-identity](../playbooks/execution-token-identity.md); execution scopes add to account access |
 | Work re-implements login | Use the platform session/SDK |
 

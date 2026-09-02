@@ -42,7 +42,7 @@ Agent 需要可复用能力（采集、代理、发布脚手架），而不是�
 | WARP egress | `markbang/warp-proxy-skill` |
 | Social fetch | `markbang/wgetx-skill` |
 | Work product kit | `markbang/cohub-work-skill` |
-| Platform ops | monorepo skills: `cohub`, `cohub-generate`, `cohub-works-share`, `public-share` |
+| Platform ops | monorepo skills: `cohub`, `cohub-generate`, `cohub-apps`, `public-files` |
 
 ## 完成标准
 

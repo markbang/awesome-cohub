@@ -1,25 +1,25 @@
 ---
 id: cohub.ap.static-work-as-api
-title: Static Work as API backend
+title: Static App as API backend
 type: anti-pattern
 related: [cohub.bp.publish-static-work, cohub.bp.work-kit-product, cohub.bp.port-preview]
 ---
 
-# Static Work as API backend
+# Static App as API backend
 
 ## Why it hurts
 
-Directory/static Works are files on a CDN-like surface. They do not host your Node API, websockets, or long-lived servers.
+Directory/static Apps are files on a CDN-like surface. They do not host your Node API, WebSockets, or long-lived servers.
 
 ## Do this instead
 
-- Static frontends call **platform/Work APIs** with scopes  
-- Dev-only live servers → port preview, not default prod  
-- True backends stay on proper hosts; Work is the shell  
+- Static frontends call platform/App APIs with the scopes they need.
+- Dev-only live servers use port preview, not the default production shape.
+- True backends stay on proper hosts; the App is the shell and client surface.
 
 ## Smell test
 
-Your `directory` Work README says “also runs Express on :3000”.
+Your directory App README says it “also runs Express on :3000”.
 
 ---
 

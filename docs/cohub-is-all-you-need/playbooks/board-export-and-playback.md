@@ -10,8 +10,9 @@ related:
   - cohub.concept.board-semantic-authoring
   - cohub.concept.space
 sources:
-  - https://cohub.live/changelog (v2.0-v2.27)
+  - https://cohub.live/changelog (v2.0-v2.38)
   - https://github.com/talesofai/cohub/blob/main/packages/protocol/src/board-authoring.ts
+  - https://github.com/talesofai/cohub/blob/main/packages/cli/src/commands/boards/batch.ts
 ---
 
 # Author, export, and play semantic Boards
@@ -24,63 +25,61 @@ You want to arrange Space files and generated media on a Board, add connections 
 
 - A semantic Board snapshot contains Items, connections, effects, compositions, and playback policy.
 - Mutations are validated, version-aware, and safe to retry.
-- Browser previews, checkpoints, published Board Works, and headless exports use the same model.
+- Browser previews, checkpoints, published App Board targets, and headless exports use the same model.
 
 ## Steps
 
-### A. Inspect before editing
+### A. Resolve and inspect before editing
+
+A Board target can be a Board ID or a `.board` path:
 
 ```bash
-cohub boards inspect <board> --json
-cohub boards capabilities <board> --json
+cohub boards inspect <board-or-path> --json
+cohub boards capabilities <board-or-path> --json
 ```
 
 Use capabilities to discover supported Item types, animation channels, clip/effect kinds, coordinate spaces, and render limits.
 
-### B. Create semantic content
+### B. Apply one atomic batch
 
 ```bash
-cohub boards examples item image > hero.json
-cohub boards items create <board> --input hero.json --dry-run
-cohub boards items create <board> --input hero.json --mutation-id <stable-id>
-cohub boards items patch <board> <item-id> --input patch.json
+cohub boards examples create > board.json
+cohub boards batch <board-or-path> --input changes.json --dry-run
+cohub boards batch <board-or-path> --input changes.json \
+  --base-version 12 --mutation-id <stable-id> --json
 ```
 
-Connections, effects, and compositions use the same atomic mutation protocol. Reuse `mutationId` when retrying a timed-out request; use `baseVersion` when chaining from a known snapshot.
+A batch is one atomic round trip. Reuse `mutationId` when retrying a timed-out request; use a strict `baseVersion` when the caller must reject a stale snapshot.
 
-### C. Configure composition playback
+For focused edits, use `boards items`, `boards connections`, `boards effects`, and `boards compositions`. Each supports semantic JSON and get-by-ID reads.
 
-Compositions hold tracks, keyframes, procedural clips, and markers. Board metadata selects the composition rather than the removed legacy `sequenceId` shape:
+### C. Configure and control playback
 
-```json
-{
-  "playback": {
-    "compositionId": "intro",
-    "delayMs": 500
-  }
-}
-```
+Compositions hold tracks, keyframes, procedural clips, and markers. Shared playback is grouped under `boards playback`:
 
 ```bash
-cohub boards play <board> intro
-cohub boards pause <board> <playback-id>
-cohub boards seek <board> <playback-id> 400
+cohub boards playback play <board-or-path> <composition-id> --time-scale 1
+cohub boards playback pause <board-or-path> <playback-id>
+cohub boards playback seek <board-or-path> <playback-id> 400
+cohub boards playback stop <board-or-path> <playback-id>
 ```
+
+The Board metadata selects a `compositionId`; the removed legacy `sequenceId` shape is not a new authoring contract.
 
 ### D. Export
 
 ```bash
 # Full board
-cohub boards export <board> -o out.png --scale 2 --theme dark
+cohub boards export <board-or-path> --out out.png --scale 2 --theme dark
 
 # Selected Items or a world-space rectangle
-cohub boards export <board> --items title,hero -o selection.webp
-cohub boards export <board> --rect 0,0,1920,1080 -o frame.png
+cohub boards export <board-or-path> --items title,hero --out selection.webp
+cohub boards export <board-or-path> --rect 0,0,1920,1080 --out frame.png
 ```
 
 ## Done when
 
-- [ ] The semantic snapshot passes `capabilities` and dry-run validation
+- [ ] The semantic snapshot passes capabilities and dry-run validation
 - [ ] A retry uses the same mutation id
 - [ ] Playback honors the current reduced-motion policy
 - [ ] Exported output matches the Board preview and referenced assets
@@ -89,7 +88,7 @@ cohub boards export <board> --rect 0,0,1920,1080 -o frame.png
 
 - Writing the removed legacy Node/Sequence wire shape
 - Treating a screenshot as the Board source of truth
-- Replacing a timed-out mutation with a new id
+- Replacing a timed-out batch with a new id
 - Publishing unreferenced workspace assets just to satisfy a Board preview
 
 ---

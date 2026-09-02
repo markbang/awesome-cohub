@@ -12,12 +12,12 @@ Load this when operating inside a Cohub sandbox. Prefer files over chat memory.
 ## Core loop
 
 ```text
-Space (home) → Skills/tools (act) → Save (time) → Work (share) → Fork (again)
+Space (home) → Skills/tools (act) → Save (time) → App (share) → Fork (again)
 ```
 
 - **Space** = unit of work (files + chats + sandbox).
 - **Checkpoint / Save** = unit of time (restore, fork, publish config).
-- **Work** = unit of sharing (public URL; not a private sandbox link).
+- **App** = unit of sharing (public URL; older docs call it Work; not a private Sandbox link).
 
 ## Paths (do not invent)
 
@@ -28,6 +28,7 @@ Space (home) → Skills/tools (act) → Save (time) → Work (share) → Fork (a
 | `/configs/platform` | Platform publish | **no** |
 | `/mods/<slug>` | Mounted mod | **no** |
 | `/workspace/.agents/skills/` | Project skills | yes |
+| `/workspace/.cohub/apps.json` | Installed-App manifest for this Space | yes |
 | `/configs/user/.agents/skills/` | Published user skills | **no** (edit config Space + Save) |
 
 Skill merge (same name → later wins):
@@ -39,8 +40,8 @@ platform → mods → user config → workspace
 ## Identity
 
 - Sandbox **execution token** ≠ browser login cookie story.
-- Work runtime uses `appScopes` plus per-Space viewer grants (legacy `workScopes` / `viewerScopes` aliases exist) — request least privilege.
-- Do not rebuild Cohub auth inside a Work; use platform session/SDK.
+- App runtime uses `appScopes` plus per-Space viewer grants (legacy Work spellings remain as aliases) — request least privilege; `app.homeSpace` and invocation identify context, not authorization.
+- Do not rebuild Cohub auth inside an App; use the platform session/SDK.
 
 ## Knowledge habit
 
@@ -70,7 +71,7 @@ Update existing wiki pages; do not only append raw forever.
 2. Edit `/configs/user` inside a random project sandbox  
 3. Use **Home** as config or junk drawer  
 4. Ship raw sandbox URL as the product  
-5. `BrowserRouter` / history routes on static directory Works  
+5. `BrowserRouter` / history routes on static directory Apps
 6. Broad scopes “just in case”  
 7. Scheduled loops with state only in chat  
 8. Skill scripts/assets only at repo root (install drops them)  
@@ -82,17 +83,19 @@ Update existing wiki pages; do not only append raw forever.
 
 - Save before destructive autonomy; read diffs after  
 - Scannable Save notes (`v0-landing-working`)  
-- Minimal scopes + Work Kit patterns
+- Minimal scopes + Work Kit patterns (App runtime)
 - Semantic Board authoring with capabilities and mutation receipts
 - Task Browser for asynchronous generation history
+- App Center for installed-App state; Space Activity for bounded usage summaries
 - Let the repeated-tool-call guard trigger reassessment instead of forcing a loop
 - Disk state for loops (`runtime/state.json`, wiki log)  
 - Cite playbooks by id (`cohub.bp.*`) when teaching humans  
 
-## Work presentation
+## App presentation
 
 - Pro/Max: hide public footer bar via UI or `--hide-cohub-bar` — [hide-cohub-bar](./playbooks/hide-cohub-bar.md)
-- Work/App previews can receive invocation context and expose only explicitly registered callable methods — [work-presentation](./concepts/work-presentation.md)
+- App previews can receive invocation context and expose only explicitly registered callable methods — [work-presentation](./concepts/work-presentation.md)
+- Prompt templates can opt into quick-action buttons; keep them under `.agents/prompts/`
 
 
 ## `.cohub` vs `.agents` (priority)

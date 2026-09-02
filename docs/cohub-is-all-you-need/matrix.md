@@ -21,11 +21,13 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 |----|-----------------|-------------------|---------------|-------|------|
 | `cohub.bp.scratch-to-checkpoint` | From blank Space to first Save | Space, Files, Chat, Checkpoint | `cohub` | starter | builder |
 | `cohub.bp.agent-with-skills` | Equip an agent and do real work | Space, Sandbox, Skills, CLI | `cohub`, any ecosystem skill | starter | builder, agent-author |
+| `cohub.bp.app-center` | Install and maintain Apps in a Space | Apps, Marketplace, Space files | `cohub-apps`, `cohub` | intermediate | builder, operator |
+| `cohub.bp.board-export-and-playback` | Author, export, and play semantic Boards | Boards, compositions, CLI, export | `cohub` | intermediate | builder, agent |
 | `cohub.bp.cross-space-context` | Pull context from another Space | `@space`, Sessions, Files | `cohub` | intermediate | builder, operator |
 | `cohub.bp.multimodal-pipeline` | Generate, inspect, and materialize multimodal assets | Generation, Files, Tasks | `cohub-generate` | starter | builder |
-| `cohub.bp.publish-static-work` | Publish a static HTML/site Work | Works (`file`/`directory`) | `cohub-works-share`, `public-share` | starter | builder |
-| `cohub.bp.work-kit-product` | Build a real Work product with runtime | Works, SDK, Scopes | `cohub-work-kit`, `cohub-work-publish` | intermediate | builder |
-| `cohub.bp.minimal-scopes` | Ship Work Apps with least privilege | appScopes, viewer grants | `cohub-work-publish` | intermediate | builder |
+| `cohub.bp.publish-static-work` | Publish a static HTML/site App | Apps (`file`/`directory`) | `cohub-apps`, `public-files` | starter | builder |
+| `cohub.bp.work-kit-product` | Build a real App product with runtime | Apps, SDK, Scopes | `cohub-work-kit`, `cohub-work-publish` | intermediate | builder |
+| `cohub.bp.minimal-scopes` | Ship Apps with least privilege | appScopes, viewer grants | `cohub-apps` | intermediate | builder |
 | `cohub.bp.scheduled-loop` | Recurring / outer-loop automation | Scheduled prompts, Tasks, Files-as-state | `cohub` | advanced | operator, agent-author |
 | `cohub.bp.space-knowledge-base` | Build a compounding wiki in a Space | Files (`raw/` / `wiki/` / log), Sessions, Skills | `cohub` | intermediate | builder, agent-author |
 | `cohub.bp.social-research` | Social fetch → write into wiki | Sandbox, Files, wiki pages | `wgetx` | intermediate | builder |
@@ -33,23 +35,24 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | `cohub.bp.channel-ops` | Operate from Discord / Feishu / WeChat | Channels, Gateway | `cohub` | intermediate | operator |
 | `cohub.bp.fork-and-proposal` | Fork a Save, explore, propose back | Checkpoint, Fork, Proposal | `cohub` | intermediate | builder |
 | `cohub.bp.space-hooks-automation` | Event automation with Space Hooks | Hooks, Tasks, Files | `cohub` | advanced | operator, agent-author |
-| `cohub.bp.work-promotions` | Measure Work promotion funnels | Works/Apps, analytics, commerce | `cohub` | advanced | builder, operator |
+| `cohub.bp.space-activity` | Read Space activity summaries | Space, usage, analytics, Apps | `cohub` | intermediate | builder, operator |
+| `cohub.bp.work-promotions` | Measure App promotion funnels | Apps, analytics, commerce | `cohub` | advanced | builder, operator |
 | `cohub.bp.mod-mount` | Mount Mods for shared tooling | Mods, Skills, Sandbox | `cohub` | intermediate | builder, operator |
 | `cohub.bp.skill-slash-discovery` | Discover skills with `/skill:` | Chat, Skills, Mods | `cohub` | starter | builder, agent-author |
 | `cohub.bp.home-and-sessions-inbox` | Home Space & Sessions inbox | Home, `/sessions` | `cohub` | starter | builder |
-| `cohub.bp.work-commerce` | Sell features/credits in a Work | Works/Apps, Billing, SDK | `cohub-work-kit` | advanced | builder |
+| `cohub.bp.work-commerce` | Sell features/credits in an App | Apps, Billing, SDK | `cohub-work-kit` | advanced | builder |
 | `cohub.bp.user-config-and-rules` | Own agent defaults in config Space | config Space, User Rules, `/configs/user` | `cohub` | intermediate | builder, agent-author |
 | `cohub.bp.platform-config` | Operate platform config Space | platform config, skills | `cohub` | advanced | operator |
 | `cohub.bp.skill-catalog-cache` | Debug `/skill:` catalog & cache | Skills API, Redis | `cohub` | advanced | operator, agent-author |
 | `cohub.bp.execution-token-identity` | Execution token vs login identity | Auth, sandbox env | `cohub` | advanced | builder, agent-author |
 | `cohub.bp.search-layers` | Product vs workspace vs web search | Search API, config skills | `hyper-search` | starter | builder, agent-author |
-| `cohub.bp.port-preview` | Live port demo (dev, not default prod) | Works (`port`), Sandbox ports | `cohub-works-share` | intermediate | builder |
-| `cohub.bp.hide-cohub-bar` | Hide Cohub footer bar on public Work | Works, billing entitlement | `cohub` CLI | starter | builder |
-| `cohub.bp.work-lifecycle` | Publish / version / disable / visibility | Works/Apps | `cohub` | intermediate | builder |
-| `cohub.bp.viewer-auth-user-scopes` | Viewer consent + account scopes | Works/Apps, SDK | `cohub` | advanced | builder, agent-author |
+| `cohub.bp.port-preview` | Live port demo (dev, not default prod) | Apps (`port`), Sandbox ports | `cohub-apps` | intermediate | builder |
+| `cohub.bp.hide-cohub-bar` | Hide Cohub footer bar on public App | Apps, billing entitlement | `cohub` CLI | starter | builder |
+| `cohub.bp.work-lifecycle` | Publish / version / disable / visibility | Apps | `cohub-apps` | intermediate | builder |
+| `cohub.bp.viewer-auth-user-scopes` | Viewer consent + account scopes | Apps, SDK | `cohub` | advanced | builder, agent-author |
 | `cohub.bp.space-members-access` | Members, host/builder/guest, access policy | Space settings | `cohub` | intermediate | builder, operator |
 | `cohub.bp.space-env-sandbox` | Env vars + sandbox spec/idle | Space settings, Sandbox | `cohub` | intermediate | builder, operator |
-| `cohub.bp.public-identity-slugs` | Username + space/work slugs for public URLs | Profile, Space, Works | `cohub` | starter | builder |
+| `cohub.bp.public-identity-slugs` | Username + space/app slugs for public URLs | Profile, Space, Apps | `cohub` | starter | builder |
 | `cohub.bp.dot-cohub-layers` | Configure `.cohub` / `.agents` with merge priority | config Space, Space files, slash catalog | `cohub` | intermediate | builder, agent-author |
 
 ---
@@ -62,9 +65,12 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 |--------------|---------|--------|
 | A durable project home | **Space** | One-off chat with no files |
 | Undo / share a moment | **Checkpoint (Save)** | Overwriting without Saves |
-| Something others can open | **Work** | Sending private sandbox URLs |
-| Static demo / site | Work `directory` + `base: "./"` | History API routes on static hosting |
-| Interactive product in Cohub shell | Work + SDK + minimal scopes | Broad full-access “just in case” |
+| Something others can open | **App** | Sending private Sandbox URLs |
+| Install a reusable Space tool | **App Center** | Copying an App URL into every project |
+| Inspect Space usage | **Space Activity** | Exposing cost fields to every viewer |
+| Find a recent Space or Chat | **Command palette** | Treating a global popularity list as personal context |
+| Static demo / site | App `directory` + `base: "./"` | History API routes on static hosting |
+| Interactive product in Cohub shell | App + SDK + minimal scopes | Broad full-access “just in case” |
 | Team / agent shared memory | **In-Space knowledge base** (`raw` + `wiki` + append-only log) | Pasting giant notes into every prompt |
 | Agent that can run tools | Skills inside Space sandbox | Assuming host machine paths |
 | Recurring jobs | Scheduled prompt + state on disk | Hidden memory only in chat |
@@ -92,10 +98,10 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 
 | Cookbook | Outcome | Depth | Role |
 |----------|---------|-------|------|
-| [weekend-static-work](./cookbooks/weekend-static-work.md) | Public directory Work | starter | builder |
+| [weekend-static-work](./cookbooks/weekend-static-work.md) | Public directory App | starter | builder |
 | [config-skills-setup](./cookbooks/config-skills-setup.md) | Published user skills + rules | starter | builder, operator |
 | [research-agent-wiki](./cookbooks/research-agent-wiki.md) | Compounding knowledge Space | intermediate | builder, agent-author |
-| [paid-work-minimum](./cookbooks/paid-work-minimum.md) | Commerce-ready Work shell | advanced | builder |
+| [paid-work-minimum](./cookbooks/paid-work-minimum.md) | Commerce-ready App shell | advanced | builder |
 
 Also: [learning-path](./learning-path.md) · [AGENT_BRIEF](./AGENT_BRIEF.md) · [FAQ](./cheatsheets/faq-and-troubleshooting.md)
 
@@ -140,7 +146,7 @@ npx skills add https://github.com/markbang/warp-proxy-skill \
 npx skills add https://github.com/markbang/wgetx-skill \
   --skill wgetx --agent codex --yes --copy
 
-# Work products
+# App products
 npx skills add https://github.com/markbang/cohub-work-skill \
   --skill cohub-work-kit --agent codex --yes --copy
 npx skills add https://github.com/markbang/cohub-work-skill \
@@ -153,9 +159,9 @@ npx skills add https://github.com/markbang/cohub-work-skill \
 
 | Topic | Doc |
 |-------|-----|
-| Works | [works-guide.md](https://github.com/talesofai/cohub/blob/main/docs/works-guide.md) |
+| Apps | [apps-guide.md](https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md) |
 | Generations | [generations.md](https://github.com/talesofai/cohub/blob/main/docs/generations.md) |
-| Work commerce | [work-commerce-guide.md](https://github.com/talesofai/cohub/blob/main/docs/work-commerce-guide.md) |
+| App commerce | [app-commerce-guide.md](https://github.com/talesofai/cohub/blob/main/docs/app-commerce-guide.md) |
 | Space hooks | [space-hooks.md](https://github.com/talesofai/cohub/blob/main/docs/space-hooks.md) |
 | Product docs (EN/ZH) | [docs/product](https://github.com/talesofai/cohub/tree/main/docs/product) |
 

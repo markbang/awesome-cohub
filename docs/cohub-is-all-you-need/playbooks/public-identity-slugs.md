@@ -1,52 +1,57 @@
 ---
 id: cohub.bp.public-identity-slugs
-title: Username, space slug, and Work URLs
+title: Username, Space slug, and App URLs
 type: playbook
 audience: [builder]
-features: [profile, space, work]
+features: [profile, space, work, app]
 difficulty: starter
 related: [cohub.bp.publish-static-work, cohub.bp.work-lifecycle, cohub.concept.work]
 sources:
   - https://cohub.live/docs/workspace/spaces
-  - https://cohub.live/docs/create/works
-  - https://github.com/talesofai/cohub/blob/main/docs/works-guide.md
+  - https://cohub.live/docs/apps
+  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
 ---
 
-# Username, space slug, and Work URLs
+# Username, Space slug, and App URLs
 
 ## When
 
-Publish fails or public links cannot be formed.
+Publishing fails or a public App link cannot be formed.
 
 ## Outcome
 
-- Account **username**, Space **slug**, Work **slug** all set  
-- You understand they can change but **cannot be cleared** once set  
+- The account username, Space slug, and App slug are set.
+- You understand these values can change but cannot be cleared once set.
 
 ## URL shape
 
 ```text
-/:username/:spaceSlug/w/:workSlug
+/:username/:spaceSlug/w/:appSlug
 ```
 
-Also: public profile `/:username`.
+The `/w/` segment is retained for compatibility with the former Work vocabulary. A public profile uses `/:username`.
 
 ## Steps
 
-1. Set username in **account / profile** settings.
-2. Set Space **slug** in Space settings (readable, stable).
-3. Choose Work slug at publish (`pitch`, `v1`, `docs-demo`).
-4. If API rejects create/publish, check missing username or space slug first.
+1. Set the username in account/profile settings.
+2. Set the Space slug in Space settings; keep it readable and stable.
+3. Choose an App slug at publish time (`pitch`, `v1`, `docs-demo`).
+4. If the API rejects create/publish, check the username and Space slug first.
+5. Resolve an App by its canonical reference when needed:
+   ```bash
+   cohub apps resolve <app-slug> --owner <username> --space-slug <space-slug> --json
+   ```
 
 ## Done when
 
-- [ ] `works.get` / publish returns a real `publicUrl`  
-- [ ] Link opens in a private window  
+- [ ] `apps.get` / publish returns a real `publicUrl`
+- [ ] The link opens in a private window
+- [ ] The slug identifies the intended App rather than a temporary preview
 
 ## Avoid
 
-- Clever Unicode slugs that break sharing  
-- Renaming slugs casually after you printed posters  
+- Clever Unicode slugs that break sharing
+- Renaming a slug casually after printing or embedding the URL
 
 ---
 

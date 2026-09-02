@@ -21,7 +21,7 @@ Concrete starting points. Prefer cloning patterns into **your** Space over treat
 
 | Skill | Repo |
 |-------|------|
-| Platform `cohub` / generate / works-share | [talesofai/cohub](https://github.com/talesofai/cohub) |
+| Platform `cohub` / generate / apps / public-files | [talesofai/cohub](https://github.com/talesofai/cohub) |
 | warp-proxy | [markbang/warp-proxy-skill](https://github.com/markbang/warp-proxy-skill) |
 | wgetx | [markbang/wgetx-skill](https://github.com/markbang/wgetx-skill) |
 | wikis | [markbang/wikis-skill](https://github.com/markbang/wikis-skill) |
@@ -40,12 +40,15 @@ Concrete starting points. Prefer cloning patterns into **your** Space over treat
 |---------|--------|
 | Knowledge base layout | [space-knowledge-base](./playbooks/space-knowledge-base.md) · matrix “Knowledge base pattern” |
 | Config publish | [user-config-and-rules](./playbooks/user-config-and-rules.md) |
-| Work Kit app | [work-kit-product](./playbooks/work-kit-product.md) |
+| App Kit product | [work-kit-product](./playbooks/work-kit-product.md) |
 | Semantic Board authoring | [board-semantic-authoring](./concepts/board-semantic-authoring.md) · [board-export-and-playback](./playbooks/board-export-and-playback.md) |
 | Direct Generation and Task Browser | [direct-generation](./concepts/direct-generation.md) · [task-browser](./concepts/task-browser.md) |
-| Work promotion funnel | [work-promotions](./playbooks/work-promotions.md) |
+| App promotion funnel | [work-promotions](./playbooks/work-promotions.md) |
+| App Center installation | [app-center](./playbooks/app-center.md) |
+| Space activity report | [space-activity](./playbooks/space-activity.md) |
+| Command palette and quick actions | [command-palette](./concepts/command-palette.md) |
 | Research → wiki | [cookbook](./cookbooks/research-agent-wiki.md) |
-| Weekend Work | [cookbook](./cookbooks/weekend-static-work.md) |
+| Weekend App | [cookbook](./cookbooks/weekend-static-work.md) |
 
 ## Architecture (static)
 

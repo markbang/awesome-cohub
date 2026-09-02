@@ -1,20 +1,23 @@
 ---
 id: cohub.ap.commerce-on-static-preview
-title: 在静态预览上测商业化
+title: 只在静态预览测试 App 商业化
 type: anti-pattern
 related: [cohub.bp.work-commerce]
 ---
 
-# 在静态预览上测商业化
+# 只在静态预览测试 App 商业化
 
-## 伤害
-`context()` is null; purchase/entitlement APIs fail; you debug ghosts.
+## 为什么有问题
+
+已发布 App 之外 `context()` 为 null，购买和权益 API 会失败，排查结果也会误导。
 
 ## 正确做法
-Always exercise commerce on the **published Work URL** inside Cohub shell.
 
-## Smell test
-If `cohub.context()` is null, you are not in the Work runtime.
+在 Cohub 壳内通过**已发布 App URL**验证商业化。
+
+## 嗅探标准
+
+如果 `cohub.context()` 为 null，你就不在 App runtime 中。
 
 ---
 

@@ -15,7 +15,7 @@ sources:
 
 ## When
 
-A file change, Save, finalized turn, published Work version, or Task Run transition should trigger work inside the Space.
+A file change, Save, finalized turn, published App version, or Task Run transition should trigger work inside the Space.
 
 ## Outcome
 

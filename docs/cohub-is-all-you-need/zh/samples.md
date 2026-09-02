@@ -21,7 +21,7 @@ type: guide
 
 | Skill | 仓库 |
 |-------|------|
-| 平台 `cohub` / generate / works-share | [talesofai/cohub](https://github.com/talesofai/cohub) |
+| 平台 `cohub` / generate / apps / public-files | [talesofai/cohub](https://github.com/talesofai/cohub) |
 | warp-proxy | [markbang/warp-proxy-skill](https://github.com/markbang/warp-proxy-skill) |
 | wgetx | [markbang/wgetx-skill](https://github.com/markbang/wgetx-skill) |
 | wikis | [markbang/wikis-skill](https://github.com/markbang/wikis-skill) |
@@ -40,12 +40,15 @@ type: guide
 |------|------|
 | 知识库布局 | [space-knowledge-base](./playbooks/space-knowledge-base.md) |
 | 配置发布 | [user-config-and-rules](./playbooks/user-config-and-rules.md) |
-| Work Kit 应用 | [work-kit-product](./playbooks/work-kit-product.md) |
+| App Kit 应用 | [work-kit-product](./playbooks/work-kit-product.md) |
 | Board 语义化编辑 | [board-semantic-authoring](./concepts/board-semantic-authoring.md) · [board-export-and-playback](./playbooks/board-export-and-playback.md) |
 | Direct Generation 与 Task Browser | [direct-generation](./concepts/direct-generation.md) · [task-browser](./concepts/task-browser.md) |
-| Work 推广漏斗 | [work-promotions](./playbooks/work-promotions.md) |
+| App 推广漏斗 | [work-promotions](./playbooks/work-promotions.md) |
+| App Center 安装 | [app-center](./playbooks/app-center.md) |
+| Space 活动报告 | [space-activity](./playbooks/space-activity.md) |
+| 命令面板与快捷操作 | [command-palette](./concepts/command-palette.md) |
 | 调研 → wiki | [cookbook](./cookbooks/research-agent-wiki.md) |
-| 周末 Work | [cookbook](./cookbooks/weekend-static-work.md) |
+| 周末 App | [cookbook](./cookbooks/weekend-static-work.md) |
 
 ## 架构静图
 

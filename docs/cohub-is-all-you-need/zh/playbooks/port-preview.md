@@ -1,50 +1,53 @@
 ---
 id: cohub.bp.port-preview
-title: 端口预览与 port Work
+title: 端口预览与 port App
 type: playbook
 audience: [builder, agent]
-features: [sandbox, work, files]
+features: [sandbox, work, app, files]
 difficulty: intermediate
 related: [cohub.concept.work, cohub.bp.publish-static-work]
 sources:
   - https://cohub.live/docs/workspace/files-and-sandbox
-  - https://cohub.live/docs/create/works
+  - https://cohub.live/docs/apps
 ---
 
-# 端口预览与 port Work
+# 端口预览与 port App
 
-## 何时用
+## 何时使用
 
-产物是跑着的应用（开发服务器）而不是静态文件——用于演示、QA 或临时分享。
+产物是运行中的应用（开发服务器）而不是静态文件，用于演示、QA 或临时分享。
 
 ## 结果
 
-- Dev server listens on a **supported public sandbox port**
-- Preview works in Cohub UI
-- Optional: published **port Work** for shareable live URL
-- Team understands this is usually **not** the default production shape
+- 服务监听受支持的公开 Sandbox 端口。
+- 作者可以在 Cohub 中打开实时端口预览。
+- 只有观众必须访问活进程时才发布 **port App**。
+- 团队理解 port App 通常不是默认生产形态。
 
 ## 步骤
 
-1. 能静态化的演示优先 directory Work。
-2. 在 Space 沙箱内启动服务（Agent 或 `cohub run`）。
-3. 监听产品支持的公开端口。
-4. 在 UI 打开 port preview；需要时用 Preview Mark 批注截图丢回 Chat。
-5. 仅当观众必须碰活进程时，才发 **port Work**。
-6. 写清如何重启；配置要进文件/存档，不能只活在进程里。
-7. 稳定后毕业到 `dist/` directory 发布。
+1. 能静态化的生产向 Demo 优先使用 directory App。
+2. 在 Space Sandbox 内启动服务（Agent 或 `cohub run`）。
+3. 按当前产品文档监听受支持的公开端口。
+4. 在 Chat 旁打开端口预览，并在冷启动 Sandbox 后复验。
+5. 观众确实需要活进程时才发布 port App：
+   ```bash
+   cohub -s <spaceId> apps publish live-demo --port 5173 --json
+   ```
+6. 写清重启方式，并把配置 Save，而不是只依赖运行中的进程。
+7. 稳定后从 `dist/` 发布 directory App。
 
 ## 完成标准
 
-- [ ] Preview loads for authors
-- [ ] Restart instructions work on a cold sandbox
-- [ ] Audience + lifetime of the port Work are explicit
+- [ ] 作者可以打开预览
+- [ ] 冷启动 Sandbox 后重启说明仍有效
+- [ ] port App 的观众范围和生命周期明确
 
-## 别这样做
+## 避免
 
-- Using port Works as the permanent production home without process supervision expectations
-- Forgetting that hibernation/restarts kill ad-hoc servers
-- Shipping absolute localhost links to external users
+- 没有进程监控预期却把 port App 当永久生产入口
+- 忘记休眠和重启会杀掉临时服务器
+- 给外部用户发送绝对 localhost 链接
 
 ---
 

@@ -42,7 +42,7 @@ The Agent needs reusable capabilities (fetch, proxy, publish kit), not a longer 
 | WARP egress | `markbang/warp-proxy-skill` |
 | Social fetch | `markbang/wgetx-skill` |
 | Work product kit | `markbang/cohub-work-skill` |
-| Platform ops | monorepo skills: `cohub`, `cohub-generate`, `cohub-works-share`, `public-share` |
+| Platform ops | monorepo skills: `cohub`, `cohub-generate`, `cohub-apps`, `public-files` |
 
 ## Done when
 

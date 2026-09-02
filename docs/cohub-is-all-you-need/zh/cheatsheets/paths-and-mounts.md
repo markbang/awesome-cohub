@@ -12,10 +12,11 @@ type: cheatsheet
 |------|------|------|------|
 | `/workspace` | 当前 Space | **是** | 项目根 |
 | `/workspace/.agents/skills/` | 项目 skills | 是 | 同名时优先 |
+| `/workspace/.cohub/apps.json` | 当前 Space 的已安装 App 清单 | 是 | 经过 schema 校验 |
 | `/configs/user` | config Space 的 Save | **否** | 发布快照 |
 | `/configs/platform` | 平台配置发布 | **否** | |
 | `/mods/<slug>` | 挂载模组 | **否** | |
-| `/public` | 公开前缀 | 特殊 | |
+| `/public` | 公开前缀 | 特殊 | App/public-files 资产 |
 | `/sessions` | 会话产物 | **否** | |
 
 ## Skill 合并

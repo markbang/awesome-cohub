@@ -13,7 +13,7 @@
 
 面向 **建造者** 与 **Agent** 的 Cohub 最佳实践。
 
-> Space 是工作的单位。Checkpoint（存档）是时间的单位。Work 是分享的单位。
+> Space 是工作的单位。Checkpoint（存档）是时间的单位。App 是分享的单位。
 
 **语言：** [English](../README.md) · 中文
 
@@ -36,8 +36,8 @@
 | [cookbooks/](./cookbooks/) | 端到端旅程 |
 | [manifesto.md](./manifesto.md) | 宣言 / 主文 |
 | [matrix.md](./matrix.md) | 场景矩阵（含角色） |
-| [playbooks/](./playbooks/) | 实践卡（33） |
-| [concepts/](./concepts/) | 概念卡（30） |
+| [playbooks/](./playbooks/) | 实践卡（35） |
+| [concepts/](./concepts/) | 概念卡（33） |
 | [anti-patterns/](./anti-patterns/) | 反模式（15） |
 | [cheatsheets/](./cheatsheets/) | CLI · 路径 · FAQ · 包装 |
 | [samples.md](./samples.md) | 示例与参考 |
@@ -54,6 +54,7 @@
 ## 相关链接
 
 - https://cohub.live · https://cohub.live/docs · https://cohub.live/changelog
+- Apps 指南：https://cohub.live/docs/apps
 - https://github.com/talesofai/cohub · https://github.com/markbang/awesome-cohub
 - 网页搜索：[hyper-search](https://github.com/kjx-talesofai/claude-skill-hyper-search)
 - 飞书：[lark-lite](https://github.com/kjx-talesofai/claude-skill-lark-lite)

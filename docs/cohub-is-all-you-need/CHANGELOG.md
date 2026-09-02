@@ -15,6 +15,21 @@ Assumptions are pinned to public docs + monorepo behavior at write time. When pr
 
 
 
+## v0.19 — 2026-09-02
+
+Sync **v2.31-v2.38** major updates:
+
+- **App terminology and runtime** (v2.35-v2.37): completed the Work -> App vocabulary migration, added `app.homeSpace`, invocation hosting context, bridge/broker runtime modes, callable App surfaces, and the `app://` reference scheme
+- **App Center and Marketplace** (v2.38): Space Apps panel, first-party Marketplace, validated `.cohub/apps.json` installed-App manifest, enable/disable/uninstall state, LRU caching, and realtime refresh
+- **Space Activity** (v2.34): bounded hourly LLM/generation usage, contributor and model rankings, App view rankings, `cohub spaces activity`, and role-aware cost redaction
+- **Command palette** (v2.31-v2.33): personal-relevance ranking, Recent/All/Mine/Pinned filters, cache-first defaults, Space-root new Chat, and Prompt quick-action buttons
+- **Board authoring** (v2.37-v2.38): atomic `boards batch`, Board ID/path resolution, grouped `boards playback`, typed connection/resource reads, public `BoardSemanticCommandSchema`, structured diagnostic paths, stable error codes, and request IDs
+- **Board realtime and rendering**: semantic `board.changed` updates, small animation patches without snapshot refetch, freehand tessellation fixes, and schema-valid examples
+- **Runtime reliability** (v2.31-v2.36): recoverable edits across line endings/BOM/trailing whitespace, explicit command-output truncation, `ctimeMs`/`isFile` metadata, detached CLI self-updates, and safer cross-client cache refreshes
+- **Updated official surfaces**: `cohub-apps` replaces `cohub-works-share`; `public-files` replaces `public-share`; canonical product links and App guides use `cohub.live`
+- Updated EN/ZH App, Board, Task Browser, navigation, permissions, configuration, and troubleshooting cards; added `app-center`, `space-activity`, and `command-palette`
+- Total: **35** Playbooks, **33** Concepts
+
 ## v0.18 — 2026-08-26
 
 Sync **v2.22-v2.30** major updates:

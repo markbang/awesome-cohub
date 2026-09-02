@@ -1,6 +1,6 @@
 ---
 id: cohub.bp.minimal-scopes
-title: Ship Work Apps with least privilege
+title: Ship Apps with least privilege
 type: playbook
 audience: [builder, agent]
 features: [work, app, scopes, sdk]
@@ -12,23 +12,23 @@ related:
   - cohub.bp.work-kit-product
   - cohub.bp.viewer-auth-user-scopes
 sources:
-  - https://cohub.live/docs/create/works
-  - https://github.com/talesofai/cohub/blob/main/docs/works-guide.md
-  - https://github.com/talesofai/cohub/blob/main/packages/sdk/docs/work-runtime-guide.md
+  - https://cohub.live/docs/apps
+  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
+  - https://github.com/talesofai/cohub/blob/main/packages/sdk/docs/app-runtime-guide.md
 ---
 
-# Ship Work Apps with least privilege
+# Ship Apps with least privilege
 
-## The current model
+## Current model
 
-The user-facing product still calls a published surface a **Work**; the SDK/API canonical vocabulary is **App** (`client.apps`, `appScopes`).
+The product now calls the published surface an **App**. `client.apps` and `appScopes` are canonical; `client.works` and `workScopes` remain compatibility aliases for older clients.
 
 | Grant source | Who supplies it | Scope boundary |
 |--------------|-----------------|----------------|
-| **App scopes** | Publisher at publish time | Bounded direct grants on the App's own Space |
-| **Viewer grant** | Viewer, through a runtime consent flow | Any permission the viewer currently holds on a selected Space |
+| **App scopes** | Publisher at publish time | Bounded direct grants on the App's home Space |
+| **Viewer grant** | Viewer, through runtime consent | Any permission the viewer currently holds on a selected Space |
 
-`allowedViewerScopes` is deprecated and no longer gates what a viewer may request. Keep it only when maintaining an old payload; do not design a new App around it.
+`allowedViewerScopes` is deprecated and no longer gates viewer consent. Do not use it as a new security boundary.
 
 Direct App scopes are limited to:
 
@@ -37,16 +37,16 @@ space.view  session.view  file.view  file.edit
 taskrun.view  session.prompt.readonly  session.prompt.fullaccess  command.execute
 ```
 
-`generation.create`, account-level `user.*`, and other management permissions require a viewer grant. `taskrun.view` is separate from `generation.create`: a generation App needs create permission plus permission to poll the returned Task Run.
+`generation.create`, account-level `user.*`, and other management permissions require a viewer grant. `generation.create` is also separate from `taskrun.view`: creating a task does not grant permission to poll its result.
 
 ## Steps
 
 1. List the features the App actually implements.
-2. Map each feature to the smallest App scope or user-gesture viewer grant.
-3. Publish only direct scopes needed for reads on the App's own Space.
-4. Request action or cross-Space scopes only after a clear user gesture and explain the `reason`.
-5. Re-test as a fresh viewer where possible. Grants are per Space, last 14 days, and are revalidated against current membership/role.
-6. Render current grant state from `client.context().permissions`; do not build a second grant cache.
+2. Map each feature to the smallest direct App scope or user-gesture viewer grant.
+3. Publish only direct scopes needed for reads on the App's home Space.
+4. Request actions or another Space only after a clear user gesture, with a useful `reason`.
+5. Re-test as a fresh viewer. Grants are per Space, last 14 days, and are revalidated against current membership and role.
+6. Render state from `client.context().permissions`; let the host own grant caching and renewal.
 
 ## Common sets
 
@@ -54,10 +54,10 @@ taskrun.view  session.prompt.readonly  session.prompt.fullaccess  command.execut
 |----------|-------------------|----------------------|
 | Static site | none | none |
 | File reader | `space.view`, `file.view` | none |
-| LLM chat on own Space | `space.view`, `session.view` | `session.prompt.fullaccess` or `readonly` |
+| LLM chat on home Space | `space.view`, `session.view` | matching `session.prompt.*` |
 | Image generation | `space.view`, `taskrun.view` | `generation.create` |
-| Task Browser - Mine | none or own-Space reads | `user.taskrun.list` |
-| Cross-Space reader | own-Space scopes as needed | `auth.requestSpace()` with `file.view` / `session.view` |
+| Task Browser - Mine | none or home-Space reads | `user.taskrun.list` |
+| Cross-Space reader | home-Space scopes as needed | `auth.requestSpace()` with `file.view` / `session.view` |
 
 ## Done when
 

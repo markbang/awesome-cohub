@@ -22,14 +22,14 @@ Humans already live in Discord / Feishu / WeChat / Telegram / QQ and should hit 
 
 - Channel bound to a Space
 - Channel-origin Chats labeled/system-grouped for navigation
-- Files/Saves/Works remain the durable system of record
+- Files/Saves/Apps remain the durable system of record
 
 ## Steps
 
 1. Open Space settings → Channels; bind the provider you need (permissions vary by provider).
 2. Send a test message from the external app; confirm a Chat appears in the Space.
 3. Use labels / system Channel grouping to keep sidebar scannable.
-4. Teach the team: **channel is a door**, not a second filesystem — important outputs still go to files + Saves + Works.
+4. Teach the team: **channel is a door**, not a second filesystem — important outputs still go to files + Saves + Apps.
 5. For agent replies, keep prompts short; attach or point to Space paths for large context.
 6. If model overrides exist in-channel, verify they map to Cohub identities correctly after platform updates.
 
@@ -47,7 +47,7 @@ Cohub Channel binding (Space settings) is still the product “door” into a Sp
 
 ## Avoid
 
-- Channel-only ops with no Saves/Works
+- Channel-only ops with no Saves/Apps
 - Dumping secrets into group chats
 - Running unbounded agent autonomy from noisy public channels without Save gates
 

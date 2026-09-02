@@ -10,7 +10,7 @@
 
 <div align="center">
   <strong>
-    精选 Cohub 生态资源：Spaces、Agents、Skills、Works、CLI 与社区项目。
+    精选 Cohub 生态资源：Spaces、Agents、Skills、Apps、CLI 与社区项目。
     <br />
     为使用人与 Agent 协作构建的创作者精心挑选。
   </strong>
@@ -32,14 +32,14 @@
 
 > 属于你的空间，与人和 Agent 一起创造、玩耍和构建。
 
-[Cohub](https://cohub.live) 是人与 Agent 共同工作的活态 Space。你可以从任何地方开始，用任何媒介创作，并将成果分享为 Works。
+[Cohub](https://cohub.live) 是人与 Agent 共同工作的活态 Space。你可以从任何地方开始，用任何媒介创作，并将成果分享为 Apps。
 
 本仓库精选 Cohub 生态中最值得使用的公开入口：
 
 - 产品界面与文档
 - CLI / SDK
 - 官方 Skills
-- 核心概念（Space、Checkpoint、Work、Channel）
+- 核心概念（Space、Checkpoint、App、Channel）
 - 社区工具、示例和相关项目
 
 灵感来自 [Awesome](https://awesome.re) 格式和 VoltAgent Awesome 系列的呈现方式。
@@ -70,13 +70,15 @@
 - **Agent** - 在 Space 内执行工作的主动协作者。
 - **Channel** - Discord、Telegram、飞书或微信等外部入口。
 - **Sandbox** - Space 背后的执行运行时。
-- **Work** - 从 Space 公开分享的文件、目录站点或实时端口。
+- **App**（原 Work）- 从 Space 公开分享的文件、目录站点或实时端口。
 
 ## 产品能力
 
 - **Spaces** - 在隔离环境中创建、Fork、Save 和协作。
 - **Checkpoints / Saves** - 冻结进度，并从稳定基线继续 Remix。
-- **Works** - 将 Demo、页面和实时预览发布为可分享 URL。
+- **Apps** - 将 Demo、页面和实时预览发布为可分享 URL。
+- **App Center** - 发现并将经过校验的 App 安装到 Space。
+- **Space Activity** - 查看有限的用量、贡献者、模型排名与 App 浏览量。
 - **多模态生成** - 基于 Space 上下文生成文本、图片、视频和音乐，并支持 Direct Generation 与 Task Browser 流程。
 - **Boards** - 语义化 Item、连接、组合动画、效果、媒体与确定性导出。
 - **外部 Channels** - 从聊天应用和 CLI 与 Space 对话。
@@ -85,7 +87,7 @@
 ## CLI 与 SDK
 
 - **[@neta-art/cohub-cli](https://www.npmjs.com/package/@neta-art/cohub-cli)** - 用于 Spaces、Sessions、Prompts、Files、生成与自动化的官方 CLI。
-- **[@neta-art/cohub](https://www.npmjs.com/package/@neta-art/cohub)** - 用于 Spaces、Sessions、Apps/Works、Boards、Tasks 与实时协作的 TypeScript SDK。
+- **[@neta-art/cohub](https://www.npmjs.com/package/@neta-art/cohub)** - 用于 Spaces、Sessions、Apps、Boards、Tasks 与实时协作的 TypeScript SDK。
 - **[cohub-desktop](https://github.com/markbang/cohub-desktop)** - Cohub 桌面伴侣原型。
 
 ### 安装 CLI
@@ -100,7 +102,7 @@ cohub --help
 ```bash
 cohub auth login
 cohub spaces ls
-cohub -s <space-id> prompt "Build a landing page"
+cohub -s <space-id> spaces prompt "Build a landing page"
 cohub generate "neon city skyline at dusk" --model <model>
 cohub -s <space-id> spaces files ls
 ```
@@ -115,8 +117,8 @@ Cohub 生态的标准 Agent Skills。使用 [`npx skills`](https://github.com/ve
 |---|---|---|
 | **cohub** | [talesofai/cohub](https://github.com/talesofai/cohub/tree/main/skills/cohub) | Spaces、Chats、Files、Saves、Labels、Search、Tasks、定时 Prompt 与跨 Space 运行 |
 | **cohub-generate** | [talesofai/cohub](https://github.com/talesofai/cohub/tree/main/skills/cohub-generate) | 通过 `cohub generate` 生成图片、视频和音乐 |
-| **cohub-works-share** | [talesofai/cohub](https://github.com/talesofai/cohub/tree/main/skills/cohub-works-share) | 将文件、目录站点或端口发布为公开 Works |
-| **public-share** | [talesofai/cohub](https://github.com/talesofai/cohub/tree/main/skills/public-share) | 将运行时文件发布到 `/public` 并返回公开直链 |
+| **cohub-apps** | [talesofai/cohub](https://github.com/talesofai/cohub/tree/main/skills/cohub-apps) | 将文件、目录站点或端口发布为公开 Apps |
+| **public-files** | [talesofai/cohub](https://github.com/talesofai/cohub/tree/main/skills/public-files) | 将运行时文件发布到 `/public` 并返回公开直链 |
 
 ### 生态 Skills
 
@@ -166,13 +168,13 @@ npx skills add https://github.com/markbang/wgetx-skill --list
 
 1. 产品术语分别对应哪些 CLI 命令
 2. 如何让输出符合 Space 目录约定
-3. 如何发布 Works 并清晰分享结果
+3. 如何发布 Apps 并清晰分享结果
 4. 如何运行多模态生成，而不是虚构不存在的 API
 5. 如何按需引入外部知识、社交数据和网络出口工具
 
 ## Cohub Is All You Need
 
-面向**构建者**与 **Agent** 的最佳实践系列：从第一次 Save，到 Works、配置和自治。
+面向**构建者**与 **Agent** 的最佳实践系列：从第一次 Save，到 Apps、配置和自治。
 
 | | |
 |--|--|
@@ -181,8 +183,8 @@ npx skills add https://github.com/markbang/wgetx-skill --list
 | **开始** | [学习路径](docs/cohub-is-all-you-need/zh/learning-path.md) · [AGENT_BRIEF](docs/cohub-is-all-you-need/zh/AGENT_BRIEF.md) · [Cookbooks](docs/cohub-is-all-you-need/zh/cookbooks/) · [FAQ](docs/cohub-is-all-you-need/zh/cheatsheets/faq-and-troubleshooting.md) |
 | **宣言** | [英文](docs/cohub-is-all-you-need/manifesto.md) · [中文](docs/cohub-is-all-you-need/zh/manifesto.md) |
 | **矩阵** | [英文](docs/cohub-is-all-you-need/matrix.md) · [中文](docs/cohub-is-all-you-need/zh/matrix.md) |
-| **实践卡** | [英文](docs/cohub-is-all-you-need/playbooks/) · [中文](docs/cohub-is-all-you-need/zh/playbooks/)（33） |
-| **概念 / 反模式 / 速查** | [概念](docs/cohub-is-all-you-need/zh/concepts/)（30）· [反模式](docs/cohub-is-all-you-need/zh/anti-patterns/)（15）· [速查](docs/cohub-is-all-you-need/zh/cheatsheets/)（6） |
+| **实践卡** | [英文](docs/cohub-is-all-you-need/playbooks/) · [中文](docs/cohub-is-all-you-need/zh/playbooks/)（35） |
+| **概念 / 反模式 / 速查** | [概念](docs/cohub-is-all-you-need/zh/concepts/)（33）· [反模式](docs/cohub-is-all-you-need/zh/anti-patterns/)（15）· [速查](docs/cohub-is-all-you-need/zh/cheatsheets/)（6） |
 | **Banner** | [动画 SVG](https://cdn.jsdelivr.net/gh/markbang/awesome-cohub@main/docs/cohub-is-all-you-need/assets/banner.svg) · [架构图](docs/cohub-is-all-you-need/assets/architecture.svg) |
 | **变更日志** | [指南 CHANGELOG](docs/cohub-is-all-you-need/zh/CHANGELOG.md) |
 
@@ -190,7 +192,7 @@ npx skills add https://github.com/markbang/wgetx-skill --list
 
 - **[Cohub README](https://github.com/talesofai/cohub/blob/main/README.md)** - 产品定位、概念与仓库地图。
 - **[共创模型](https://github.com/talesofai/cohub/blob/main/docs/CO-CREATION-MODEL.md)** - Space / Checkpoint / Proposal 心智模型。
-- **[Works 指南](https://github.com/talesofai/cohub/blob/main/docs/works-guide.md)** - 发布公开 Works。
+- **[Apps 指南](https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md)** - 发布公开 Apps。
 - **[自托管说明](https://github.com/talesofai/cohub/blob/main/docs/self-hosting.md)** - Monorepo 中面向部署的文档。
 
 ## 贡献

@@ -12,9 +12,9 @@ type: guide
 
 1. [从空白 Space 到第一次存档](./playbooks/scratch-to-checkpoint.md)
 2. [装备 Agent 并做实事](./playbooks/agent-with-skills.md)
-3. [发布静态 Work](./playbooks/publish-static-work.md)
+3. [发布静态 App](./playbooks/publish-static-work.md)
 
-**完成标志：** 有 Space、有 Save、有可分享的 Work URL。
+**完成标志：** 有 Space、有 Save、有可分享的 App URL。
 
 ## 半天 — 个人 Agent OS
 
@@ -27,7 +27,7 @@ type: guide
 
 **完成标志：** Save 之后 `/configs/user` 带上规则 + `hyper-search` 等。
 
-## 半天 — 产品型 Work
+## 半天 — 产品型 App
 
 1. Cookbook：[周末静态 Work](./cookbooks/weekend-static-work.md)
 2. [Work Kit 产品](./playbooks/work-kit-product.md)
@@ -37,7 +37,7 @@ type: guide
 6. [Work/App 呈现](./concepts/work-presentation.md)
 7. 反模式：[静态 Work 上的 BrowserRouter](./anti-patterns/browser-router-static.md)、[把沙箱 URL 当上线](./anti-patterns/raw-sandbox-launch.md)
 
-**完成标志：** directory Work 公网可开、权限收敛。
+**完成标志：** directory App 公网可开、权限收敛。
 
 ## 半天 — Board 与生成界面
 
@@ -48,6 +48,14 @@ type: guide
 5. 需要衡量公开流量时阅读 [Work 推广](./playbooks/work-promotions.md)
 
 **完成标志：** Board 快照发布前通过校验，生成 Task Run 可查看，并且 Work 漏斗有明确的归因策略。
+
+## 半天 — App Center 与 Space 洞察
+
+1. [App Center](./playbooks/app-center.md) - 在 Space 中安装与维护 App
+2. [Space Activity](./playbooks/space-activity.md) - 用量、贡献者、模型排名与 App 浏览量
+3. [命令面板](./concepts/command-palette.md) - Recent、个人相关性与 Prompt 快捷操作
+
+**完成标志：** 已安装 App 状态通过校验，活动数据按观众权限隐藏费用，导航从有用的个人 Recent 列表开始。
 
 ## 进阶 — 自治与运维
 
@@ -62,7 +70,7 @@ type: guide
 
 | 角色 | 从这里开始 |
 |------|------------|
-| 建造者 | 30 分钟 → 半天产品 Work |
+| 建造者 | 30 分钟 → 半天产品 App |
 | 运营者 | config skills + channel-ops + scheduled-loop |
 | Agent 作者 | [AGENT_BRIEF.md](./AGENT_BRIEF.md) + skill 包装速查 |
 

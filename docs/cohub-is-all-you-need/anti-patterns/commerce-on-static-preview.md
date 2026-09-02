@@ -1,20 +1,23 @@
 ---
 id: cohub.ap.commerce-on-static-preview
-title: Testing commerce on static preview
+title: Testing App commerce on static preview
 type: anti-pattern
 related: [cohub.bp.work-commerce]
 ---
 
-# Testing commerce on static preview
+# Testing App commerce on static preview
 
 ## Why it hurts
-`context()` is null; purchase/entitlement APIs fail; you debug ghosts.
+
+`context()` is null outside a published App; purchase and entitlement APIs fail, and the diagnosis becomes misleading.
 
 ## Do this instead
-Always exercise commerce on the **published Work URL** inside Cohub shell.
+
+Exercise commerce on the **published App URL** inside the Cohub shell.
 
 ## Smell test
-If `cohub.context()` is null, you are not in the Work runtime.
+
+If `cohub.context()` is null, you are not in the App runtime.
 
 ---
 

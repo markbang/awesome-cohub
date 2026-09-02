@@ -36,7 +36,7 @@ taskrun.view  session.prompt.readonly  session.prompt.fullaccess  command.execut
 | Poll/read generation Task Run | `taskrun.view` |
 | Send prompt | Matching `session.prompt.readonly` or `session.prompt.fullaccess` |
 | Read prompt result | `session.view` |
-| Realtime rooms / Work commerce | Published App runtime; no extra scope |
+| Realtime rooms / App commerce | Published App runtime; no extra scope |
 
 ## Rules
 

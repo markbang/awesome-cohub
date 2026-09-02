@@ -12,9 +12,9 @@ Pick a track. Each step links to an existing playbook or cookbook.
 
 1. [From blank Space to first Save](./playbooks/scratch-to-checkpoint.md)
 2. [Equip an agent and do real work](./playbooks/agent-with-skills.md)
-3. [Publish a static Work](./playbooks/publish-static-work.md)
+3. [Publish a static App](./playbooks/publish-static-work.md)
 
-**Done when:** you have a Space, a Save, and a shareable Work URL.
+**Done when:** you have a Space, a Save, and a shareable App URL.
 
 ## Half day — personal agent OS
 
@@ -27,7 +27,7 @@ Pick a track. Each step links to an existing playbook or cookbook.
 
 **Done when:** `/configs/user` carries your rules + `hyper-search` (and friends) after Save.
 
-## Half day — product-shaped Work
+## Half day — product-shaped App
 
 1. Cookbook: [Weekend static Work](./cookbooks/weekend-static-work.md)
 2. [Work Kit product](./playbooks/work-kit-product.md)
@@ -37,7 +37,7 @@ Pick a track. Each step links to an existing playbook or cookbook.
 6. [Work/App presentation](./concepts/work-presentation.md)
 7. Skim anti-patterns: [BrowserRouter on static Works](./anti-patterns/browser-router-static.md), [Raw sandbox URL as launch](./anti-patterns/raw-sandbox-launch.md)
 
-**Done when:** directory Work opens on a public URL with least privilege.
+**Done when:** directory App opens on a public URL with least privilege.
 
 ## Half day — Board and generation surfaces
 
@@ -48,6 +48,14 @@ Pick a track. Each step links to an existing playbook or cookbook.
 5. [Work promotions](./playbooks/work-promotions.md) when measuring public traffic
 
 **Done when:** a Board snapshot validates before publish, a generation Task Run is inspectable, and a Work funnel has an explicit attribution policy.
+
+## Half day — App Center and Space insight
+
+1. [App Center](./playbooks/app-center.md) - install and maintain Apps in a Space
+2. [Space Activity](./playbooks/space-activity.md) - usage, contributors, model rankings, and App views
+3. [Command palette](./concepts/command-palette.md) - Recent, personal relevance, and Prompt quick actions
+
+**Done when:** installed-App state is validated, activity data respects viewer cost visibility, and navigation starts from a useful personal Recent list.
 
 ## Advanced — autonomy & ops
 
@@ -62,7 +70,7 @@ Pick a track. Each step links to an existing playbook or cookbook.
 
 | Role | Start here |
 |------|------------|
-| Builder (human) | 30 minutes → Half day product Work |
+| Builder (human) | 30 minutes → Half day product App |
 | Operator | config skills + channel-ops + scheduled-loop |
 | Agent author | [AGENT_BRIEF.md](./AGENT_BRIEF.md) + skill packaging cheatsheet |
 

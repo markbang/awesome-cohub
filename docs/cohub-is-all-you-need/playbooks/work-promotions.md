@@ -1,9 +1,9 @@
 ---
 id: cohub.bp.work-promotions
-title: Measure Work promotions without leaking visitor data
+title: Measure App promotions without leaking visitor data
 type: playbook
 audience: [builder, operator]
-features: [work, analytics, promotion, commerce]
+features: [work, app, analytics, promotion, commerce]
 difficulty: advanced
 related:
   - cohub.bp.work-lifecycle
@@ -11,28 +11,28 @@ related:
   - cohub.concept.work
 sources:
   - https://cohub.live/changelog (v2.22-v2.23)
-  - https://github.com/talesofai/cohub/blob/main/docs/works-guide.md
+  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
 ---
 
-# Measure Work promotions without leaking visitor data
+# Measure App promotions without leaking visitor data
 
 ## When
 
-You need to attribute traffic and funnel activity to a published Work without building a visitor-level tracking database.
+You need to attribute traffic and funnel activity to a published App without building a visitor-level tracking database.
 
 ## Outcome
 
-- Immutable UTM promotion links point to the current published Work.
-- Landing, readiness, registration, paywall, and checkout activity is aggregated by promotion, Work version, source, and hour.
+- Immutable UTM promotion links point to the current published App.
+- Landing, readiness, registration, paywall, and checkout activity is aggregated by promotion, App version, source, and hour.
 - Optional Meta Pixel / Conversions API delivery is enabled without loading a third-party provider for generic analytics.
 
 ## Steps
 
-1. Publish and verify the Work first. Promotions always open the current published version; they are not a substitute for a release.
+1. Publish and verify the App first. Promotions always open the current published version; they are not a substitute for a release.
 2. Create a promotion with explicit UTM fields:
 
 ```bash
-cohub apps promotions create <work> \
+cohub apps promotions create <app> \
   --name "Launch video A" \
   --provider generic \
   --utm-source instagram \
@@ -44,13 +44,13 @@ cohub apps promotions create <work> \
 3. Inspect links and aggregate statistics:
 
 ```bash
-cohub apps promotions list <work>
-cohub apps promotions stats <work> <promotion-id>
+cohub apps promotions list <app>
+cohub apps promotions stats <app> <promotion-id>
 ```
 
-4. Use the 30-day Work-scoped last-touch attribution maintained in browser storage when authentication or checkout redirects occur.
+4. Use the 30-day App-scoped last-touch attribution maintained in browser storage when authentication or checkout redirects occur.
 5. For Meta delivery, use `--provider meta` only when the deployment has configured the Meta Pixel and Conversions API credentials. Test integrations with the optional Meta test event code before sending live traffic.
-6. Treat statistics as aggregate funnel evidence. Cohub retains the immutable version that served each event, not a visitor-level promotion record.
+6. Treat statistics as aggregate funnel evidence. Cohub retains the immutable App version that served each event, not a visitor-level promotion record.
 
 ## Event contract
 
@@ -58,7 +58,7 @@ The built-in aggregate keys are `landing`, `ready`, `registration_completed`, `p
 
 ## Done when
 
-- [ ] The promotion link resolves to a published Work
+- [ ] The promotion link resolves to a published App
 - [ ] UTM fields identify one campaign and creative
 - [ ] Stats show version and hourly source breakdown
 - [ ] Meta credentials and test events are validated before production traffic
@@ -66,10 +66,10 @@ The built-in aggregate keys are `landing`, `ready`, `registration_completed`, `p
 
 ## Avoid
 
-- Treating a promotion link as an immutable Work version
+- Treating a promotion link as an immutable App version
 - Sending conversion events that the browser is not allowed to record
 - Adding Meta scripts when generic aggregate analytics is sufficient
-- Putting Pixel or CAPI credentials in the Work bundle
+- Putting Pixel or CAPI credentials in the App bundle
 
 ---
 

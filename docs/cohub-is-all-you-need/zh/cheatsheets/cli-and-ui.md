@@ -13,8 +13,11 @@ type: cheatsheet
 | Tasks | Task runs / Task Browser |
 | Scheduled prompt | `spaces prompt` schedule / cron jobs |
 | Space 文件 | `spaces files ...` |
-| Work（API 规范术语：App） | `apps publish/get/stats/download` |
-| Board | `boards items/effects/compositions/export` |
+| Apps（原 Work） | `apps publish/ls/get/stats/download` |
+| App Center | `.cohub/apps.json` 与 Marketplace App |
+| Space Activity | `spaces activity [days]` / `space.activity.get()` |
+| Board | `boards batch/items/connections/effects/compositions/playback/export` |
+| Command palette | `GET /api/palette/overview` 与本地 Recent/缓存 |
 
 ## 安装 CLI
 
@@ -34,31 +37,35 @@ cohub -s <spaceId> run -- git status
 cohub -s <spaceId> apps publish site --dir dist --json
 cohub apps stats <appId|url> --json
 cohub tasks ls --json
+cohub -s <spaceId> spaces activity 30 --json
 ```
 
 ## Board 编辑
 
 ```bash
-cohub boards inspect <board> --json
-cohub boards capabilities <board> --json
-cohub boards items list <board> --json
-cohub boards examples composition fade > intro.json
-cohub boards compositions apply <board> --input intro.json --json
-cohub boards export <board> --items title,hero -o selection.webp
+cohub boards inspect <board-or-path> --json
+cohub boards capabilities <board-or-path> --json
+cohub boards batch <board-or-path> --input changes.json --dry-run
+cohub boards items get <board-or-path> <item-id> --json
+cohub boards connections list <board-or-path> --json
+cohub boards compositions get <board-or-path> <composition-id> --json
+cohub boards playback play <board-or-path> <composition-id>
+cohub boards export <board-or-path> --items title,hero --out selection.webp
 ```
 
-## 预览与驱动 Work/App
+## 预览与驱动 App
 
 ```bash
-cohub ui preview file://src/main.ts
-cohub ui preview work://owner/space/app
-cohub desktop open <work-or-file>
-cohub desktop open <work> --call selection.get
+cohub desktop open file://src/main.ts
+cohub desktop open app://owner/space/app
+cohub desktop open <appId|url|app://...|username/space/app>
+cohub desktop open <app> --call selection.get
 ```
 
 ## 文档
 
 - 产品文档：https://cohub.live/docs
+- Apps 指南：https://cohub.live/docs/apps
 - Changelog：https://cohub.live/changelog
 - CLI 指南：https://cohub.live/docs/developers/cli
 

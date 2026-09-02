@@ -1,62 +1,65 @@
 ---
 id: cohub.bp.hide-cohub-bar
-title: 隐藏公开 Work 的 Cohub 底栏
+title: 隐藏公开 App 的 Cohub 底栏
 type: playbook
+audience: [builder]
+features: [work, app, billing, presentation]
+difficulty: starter
+related: [cohub.bp.publish-static-work, cohub.bp.work-kit-product, cohub.concept.work]
+sources:
+  - https://cohub.live/docs/apps
+  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
+  - https://cohub.live/changelog
 ---
 
-# 隐藏公开 Work 的 Cohub 底栏
+# 隐藏公开 App 的 Cohub 底栏
 
-## 何时
+## 何时使用
 
-希望公开 Work 页更像**你的产品**，而不是带 Cohub 底栏的外框（演示、商业壳尤其如此）。
+希望已发布 App 页面更像你的产品，而不是 Cohub 宿主外框，尤其适合精致 Demo 与商业化壳。
 
 ## 结果
 
-- 公开页 footer 的 Cohub bar 隐藏（或恢复显示）
-- 隐藏时分享/OG 更偏 Work 自身品牌
-- 明确需要 **Pro / Max** 的 presentation 权益
+- 公开 App 底部栏可以隐藏或恢复。
+- 分享和 OG 元数据遵循 App 的呈现设置。
+- 明确该选项需要 **Pro / Max** 权益。
 
 ## 是什么
 
-`hideCohubBar` 是 Work 的 **presentation** meta：
-
-- 隐藏公开 Work 页的 Cohub **footer bar**
-- 隐藏后分享 meta 更偏 minimal Work branding
-- 分享图里的 root-relative 媒体按已发布内容 URL 解析
+`hideCohubBar` 是 App 的呈现元数据。它隐藏公开 App 页的 Cohub 底栏，不会移除 App runtime，也不会替代你自己的导航。
 
 ## 要求
 
 | 需要 | 说明 |
 |------|------|
-| 套餐 | **Pro** 或 **Max**（计费 entitlement） |
-| 面 | 已发布 Work（不是 raw 沙箱 / 静态资源 URL） |
-| 身份 | username + space slug + work slug 已就绪 |
-
-## UI
-
-1. 打开 `/spaces/:spaceId/works/:workId`
-2. 在 Work 详情 / 发布设置里找到 **Hide Cohub bar**
-3. 打开公开 URL 硬刷新确认
+| 套餐 | **Pro** 或 **Max** Billing 权益 |
+| 界面 | 已发布 App，不是原始 Sandbox 或静态资源 URL |
+| 身份 | username、Space slug 与 App slug 已设置 |
 
 ## CLI
 
 ```bash
-cohub -s <spaceId> works publish my-demo --dir dist --hide-cohub-bar --json
-cohub -s <spaceId> works update <workId> --hide-cohub-bar --json
-cohub -s <spaceId> works update <workId> --show-cohub-bar --json
+# 发布时设置
+cohub -s <spaceId> apps publish my-demo --dir dist --hide-cohub-bar --json
+
+# 更新已有 App
+cohub -s <spaceId> apps update <appId> --hide-cohub-bar --json
+cohub -s <spaceId> apps update <appId> --show-cohub-bar --json
 ```
 
-## 完成标志
+旧客户端中的 `works` 命令写法仍可能作为兼容别名存在。
 
-- [ ] 公开页无 Cohub footer（Pro/Max）
-- [ ] 隐藏时分享标题/品牌偏 Work
-- [ ] `--show-cohub-bar` / UI 可恢复
+## 完成标准
+
+- [ ] Pro/Max 公开 App 页没有 Cohub 底栏
+- [ ] 隐藏时分享标题和品牌偏 App 自身
+- [ ] `--show-cohub-bar` 或 UI 可以恢复底栏
 
 ## 避免
 
-- 免费档期望能藏 bar  
-- 把 SPA 自己的壳和宿主 Cohub footer 搞混  
-- 藏了 bar 仍把沙箱 URL 当产品  
+- 没有对应权益时期待免费隐藏
+- 把 App 自己的 UI 和 Cohub 宿主底栏混淆
+- 隐藏底栏后仍分享原始 Sandbox URL
 
 ---
 

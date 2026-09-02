@@ -10,7 +10,7 @@
 
 <div align="center">
   <strong>
-    A curated list of the Cohub ecosystem — Spaces, Agents, Skills, Works, CLI, and community resources.
+    A curated list of the Cohub ecosystem — Spaces, Agents, Skills, Apps, CLI, and community resources.
     <br />
     Hand-picked for people building with people and agents.
   </strong>
@@ -32,14 +32,14 @@
 
 > Your own space to create, play, and build with people and agents.
 
-[Cohub](https://cohub.live) is a living Space for people and agents. Start anywhere, make in any medium, share as Works.
+[Cohub](https://cohub.live) is a living Space for people and agents. Start anywhere, make in any medium, share as Apps.
 
 This repository curates the best public entry points into the Cohub ecosystem:
 
 - product surface and docs
 - CLI / SDK
 - official skills
-- core concepts (Space, Checkpoint, Work, Channel)
+- core concepts (Space, Checkpoint, App, Channel)
 - community tools, examples, and related projects
 
 Inspired by the [Awesome](https://awesome.re) format and the VoltAgent awesome series presentation style.
@@ -70,13 +70,15 @@ Inspired by the [Awesome](https://awesome.re) format and the VoltAgent awesome s
 - **Agent** - Active collaborator operating inside a Space.
 - **Channel** - External entry point such as Discord, Telegram, Feishu, or WeChat.
 - **Sandbox** - Execution runtime behind a Space.
-- **Work** - Public share of a file, directory site, or live port from a Space.
+- **App** (formerly Work) - Public share of a file, directory site, or live port from a Space.
 
 ## Product Surface
 
 - **Spaces** - Create, fork, save, and collaborate in isolated environments.
 - **Checkpoints / Saves** - Freeze progress and remix from a stable base.
-- **Works** - Publish demos, pages, and live previews with shareable URLs.
+- **Apps** - Publish demos, pages, and live previews with shareable URLs.
+- **App Center** - Discover and install validated Apps into a Space.
+- **Space Activity** - Review bounded usage, contributors, model rankings, and App views.
 - **Multimodal generation** - Text, image, video, and music generation from Space context, with Direct Generation and Task Browser workflows.
 - **Boards** - Semantic Items, connections, compositions, effects, media, and deterministic exports.
 - **External channels** - Talk to a Space from chat apps and CLIs.
@@ -85,7 +87,7 @@ Inspired by the [Awesome](https://awesome.re) format and the VoltAgent awesome s
 ## CLI and SDK
 
 - **[@neta-art/cohub-cli](https://www.npmjs.com/package/@neta-art/cohub-cli)** - Official CLI for spaces, sessions, prompts, files, generation, and automation.
-- **[@neta-art/cohub](https://www.npmjs.com/package/@neta-art/cohub)** - TypeScript SDK for spaces, sessions, Apps/Works, Boards, tasks, and realtime collaboration.
+- **[@neta-art/cohub](https://www.npmjs.com/package/@neta-art/cohub)** - TypeScript SDK for Spaces, Sessions, Apps, Boards, Tasks, and realtime collaboration.
 - **[cohub-desktop](https://github.com/markbang/cohub-desktop)** - Desktop companion prototype for Cohub.
 
 ### Install CLI
@@ -100,7 +102,7 @@ cohub --help
 ```bash
 cohub auth login
 cohub spaces ls
-cohub -s <space-id> prompt "Build a landing page"
+cohub -s <space-id> spaces prompt "Build a landing page"
 cohub generate "neon city skyline at dusk" --model <model>
 cohub -s <space-id> spaces files ls
 ```
@@ -115,8 +117,8 @@ Standard agent skills for the Cohub ecosystem. Install with [`npx skills`](https
 |---|---|---|
 | **cohub** | [talesofai/cohub](https://github.com/talesofai/cohub/tree/main/skills/cohub) | Spaces, chats, files, saves, labels, search, tasks, scheduled prompts, cross-space run |
 | **cohub-generate** | [talesofai/cohub](https://github.com/talesofai/cohub/tree/main/skills/cohub-generate) | Image, video, and music generation via `cohub generate` |
-| **cohub-works-share** | [talesofai/cohub](https://github.com/talesofai/cohub/tree/main/skills/cohub-works-share) | Publish files, directory sites, or ports as public Works |
-| **public-share** | [talesofai/cohub](https://github.com/talesofai/cohub/tree/main/skills/public-share) | Publish runtime files to `/public` and return direct public URLs |
+| **cohub-apps** | [talesofai/cohub](https://github.com/talesofai/cohub/tree/main/skills/cohub-apps) | Publish files, directory sites, or ports as public Apps |
+| **public-files** | [talesofai/cohub](https://github.com/talesofai/cohub/tree/main/skills/public-files) | Publish runtime files to `/public` and return direct public URLs |
 
 ### Ecosystem skills
 
@@ -167,7 +169,7 @@ Cohub agents become useful when they know:
 
 1. which product nouns map to which CLI commands
 2. how to keep outputs inside Space conventions
-3. how to publish Works and share results cleanly
+3. how to publish Apps and share results cleanly
 4. how to run multimodal generation without inventing fake APIs
 5. how to pull external knowledge / social data / network egress tools on demand
 
@@ -175,7 +177,7 @@ Cohub agents become useful when they know:
 
 ## Cohub Is All You Need
 
-Best-practice series for **builders** and **agents** — from first Save to Works, config, and autonomy.
+Best-practice series for **builders** and **agents** — from first Save to Apps, config, and autonomy.
 
 | | |
 |--|--|
@@ -184,8 +186,8 @@ Best-practice series for **builders** and **agents** — from first Save to Work
 | **Start** | [Learning path](docs/cohub-is-all-you-need/learning-path.md) · [AGENT_BRIEF](docs/cohub-is-all-you-need/AGENT_BRIEF.md) · [Cookbooks](docs/cohub-is-all-you-need/cookbooks/) · [FAQ](docs/cohub-is-all-you-need/cheatsheets/faq-and-troubleshooting.md) |
 | **Manifesto** | [EN](docs/cohub-is-all-you-need/manifesto.md) · [中文](docs/cohub-is-all-you-need/zh/manifesto.md) |
 | **Matrix** | [EN](docs/cohub-is-all-you-need/matrix.md) · [中文](docs/cohub-is-all-you-need/zh/matrix.md) |
-| **Playbooks** | [EN](docs/cohub-is-all-you-need/playbooks/) · [中文](docs/cohub-is-all-you-need/zh/playbooks/) (33) |
-| **Concepts / Anti-patterns / Cheatsheets** | [concepts](docs/cohub-is-all-you-need/concepts/) (30) · [anti-patterns](docs/cohub-is-all-you-need/anti-patterns/) (15) · [cheatsheets](docs/cohub-is-all-you-need/cheatsheets/) (6) |
+| **Playbooks** | [EN](docs/cohub-is-all-you-need/playbooks/) · [中文](docs/cohub-is-all-you-need/zh/playbooks/) (35) |
+| **Concepts / Anti-patterns / Cheatsheets** | [concepts](docs/cohub-is-all-you-need/concepts/) (33) · [anti-patterns](docs/cohub-is-all-you-need/anti-patterns/) (15) · [cheatsheets](docs/cohub-is-all-you-need/cheatsheets/) (6) |
 | **Banner** | [animated SVG](https://cdn.jsdelivr.net/gh/markbang/awesome-cohub@main/docs/cohub-is-all-you-need/assets/banner.svg) · [architecture](docs/cohub-is-all-you-need/assets/architecture.svg) |
 | **Changelog** | [guide CHANGELOG](docs/cohub-is-all-you-need/CHANGELOG.md) |
 
@@ -194,7 +196,7 @@ Best-practice series for **builders** and **agents** — from first Save to Work
 
 - **[Cohub README](https://github.com/talesofai/cohub/blob/main/README.md)** - Product pitch, concepts, and repo map.
 - **[Co-creation model](https://github.com/talesofai/cohub/blob/main/docs/CO-CREATION-MODEL.md)** - Space / Checkpoint / Proposal mental model.
-- **[Works guide](https://github.com/talesofai/cohub/blob/main/docs/works-guide.md)** - Publishing public Works.
+- **[Apps guide](https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md)** - Publishing public Apps.
 - **[Self-hosting notes](https://github.com/talesofai/cohub/blob/main/docs/self-hosting.md)** - Deployment-oriented docs from the monorepo.
 
 

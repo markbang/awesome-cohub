@@ -54,6 +54,7 @@ platform → mods → user config → workspace (.agents/skills)
 | 斜杠 `/name` | **`.agents/prompts/*.md`**（不在 `.cohub/`） | platform → mods → user → project |
 | Models | **`.cohub/models.json`** | platform → user |
 | Generations | `.cohub/generations/` | platform/user Save 发布 |
+| Installed Apps | `.cohub/apps.json` | 仅当前 Space；经过校验的清单 |
 | Space 观感 | **`.cohub/space.json`**、**`.cohub/theme.css`** | **仅本 Space**（不走 catalog 合并） |
 | Hooks | `.cohub/hooks/*` | 当前 Space；FS 忽略 `.cohub/**` |
 
@@ -85,7 +86,7 @@ Members still get platform + mod + project skills.
 
 1. Execution grant (`COHUB_EXECUTION_TOKEN`)
 2. Preview session (preview host)
-3. Work session
+3. App session
 4. Logto user session
 
 Execution grant TTL **24h**; not refreshable like OIDC.

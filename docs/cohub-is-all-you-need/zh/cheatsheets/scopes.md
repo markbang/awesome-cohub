@@ -36,7 +36,7 @@ taskrun.view  session.prompt.readonly  session.prompt.fullaccess  command.execut
 | 轮询/读取生成 Task Run | `taskrun.view` |
 | 发送 Prompt | 匹配的 `session.prompt.readonly` 或 `session.prompt.fullaccess` |
 | 读取 Prompt 结果 | `session.view` |
-| 实时房间 / Work 商业化 | 已发布 App 运行时；无需额外权限 |
+| 实时房间 / App 商业化 | 已发布 App 运行时；无需额外权限 |
 
 ## 规则
 

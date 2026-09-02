@@ -15,7 +15,7 @@ sources:
 
 ## 何时使用
 
-文件变更、Save、回合结束、Work 版本发布或 Task Run 状态变化需要在 Space 内触发工作。
+文件变更、Save、回合结束、App 版本发布或 Task Run 状态变化需要在 Space 内触发工作。
 
 ## 结果
 

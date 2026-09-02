@@ -12,12 +12,12 @@ audience: [agent, builder]
 ## 主循环
 
 ```text
-Space（家）→ Skills/工具（做）→ Save（时间）→ Work（分享）→ Fork（再来）
+Space（家）→ Skills/工具（做）→ Save（时间）→ App（分享）→ Fork（再来）
 ```
 
 - **Space** = 工作单位（文件 + 对话 + 沙箱）
 - **Checkpoint / Save** = 时间单位（恢复、分叉、发布配置）
-- **Work** = 分享单位（公开 URL；不是私有沙箱链接）
+- **App** = 分享单位（公开 URL；旧文档称 Work；不是私有 Sandbox 链接）
 
 ## 路径（别发明）
 
@@ -28,6 +28,7 @@ Space（家）→ Skills/工具（做）→ Save（时间）→ Work（分享）
 | `/configs/platform` | 平台发布 | **否** |
 | `/mods/<slug>` | 挂载的模组 | **否** |
 | `/workspace/.agents/skills/` | 项目 skills | 是 |
+| `/workspace/.cohub/apps.json` | 当前 Space 的已安装 App 清单 | 是 |
 | `/configs/user/.agents/skills/` | 已发布的用户 skills | **否**（改 config Space 再 Save） |
 
 同名 skill 合并顺序（后者覆盖）：
@@ -39,8 +40,8 @@ platform → mods → user config → workspace
 ## 身份
 
 - 沙箱 **execution token** ≠ 浏览器登录 cookie 故事
-- Work 运行时使用 `appScopes` 与按 Space 的 viewer grant（旧 `workScopes` / `viewerScopes` 仍是兼容别名）— 最小权限
-- 不要在 Work 里重做一套 Cohub 登录；用平台会话/SDK
+- App 运行时使用 `appScopes` 与按 Space 的 viewer grant（旧 Work 写法仍是兼容别名）— 最小权限；`app.homeSpace` 与 invocation 说明上下文，不等于授权
+- 不要在 App 里重做一套 Cohub 登录；用平台会话/SDK
 
 ## 知识习惯
 
@@ -70,7 +71,7 @@ log.md   只追加时间线
 2. 在随便一个项目沙箱里改 `/configs/user`  
 3. 把 **Home** 当 config 或垃圾桶  
 4. 把原始沙箱 URL 当产品  
-5. 静态 directory Work 上用 History/`BrowserRouter`  
+5. 静态 directory App 上用 History/`BrowserRouter`
 6. 「先开大权限再说」  
 7. 定时循环状态只活在聊天里  
 8. skill 脚本/资源只放仓根（安装会丢）  
@@ -82,17 +83,19 @@ log.md   只追加时间线
 
 - 破坏性自治前先 Save；之后看 diff  
 - 可扫读的存档备注（`v0-landing-working`）  
-- 最小 scopes + Work Kit 模式
+- 最小 scopes + Work Kit 模式（App runtime）
 - 使用 capabilities 与变更回执进行 Board 语义化编辑
 - 用 Task Browser 管理异步生成历史
+- 用 App Center 管理已安装 App，用 Space Activity 查看有限用量摘要
 - 触发重复工具调用保护时重新评估，不要强行继续循环
 - 循环写磁盘状态（`runtime/state.json`、wiki log）  
 - 教人时引用 playbook id（`cohub.bp.*`）  
 
-## Work 呈现
+## App 呈现
 
 - Pro/Max：UI 或 `--hide-cohub-bar` 隐藏公开底栏 — [hide-cohub-bar](./playbooks/hide-cohub-bar.md)
-- Work/App 预览可接收 invocation 上下文，只暴露明确注册的方法 — [work-presentation](./concepts/work-presentation.md)
+- App 预览可接收 invocation 上下文，只暴露明确注册的方法 — [work-presentation](./concepts/work-presentation.md)
+- Prompt 模板可以声明 quick-action 按钮；仍放在 `.agents/prompts/`
 
 
 ## `.cohub` vs `.agents`（优先级）

@@ -15,6 +15,21 @@ type: meta
 
 
 
+## v0.19 — 2026-09-02
+
+同步 **v2.31-v2.38** 重大更新：
+
+- **App 术语与运行时**（v2.35-v2.37）：完成 Work -> App 词汇迁移，新增 `app.homeSpace`、invocation 承载上下文、bridge/broker 运行时模式、可调用 App 界面与 `app://` 引用 scheme
+- **App Center 与 Marketplace**（v2.38）：Space Apps 面板、官方 Marketplace、经过校验的 `.cohub/apps.json` 已安装 App 清单、启用/停用/卸载状态、LRU 缓存与实时刷新
+- **Space Activity**（v2.34）：按小时的 LLM/生成用量、贡献者与模型排名、App 浏览量排名、`cohub spaces activity`，以及按角色隐藏费用
+- **命令面板**（v2.31-v2.33）：个人相关性排名、Recent/All/Mine/Pinned 筛选、缓存优先默认列表、Space 根路径新 Chat 与 Prompt quick-action 按钮
+- **Board 编辑**（v2.37-v2.38）：原子 `boards batch`、Board ID/路径解析、统一 `boards playback`、类型化连接/资源读取、公开 `BoardSemanticCommandSchema`、结构化诊断路径、稳定错误 code 与 request ID
+- **Board 实时与渲染**：语义化 `board.changed` 更新、小型动画 patch 无需重新读取快照、手绘 tessellation 修复与 schema 有效示例
+- **运行时可靠性**（v2.31-v2.36）：兼容换行/BOM/行尾空格的可恢复编辑、明确的命令输出截断、`ctimeMs`/`isFile` 元数据、后台 CLI 自更新与更安全的跨客户端缓存刷新
+- **官方入口更新**：`cohub-apps` 取代 `cohub-works-share`；`public-files` 取代 `public-share`；产品链接和 App 指南统一使用 `cohub.live`
+- 更新 EN/ZH App、Board、Task Browser、导航、权限、配置与排障卡；新增 `app-center`、`space-activity`、`command-palette`
+- 现有规模：**35** 篇实践卡，**33** 篇概念卡
+
 ## v0.18 — 2026-08-26
 
 同步 **v2.22-v2.30** 重大更新：

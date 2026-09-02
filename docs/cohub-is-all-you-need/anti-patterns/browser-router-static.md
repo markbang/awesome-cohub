@@ -1,20 +1,23 @@
 ---
 id: cohub.ap.browser-router-static
-title: BrowserRouter on static Works
+title: BrowserRouter on static Apps
 type: anti-pattern
 related: [cohub.bp.publish-static-work, cohub.bp.work-kit-product]
 ---
 
-# BrowserRouter on static Works
+# BrowserRouter on static Apps
 
 ## Why it hurts
-Deep links and refresh 404; absolute `/assets` paths break directory hosting.
+
+Deep links and refreshes can 404, and absolute `/assets` paths break directory App hosting.
 
 ## Do this instead
-`base: "./"` + **HashRouter** (or hash links) for static directory Works.
+
+Use `base: "./"` plus **HashRouter** (or hash links) for static directory Apps, or pre-render the routes.
 
 ## Smell test
-Refresh on a nested route should still render.
+
+A refresh on a nested route should render the same App without requiring a server-side route rewrite.
 
 ---
 

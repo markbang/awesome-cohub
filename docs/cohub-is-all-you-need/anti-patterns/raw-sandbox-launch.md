@@ -1,20 +1,23 @@
 ---
 id: cohub.ap.raw-sandbox-launch
-title: Raw sandbox URL as launch
+title: Raw Sandbox URL as launch
 type: anti-pattern
 related: [cohub.bp.publish-static-work, cohub.concept.work]
 ---
 
-# Raw sandbox URL as launch
+# Raw Sandbox URL as launch
 
 ## Why it hurts
-Unstable endpoints, wrong audience, hibernation/restarts, no versioned publish semantics.
+
+Raw Sandbox endpoints are unstable across hibernation and restarts, have the wrong audience, and do not provide App version semantics.
 
 ## Do this instead
-Publish a **Work** (`file` / `directory` / carefully `port`). Give people `/:user/:space/w/:work`.
+
+Publish an **App** (`file` / `directory` / carefully `port`) and share `/:username/:spaceSlug/w/:appSlug`.
 
 ## Smell test
-If the link dies when the sandbox sleeps, it is not a launch link.
+
+If the link dies when the Sandbox sleeps, it is not a launch link.
 
 ---
 

@@ -13,7 +13,7 @@ Product roles for collaboration inside a Space:
 - **builder** — create and edit project work  
 - **guest** — limited participate/view per access policy  
 
-Separate from **Work scopes** (runtime permissions on a published surface).
+Separate from **App scopes** (runtime permissions on a published App).
 
 Docs: https://cohub.live/docs/learn/core-concepts · https://cohub.live/docs/workspace/spaces
 

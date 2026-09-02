@@ -20,13 +20,13 @@ sources:
 
 # `.cohub` 分层与优先级
 
-`.cohub/` 是面向平台的 Space 配置（呈现、hooks、models/generations 与辅助任务）。**斜杠 Prompt 模板**位于 `.agents/prompts/`，不在 `.cohub/`。两棵树都可能随 config/platform Save 发布，但作用域不同。
+`.cohub/` 是面向平台的 Space 配置（呈现、hooks、models/generations、辅助任务与已安装 App 状态）。**斜杠 Prompt 模板**位于 `.agents/prompts/`，不在 `.cohub/`。两棵树都可能随 config/platform Save 发布，但作用域不同。
 
 ## 两棵树
 
 | 树 | 典型职责 | config/platform Save 会发布？ |
 |----|----------|-------------------------------|
-| **`.cohub/`** | Space 呈现、hooks、模型/生成目录与辅助任务 | 会 |
+| **`.cohub/`** | Space 呈现、hooks、模型/生成目录、辅助任务与已安装 App | 会 |
 | **`.agents/`** | Skills、斜杠 Prompt 模板与 Agent 附件 | 会 |
 
 白名单包括：
@@ -58,6 +58,7 @@ CLAUDE.md
 
 - `.cohub/space.json` - 当前 Space 的呈现，如 new chat background
 - `.cohub/theme.css` - 当前 Space 的主题 CSS
+- `.cohub/apps.json` - 当前 Space 经过校验的已安装 App 清单
 - `.cohub/hooks/*` - 当前 Space 的事件自动化
 - `.agents/skills/`、`.agents/prompts/*.md` - 仅当前项目
 
@@ -84,7 +85,7 @@ models:                 platform -> user
 {{cohub.user.uuid}}
 ```
 
-这些变量由 API 与 worker 的共享 Prompt 模板路径渲染。辅助任务在 `.cohub/model-tasks.json` 中声明；用户层可以覆盖平台模型或将任务的 `enabled` 设为 `false`。`imageToText` 必须使用支持图像输入的模型。
+这些变量由 API 与 worker 的共享 Prompt 模板路径渲染。Prompt 还可以用 `quick-action: true`、`button-label`、`argument-hint` 与 `order` 在 Chat Composer 上方显示快捷按钮。辅助任务在 `.cohub/model-tasks.json` 中声明；用户层可以覆盖平台模型或将任务的 `enabled` 设为 `false`。`imageToText` 必须使用支持图像输入的模型。
 
 ## 实践
 
@@ -92,7 +93,8 @@ models:                 platform -> user
 2. 项目斜杠配方：放在 `.agents/prompts/*.md`。
 3. 当前 Space 的外观：使用 `.cohub/space.json` / `theme.css`。
 4. 需要请求身份时使用 `{{cohub.*}}` 变量，不要把 ID 手工复制进模板。
-5. 不要修改 `/configs/user` 或 `/configs/platform` 的只读挂载；回源 Space 编辑并 Save。
+5. 将 `.cohub/apps.json` 视为当前 Space 的已安装状态，不要把它当作已发布 App 注册表。
+6. 不要修改 `/configs/user` 或 `/configs/platform` 的只读挂载；回源 Space 编辑并 Save。
 
 ## 参见
 
