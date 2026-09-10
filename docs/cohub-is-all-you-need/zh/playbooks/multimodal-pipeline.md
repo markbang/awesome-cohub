@@ -11,7 +11,7 @@ related:
   - cohub.bp.scratch-to-checkpoint
 sources:
   - https://github.com/talesofai/cohub/blob/main/docs/generations.md
-  - https://cohub.live/changelog（v2.8、v2.19-v2.23）
+  - https://cohub.live/changelog（v2.8、v2.19-v2.23、v2.40-v2.45）
 ---
 
 # 生成、查看并落盘多模态资产
@@ -39,6 +39,7 @@ sources:
    ```bash
    cohub models ls --model-type multimodal
    ```
+   模型声明可以携带展示用**定价信息**（单位 + 金额或 min/max 区间），通过 `models.listMultimodal()` 暴露，并显示在 Web 模型选择器每个模型旁。
 3. 通过 Create 模式、UI 或 CLI 生成：
    ```bash
    cohub generate "product hero, dark studio, orange accent" \

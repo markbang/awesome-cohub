@@ -39,9 +39,10 @@ The App must read Space context, request viewer consent, or act through Cohub AP
    ```
 3. Implement product UI under `src/pages/*`; keep the runtime helpers in `src/lib/*` stable.
 4. Read through Query when runtime is `ready`; request viewer grants only after a user gesture.
-5. Keep App-specific context explicit: `app.homeSpace` is the owning Space, while `invocation.spaceId` may identify the Space hosting a preview or background.
-6. `pnpm install && pnpm build`
-7. Publish with least privilege and verify the public App URL inside the Cohub shell.
+5. Keep App-specific context explicit: `app.homeSpace` is the owning Space, while `invocation.spaceId` may identify the Space hosting a preview or background. Use `ctx.shell` to react to what is currently open.
+6. For server-side work, add entrypoints under `.cohub/actions/` (owner-funded App Actions) - see [App Actions](../concepts/app-actions.md).
+7. `pnpm install && pnpm build`
+8. Publish with least privilege and verify the public App URL inside the Cohub shell.
 
 ## Done when
 
@@ -49,6 +50,7 @@ The App must read Space context, request viewer consent, or act through Cohub AP
 - [ ] Public App becomes runtime-ready in Cohub
 - [ ] App scopes and viewer grants are listed and justified
 - [ ] No parallel login system is invented
+- [ ] Server-side work runs as an App Action instead of shipping credentials to the browser
 
 ## Avoid
 

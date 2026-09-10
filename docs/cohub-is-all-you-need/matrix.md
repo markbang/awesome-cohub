@@ -22,7 +22,7 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | `cohub.bp.scratch-to-checkpoint` | From blank Space to first Save | Space, Files, Chat, Checkpoint | `cohub` | starter | builder |
 | `cohub.bp.agent-with-skills` | Equip an agent and do real work | Space, Sandbox, Skills, CLI | `cohub`, any ecosystem skill | starter | builder, agent-author |
 | `cohub.bp.app-center` | Install and maintain Apps in a Space | Apps, Marketplace, Space files | `cohub-apps`, `cohub` | intermediate | builder, operator |
-| `cohub.bp.board-export-and-playback` | Author, export, and play semantic Boards | Boards, compositions, CLI, export | `cohub` | intermediate | builder, agent |
+| `cohub.bp.board-export-and-playback` | Author, export, replay, and play semantic Boards | Boards, compositions, CLI, export, replay | `cohub` | intermediate | builder, agent |
 | `cohub.bp.cross-space-context` | Pull context from another Space | `@space`, Sessions, Files | `cohub` | intermediate | builder, operator |
 | `cohub.bp.multimodal-pipeline` | Generate, inspect, and materialize multimodal assets | Generation, Files, Tasks | `cohub-generate` | starter | builder |
 | `cohub.bp.publish-static-work` | Publish a static HTML/site App | Apps (`file`/`directory`) | `cohub-apps`, `public-files` | starter | builder |
@@ -34,7 +34,7 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | `cohub.bp.egress-proxy` | Exit via Cloudflare WARP | Sandbox network | `warp-proxy` | starter | builder, operator |
 | `cohub.bp.channel-ops` | Operate from Discord / Feishu / WeChat | Channels, Gateway | `cohub` | intermediate | operator |
 | `cohub.bp.fork-and-proposal` | Fork a Save, explore, propose back | Checkpoint, Fork, Proposal | `cohub` | intermediate | builder |
-| `cohub.bp.space-hooks-automation` | Event automation with Space Hooks | Hooks, Tasks, Files | `cohub` | advanced | operator, agent-author |
+| `cohub.bp.space-hooks-automation` | Event automation with Space Hooks and webhooks | Hooks, Webhooks, App Actions, Tasks, Files | `cohub` | advanced | operator, agent-author |
 | `cohub.bp.space-activity` | Read Space activity summaries | Space, usage, analytics, Apps | `cohub` | intermediate | builder, operator |
 | `cohub.bp.work-promotions` | Measure App promotion funnels | Apps, analytics, commerce | `cohub` | advanced | builder, operator |
 | `cohub.bp.mod-mount` | Mount Mods for shared tooling | Mods, Skills, Sandbox | `cohub` | intermediate | builder, operator |

@@ -202,8 +202,10 @@ This is how teams and agents share memory without pasting essays into every prom
 .cohub/hooks/*.yml
 ```
 
-Events: `space.fs.changed` · `space.workspace.ready` · `session.turn.finalized` · `checkpoint.created` · `work.version.published` · `task.updated`
-Actions: `run` (sandbox shell) or `prompt` (Chat/session)
+Events: `space.fs.changed` · `space.workspace.ready` · `session.turn.finalized` · `checkpoint.created` · `app.version.published` · `task.updated` · `webhook`
+Actions: `run` (sandbox shell), `prompt` (Chat/session), or `uses` (a published App Action)
+
+Webhook hooks (v2.46) are addressed by file name (`POST /api/spaces/:id/webhooks/<name>`) with an optional `on.secret`.
 
 Practice: one file per hook; FS matching ignores `.cohub/**` to prevent loops; filter turns with `sessionIds` / `sources`.  
 Playbook: [space-hooks-automation](./playbooks/space-hooks-automation.md) · Doc: [space-hooks.md](https://github.com/talesofai/cohub/blob/main/docs/space-hooks.md)
@@ -281,7 +283,7 @@ node /configs/user/.agents/skills/hyper-search/scripts/cli.js search "query"
 
 Playbook: [search-layers](./playbooks/search-layers.md)
 
-### 3.18 Recent runtime surfaces (v2.22-v2.38)
+### 3.18 Recent runtime surfaces (v2.22-v2.46)
 
 - **Semantic Board authoring**: Items, connections, effects, and Compositions share atomic, versioned mutations with dry-run diagnostics and durable receipts.
 - **Task Browser**: dedicated multimodal Task Run history with identity-scoped stale-while-revalidate caching and scope-aware Space/Mine views.
@@ -290,6 +292,9 @@ Playbook: [search-layers](./playbooks/search-layers.md)
 - **Runtime safety**: per-path optimistic concurrency with `fs.edit`, recoverable edits, explicit command-output truncation, additive execution-token permissions, and prompt context variables (`{{cohub.session.id}}`, `{{cohub.space.id}}`, `{{cohub.user.uuid}}`).
 - **App ecosystem**: App Center and Marketplace installation through validated `.cohub/apps.json`, with enable/disable/uninstall state separate from published App records.
 - **Space navigation and insight**: personal-relevance command palette, Recent/All/Mine/Pinned filters, quick-action Prompt buttons, Space-root new Chat, and Space Activity summaries.
+- **App surfaces** (v2.39, v2.44-v2.46): overlays with configurable hit regions, iframe embedding, preview keep-alive tabs, unified surface resolution, and shell context for what is actually open.
+- **App Actions and webhooks** (v2.41, v2.46): server-side entrypoints under `.cohub/actions/` (owner-funded, viewer-metered) and HTTP-triggered hooks that can run them with `uses`.
+- **Board replay and live Apps** (v2.40, v2.45): rewindable transaction logs with `createBoardReplayPlayer()`, interactive App frames placed by drag-and-drop, and optional entrance motion.
 
 ## 4. Builder playbook (human)
 
@@ -386,7 +391,7 @@ Always start smaller than you think.
 | Manifesto | this file (v0.2) | revise with product changes |
 | [Matrix](./matrix.md) | scenario index | keep IDs stable |
 | [Playbooks](./playbooks/) | 35 playbooks | add new scenarios as product grows |
-| [Concepts](./concepts/) | 33 core nouns | add sparingly |
+| [Concepts](./concepts/) | 34 core nouns | add sparingly |
 | Knowledge-base pattern | §3.9 + playbook | evolve with real Spaces |
 
 ---

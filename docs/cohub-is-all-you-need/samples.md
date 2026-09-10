@@ -45,6 +45,10 @@ Concrete starting points. Prefer cloning patterns into **your** Space over treat
 | Direct Generation and Task Browser | [direct-generation](./concepts/direct-generation.md) · [task-browser](./concepts/task-browser.md) |
 | App promotion funnel | [work-promotions](./playbooks/work-promotions.md) |
 | App Center installation | [app-center](./playbooks/app-center.md) |
+| App Actions (server-side entrypoints) | [app-actions](./concepts/app-actions.md) |
+| Webhook-triggered automation | [hooks](./concepts/hooks.md) · [space-hooks-automation](./playbooks/space-hooks-automation.md) |
+| Board edit-history replay | [board-runtime](./concepts/board-runtime.md) · [board-export-and-playback](./playbooks/board-export-and-playback.md) |
+| App overlays and embeds | [work-presentation](./concepts/work-presentation.md) |
 | Space activity report | [space-activity](./playbooks/space-activity.md) |
 | Command palette and quick actions | [command-palette](./concepts/command-palette.md) |
 | Research → wiki | [cookbook](./cookbooks/research-agent-wiki.md) |

@@ -77,7 +77,8 @@ log.md   只追加时间线
 8. skill 脚本/资源只放仓根（安装会丢）  
 9. 把实时 API 数据烤进静态 `dist/`  
 10. 首屏就鉴权墙、没有公开壳
-11. 直接写已移除的 Board Node/Sequence 线上结构，而不是语义化 Item/Composition
+11. 直接写已移除的 Board Node/Sequence 线上结构或旧的 `frame` 包裹格式，而不是语义化 Item/Composition
+12. 把密钥作为 App Action 输入，或把它烤进已发布产物
 
 ## 优先做
 
@@ -87,6 +88,8 @@ log.md   只追加时间线
 - 使用 capabilities 与变更回执进行 Board 语义化编辑
 - 用 Task Browser 管理异步生成历史
 - 用 App Center 管理已安装 App，用 Space Activity 查看有限用量摘要
+- 服务端工作使用 App Actions（`.cohub/actions/`）；输入不要携带密钥
+- 外部触发使用 Webhook（`on.event: webhook`）；`uses:` 让 hook 运行 App Action
 - 触发重复工具调用保护时重新评估，不要强行继续循环
 - 循环写磁盘状态（`runtime/state.json`、wiki log）  
 - 教人时引用 playbook id（`cohub.bp.*`）  
@@ -94,7 +97,8 @@ log.md   只追加时间线
 ## App 呈现
 
 - Pro/Max：UI 或 `--hide-cohub-bar` 隐藏公开底栏 — [hide-cohub-bar](./playbooks/hide-cohub-bar.md)
-- App 预览可接收 invocation 上下文，只暴露明确注册的方法 — [work-presentation](./concepts/work-presentation.md)
+- App 可以作为窗口、Overlay、嵌入或 New Chat 背景运行；用 `<meta name="cohub:surface">` 声明表面，并用 `requestConfigure()` 声明命中区域 — [work-presentation](./concepts/work-presentation.md)
+- App 预览可接收 invocation 上下文，只暴露明确注册的方法
 - Prompt 模板可以声明 quick-action 按钮；仍放在 `.agents/prompts/`
 
 

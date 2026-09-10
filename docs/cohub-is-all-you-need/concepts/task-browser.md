@@ -8,7 +8,7 @@ related:
   - cohub.bp.minimal-scopes
   - cohub.concept.app-center
 sources:
-  - https://cohub.live/changelog (v2.26, v2.30)
+  - https://cohub.live/changelog (v2.26, v2.30, v2.42)
   - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
   - https://github.com/talesofai/cohub/blob/main/packages/sdk/docs/app-runtime-guide.md
 ---
@@ -43,9 +43,17 @@ cohub tasks get <task-run-id> --json
 
 Published Apps can use `client.tasks.list()` / `client.tasks.get()` with the corresponding grant. `client.generations.createAndWait()` also needs `taskrun.view` for its polling phase.
 
-## Privacy boundary
+`tasks.wait()` (v2.42) resolves when a run reaches a terminal state by subscribing to realtime `task.updated` events in the Space room, with a polling fallback, a configurable timeout (up to 24h) and poll interval, and `AbortSignal` support.
 
-Task visibility follows the grant's Space and viewer identity. Account-level **Mine** access exposes Task Runs owned by the viewer, not every task in every Space and not other users' runs. Apps should request only the view they render.
+## Privacy boundary (v2.42)
+
+Task-run snapshots are kept intact in storage; what a caller sees is redacted based on the requester's **space-data permission**, not on actor inference:
+
+- Viewers who can view the Space receive the full run.
+- Everyone else gets execution fields (command, cwd, action input, actor/viewer IDs, scopes) and billing figures stripped from payloads, results, and live progress.
+- The same rule is enforced consistently across task and cronjob run endpoints.
+
+Account-level **Mine** access exposes Task Runs owned by the viewer, not every task in every Space and not other users' runs. Apps should request only the view they render.
 
 ---
 

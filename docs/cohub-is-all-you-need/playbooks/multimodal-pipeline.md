@@ -11,7 +11,7 @@ related:
   - cohub.bp.scratch-to-checkpoint
 sources:
   - https://github.com/talesofai/cohub/blob/main/docs/generations.md
-  - https://cohub.live/changelog (v2.8, v2.19-v2.23)
+  - https://cohub.live/changelog (v2.8, v2.19-v2.23, v2.40-v2.45)
 ---
 
 # Generate, inspect, and materialize multimodal assets
@@ -39,6 +39,7 @@ You need image, video, music, or other multimodal output as a durable Space asse
    ```bash
    cohub models ls --model-type multimodal
    ```
+   Model declarations can carry display **pricing** (a unit plus an amount or a min/max range), surfaced through `models.listMultimodal()` and beside each model in the web model picker.
 3. Generate through Create mode, the UI, or CLI:
    ```bash
    cohub generate "product hero, dark studio, orange accent" \

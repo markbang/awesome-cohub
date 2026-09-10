@@ -78,6 +78,8 @@ Inspired by the [Awesome](https://awesome.re) format and the VoltAgent awesome s
 - **Checkpoints / Saves** - Freeze progress and remix from a stable base.
 - **Apps** - Publish demos, pages, and live previews with shareable URLs.
 - **App Center** - Discover and install validated Apps into a Space.
+- **App Actions** - Server-side entrypoints published with an App and runnable from the frontend, CLI, or a hook.
+- **Webhooks** - HTTP triggers that run Space automation from external services.
 - **Space Activity** - Review bounded usage, contributors, model rankings, and App views.
 - **Multimodal generation** - Text, image, video, and music generation from Space context, with Direct Generation and Task Browser workflows.
 - **Boards** - Semantic Items, connections, compositions, effects, media, and deterministic exports.
@@ -187,7 +189,7 @@ Best-practice series for **builders** and **agents** — from first Save to Apps
 | **Manifesto** | [EN](docs/cohub-is-all-you-need/manifesto.md) · [中文](docs/cohub-is-all-you-need/zh/manifesto.md) |
 | **Matrix** | [EN](docs/cohub-is-all-you-need/matrix.md) · [中文](docs/cohub-is-all-you-need/zh/matrix.md) |
 | **Playbooks** | [EN](docs/cohub-is-all-you-need/playbooks/) · [中文](docs/cohub-is-all-you-need/zh/playbooks/) (35) |
-| **Concepts / Anti-patterns / Cheatsheets** | [concepts](docs/cohub-is-all-you-need/concepts/) (33) · [anti-patterns](docs/cohub-is-all-you-need/anti-patterns/) (15) · [cheatsheets](docs/cohub-is-all-you-need/cheatsheets/) (6) |
+| **Concepts / Anti-patterns / Cheatsheets** | [concepts](docs/cohub-is-all-you-need/concepts/) (34) · [anti-patterns](docs/cohub-is-all-you-need/anti-patterns/) (15) · [cheatsheets](docs/cohub-is-all-you-need/cheatsheets/) (6) |
 | **Banner** | [animated SVG](https://cdn.jsdelivr.net/gh/markbang/awesome-cohub@main/docs/cohub-is-all-you-need/assets/banner.svg) · [architecture](docs/cohub-is-all-you-need/assets/architecture.svg) |
 | **Changelog** | [guide CHANGELOG](docs/cohub-is-all-you-need/CHANGELOG.md) |
 

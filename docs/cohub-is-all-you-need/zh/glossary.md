@@ -22,6 +22,8 @@ type: guide
 | **Skill** | 技能 | Agent 指令（+ 可选脚本），`/skill:` 调用 | [skill-and-mod](./concepts/skill-and-mod.md) |
 | **Mod** | 模组 | 挂载工具包 `/mods/<slug>` | [skill-and-mod](./concepts/skill-and-mod.md) |
 | **Hook** | 钩子 | `.cohub/hooks` 事件自动化 | [hooks](./concepts/hooks.md) |
+| **Webhook** | Webhook | 按文件名寻址的 HTTP 触发 hook | [hooks](./concepts/hooks.md) |
+| **App Action** | App Action | `.cohub/actions/` 下的服务端入口，供 App、CLI 或 hook `uses` 调用 | [app-actions](./concepts/app-actions.md) |
 | **Task / Schedule** | 任务 / 定时 | 可运行任务与周期 prompt | [task-and-schedule](./concepts/task-and-schedule.md) |
 | **Task Browser** | 任务浏览器 | 浏览 Task Run 历史、生成结果与按权限分视图的界面 | [task-browser](./concepts/task-browser.md) |
 | **App Center** | 应用中心 | Space 中发现、安装、启用、停用与卸载 App 的面板和 Marketplace 流程 | [app-center](./concepts/app-center.md) |
@@ -38,6 +40,9 @@ type: guide
 | **Board Item** | Board 项 | 取代旧线上 Node 的语义化 Board 元素 | [board-semantic-authoring](./concepts/board-semantic-authoring.md) |
 | **Composition** | 组合动画 | 由轨道、关键帧、片段与标记组成的原子 Board 时间线 | [board-semantic-authoring](./concepts/board-semantic-authoring.md) |
 | **Promotion** | 推广 | 带聚合归因与漏斗统计的不可变 App 链接 | [work-promotions](./playbooks/work-promotions.md) |
+| **Overlay** | Overlay | 无边框透明 App 表面，命中区域可配置 | [work-presentation](./concepts/work-presentation.md) |
+| **Embed** | 嵌入 | App 以 iframe 托管另一个 App 的公开页面 | [work-presentation](./concepts/work-presentation.md) |
+| **Transactions / Replay** | 事务 / 回放 | 支撑可倒带回放的 Board 编辑日志 | [board-semantic-authoring](./concepts/board-semantic-authoring.md) |
 | **Search layers** | 搜索分层 | 产品 vs 工作区 vs 网页 | [search-layers](./concepts/search-layers.md) |
 
 | **`.cohub/`** | `.cohub/` | 平台向 Space 配置：models、generations、space.json 主题/背景、hooks | [dot-cohub-layers](./concepts/dot-cohub-layers.md) |

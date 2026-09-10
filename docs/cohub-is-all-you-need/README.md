@@ -37,7 +37,7 @@ Grounded in product docs ([/docs](https://cohub.live/docs)), changelog ([/change
 | [manifesto.md](./manifesto.md) | Manifesto |
 | [matrix.md](./matrix.md) | Scenario matrix (+ role) |
 | [playbooks/](./playbooks/) | Practice cards (35) |
-| [concepts/](./concepts/) | Concept cards (33) |
+| [concepts/](./concepts/) | Concept cards (34) |
 | [anti-patterns/](./anti-patterns/) | Failure modes (15) |
 | [cheatsheets/](./cheatsheets/) | CLI · paths · FAQ · packaging |
 | [samples.md](./samples.md) | Links & pattern templates |

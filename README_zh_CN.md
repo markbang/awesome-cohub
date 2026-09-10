@@ -78,6 +78,8 @@
 - **Checkpoints / Saves** - 冻结进度，并从稳定基线继续 Remix。
 - **Apps** - 将 Demo、页面和实时预览发布为可分享 URL。
 - **App Center** - 发现并将经过校验的 App 安装到 Space。
+- **App Actions** - 随 App 发布的服务端入口，可从前端、CLI 或 hook 调用。
+- **Webhooks** - 外部服务触发的 HTTP 入口，驱动 Space 自动化。
 - **Space Activity** - 查看有限的用量、贡献者、模型排名与 App 浏览量。
 - **多模态生成** - 基于 Space 上下文生成文本、图片、视频和音乐，并支持 Direct Generation 与 Task Browser 流程。
 - **Boards** - 语义化 Item、连接、组合动画、效果、媒体与确定性导出。
@@ -184,7 +186,7 @@ npx skills add https://github.com/markbang/wgetx-skill --list
 | **宣言** | [英文](docs/cohub-is-all-you-need/manifesto.md) · [中文](docs/cohub-is-all-you-need/zh/manifesto.md) |
 | **矩阵** | [英文](docs/cohub-is-all-you-need/matrix.md) · [中文](docs/cohub-is-all-you-need/zh/matrix.md) |
 | **实践卡** | [英文](docs/cohub-is-all-you-need/playbooks/) · [中文](docs/cohub-is-all-you-need/zh/playbooks/)（35） |
-| **概念 / 反模式 / 速查** | [概念](docs/cohub-is-all-you-need/zh/concepts/)（33）· [反模式](docs/cohub-is-all-you-need/zh/anti-patterns/)（15）· [速查](docs/cohub-is-all-you-need/zh/cheatsheets/)（6） |
+| **概念 / 反模式 / 速查** | [概念](docs/cohub-is-all-you-need/zh/concepts/)（34）· [反模式](docs/cohub-is-all-you-need/zh/anti-patterns/)（15）· [速查](docs/cohub-is-all-you-need/zh/cheatsheets/)（6） |
 | **Banner** | [动画 SVG](https://cdn.jsdelivr.net/gh/markbang/awesome-cohub@main/docs/cohub-is-all-you-need/assets/banner.svg) · [架构图](docs/cohub-is-all-you-need/assets/architecture.svg) |
 | **变更日志** | [指南 CHANGELOG](docs/cohub-is-all-you-need/zh/CHANGELOG.md) |
 

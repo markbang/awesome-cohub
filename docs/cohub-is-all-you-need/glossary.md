@@ -22,6 +22,8 @@ Bilingual terms. Deep dives link to concept cards.
 | **Skill** | 技能 | Agent instruction (+ optional scripts) invokable via `/skill:` | [skill-and-mod](./concepts/skill-and-mod.md) |
 | **Mod** | 模组 | Mounted Space toolkit under `/mods/<slug>` | [skill-and-mod](./concepts/skill-and-mod.md) |
 | **Hook** | 钩子 | Event automation under `.cohub/hooks` | [hooks](./concepts/hooks.md) |
+| **Webhook** | Webhook | HTTP-triggered hook addressed by file name | [hooks](./concepts/hooks.md) |
+| **App Action** | App Action | Server-side entrypoint under `.cohub/actions/`, run from the App, CLI, or a hook `uses` | [app-actions](./concepts/app-actions.md) |
 | **Task / Schedule** | 任务 / 定时 | Runnable jobs and recurring prompts | [task-and-schedule](./concepts/task-and-schedule.md) |
 | **Task Browser** | 任务浏览器 | Dedicated surface for Task Run history, generation results, and scope-aware views | [task-browser](./concepts/task-browser.md) |
 | **App Center** | 应用中心 | Space panel and Marketplace flow for installed, enabled, disabled, and uninstalled Apps | [app-center](./concepts/app-center.md) |
@@ -38,6 +40,9 @@ Bilingual terms. Deep dives link to concept cards.
 | **Board Item** | Board 项 | Semantic Board element replacing the legacy wire-level Node | [board-semantic-authoring](./concepts/board-semantic-authoring.md) |
 | **Composition** | 组合动画 | Atomic Board timeline of tracks, keyframes, clips, and markers | [board-semantic-authoring](./concepts/board-semantic-authoring.md) |
 | **Promotion** | 推广 | Immutable App link with aggregate attribution and funnel stats | [work-promotions](./playbooks/work-promotions.md) |
+| **Overlay** | Overlay | Chrome-free transparent App surface with configurable hit regions | [work-presentation](./concepts/work-presentation.md) |
+| **Embed** | 嵌入 | An App hosting another App's public page in an iframe | [work-presentation](./concepts/work-presentation.md) |
+| **Transactions / Replay** | 事务 / 回放 | Board edit log powering rewindable replay | [board-semantic-authoring](./concepts/board-semantic-authoring.md) |
 | **Search layers** | 搜索分层 | Product vs workspace vs web | [search-layers](./concepts/search-layers.md) |
 
 | **`.cohub/`** | `.cohub/` | Platform-facing Space config: models, generations, space.json theme/background, hooks | [dot-cohub-layers](./concepts/dot-cohub-layers.md) |

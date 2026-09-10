@@ -33,16 +33,17 @@ Pick a track. Each step links to an existing playbook or cookbook.
 2. [Work Kit product](./playbooks/work-kit-product.md)
 3. [Minimal scopes](./playbooks/minimal-scopes.md)
 4. [Hide Cohub bar](./playbooks/hide-cohub-bar.md) (Pro/Max presentation)
-5. [Work lifecycle](./playbooks/work-lifecycle.md)
-6. [Work/App presentation](./concepts/work-presentation.md)
-7. Skim anti-patterns: [BrowserRouter on static Works](./anti-patterns/browser-router-static.md), [Raw sandbox URL as launch](./anti-patterns/raw-sandbox-launch.md)
+5. [App lifecycle](./playbooks/work-lifecycle.md) - workspace or local sources, versions, visibility
+6. [App presentation and surfaces](./concepts/work-presentation.md) - windows, overlays, embeds, shell context
+7. [App Actions](./concepts/app-actions.md) - server-side entrypoints for the App
+8. Skim anti-patterns: [BrowserRouter on static Works](./anti-patterns/browser-router-static.md), [Raw sandbox URL as launch](./anti-patterns/raw-sandbox-launch.md)
 
 **Done when:** directory App opens on a public URL with least privilege.
 
 ## Half day — Board and generation surfaces
 
 1. [Semantic Board authoring](./concepts/board-semantic-authoring.md)
-2. [Author, export, and play Boards](./playbooks/board-export-and-playback.md)
+2. [Author, export, replay, and play Boards](./playbooks/board-export-and-playback.md)
 3. [Direct Generation turns](./concepts/direct-generation.md)
 4. [Task Browser](./concepts/task-browser.md)
 5. [Work promotions](./playbooks/work-promotions.md) when measuring public traffic
@@ -60,7 +61,7 @@ Pick a track. Each step links to an existing playbook or cookbook.
 ## Advanced — autonomy & ops
 
 1. [Scheduled loop](./playbooks/scheduled-loop.md) + anti-pattern [Loop without disk state](./anti-patterns/loop-without-disk-state.md)
-2. [Space Hooks automation](./playbooks/space-hooks-automation.md)
+2. [Space Hooks automation and webhooks](./playbooks/space-hooks-automation.md)
 3. [Fork and proposal](./playbooks/fork-and-proposal.md)
 4. [Execution token identity](./playbooks/execution-token-identity.md)
 5. [Skill catalog cache](./playbooks/skill-catalog-cache.md)

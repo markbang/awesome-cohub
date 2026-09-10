@@ -9,6 +9,7 @@ related: [cohub.bp.work-kit-product, cohub.bp.minimal-scopes, cohub.bp.work-prom
 sources:
   - https://github.com/talesofai/cohub/blob/main/docs/app-commerce-guide.md
   - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
+  - https://cohub.live/changelog（v2.39、v2.41）
 ---
 
 # 在 App 内售卖功能与积分
@@ -30,6 +31,7 @@ sources:
 1. App 已发布，不是原始静态 URL 或本地预览。
 2. 使用公开 App URL 开发和验证商业化。
 3. 结账状态由外层宿主控制（登录、顶层跳转与回流），不要主要交给 iframe。
+4. 购买必须由**用户操作**触发，不能在 App 初始化时自动发起。
 
 ## 权益类型
 
@@ -37,8 +39,6 @@ sources:
 |------|------|
 | `feature` | 通过权益元数据（`enabled`、limits）控制功能 |
 | `credits` | 付费订单后自动赠送可消费的 `cohub_credit` |
-
-Cohub Balance 是可选的平台管理产品组件，用于跨 Space 的全局 USD 余额；金额与商品价格创建后不可变。
 
 ## 步骤
 
@@ -52,22 +52,32 @@ Cohub Balance 是可选的平台管理产品组件，用于跨 Space 的全局 U
    });
    const { entitlements, credits } = await client.app.commerce.getEntitlements();
    ```
-3. 功能未解锁时，在用户点击后 `purchase({ productKey })`，等待宿主结账回流，再读取权益/订单。
+3. 功能未解锁时，在用户点击后 `purchase({ productKey })`，宿主直接进入结账，回流后读取权益/订单。
 4. 积分足够时用 `consumeCredits({ amount, operationId, reason })`；`operationId` 必须稳定以支持幂等重试。不足时引导购买。
 5. 回流后读取 `getCheckoutState()` / `getOrder()`。购买超时重试时复用相同 `purchaseAttemptId`，避免创建重复 Billing order。
 6. 重副作用放在脚本中：App 触发，Agent 扣费并写结果文件，App 读取结构化结果。
 7. 商业化 UI 不意味着可以放开 prompt/generation 等无关权限。
 
+## 结账行为（v2.39-v2.41）
+
+- App 内购买**直接进入结账**，不再弹出多余的宿主确认对话框。
+- 同一商品的并发或重复购买请求会按 attempt id 去重并串行化，双击不会创建两个订单。
+- 跳转携带服务端追加的结果与商品 key；结账确认端点会把每次回流与服务商结算状态对账。只有订单或订阅确实已支付/生效时才确认成功——伪造 URL 无法冒充购买，过期跳转也会解析到正确的商品状态。
+- Billing 目录会为定价页展示与观众无关的促销信息（折扣百分比与截止日期）；实际折扣只在服务端应用于符合条件的已登录用户。
+
 ## CLI
 
 ```bash
 cohub apps commerce credits consume --app-id <app-id> --amount 100
+cohub apps commerce products resolve --app-id <app-id> --product-key pro_unlock
+cohub apps commerce entitlements --app-id <app-id> --json
 ```
 
 ## 完成标准
 
 - [ ] 在公开 App URL 验证功能或积分闭环
 - [ ] 购买回流后 UI 状态一致
+- [ ] 购买成功以订单/订阅状态为准，而不是只看回流 URL
 - [ ] 消费使用稳定的 `operationId`
 - [ ] 购买重试使用 `purchaseAttemptId`
 - [ ] 重副作用结果持久化为 Space 文件
@@ -76,6 +86,7 @@ cohub apps commerce credits consume --app-id <app-id> --amount 100
 
 - 只在本地静态预览测试商业化（`context()` 为 null）
 - 让 iframe 单独持有待结账状态
+- 在 App 加载时触发购买，而不是用户操作后
 - 原地修改商品价格
 - 重试购买或扣费却更换幂等 ID
 

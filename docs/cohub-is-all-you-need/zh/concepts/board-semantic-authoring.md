@@ -6,7 +6,7 @@ related:
   - cohub.concept.board-runtime
   - cohub.bp.board-export-and-playback
 sources:
-  - https://cohub.live/changelog（v2.22-v2.38）
+  - https://cohub.live/changelog（v2.22-v2.45）
   - https://github.com/talesofai/cohub/blob/main/packages/protocol/src/board-authoring.ts
   - https://github.com/talesofai/cohub/blob/main/packages/protocol/src/board-composition.ts
 ---
@@ -17,9 +17,19 @@ Board 编辑采用由 API、SDK、CLI、Web 编辑器、Checkpoint 与已发布 
 
 ## 文档模型
 
-Board 快照包含 Item、连接、效果、Composition 与 Playback。内置 Item 包括文本、几何图形、手绘、箭头、画框、图片、视频、音频、文件与任务。媒体 Item 使用安全的相对 Space 文件引用；任务 Item 携带用于显示的 task-run 快照。
+Board 快照包含 Item、连接、效果、Composition 与 Playback。内置 Item 包括文本、几何图形、手绘、箭头、画框、图片、视频、音频、文件、任务与 App。媒体 Item 使用安全的相对 Space 文件引用；任务 Item 携带 task-run 快照；App Item 在画框内挂载已发布 App 界面。
 
 线上词汇使用 **Item**，不再使用已移除的泛化 Node/Sequence 结构。实时 `board.changed` 事件携带语义化 changed 投影；纯动画变更可以携带 `animationPatch`，无需重新读取完整 Board。
+
+## 几何
+
+编辑使用世界坐标几何：
+
+- `position`（`{ x, y }`）与 `rotation`，可带尺寸的 Item 使用可选 `size`。
+- 手绘点与箭头端点使用**世界**坐标；Item 画框由描边与曲线边界自动推导，并按规范几何校验。
+- `boards capabilities` 会按字段报告坐标约定；`@cohub/protocol` 中同一份几何核心被 SDK、CLI 与 Web 编辑器共用，导出与实时编辑不会漂移。
+
+早期语义化版本中的不透明 `frame` 包裹格式已移除，不要手写。
 
 ## 原子命令与批次
 
@@ -58,7 +68,7 @@ cohub boards effects get <board-or-path> <effect-id> --json
 cohub boards compositions get <board-or-path> <composition-id> --json
 ```
 
-播放命令现在统一在 `boards playback` 下：
+播放命令统一在 `boards playback` 下：
 
 ```bash
 cohub boards playback play <board-or-path> <composition-id> --time-scale 1
@@ -66,6 +76,17 @@ cohub boards playback pause <board-or-path> <playback-id>
 cohub boards playback seek <board-or-path> <playback-id> 400
 cohub boards playback stop <board-or-path> <playback-id>
 ```
+
+## 编辑历史
+
+每次成功应用的变更都是一条事务。只读日志提供快照一致、最新优先的分页，并带服务端计算好的逆操作：
+
+```bash
+cohub boards transactions <board-or-path> --limit 50 --json
+cohub boards transactions <board-or-path> --before 120 --operations --json
+```
+
+第一页携带当前快照。SDK 的 `createBoardReplayPlayer()` 把它变成可倒带的时间线，支持补齐旧分页与追加实时事务；Web 工作区提供带拖动条、播放/暂停、1-4 倍速与镜头跟随的私有回放舞台。
 
 ## 重试规则
 
@@ -76,7 +97,7 @@ cohub boards playback stop <board-or-path> <playback-id>
 
 ## 避免
 
-- 直接写入已移除的旧 Sequence/Node 线上结构。
+- 直接写入已移除的旧 Sequence/Node 线上结构或旧的 `frame` 包裹格式。
 - 把截图或渲染缓存当作真相来源。
 - 用新 ID 替换超时的批次重试。
 - 发送无界 JSON 或不受支持的 capability。

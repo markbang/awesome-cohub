@@ -4,6 +4,7 @@
 
 | ID | 标题 | 文件 |
 |----|------|------|
+| `cohub.concept.app-actions` | App Actions | [app-actions.md](./app-actions.md) |
 | `cohub.concept.app-center` | App Center 与已安装 App | [app-center.md](./app-center.md) |
 | `cohub.concept.board-runtime` | Board 运行时与语义化画布 | [board-runtime.md](./board-runtime.md) |
 | `cohub.concept.board-semantic-authoring` | Board 语义化编辑 | [board-semantic-authoring.md](./board-semantic-authoring.md) |
@@ -38,6 +39,6 @@
 | `cohub.concept.work` | App（原 Work） | [work.md](./work.md) |
 | `cohub.concept.work-presentation` | App 呈现与运行时上下文 | [work-presentation.md](./work-presentation.md) |
 
-**33** 项。
+**34** 项。
 
 [English](../../concepts/README.md)

@@ -6,7 +6,7 @@ related:
   - cohub.concept.board-runtime
   - cohub.bp.board-export-and-playback
 sources:
-  - https://cohub.live/changelog (v2.22-v2.38)
+  - https://cohub.live/changelog (v2.22-v2.45)
   - https://github.com/talesofai/cohub/blob/main/packages/protocol/src/board-authoring.ts
   - https://github.com/talesofai/cohub/blob/main/packages/protocol/src/board-composition.ts
 ---
@@ -17,9 +17,19 @@ Board editing is a semantic document protocol shared by the API, SDK, CLI, Web e
 
 ## Document model
 
-A Board snapshot contains Items, connections, effects, compositions, and playback. Built-in Items include text, geo, draw, arrow, frame, image, video, audio, file, and task. Media Items use safe relative Space-file references; task Items carry a task-run snapshot for display.
+A Board snapshot contains Items, connections, effects, compositions, and playback. Built-in Items include text, geo, draw, arrow, frame, image, video, audio, file, task, and app. Media Items use safe relative Space-file references; task Items carry a task-run snapshot; app Items mount a published App surface inside a frame.
 
 The wire vocabulary uses **Item** rather than the removed generic Node/Sequence representation. Realtime `board.changed` events carry a semantic changed projection; pure animation updates may carry an `animationPatch` that can be applied without refetching the full Board.
+
+## Geometry
+
+Authoring uses world-space geometry:
+
+- `position` (`{ x, y }`) and `rotation`, with an optional `size` for sized Items.
+- Draw points and arrow endpoints are authored in **world** coordinates; item frames are derived automatically from stroke and curve bounds and validated against canonical geometry.
+- `boards capabilities` reports the coordinate conventions per field, and the same geometry core in `@cohub/protocol` is used by the SDK, CLI, and web editor so exports and live editing cannot drift.
+
+The older opaque `frame` envelope from early semantic builds is gone; do not hand-write it.
 
 ## Atomic commands and batches
 
@@ -58,7 +68,7 @@ cohub boards effects get <board-or-path> <effect-id> --json
 cohub boards compositions get <board-or-path> <composition-id> --json
 ```
 
-Playback commands are now grouped under `boards playback`:
+Playback commands are grouped under `boards playback`:
 
 ```bash
 cohub boards playback play <board-or-path> <composition-id> --time-scale 1
@@ -66,6 +76,17 @@ cohub boards playback pause <board-or-path> <playback-id>
 cohub boards playback seek <board-or-path> <playback-id> 400
 cohub boards playback stop <board-or-path> <playback-id>
 ```
+
+## Edit history
+
+Every applied mutation is one transaction. The read-only log serves snapshot-consistent, newest-first pages with server-computed inverses:
+
+```bash
+cohub boards transactions <board-or-path> --limit 50 --json
+cohub boards transactions <board-or-path> --before 120 --operations --json
+```
+
+The first page carries the current snapshot. The SDK's `createBoardReplayPlayer()` turns it into a rewindable timeline that supports older pages and live appends; the web workspace adds a private replay stage with a scrubber, play/pause, 1-4x speed, and camera follow.
 
 ## Retry rules
 
@@ -76,7 +97,7 @@ cohub boards playback stop <board-or-path> <playback-id>
 
 ## Avoid
 
-- Writing the removed legacy Sequence/Node wire shape directly.
+- Writing the removed legacy Sequence/Node wire shape or the old `frame` envelope.
 - Treating a screenshot or renderer cache as the source of truth.
 - Replacing a timed-out batch with a new id.
 - Sending unbounded JSON or unsupported capabilities.

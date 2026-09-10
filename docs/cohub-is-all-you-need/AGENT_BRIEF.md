@@ -77,7 +77,8 @@ Update existing wiki pages; do not only append raw forever.
 8. Skill scripts/assets only at repo root (install drops them)  
 9. Bake live API data into static `dist/`  
 10. Auth wall on first paint without a public shell
-11. Writing the removed Board Node/Sequence wire shape instead of semantic Items/Compositions
+11. Writing the removed Board Node/Sequence wire shape or the old `frame` envelope instead of semantic Items/Compositions
+12. Passing secrets as App Action input or baking them into published artifacts
 
 ## Prefer
 
@@ -87,6 +88,8 @@ Update existing wiki pages; do not only append raw forever.
 - Semantic Board authoring with capabilities and mutation receipts
 - Task Browser for asynchronous generation history
 - App Center for installed-App state; Space Activity for bounded usage summaries
+- App Actions (`.cohub/actions/`) for server-side work; keep action input free of secrets
+- Webhooks (`on.event: webhook`) for external triggers; `uses:` runs an App Action from a hook
 - Let the repeated-tool-call guard trigger reassessment instead of forcing a loop
 - Disk state for loops (`runtime/state.json`, wiki log)  
 - Cite playbooks by id (`cohub.bp.*`) when teaching humans  
@@ -94,7 +97,8 @@ Update existing wiki pages; do not only append raw forever.
 ## App presentation
 
 - Pro/Max: hide public footer bar via UI or `--hide-cohub-bar` — [hide-cohub-bar](./playbooks/hide-cohub-bar.md)
-- App previews can receive invocation context and expose only explicitly registered callable methods — [work-presentation](./concepts/work-presentation.md)
+- Apps can run as windows, overlays, embeds, or New Chat backgrounds; declare the surface with `<meta name="cohub:surface">` and claim hit regions with `requestConfigure()` — [work-presentation](./concepts/work-presentation.md)
+- App previews can receive invocation context and expose only explicitly registered callable methods
 - Prompt templates can opt into quick-action buttons; keep them under `.agents/prompts/`
 
 

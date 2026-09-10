@@ -202,8 +202,10 @@ runtime/             # 可选：agent 路由、来源 registry、协议
 .cohub/hooks/*.yml
 ```
 
-事件：`space.fs.changed` · `space.workspace.ready` · `session.turn.finalized` · `checkpoint.created` · `work.version.published` · `task.updated`
-动作：`run`（沙箱 shell）或 `prompt`（Chat/session）
+事件：`space.fs.changed` · `space.workspace.ready` · `session.turn.finalized` · `checkpoint.created` · `app.version.published` · `task.updated` · `webhook`
+动作：`run`（沙箱 shell）、`prompt`（Chat/session）或 `uses`（运行已发布 App Action）
+
+Webhook hook（v2.46）按文件名寻址（`POST /api/spaces/:id/webhooks/<name>`），可带 `on.secret`。
 
 实践：一文件一 hook；FS 匹配忽略 `.cohub/**` 防自激；turn 用 `sessionIds` / `sources` 过滤。  
 实践卡：[space-hooks-automation](./playbooks/space-hooks-automation.md) · 文档：[space-hooks.md](https://github.com/talesofai/cohub/blob/main/docs/space-hooks.md)
@@ -281,7 +283,7 @@ node /configs/user/.agents/skills/hyper-search/scripts/cli.js search "query"
 
 实践卡：[search-layers](./playbooks/search-layers.md)
 
-### 3.18 最近的运行时界面（v2.22-v2.38）
+### 3.18 最近的运行时界面（v2.22-v2.46）
 
 - **Board 语义化编辑**：Item、连接、效果与 Composition 共享带版本的原子变更、dry-run 诊断与持久回执。
 - **Task Browser**：专门的多模态 Task Run 历史，按身份缓存并提供 Space/Mine 权限视图。
@@ -290,6 +292,9 @@ node /configs/user/.agents/skills/hyper-search/scripts/cli.js search "query"
 - **运行时安全**：按路径乐观并发与 `fs.edit`、可恢复编辑、明确的命令输出截断、execution token 权限并集，以及 Prompt 上下文变量（`{{cohub.session.id}}`、`{{cohub.space.id}}`、`{{cohub.user.uuid}}`）。
 - **App 生态**：通过校验的 `.cohub/apps.json` 使用 App Center 与 Marketplace 安装 App；启用/停用/卸载状态与已发布 App 记录分离。
 - **Space 导航与洞察**：个人相关性命令面板、Recent/All/Mine/Pinned 筛选、Prompt quick-action 按钮、Space 根路径新 Chat 与 Space Activity 摘要。
+- **App 表面**（v2.39、v2.44-v2.46）：可配置命中区域的 Overlay、iframe 嵌入、预览保活标签、统一表面解析，以及描述当前打开位置的 shell 上下文。
+- **App Actions 与 webhook**（v2.41、v2.46）：`.cohub/actions/` 下的服务端入口（所有者出资、观众计量），以及可用 `uses` 运行它们的 HTTP 触发 hook。
+- **Board 回放与实况 App**（v2.40、v2.45）：可倒带的事务日志与 `createBoardReplayPlayer()`、拖放上板的可交互 App 画框，以及可选入场动效。
 
 ## 4. 给建造者（人）
 
@@ -386,7 +391,7 @@ cohub -s "$COHUB_SPACE_ID" apps publish <slug> \
 | 主文 | 本文件（v0.2） | 随产品迭代修订 |
 | [矩阵](./matrix.md) | 场景索引 | 保持 ID 稳定 |
 | [实践卡](./playbooks/) | 35 张实践卡 | 随产品增长追加新场景 |
-| [概念卡](./concepts/) | 33 个核心名词 | 少而精 |
+| [概念卡](./concepts/) | 34 个核心名词 | 少而精 |
 | 知识库模式 | §3.9 + 实践卡 | 随真实 Space 演进 |
 
 ---

@@ -8,7 +8,7 @@ related:
   - cohub.bp.minimal-scopes
   - cohub.concept.app-center
 sources:
-  - https://cohub.live/changelog（v2.26、v2.30）
+  - https://cohub.live/changelog（v2.26、v2.30、v2.42）
   - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
   - https://github.com/talesofai/cohub/blob/main/packages/sdk/docs/app-runtime-guide.md
 ---
@@ -43,9 +43,17 @@ cohub tasks get <task-run-id> --json
 
 已发布 App 可以在拥有相应 grant 时使用 `client.tasks.list()` / `client.tasks.get()`。`client.generations.createAndWait()` 的轮询阶段同样需要 `taskrun.view`。
 
-## 隐私边界
+`tasks.wait()`（v2.42）会在任务进入终态时返回：通过订阅 Space 房间的实时 `task.updated` 事件等待，并带轮询兜底、可配置超时（最长 24 小时）与轮询间隔，支持 `AbortSignal`。
 
-任务可见性遵循授权中的 Space 与观众身份。账户级 Mine 只暴露观众自己拥有的 Task Run，不会暴露所有 Space 的所有任务，也不会暴露其他用户的任务。App 只应申请实际呈现的视图。
+## 隐私边界（v2.42）
+
+Task-run 快照在存储侧保持完整；调用者看到的内容按请求者的 **space-data 权限**脱敏，而不是按 actor 推断：
+
+- 能查看该 Space 的观众获得完整 run。
+- 其他人得到的 payload、结果与实时进度中，执行字段（command、cwd、action input、actor/viewer ID、scopes）与计费数字会被剥离。
+- 同一条规则在 task 与 cronjob run 端点上一致执行。
+
+账户级 **Mine** 只暴露观众自己拥有的 Task Run，不会暴露所有 Space 的所有任务，也不会暴露其他用户的任务。App 只应申请实际呈现的视图。
 
 ---
 

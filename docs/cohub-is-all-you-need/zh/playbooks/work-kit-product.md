@@ -39,9 +39,10 @@ App 需要读取 Space 上下文、请求观众授权或通过 Cohub API 执行�
    ```
 3. 产品 UI 放在 `src/pages/*`；尽量保持 `src/lib/*` runtime helpers 稳定。
 4. runtime 为 `ready` 后通过 Query 读取；viewer grant 只在用户手势后申请。
-5. 明确 App 上下文：`app.homeSpace` 是拥有 App 的 Space，而 `invocation.spaceId` 可能是承载预览或背景的 Space。
-6. `pnpm install && pnpm build`
-7. 以最小权限发布，并在 Cohub 壳内验证公开 App URL。
+5. 明确 App 上下文：`app.homeSpace` 是拥有 App 的 Space，而 `invocation.spaceId` 可能是承载预览或背景的 Space。用 `ctx.shell` 响应当前打开的位置。
+6. 服务端工作放在 `.cohub/actions/`（由所有者出资的 App Actions）——见 [App Actions](../concepts/app-actions.md)。
+7. `pnpm install && pnpm build`
+8. 以最小权限发布，并在 Cohub 壳内验证公开 App URL。
 
 ## 完成标准
 
@@ -49,6 +50,7 @@ App 需要读取 Space 上下文、请求观众授权或通过 Cohub API 执行�
 - [ ] 公开 App 在 Cohub 中进入 runtime-ready
 - [ ] App scopes 与 viewer grant 已列出并有理由
 - [ ] 没有另造一套登录系统
+- [ ] 服务端工作通过 App Action 完成，而不是把凭据下发到浏览器
 
 ## 避免
 

@@ -45,6 +45,10 @@ type: guide
 | Direct Generation 与 Task Browser | [direct-generation](./concepts/direct-generation.md) · [task-browser](./concepts/task-browser.md) |
 | App 推广漏斗 | [work-promotions](./playbooks/work-promotions.md) |
 | App Center 安装 | [app-center](./playbooks/app-center.md) |
+| App Actions（服务端入口） | [app-actions](./concepts/app-actions.md) |
+| Webhook 触发自动化 | [hooks](./concepts/hooks.md) · [space-hooks-automation](./playbooks/space-hooks-automation.md) |
+| Board 编辑历史回放 | [board-runtime](./concepts/board-runtime.md) · [board-export-and-playback](./playbooks/board-export-and-playback.md) |
+| App Overlay 与嵌入 | [work-presentation](./concepts/work-presentation.md) |
 | Space 活动报告 | [space-activity](./playbooks/space-activity.md) |
 | 命令面板与快捷操作 | [command-palette](./concepts/command-palette.md) |
 | 调研 → wiki | [cookbook](./cookbooks/research-agent-wiki.md) |

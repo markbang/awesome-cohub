@@ -9,7 +9,7 @@ sources:
   - apps/agent/src/sandbox/tools.ts
   - packages/cli/src/auth.ts
   - apps/api/src/auth.ts / index.ts
-  - https://cohub.live/changelog（v2.29）
+  - https://cohub.live/changelog（v2.29、v2.42、v2.45）
 ---
 
 # Execution token（执行令牌）
@@ -33,11 +33,23 @@ sources:
 | CLI | 存在 `COHUB_EXECUTION_TOKEN` 时使用 `execution-token` 身份并覆盖保存的 Logto 身份；不能把它作为 OIDC 会话刷新 |
 | API | 在普通用户或 Work/App 会话之前验证 bearer token，并建立 execution principal |
 
+## SDK 执行上下文（v2.42）
+
+`getCohubContext()` 返回完整类型的运行时上下文，从 execution token 与环境解析：执行来源、actor 与 viewer 用户、space/session/turn/tool-call ID、app 与 action、已授予权限与模型。CLI 与脚本可以根据运行时（`sandbox` 或 `local`）分支，而不是靠环境猜测。
+
 ## 权限并集（v2.29）
 
-带 scope 的执行令牌会把自身授权**加到**账号原有权限上，而不是替换账号权限。Session 与 Space 过滤现在和直接权限检查使用相同的并集，因此 execution-token 请求不会意外少看或多看对应并集之外的资源。
+带 scope 的执行令牌会把自身授权**加到**账号原有权限上，而不是替换账号权限。Session 与 Space 过滤和直接权限检查使用相同的并集，因此 execution-token 请求不会意外少看或多看对应并集之外的资源。
 
 令牌仍绑定执行上下文：Space A 的额外授权不会让它可以调用 Space B，也不会把令牌变成通用用户会话。
+
+## Space 创建（v2.45）
+
+`space.create` 现在由用户级权限授权，而不是调用方的 principal 类型：
+
+- Execution token 恢复可用——Actor 拥有权限时，Sandbox 内的 `cohub spaces create` 可以成功。
+- App session 需要显式的 `space.create` viewer grant。
+- Preview session 被拒绝；account session 行为不变。
 
 ## 身份耦合
 

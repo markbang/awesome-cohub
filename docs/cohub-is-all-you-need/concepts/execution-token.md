@@ -9,7 +9,7 @@ sources:
   - apps/agent/src/sandbox/tools.ts
   - packages/cli/src/auth.ts
   - apps/api/src/auth.ts / index.ts
-  - https://cohub.live/changelog (v2.29)
+  - https://cohub.live/changelog (v2.29, v2.42, v2.45)
 ---
 
 # Execution token
@@ -33,11 +33,23 @@ An **execution token** is a short-lived, signed execution grant that authorizes 
 | CLI | A present `COHUB_EXECUTION_TOKEN` selects `execution-token` auth and overrides stored Logto auth; it cannot be refreshed as an OIDC session |
 | API | The bearer token is verified as an execution principal before ordinary user or Work/App sessions |
 
+## SDK execution context (v2.42)
+
+`getCohubContext()` returns a fully typed runtime context resolved from the execution token and environment: execution source, actor and viewer users, space/session/turn/tool-call IDs, app and action, granted scopes, and model. CLIs and scripts can branch on the runtime (`sandbox` vs `local`) instead of guessing from the environment.
+
 ## Permission union (v2.29)
 
-A scoped execution token adds its grants to the account's own access. It does not replace the actor's normal permissions. Session and Space filtering now use the same additive union as direct permission checks, so an execution-token request cannot see less or more than the corresponding union allows.
+A scoped execution token adds its grants to the account's own access. It does not replace the actor's normal permissions. Session and Space filtering use the same additive union as direct permission checks, so an execution-token request cannot see less or more than the corresponding union allows.
 
 The token remains bound to its execution context: an extra grant for Space A does not authorize a call against Space B, and a token does not become a general-purpose user session.
+
+## Space creation (v2.45)
+
+`space.create` is authorized by a user-level permission rather than by the caller's principal type:
+
+- Execution tokens work again - `cohub spaces create` inside a Sandbox succeeds when the actor holds the permission.
+- App sessions need an explicit `space.create` viewer grant.
+- Preview sessions are denied; account sessions are unchanged.
 
 ## Identity coupling
 

@@ -24,7 +24,7 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | `cohub.bp.scratch-to-checkpoint` | 从空白 Space 到第一次存档 | Space, Files, Chat, Checkpoint | `cohub` | starter | builder |
 | `cohub.bp.agent-with-skills` | 给 agent 装 skill 干活 | Space, Sandbox, Skills, CLI | `cohub`, any ecosystem skill | starter | builder, agent-author |
 | `cohub.bp.app-center` | 在 Space 中安装与维护 App | Apps, Marketplace, Space files | `cohub-apps`, `cohub` | intermediate | builder, operator |
-| `cohub.bp.board-export-and-playback` | 编辑、导出与播放语义化 Board | Boards, compositions, CLI, export | `cohub` | intermediate | builder, agent |
+| `cohub.bp.board-export-and-playback` | 编辑、导出、回放与播放语义化 Board | Boards, compositions, CLI, export, replay | `cohub` | intermediate | builder, agent |
 | `cohub.bp.cross-space-context` | 引用另一个 Space 的上下文 | `@space`, Sessions, Files | `cohub` | intermediate | builder, operator |
 | `cohub.bp.multimodal-pipeline` | 生成、查看并落盘多模态资产 | Generation, Files, Tasks | `cohub-generate` | starter | builder |
 | `cohub.bp.publish-static-work` | 发布静态 App | Apps (`file`/`directory`) | `cohub-apps`, `public-files` | starter | builder |
@@ -36,7 +36,7 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | `cohub.bp.egress-proxy` | 沙箱走 WARP 出口 | Sandbox network | `warp-proxy` | starter | builder, operator |
 | `cohub.bp.channel-ops` | 外部频道入口 | Channels, Gateway | `cohub` | intermediate | operator |
 | `cohub.bp.fork-and-proposal` | Fork 存档并回馈 | Checkpoint, Fork, Proposal | `cohub` | intermediate | builder |
-| `cohub.bp.space-hooks-automation` | 用 Space Hooks 做事件自动化 | Hooks, Tasks, Files | `cohub` | advanced | operator, agent-author |
+| `cohub.bp.space-hooks-automation` | 用 Space Hooks 与 webhook 做事件自动化 | Hooks, Webhooks, App Actions, Tasks, Files | `cohub` | advanced | operator, agent-author |
 | `cohub.bp.space-activity` | 在不泄露费用数据的前提下查看 Space 活动 | Space, usage, analytics, Apps | `cohub` | intermediate | builder, operator |
 | `cohub.bp.work-promotions` | 衡量 App 推广漏斗 | Apps, analytics, commerce | `cohub` | advanced | builder, operator |
 | `cohub.bp.mod-mount` | 挂载 Mod 共享工具 | Mods, Skills, Sandbox | `cohub` | intermediate | builder, operator |

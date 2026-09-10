@@ -15,6 +15,23 @@ Assumptions are pinned to public docs + monorepo behavior at write time. When pr
 
 
 
+## v0.20 — 2026-09-10
+
+Sync **v2.39-v2.46** major updates:
+
+- **Space webhooks** (v2.46): HTTP-triggered hooks addressed by file name (`POST /api/spaces/:id/webhooks/:name`), optional `on.secret`, 64 KB JSON bodies, per-space rate limiting, SDK/CLI access, and a Settings listing
+- **App Action hooks** (v2.46): hooks can run a published App Action with `uses: owner/space/app/action` and a `with` payload
+- **App Actions** (v2.41): server-side entrypoints under `.cohub/actions/` run from the App (`cohub.app.actions.run()`), the CLI (`cohub apps actions run`), or a hook; owner-funded execution with viewer metering, Node 24 type stripping, and JSON stdin/stdout captured into a Task Run
+- **App surfaces** (v2.39, v2.44-v2.46): overlays (`--as overlay`, `meta.presentation.surface`, `requestConfigure` hit regions), App embedding (`cohub.app.embed.attach`), preview keep-alive tabs, unified surface resolution, `ctx.shell`, and `requestClose()`
+- **Board operations** (v2.38 revision, v2.40, v2.44-v2.45): world-space geometry (`position`/`size`/`rotation` replacing the old `frame` envelope), transaction log and replay (`cohub boards transactions`, `createBoardReplayPlayer()`), live Apps on Boards with drag-and-drop placement, and optional `effects.deal` entrance motion
+- **Publishing** (v2.42-v2.43): local App source publishing (`--source local`, 1,000 files / 1 GiB), runtime-aware source inference, and version-pinned Action artifacts
+- **Turns and privacy** (v2.39, v2.42): per-session turn lists with cursor pagination, intermediate message archives (`spaces turns intermediate`), and permission-based Task Run redaction
+- **SDK and runtime** (v2.39-v2.45): `getCohubContext()`, `tasks.wait()` with realtime `task.updated`, `auth.requestCreateSpace()` for viewer-owned Spaces, `space.create` as a user-level permission, session `activeTurn` state, CLI Home-space default resolution, and an optional workspace search index
+- **Generation** (v2.40, v2.45): MiniMax H3 model declarations and display pricing in model catalogs and pickers
+- **Checkout** (v2.39, v2.41): in-app purchases go straight to checkout, concurrent attempts deduplicate, returns are reconciled against settlement state, and first-purchase campaign discounts surface in the catalog
+- Updated EN/ZH hooks, Board, App presentation, lifecycle, commerce, authorization, execution-token, Task Browser, turns, generation, CLI, and troubleshooting cards; added `app-actions`
+- Total: **35** Playbooks, **34** Concepts
+
 ## v0.19 — 2026-09-02
 
 Sync **v2.31-v2.38** major updates:

@@ -4,6 +4,7 @@ Curated concepts.
 
 | ID | Title | File |
 |----|-------|------|
+| `cohub.concept.app-actions` | App Actions | [app-actions.md](./app-actions.md) |
 | `cohub.concept.app-center` | App Center and installed Apps | [app-center.md](./app-center.md) |
 | `cohub.concept.board-runtime` | Board runtime and semantic canvas | [board-runtime.md](./board-runtime.md) |
 | `cohub.concept.board-semantic-authoring` | Semantic Board authoring | [board-semantic-authoring.md](./board-semantic-authoring.md) |
@@ -38,6 +39,6 @@ Curated concepts.
 | `cohub.concept.work` | App (formerly Work) | [work.md](./work.md) |
 | `cohub.concept.work-presentation` | App presentation and runtime context | [work-presentation.md](./work-presentation.md) |
 
-**33** items.
+**34** items.
 
 [中文](../zh/concepts/README.md)

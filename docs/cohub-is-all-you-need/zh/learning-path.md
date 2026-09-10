@@ -33,16 +33,17 @@ type: guide
 2. [Work Kit 产品](./playbooks/work-kit-product.md)
 3. [最小权限](./playbooks/minimal-scopes.md)
 4. [隐藏 Cohub 底栏](./playbooks/hide-cohub-bar.md)（Pro/Max）
-5. [Work 生命周期](./playbooks/work-lifecycle.md)
-6. [Work/App 呈现](./concepts/work-presentation.md)
-7. 反模式：[静态 Work 上的 BrowserRouter](./anti-patterns/browser-router-static.md)、[把沙箱 URL 当上线](./anti-patterns/raw-sandbox-launch.md)
+5. [App 生命周期](./playbooks/work-lifecycle.md) - 工作区或本地来源、版本、可见性
+6. [App 呈现与表面](./concepts/work-presentation.md) - 窗口、Overlay、嵌入与 shell 上下文
+7. [App Actions](./concepts/app-actions.md) - App 的服务端入口
+8. 反模式：[静态 Work 上的 BrowserRouter](./anti-patterns/browser-router-static.md)、[把沙箱 URL 当上线](./anti-patterns/raw-sandbox-launch.md)
 
 **完成标志：** directory App 公网可开、权限收敛。
 
 ## 半天 — Board 与生成界面
 
 1. [Board 语义化编辑](./concepts/board-semantic-authoring.md)
-2. [编辑、导出与播放 Board](./playbooks/board-export-and-playback.md)
+2. [编辑、导出、回放与播放 Board](./playbooks/board-export-and-playback.md)
 3. [直接生成回合](./concepts/direct-generation.md)
 4. [Task Browser](./concepts/task-browser.md)
 5. 需要衡量公开流量时阅读 [Work 推广](./playbooks/work-promotions.md)
@@ -60,7 +61,7 @@ type: guide
 ## 进阶 — 自治与运维
 
 1. [定时循环](./playbooks/scheduled-loop.md) + 反模式 [循环无磁盘状态](./anti-patterns/loop-without-disk-state.md)
-2. [Space Hooks 自动化](./playbooks/space-hooks-automation.md)
+2. [Space Hooks 自动化与 webhook](./playbooks/space-hooks-automation.md)
 3. [分叉与提案](./playbooks/fork-and-proposal.md)
 4. [执行令牌与身份](./playbooks/execution-token-identity.md)
 5. [Skill 目录缓存](./playbooks/skill-catalog-cache.md)

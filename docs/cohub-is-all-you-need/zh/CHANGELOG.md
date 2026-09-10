@@ -15,6 +15,23 @@ type: meta
 
 
 
+## v0.20 — 2026-09-10
+
+同步 **v2.39-v2.46** 重大更新：
+
+- **Space webhook**（v2.46）：按文件名寻址的 HTTP 触发 hook（`POST /api/spaces/:id/webhooks/:name`），可选 `on.secret`、64 KB JSON body、按 Space 限流，并提供 SDK/CLI 与设置页入口
+- **App Action 钩子**（v2.46）：hook 可用 `uses: owner/space/app/action` 与 `with` payload 运行已发布 App Action
+- **App Actions**（v2.41）：`.cohub/actions/` 下的服务端入口，可从 App（`cohub.app.actions.run()`）、CLI（`cohub apps actions run`）或 hook 调用；由所有者出资执行、观众侧计量，支持 Node 24 类型擦除，JSON stdin/stdout 捕获到 Task Run
+- **App 表面**（v2.39、v2.44-v2.46）：Overlay（`--as overlay`、`meta.presentation.surface`、`requestConfigure` 命中区域）、App 嵌入（`cohub.app.embed.attach`）、预览保活标签、统一表面解析、`ctx.shell` 与 `requestClose()`
+- **Board 操作**（v2.38 修订、v2.40、v2.44-v2.45）：世界坐标几何（`position`/`size`/`rotation` 取代旧 `frame` 包裹）、事务日志与回放（`cohub boards transactions`、`createBoardReplayPlayer()`）、Board 上的实况 App 与拖放上板、可选 `effects.deal` 入场动效
+- **发布**（v2.42-v2.43）：本地 App 源发布（`--source local`，1,000 文件 / 1 GiB）、按运行时推断来源、按版本固定的 Action artifact
+- **回合与隐私**（v2.39、v2.42）：单会话回合列表与游标分页、中间消息档案（`spaces turns intermediate`）、基于权限的 Task Run 脱敏
+- **SDK 与运行时**（v2.39-v2.45）：`getCohubContext()`、基于实时 `task.updated` 的 `tasks.wait()`、`auth.requestCreateSpace()` 创建观众拥有的 Space、`space.create` 改为用户级权限、Session `activeTurn` 状态、CLI Home Space 默认解析与可选工作区搜索索引
+- **生成**（v2.40、v2.45）：MiniMax H3 模型声明与模型目录/选择器中的展示定价
+- **结账**（v2.39、v2.41）：App 内购买直接进入结账、并发尝试去重、回流与服务商结算状态对账、首购活动折扣展示在目录
+- 更新 EN/ZH Hooks、Board、App 呈现、生命周期、商业化、授权、execution-token、Task Browser、回合、生成、CLI 与排障卡；新增 `app-actions`
+- 现有规模：**35** 篇实践卡，**34** 篇概念卡
+
 ## v0.19 — 2026-09-02
 
 同步 **v2.31-v2.38** 重大更新：
