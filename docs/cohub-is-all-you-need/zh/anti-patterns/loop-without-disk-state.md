@@ -1,5 +1,5 @@
 ---
-id: auto
+id: cohub.ap.loop-without-disk-state
 title: 循环无磁盘状态
 type: anti-pattern
 ---

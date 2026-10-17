@@ -1,112 +1,115 @@
 ---
 id: cohub.bp.board-export-and-playback
-title: Author, export, replay, and play semantic Boards
+title: Author, export, replay, and play Boards
 type: playbook
 audience: [builder, agent]
-features: [board, cli, export, playback, composition, replay]
+features: [board, cli, export, playback, animation, replay]
 difficulty: intermediate
 related:
   - cohub.concept.board-runtime
   - cohub.concept.board-semantic-authoring
   - cohub.concept.space
 sources:
-  - https://cohub.live/changelog (v2.0-v2.45)
-  - https://github.com/talesofai/cohub/blob/main/packages/protocol/src/board-authoring.ts
-  - https://github.com/talesofai/cohub/blob/main/packages/cli/src/commands/boards/batch.ts
+  - https://cohub.live/changelog (v2.0-v2.70)
+  - https://github.com/talesofai/cohub/blob/main/docs/board.md
+  - https://github.com/talesofai/cohub/blob/main/docs/board-scripts.md
 ---
 
-# Author, export, replay, and play semantic Boards
+# Author, export, replay, and play Boards
 
 ## When
 
-You want to arrange Space files, generated media, and embedded Apps on a Board, add connections or animation, then publish, replay, or export a deterministic result.
+You want to arrange files, media, tasks, and embedded Apps on a Board, animate them, then export stills or video, replay edits, or present live.
 
 ## Outcome
 
-- A semantic Board snapshot contains Items, connections, effects, compositions, and playback policy.
-- Mutations are validated, version-aware, and safe to retry.
-- Edit history is rewindable through the transaction log.
-- Browser previews, checkpoints, published App Board targets, and headless exports use the same model.
+- One JSON document with `board` settings, `items`, and `animations`.
+- Writes are versioned, dry-runnable, and idempotent.
+- Still and video exports use the same playback runtime as the web.
+- Edit history can be replayed or restored.
 
 ## Steps
 
-### A. Resolve and inspect before editing
-
-A Board target can be a Board ID or a `.board` path:
+### A. Inspect and author
 
 ```bash
-cohub boards inspect <board-or-path> --json
-cohub boards capabilities <board-or-path> --json
+cohub boards get <board> --only board,items --json
+cohub boards get <board> --within <frame-id> --json
+cohub boards schema <target> --field props.geometry
+
+cohub boards apply <board> -i patch.json --dry-run
+cohub boards apply <board> -i patch.json --base-version 12 --mutation-id <stable-id>
 ```
 
-Use capabilities to discover supported Item types, animation channels, clip/effect kinds, coordinate spaces, and render limits. Geometry is authored in world coordinates (`position` / `size` / `rotation`), and draw/arrow frames are derived from their bounds.
+`apply` merges by default; `--replace` sets the document; `--cascade` deletes children and targeting tracks together with a deleted item.
 
-### B. Apply one atomic batch
+### B. Build animations
 
 ```bash
-cohub boards examples create > board.json
-cohub boards batch <board-or-path> --input changes.json --dry-run
-cohub boards batch <board-or-path> --input changes.json \
-  --base-version 12 --mutation-id <stable-id> --json
+cohub boards preset <name> --at 0 --stagger 80 --duration 600 --ease ease-out --json
+cohub boards preset <name> --animation intro --json
 ```
 
-A batch is one atomic round trip. Reuse `mutationId` when retrying a timed-out request; use a strict `baseVersion` when the caller must reject a stale snapshot.
+Animations live in `animations.<id>.tracks.<id>` and drive properties by JSON path (`opacity`, `scale`, `props.reveal`, ...). Entrance motion is opt-in through `board.enter.preset` (for example `deal`); it is skipped for bursts over 12 items and falls back to a fade under reduced motion.
 
-For focused edits, use `boards items`, `boards connections`, `boards effects`, and `boards compositions`. `boards items list/get` also show derived x/y/width/height columns for draw and arrow items, and `boards create` reports the created `.board` path.
-
-### C. Configure and control playback
-
-Compositions hold tracks, keyframes, procedural clips, and markers. Shared playback is grouped under `boards playback`:
+### C. Present and control playback
 
 ```bash
-cohub boards playback play <board-or-path> <composition-id> --time-scale 1
-cohub boards playback pause <board-or-path> <playback-id>
-cohub boards playback seek <board-or-path> <playback-id> 400
-cohub boards playback stop <board-or-path> <playback-id>
+cohub boards play <board> <animation> --at 2.5s --speed 1.5
+cohub boards pause <board>
+cohub boards resume <board>
+cohub boards seek <board> 12.5s
+cohub boards next <board>
+cohub boards stop <board>
+cohub boards watch <board>
 ```
 
-The Board metadata selects a `compositionId`; the removed legacy `sequenceId` shape is not a new authoring contract.
+Playback culls, preloads, and picks LOD from the animated camera; the `next` command continues past a marker a presentation holds at.
 
-### D. Replay edit history
-
-Keep a `--mutation-id` journal while editing, then rewind with the read-only transaction log:
+### D. Replay and restore history
 
 ```bash
-cohub boards transactions <board-or-path> --limit 50 --json
-cohub boards transactions <board-or-path> --before 120 --operations --json
+cohub boards history <board> --limit 20 --json
+cohub boards history <board> --restore 12
 ```
 
-The first page carries the current snapshot; `createBoardReplayPlayer()` in the SDK turns it into a scrub-able timeline (older pages via prepend, live edits via append).
+Restoring a version is a new write, not a rewrite of history.
 
-### E. Export
+### E. Export stills or video
 
 ```bash
-# Full board
-cohub boards export <board-or-path> --out out.png --scale 2 --theme dark
+# Single moment
+cohub boards export <board> -o out.png --scale 2 --theme dark
 
-# Selected Items or a world-space rectangle
-cohub boards export <board-or-path> --items title,hero --out selection.webp
-cohub boards export <board-or-path> --rect 0,0,1920,1080 --out frame.png
+# Several moments, or a range with a step
+cohub boards export <board> --at 0,2.5s,5s -o frames/%04d.png --format png
+cohub boards export <board> --at 0:6s:0.1s --camera --fps 30 -o out.mp4
+
+# Region and paper
+cohub boards export <board> --items title,hero -o selection.webp --paper transparent
+cohub boards export <board> --rect 0,0,1920,1080 --size 1920x1080 -o frame.png
 ```
 
-## Live Apps on Boards (v2.40)
+`--at` accepts a moment, a comma list, or `start:end:step`; `--camera` follows the animated camera; `--animation` says which animation the times refer to; `--image-memory` bounds decoded images. `--paper` replaced the old `--background` flag.
 
-Published Apps can be placed on a Board as interactive frames: drag an App from the sidebar onto the Board (native HTML5 drag on desktop, pointer drag on touch), and the frame mounts the real App surface with its runtime shell. Frames track pan, zoom, rotation, and selection; iframe content mounts lazily only while a frame is on screen at a readable size, so a dense Board stays cheap.
+## Live Apps and scripts
+
+Published Apps can sit on a Board as interactive frames (v2.40), placed by drag-and-drop from the sidebar. Script-driven `custom` items and `script` attachments (v2.64) run one isolated module runtime shared by browser, CLI, and export.
 
 ## Done when
 
-- [ ] The semantic snapshot passes capabilities and dry-run validation
-- [ ] A retry uses the same mutation id
-- [ ] Playback honors the current reduced-motion policy
-- [ ] A replay page renders the intended historical version
-- [ ] Exported output matches the Board preview and referenced assets
+- [ ] `apply --dry-run` passes before the real write
+- [ ] A retry reuses the same mutation id
+- [ ] Playback honors the animated camera; entrance motion falls back to a fade under reduced motion
+- [ ] A restored version renders the intended historical state
+- [ ] Exported stills/video match the Board preview and referenced assets
 
 ## Avoid
 
-- Writing the removed legacy Node/Sequence wire shape or the old `frame` envelope
+- Writing legacy Node/Sequence shapes or the pre-v3 `frame` envelope
 - Treating a screenshot as the Board source of truth
-- Replacing a timed-out batch with a new id
-- Publishing unreferenced workspace assets just to satisfy a Board preview
+- Exporting without a decoded-image budget for large Boards
+- Expecting remote media URLs to be captured immutably on publish
 
 ---
 

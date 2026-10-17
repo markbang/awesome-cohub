@@ -6,10 +6,11 @@ related:
   - cohub.bp.hide-cohub-bar
   - cohub.concept.work
   - cohub.bp.viewer-auth-user-scopes
+  - cohub.concept.realtime-rooms
 sources:
-  - https://cohub.live/changelog (v2.12, v2.15, v2.24, v2.26, v2.35, v2.37, v2.39, v2.44-v2.46)
-  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
-  - https://github.com/talesofai/cohub/blob/main/packages/sdk/docs/app-runtime-guide.md
+  - https://cohub.live/changelog (v2.12-v2.70)
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
 ---
 
 # App presentation, surfaces, and runtime context
@@ -20,47 +21,41 @@ A published App can run as a public page, a workspace window, a New Chat backgro
 
 | Surface | Behavior |
 |---------|----------|
-| Public page | Opens the current published App at `/:username/:spaceSlug/w/:appSlug` |
-| Workspace window | Opens as an app tab and refreshes in place when the version changes; recently used tabs stay mounted (default 3) so runtime state survives tab switches |
-| New Chat background | Can attach one compact Composer context chip while visible |
-| Overlay (v2.45) | Transparent, chrome-free layer above the workspace, below system surfaces |
-| Embed (v2.44) | An App renders another App's public page in an iframe and forwards its shell location |
+| Public page | Docked Cohub bar above the App (identity, views, publisher, version switcher); the App viewport is exactly what the viewer sees |
+| Workspace window | App tab that refreshes in place on version change; recently used tabs stay mounted (default 3) |
+| New Chat background | One compact Composer context chip while visible |
+| Overlay | Transparent, chrome-free layer above the workspace, below system surfaces |
+| Embed | An App renders another App's public page in an iframe and forwards its shell location |
 | Desktop open | An Agent opens an App or file in the Cohub tab that originated the request |
 
 Query parameters and URL fragments are forwarded to embedded web and port Apps; `cohub_*` parameters are reserved for the host. User-activated embedded capabilities include clipboard write, fullscreen, web share, and pointer lock where the surface permits them.
 
-## Overlay surface (v2.45)
+## Version history and provenance (v2.50)
 
-Overlays suit companions, heads-up displays, and one-shot effects:
+Published Apps expose immutable version history:
+
+- Public version switcher uses `?cohub_v=<n>`; SDK `getBySlug(..., { version })` and `listPublicVersions()`.
+- Every version deep-links to the session and turn that produced it, validated against the App's own Space and gated on `session.view`.
+- The raw publish-time `meta.source` is no longer emitted; viewer-scoped responses are never shared-cached.
+
+## Overlay surface
 
 ```bash
 cohub desktop open <app> --as overlay
 cohub desktop open <app> --as overlay --call hud.ping --data '{"message":"Deploying..."}'
 ```
 
-An App can also declare its surface at publish time; workspace opens (the Open button, installed Apps, chat links, App-to-App navigation) honor it, and `--as window` overrides for one command:
+An App can declare its surface at publish time; workspace opens (Open button, installed Apps, chat links, App-to-App navigation) honor it, and `--as window` overrides for one command:
 
 ```html
 <meta name="cohub:surface" content="overlay" />
 ```
 
-The App controls its hit area and geometry:
+`cohub.app.requestConfigure({ inputRegion, geometry })` claims pointer regions (`"none"`, `"all"`, or rectangles) and can shrink the overlay. The region only routes pointer events; it never clips painting. The App must paint its own transparency and declare `<meta name="color-scheme" content="light dark">`, or Chromium paints an opaque backdrop. Avoid `backdrop-filter`.
 
-```js
-const rect = panel.getBoundingClientRect();
-cohub.app.requestConfigure({
-  inputRegion: [{ x: rect.left, y: rect.top, width: rect.width, height: rect.height }],
-});
-```
+Up to eight overlays mount at once; `cohub.app.requestClose()` closes one, and `Escape` dismisses all. The host coalesces pointer hit-testing to one pass per frame, and rect regions release as soon as the pointer leaves them.
 
-- `inputRegion` is `"none"` (default, fully click-through), `"all"`, or rectangles in overlay-local CSS pixels. It only decides where pointer events go; it never clips what the overlay paints.
-- `geometry` (`anchor`, `x`, `y`, `width`, `height`) shrinks the overlay; the host clamps it on-screen.
-- The App must paint its own transparency (`html, body { background: transparent }`) and declare `<meta name="color-scheme" content="light dark">`, or Chromium paints an opaque backdrop. Avoid `backdrop-filter`.
-- Up to eight overlays mount at once; `cohub.app.requestClose()` closes one, and `Escape` dismisses all of them. The overlay cap surfaces a notice instead of silently falling back to a window.
-
-## Embedding other Apps (v2.44)
-
-An App can host other Apps in iframes; the public page keeps owning the embedded App's runtime (bridge, consent, commerce):
+## Embedding other Apps
 
 ```js
 const embed = cohub.app.embed.attach(frame, {
@@ -72,7 +67,19 @@ cohub.app.onContextChanged((next) => embed.setShell(next.shell ?? null));
 embed.dispose();
 ```
 
-The embedded App sees the forwarded location as `context.shell` with `surface: "embed"` and learns its host from `context.invocation.embedder` (`{ appId, slug }`), set only when the embedding page is verified. Forwarded ids are navigation hints, never authorization inputs. Any App can ask its host to close with `cohub.app.requestClose()`.
+The embedded App sees `context.shell` with `surface: "embed"` and `context.invocation.embedder` (`{ appId, slug }`), set only for a verified host. Forwarded ids are navigation hints, never authorization inputs.
+
+## App platform (v2.59)
+
+Apps published or installed in the **Shell Space** are trusted: they receive host consent and run without an authorization dialog. Apps can also:
+
+- Declare file handlers with `<meta name="cohub:file-handlers" content=".board" />`; installing registers them in `.cohub/apps.json` without replacing an existing default, and viewers change defaults under **Open with...**.
+- Own their window through the `cohub.app.runtime` protocol and SDK `client.app.window`, `onBeforeClose`, `onDrop`, and `onLaunch` (one file per window; it also fires on re-open and rename/move).
+- Get `file.view` / `file.edit` on the Space that published or installed them without a dialog, which makes installing App a trust decision for the whole Space.
+- Follow host appearance and locale, and receive dropped or opened Cohub resources.
+- Request camera, microphone, and screen grants with `<meta name="cohub:devices">`.
+
+Resource Apps (task inspector, checkpoint explorer, schedule manager, App manager) run in dedicated App tabs on a shared resource kit.
 
 ## Runtime context
 
@@ -80,22 +87,14 @@ Inside a published App, `client.context()` can include:
 
 - `app` identity and `app.homeSpace` (the Space that owns the App)
 - `viewer` and current permissions
-- `invocation` provenance such as `surface` (`"workspace"`, `"background"`, `"overlay"`, `"embed"`, `"page"`, `"broker"`), `source`, `spaceId`, `sessionId`, `turnId`, and `toolCallId`
-- `shell` (v2.39+) - the current workspace location: `space`, `session`, and viewed `turn` (each may be null), with `shell.surface` telling the App where it runs
+- `invocation` provenance (`surface`, `source`, `spaceId`, `sessionId`, `turnId`, `toolCallId`)
+- `shell` — the current workspace location (`space`, `session`, `turn`), with `shell.surface` telling the App where it runs
 
-```js
-const ctx = await client.context();
-const spaceId =
-  ctx.shell?.space?.id ?? ctx.invocation?.spaceId ?? ctx.app.homeSpace?.id;
-```
-
-Use `client.app.onContextChanged()` to react to sign-in, invocation, navigation, and grant changes instead of polling. Invocation and shell are provenance, not authorization: reading anything still requires the App's own grants.
-
-Bridge mode is the normal Cohub iframe path. Standalone pages can opt into broker mode with an App id or owner/Space/App slug triple; broker mode obtains runtime auth through a popup and has no workspace navigation bridge.
+Use `client.app.onContextChanged()` to react to sign-in, navigation, invocation, and grant changes instead of polling. Invocation and shell are provenance, not authorization.
 
 ## Callable surface
 
-An App registers named methods; Cohub does not expose arbitrary DOM access or script evaluation:
+An App registers named methods; Cohub exposes no arbitrary DOM access or script evaluation:
 
 ```ts
 client.app.surface.handle("image.open", async (input, { commandId }) => {
@@ -104,14 +103,11 @@ client.app.surface.handle("image.open", async (input, { commandId }) => {
 });
 ```
 
-An Agent invokes a registered method:
-
 ```bash
-cohub desktop open <appId|url|app://...|username/space/app> \
-  --call image.open --data '{"id":"hero"}'
+cohub desktop open <app> --call image.open --data '{"id":"hero"}'
 ```
 
-Calls are routed only to the frontend instance that originated the request and only from approved Cohub App origins. Delivery is at-least-once, so handlers should tolerate repeats. Native file and Board Apps can be previewed but expose no callable surface.
+Calls route only to the frontend instance that originated the request and only from approved Cohub App origins. Delivery is at-least-once. `cohub desktop open` fails fast with `no_active_client` when the originating desktop is gone (10s accept window; 30s for a plain open, 10 minutes for `--call`).
 
 ## Cohub chrome
 

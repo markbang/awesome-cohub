@@ -36,8 +36,8 @@ Grounded in product docs ([/docs](https://cohub.live/docs)), changelog ([/change
 | [cookbooks/](./cookbooks/) | End-to-end journeys |
 | [manifesto.md](./manifesto.md) | Manifesto |
 | [matrix.md](./matrix.md) | Scenario matrix (+ role) |
-| [playbooks/](./playbooks/) | Practice cards (35) |
-| [concepts/](./concepts/) | Concept cards (34) |
+| [playbooks/](./playbooks/) | Practice cards (36) |
+| [concepts/](./concepts/) | Concept cards (36) |
 | [anti-patterns/](./anti-patterns/) | Failure modes (15) |
 | [cheatsheets/](./cheatsheets/) | CLI · paths · FAQ · packaging |
 | [samples.md](./samples.md) | Links & pattern templates |

@@ -11,7 +11,7 @@ related:
   - cohub.bp.scratch-to-checkpoint
 sources:
   - https://github.com/talesofai/cohub/blob/main/docs/generations.md
-  - https://cohub.live/changelog（v2.8、v2.19-v2.23、v2.40-v2.45）
+  - https://cohub.live/changelog（v2.8、v2.19-v2.23、v2.40-v2.70）
 ---
 
 # 生成、查看并落盘多模态资产
@@ -46,9 +46,10 @@ sources:
      --model <model> --json
    ```
 4. 在 App 中把创建和读取视为不同权限：`generation.create` 用于创建任务，轮询或查看需要 `taskrun.view`。
-5. 产物可用后立即落盘到工作区。Chat 或服务商 URL 不是项目素材库。
-6. 在资产旁记录模型、提示摘要、task id 与服务商费用。生成界面区分已计费、待计费和未计费状态；临时计费写入失败会在任务成功后重试。
-7. 预览并小步迭代，演示级结果再 Save。
+5. 有意识地引用媒体。生成输入会以上不公开的 URL 上传而不是内联 base64；任务列表视图会剥离内联载荷；3D 输入接受扩展名与文件名匹配的 GLB、glTF、OBJ、FBX 与 STL。
+6. 产物可用后立即落盘到工作区。Chat 或服务商 URL 不是项目素材库。
+7. 在资产旁记录模型、提示摘要、task id 与服务商费用。`cohub generate` 会报告每个输出的尺寸、时长与尾帧；界面区分已计费、待计费和未计费状态，临时计费写入失败会在任务成功后重试。
+8. 预览并小步迭代，演示级结果再 Save。
 
 ## 图像上下文与降级
 

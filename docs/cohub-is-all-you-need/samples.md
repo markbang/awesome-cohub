@@ -51,6 +51,10 @@ Concrete starting points. Prefer cloning patterns into **your** Space over treat
 | App overlays and embeds | [work-presentation](./concepts/work-presentation.md) |
 | Space activity report | [space-activity](./playbooks/space-activity.md) |
 | Command palette and quick actions | [command-palette](./concepts/command-palette.md) |
+| Local Runtime (local folder + Harness) | [local-runtime](./concepts/local-runtime.md) · [playbook](./playbooks/local-runtime.md) |
+| Decision models (structured judgments) | [decision-models](./concepts/decision-models.md) |
+| App rooms (RTC, invites, history) | [realtime-rooms](./concepts/realtime-rooms.md) |
+| Board v3 document + scripts | [board-runtime](./concepts/board-runtime.md) · [board-semantic-authoring](./concepts/board-semantic-authoring.md) |
 | Research → wiki | [cookbook](./cookbooks/research-agent-wiki.md) |
 | Weekend App | [cookbook](./cookbooks/weekend-static-work.md) |
 

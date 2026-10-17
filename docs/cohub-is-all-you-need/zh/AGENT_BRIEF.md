@@ -15,7 +15,7 @@ audience: [agent, builder]
 Space（家）→ Skills/工具（做）→ Save（时间）→ App（分享）→ Fork（再来）
 ```
 
-- **Space** = 工作单位（文件 + 对话 + 沙箱）
+- **Space** = 工作单位（文件 + 对话 + 运行时）。运行时默认是云端 Sandbox，也可以是运行在你可控目录上的 Local Runtime
 - **Checkpoint / Save** = 时间单位（恢复、分叉、发布配置）
 - **App** = 分享单位（公开 URL；旧文档称 Work；不是私有 Sandbox 链接）
 
@@ -24,12 +24,12 @@ Space（家）→ Skills/工具（做）→ Save（时间）→ App（分享）�
 | 路径 | 含义 | 可写？ |
 |------|------|--------|
 | `/workspace` | 当前 Space 项目 | 是 |
-| `/configs/user` | 所有者 **config** Space 发布结果 | **否** |
+| `/configs/user` | 所有者个人配置发布结果（Home 或 config Space） | **否** |
 | `/configs/platform` | 平台发布 | **否** |
 | `/mods/<slug>` | 挂载的模组 | **否** |
 | `/workspace/.agents/skills/` | 项目 skills | 是 |
 | `/workspace/.cohub/apps.json` | 当前 Space 的已安装 App 清单 | 是 |
-| `/configs/user/.agents/skills/` | 已发布的用户 skills | **否**（改 config Space 再 Save） |
+| `/configs/user/.agents/skills/` | 已发布的用户 skills | **否**（改 Home / config Space 再 Save） |
 
 同名 skill 合并顺序（后者覆盖）：
 
@@ -69,7 +69,7 @@ log.md   只追加时间线
 
 1. 只有聊天、没有文件的「项目」  
 2. 在随便一个项目沙箱里改 `/configs/user`  
-3. 把 **Home** 当 config 或垃圾桶  
+3. 把 **Home** 当垃圾桶（它现在会发布个人配置）
 4. 把原始沙箱 URL 当产品  
 5. 静态 directory App 上用 History/`BrowserRouter`
 6. 「先开大权限再说」  
@@ -77,7 +77,7 @@ log.md   只追加时间线
 8. skill 脚本/资源只放仓根（安装会丢）  
 9. 把实时 API 数据烤进静态 `dist/`  
 10. 首屏就鉴权墙、没有公开壳
-11. 直接写已移除的 Board Node/Sequence 线上结构或旧的 `frame` 包裹格式，而不是语义化 Item/Composition
+11. 直接写已移除的 Board Node/Sequence 线上结构、旧的 `frame` 包裹格式或 Sketch 块，而不是 v3 文档模型与 Board 脚本
 12. 把密钥作为 App Action 输入，或把它烤进已发布产物
 
 ## 优先做
@@ -85,7 +85,7 @@ log.md   只追加时间线
 - 破坏性自治前先 Save；之后看 diff  
 - 可扫读的存档备注（`v0-landing-working`）  
 - 最小 scopes + Work Kit 模式（App runtime）
-- 使用 capabilities 与变更回执进行 Board 语义化编辑
+- 用 `boards apply` dry-run、`baseVersion` 与 `mutationId` 回执进行 Board 语义化编辑
 - 用 Task Browser 管理异步生成历史
 - 用 App Center 管理已安装 App，用 Space Activity 查看有限用量摘要
 - 服务端工作使用 App Actions（`.cohub/actions/`）；输入不要携带密钥
@@ -100,6 +100,20 @@ log.md   只追加时间线
 - App 可以作为窗口、Overlay、嵌入或 New Chat 背景运行；用 `<meta name="cohub:surface">` 声明表面，并用 `requestConfigure()` 声明命中区域 — [work-presentation](./concepts/work-presentation.md)
 - App 预览可接收 invocation 上下文，只暴露明确注册的方法
 - Prompt 模板可以声明 quick-action 按钮；仍放在 `.agents/prompts/`
+- 在 Shell Space 发布或安装的 App 是可信的，跳过 consent；其他 App 必须调用 `client.auth.authorize()`
+
+## 运行时选择
+
+```bash
+cohub runtime up -d --harness pi   # 在目录上启动 Local Runtime
+cohub runtime status --json
+cohub runtime logs --follow
+```
+
+- `cohub sandbox up` 已在 v2.51 移除，不要写进脚本。
+- Harness（Pi / Codex）决定工具语义；机器只是实现细节。
+- 结构化判断（`noul` / `choice` / `score`）用 `space.decision()`，不要解析散文。
+- 需要私有目录、本地 GPU 或硬件访问时走本地；否则保持云端 Sandbox。
 
 
 ## `.cohub` vs `.agents`（优先级）

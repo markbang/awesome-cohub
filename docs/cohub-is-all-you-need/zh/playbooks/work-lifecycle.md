@@ -13,8 +13,8 @@ related:
   - cohub.concept.app-center
 sources:
   - https://cohub.live/docs/apps
-  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
-  - https://cohub.live/changelog（v2.14、v2.22、v2.24、v2.37、v2.42-v2.43）
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
+  - https://cohub.live/changelog（v2.14-v2.69）
 ---
 
 # App 生命周期 - 发布、版本、停用、可见性
@@ -55,10 +55,12 @@ cohub -s <spaceId> apps publish demo --dir ./dist --source local --json
 
 ## 限制与产物行为
 
-- file、HTML、Board 或 directory 上限均为 **1 GiB**。
+- App 目标（file、HTML、Board 或 directory）上限为 **1 GiB**。
 - directory 必须有 `index.html`，包含 1 到 1000 个文件，总大小为 1 byte 到 1 GiB。
+- 普通文件上传另算：单个持久上传最大 **2 GiB**（v2.69），拒绝带机器可读 code（`file_too_large`、`upload_batch_too_large`、`upload_too_many_files`、`upload_rate_limited`），限流响应含 `retryAfterSeconds`。
 - Board App 捕获 Board 状态以及它实际引用的工作区资源。
 - file/directory App 带不可变 manifest，支持 checksum 校验下载；Board 与 port App 不是可下载文件产物。
+- 每个已发布版本不可变并保留来源：公开版本切换（`?cohub_v=<n>`）、SDK `listPublicVersions()`，以及指向产出它的 Session/turn 的深链。
 - port 必须使用受支持的公开 Sandbox 端口。
 
 ## CLI
@@ -79,9 +81,18 @@ cohub desktop open app://<owner>/<space>/<app>
 cohub apps get <appId|url|owner/space/app> --json
 cohub apps stats <appId|url|owner/space/app> --json
 cohub apps download <appId|url|owner/space/app> --output <path>
+
+# 版本与观众授权
+cohub apps versions <appId> --json
+cohub apps grants <appId> --json
+cohub apps revoke <appId> <grantId>
 ```
 
 仍支持旧客户端中的 `works` 与 `workScopes` 兼容别名。
+
+## 权限
+
+App 由 `app.manage` 治理，授予 Space `host` 与 `builder`：builder 可以创建 App、发布版本、修改配置和读取统计，而无需 host 专属的 Space 设置。删除范围限于 host（任意 App）或 App 自己的发布者。App 详情会报告真实 `publisher`，Cohub 栏与授权对话框据此署名。
 
 ## 发布规则
 

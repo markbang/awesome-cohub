@@ -40,6 +40,7 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | `cohub.bp.mod-mount` | Mount Mods for shared tooling | Mods, Skills, Sandbox | `cohub` | intermediate | builder, operator |
 | `cohub.bp.skill-slash-discovery` | Discover skills with `/skill:` | Chat, Skills, Mods | `cohub` | starter | builder, agent-author |
 | `cohub.bp.home-and-sessions-inbox` | Home Space & Sessions inbox | Home, `/sessions` | `cohub` | starter | builder |
+| `cohub.bp.local-runtime` | Run a Space on your own machine | Local Runtime, Harness, files | `cohub` | advanced | builder, operator |
 | `cohub.bp.work-commerce` | Sell features/credits in an App | Apps, Billing, SDK | `cohub-work-kit` | advanced | builder |
 | `cohub.bp.user-config-and-rules` | Own agent defaults in config Space | config Space, User Rules, `/configs/user` | `cohub` | intermediate | builder, agent-author |
 | `cohub.bp.platform-config` | Operate platform config Space | platform config, skills | `cohub` | advanced | operator |
@@ -75,6 +76,8 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | Agent that can run tools | Skills inside Space sandbox | Assuming host machine paths |
 | Recurring jobs | Scheduled prompt + state on disk | Hidden memory only in chat |
 | Event-driven automation | **Space Hooks** (`.cohub/hooks`) | Polling Chat manually forever |
+| A private folder or local GPU | **Local Runtime** (`cohub runtime up`) | Uploading the whole tree on every turn |
+| A structured judgment (yes/no, choice, score) | **Decision model** (`space.decision()`) | Parsing free-form prose from an LLM |
 
 ### 中文
 
@@ -159,10 +162,13 @@ npx skills add https://github.com/markbang/cohub-work-skill \
 
 | Topic | Doc |
 |-------|-----|
-| Apps | [apps-guide.md](https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md) |
+| Apps | [apps-guide.md](https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md) |
 | Generations | [generations.md](https://github.com/talesofai/cohub/blob/main/docs/generations.md) |
 | App commerce | [app-commerce-guide.md](https://github.com/talesofai/cohub/blob/main/docs/app-commerce-guide.md) |
 | Space hooks | [space-hooks.md](https://github.com/talesofai/cohub/blob/main/docs/space-hooks.md) |
+| Local Runtime | [local-runtime.md](https://github.com/talesofai/cohub/blob/main/docs/local-runtime.md) |
+| Decision models | [decisions.md](https://github.com/talesofai/cohub/blob/main/docs/decisions.md) |
+| Boards (v3) | [board.md](https://github.com/talesofai/cohub/blob/main/docs/board.md) |
 | Product docs (EN/ZH) | [docs/product](https://github.com/talesofai/cohub/tree/main/docs/product) |
 
 ---

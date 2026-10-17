@@ -10,10 +10,20 @@ type: meta
 
 写法锚定当时的公开文档 + monorepo 行为；产品漂移时以产品文档为准并修指南。
 
+## v0.21 — 2026-10-17
 
+同步 **v2.47-v2.70** 重大更新：
 
-
-
+- **Local Runtime**（v2.51-v2.58、v2.60、v2.68）：`cohub runtime up/status/down/logs/attach/detach/import` 取代 `cohub sandbox up`；Space 通过原生 Pi 或 Codex Harness 在本机目录上运行，支持事件驱动文件同步、Windows/macOS、端口导入与显示共享
+- **Board v3**（v2.61-v2.69）：统一文档模型（`settings` / `items` / `animations`）、分层 SDK 包（`board/editor`、`board/replica`、`board/stage`、`board/export/node`、SDK 10）、Board 脚本取代 Sketch、服务端同步 task 卡片、3D 预览，以及 v3 CLI（`boards get` 取代 `inspect`，新增 `apply`、`history`、`preset`、`export --paper`）
+- **App 平台**（v2.47、v2.50-v2.53、v2.59、v2.63-v2.67）：`client.auth.authorize()` 支持 account/Space/picker 目标与增量同意、带来源的不可变版本历史（`?cohub_v=`、`listPublicVersions()`）、`app.manage`、可信 App 与宿主 consent、文件处理器、App 窗口协议、带 RTC/历史/邀请/设备授权的 App 房间，以及资源类 App
+- **Decision 模型**（v2.66）：`space.decision()` / `cohub decision` 回答 `noul` / `choice` / `score` 问题，配置在 `.cohub/decisions.json`，按上游成本计费，并被排除在 LLM 选择器之外
+- **Home 作为个人配置**（v2.66）：Save Home Space 会发布 User Rules、skills、prompts、模型与个人主题；已有的 `name=config` Space 保持普通语义
+- **媒体与生成**（v2.47、v2.57、v2.60、v2.70）：3D 模型输入、端到端 URL 媒体、WebP 变体、带结构化错误码的 2 GiB 上传、统一上传配额，以及 CLI 中的模型定价
+- **Chat 与导航**：四层分叉树、Session 来源过滤、统一 `@` 提及、更宽松的工作区、紧凑侧栏标签，以及重建的侧栏（This chat | Files · Media · Apps）
+- **基础设施**：跨副本中继修复、Sandbox RPC 鉴权上线、Node 26 / pnpm 12 / Go 1.27
+- 新增 `local-runtime`、`decision-models` 概念卡与 `local-runtime` 实践卡；重写 Board 三卡、App 呈现、实时房间、Home/config 分层、生命周期、授权、Sandbox、Task Browser、模型状态与排障卡
+- 总计：**36** Playbooks、**36** Concepts、**15** Anti-patterns、**6** Cheatsheets
 
 ## v0.20 — 2026-09-10
 

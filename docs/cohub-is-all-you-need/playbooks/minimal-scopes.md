@@ -13,8 +13,8 @@ related:
   - cohub.bp.viewer-auth-user-scopes
 sources:
   - https://cohub.live/docs/apps
-  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
-  - https://github.com/talesofai/cohub/blob/main/packages/sdk/docs/app-runtime-guide.md
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
 ---
 
 # Ship Apps with least privilege

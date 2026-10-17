@@ -1,5 +1,5 @@
 ---
-id: auto
+id: cohub.ap.home-as-dumping-ground
 title: Home 当垃圾桶
 type: anti-pattern
 ---

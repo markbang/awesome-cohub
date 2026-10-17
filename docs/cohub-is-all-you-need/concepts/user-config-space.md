@@ -25,7 +25,7 @@ This is **not** the same as:
 
 | Surface | Role |
 |---------|------|
-| **Home Space** (`slug=home`) | Default landing / personal hub |
+| **Home Space** (`slug=home`) | Default landing / personal hub; since v2.66 its Save also publishes personal config |
 | **Project Space** | Product / experiment work |
 | **Platform config** | Platform-owned Space id → `/configs/platform` |
 | **Mod** | Another Space mounted read-only under `/mods/<slug>` |

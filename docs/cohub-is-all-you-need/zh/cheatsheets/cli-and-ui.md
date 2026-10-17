@@ -19,7 +19,10 @@ type: cheatsheet
 | Space Activity | `spaces activity [days]` / `space.activity.get()` |
 | Webhooks | `spaces webhooks ls/url/trigger` |
 | Turns | `spaces turns ls` / `spaces turns intermediate` |
-| Board | `boards batch/items/connections/effects/compositions/playback/transactions/export` |
+| Board（v3） | `boards create/get/apply/history/schema/preset/export` 与 `playback` 事务 |
+| Decision 模型 | `cohub decision` / `space.decision()` · `.cohub/decisions.json` |
+| Local Runtime | `cohub runtime up/status/down/logs/attach/detach/import` |
+| Rooms | `cohub rooms connect/rtc` |
 | Command palette | `GET /api/palette/overview` 与本地 Recent/缓存 |
 
 ## 安装 CLI
@@ -41,23 +44,26 @@ cohub -s <spaceId> apps publish site --dir dist --json
 cohub apps stats <appId|url> --json
 cohub tasks ls --json
 cohub -s <spaceId> spaces activity 30 --json
+cohub models ls
+cohub generate "isometric server room" -m <model> --json
 ```
 
 未指定 Space 时，命令按 `-s` -> `COHUB_SPACE_ID` -> 账号 Home Space 的顺序解析，因此登录后直接运行 `cohub prompt` / `cohub run` 也能工作。
 
-## Board 编辑
+## Board v3
 
 ```bash
-cohub boards inspect <board-or-path> --json
-cohub boards capabilities <board-or-path> --json
-cohub boards batch <board-or-path> --input changes.json --dry-run
-cohub boards items get <board-or-path> <item-id> --json
-cohub boards connections list <board-or-path> --json
-cohub boards compositions get <board-or-path> <composition-id> --json
-cohub boards playback play <board-or-path> <composition-id>
-cohub boards transactions <board-or-path> --limit 50 --json
-cohub boards export <board-or-path> --items title,hero --out selection.webp
+cohub boards create launch.board --title "Launch" --json
+cohub boards get <board-or-path> --json
+cohub boards schema --json
+cohub boards preset rise --targets title --json
+cohub boards apply <board-or-path> --input changes.json --dry-run --json
+cohub boards history <board-or-path> --limit 20 --json
+cohub boards playback play <board-or-path> --animation launch
+cohub boards export <board-or-path> --items title,hero --paper dark --out selection.webp
 ```
+
+`boards get` 取代 `inspect`；`--paper` 取代 `--background`；脚本取代 Sketch 块；active operations 取代 `capabilities`。
 
 ## Apps、Actions 与 webhook
 
@@ -82,6 +88,20 @@ cohub spaces turns ls <spaceId> --session <sessionId> --direction older --json
 cohub spaces turns intermediate <sessionId> <turnId> --json
 ```
 
+## Local Runtime 与房间
+
+```bash
+cohub runtime up -d --harness pi
+cohub runtime status --json
+cohub runtime logs --follow
+cohub runtime attach
+cohub runtime import <sandboxId> --space <spaceId>
+cohub runtime down
+
+cohub rooms connect <room> --after <sequence>
+cohub rooms rtc
+```
+
 ## 预览与驱动 App
 
 ```bash
@@ -90,6 +110,7 @@ cohub desktop open app://owner/space/app
 cohub desktop open <appId|url|app://...|username/space/app>
 cohub desktop open <app> --call selection.get
 cohub desktop open <app> --as overlay
+cohub desktop open <app> --call image.open --data '{"id":"hero"}'
 ```
 
 ## 文档

@@ -10,7 +10,7 @@ Common failure modes.
 | `cohub.ap.chat-only-project` | Chat-only project | [chat-only-project.md](./chat-only-project.md) |
 | `cohub.ap.commerce-on-static-preview` | Testing App commerce on static preview | [commerce-on-static-preview.md](./commerce-on-static-preview.md) |
 | `cohub.ap.edit-configs-user-in-project` | Editing /configs/user inside a project sandbox | [edit-configs-user-in-project.md](./edit-configs-user-in-project.md) |
-| `cohub.ap.home-as-config` | Using Home as user config | [home-as-config.md](./home-as-config.md) |
+| `cohub.ap.home-as-config` | Assuming Home configures other Spaces | [home-as-config.md](./home-as-config.md) |
 | `cohub.ap.home-as-dumping-ground` | Home as dumping ground | [home-as-dumping-ground.md](./home-as-dumping-ground.md) |
 | `cohub.ap.loop-without-disk-state` | Loop without disk state | [loop-without-disk-state.md](./loop-without-disk-state.md) |
 | `cohub.ap.mega-skill-dump` | Mega unused skill dump | [mega-skill-dump.md](./mega-skill-dump.md) |

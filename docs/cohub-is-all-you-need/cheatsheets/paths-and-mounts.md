@@ -7,13 +7,16 @@ related: [cohub.cheat.config-layers]
 
 # Paths & mounts
 
-## Sandbox map
+## Runtime map
+
+The same layout applies in a cloud Sandbox and in a **Local Runtime** (v2.51+). A Local Runtime binds `/workspace` to a folder on your machine; `/configs/*` and `/mods/*` are still mounted by the host.
+
 
 | Path | Source | Writable | Notes |
 |------|--------|----------|-------|
 | `/workspace` | Current Space files | **yes** | Project home (`WORKSPACE_DIR`) |
 | `/workspace/.agents/skills/` | Project skills | yes | Highest precedence when names clash |
-| `/configs/user` | Owner **config** Space Saves | **no** | Published snapshot |
+| `/configs/user` | Owner personal-config Saves (Home or config Space) | **no** | Published snapshot |
 | `/configs/user/.agents/` | User skills/rules publish | **no** | `USER_AGENTS_DIR` |
 | `/configs/platform` | Platform config publish | **no** | `PLATFORM_AGENTS_DIR` |
 | `/mods/<slug>` | Mounted mod checkpoint | **no** | Shared toolkits |
@@ -36,13 +39,15 @@ Same skill name → **later** wins.
 ```
 
 - In a **project Space**: stays project-local until you copy elsewhere.  
-- In **config Space**: Save publishes whitelist → `/configs/user/.agents/skills/`.
+- In the **Home Space** or a `name=config` Space: Save publishes whitelist → `/configs/user/.agents/skills/`.
 
 ## Config publish rule
 
 ```text
-edit config Space workspace  →  Save  →  appears under /configs/user
+edit Home (or config) Space workspace  →  Save  →  appears under /configs/user
 ```
+
+Home Space Save publishes `AGENTS.md`, `.agents/`, `.cohub/models.json`, and `.cohub/theme.css` as personal config (v2.66).
 
 Never: `vim /configs/user/...` inside a random project as “the fix”.
 

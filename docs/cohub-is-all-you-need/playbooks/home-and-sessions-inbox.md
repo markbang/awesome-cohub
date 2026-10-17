@@ -13,6 +13,7 @@ sources:
   - https://cohub.live/changelog#v1.98
   - https://cohub.live/changelog#v1.101
   - https://cohub.live/changelog#v1.105
+  - https://cohub.live/changelog (v2.66)
 ---
 
 # Home Space and Sessions inbox
@@ -27,11 +28,13 @@ You live across many Spaces and need a default landing place plus a cross-space 
 - Empty accounts get a real **Home** space (`slug=home`) via default-space resolution instead of a dead-end “new space only” wall.
 - Optional platform bootstrap: first-time Home may fork from `HOME_BOOTSTRAP_CHECKPOINT_ID` when configured; otherwise blank workspace.
 - Home is still a normal Space - files, Chats, Saves, Apps apply.
+- Since v2.66, saving Home also publishes personal config: `AGENTS.md`, `.agents/skills`, `.agents/prompts`, `.cohub/models.json`, and `.cohub/theme.css`. Keep it intentional; an empty Home publishes nothing harmful.
 
 ### Sessions inbox (`/sessions`)
 - Cross-space recent Chats (desktop split list + conversation).
 - **New Chat from the Space root** uses `/spaces/:id` directly; the old `/sessions/new` route is compatibility navigation, and previews stay mounted across the transition.
 - Continuity: restore last chat / scroll where the product supports it.
+- Filter by session source (`web`, `feishu`, `wechat`, ...); fork trees nest up to four levels.
 
 ## Outcome
 

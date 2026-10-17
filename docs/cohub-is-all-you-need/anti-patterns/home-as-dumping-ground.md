@@ -14,7 +14,7 @@ Home becomes an unsearchable junk Space: half projects, half config, zero Saves 
 ## Do this instead
 
 - One Space per job (or per knowledge domain)  
-- `name=config` for defaults  
+- Home (or `name=config`) for defaults - since v2.66 a Home Save publishes personal config
 - Labels + Sessions inbox for navigation  
 
 ## Smell test

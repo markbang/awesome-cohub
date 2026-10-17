@@ -8,7 +8,7 @@ related:
   - cohub.bp.work-lifecycle
 sources:
   - https://cohub.live/changelog (v2.41)
-  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
   - https://github.com/talesofai/cohub/blob/main/packages/core/src/apps/action-command.ts
 ---
 

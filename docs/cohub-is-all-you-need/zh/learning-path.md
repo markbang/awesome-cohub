@@ -18,7 +18,7 @@ type: guide
 
 ## 半天 — 个人 Agent OS
 
-1. [在 config Space 管好默认规则](./playbooks/user-config-and-rules.md)
+1. [在 Home（或 config）Space 管好默认规则](./playbooks/user-config-and-rules.md)
 2. Cookbook：[配置常用 Skills](./cookbooks/config-skills-setup.md)
 2b. [`.cohub` / `.agents` 分层与优先级](./playbooks/dot-cohub-layers.md)
 3. [三层搜索](./playbooks/search-layers.md)
@@ -34,7 +34,7 @@ type: guide
 3. [最小权限](./playbooks/minimal-scopes.md)
 4. [隐藏 Cohub 底栏](./playbooks/hide-cohub-bar.md)（Pro/Max）
 5. [App 生命周期](./playbooks/work-lifecycle.md) - 工作区或本地来源、版本、可见性
-6. [App 呈现与表面](./concepts/work-presentation.md) - 窗口、Overlay、嵌入与 shell 上下文
+6. [App 呈现、表面与运行时上下文](./concepts/work-presentation.md) - 窗口、Overlay、嵌入、可信 App 与 shell 上下文
 7. [App Actions](./concepts/app-actions.md) - App 的服务端入口
 8. 反模式：[静态 Work 上的 BrowserRouter](./anti-patterns/browser-router-static.md)、[把沙箱 URL 当上线](./anti-patterns/raw-sandbox-launch.md)
 
@@ -42,6 +42,7 @@ type: guide
 
 ## 半天 — Board 与生成界面
 
+0. [Board 运行时（v3 文档模型）](./concepts/board-runtime.md)
 1. [Board 语义化编辑](./concepts/board-semantic-authoring.md)
 2. [编辑、导出、回放与播放 Board](./playbooks/board-export-and-playback.md)
 3. [直接生成回合](./concepts/direct-generation.md)
@@ -57,6 +58,14 @@ type: guide
 3. [命令面板](./concepts/command-palette.md) - Recent、个人相关性与 Prompt 快捷操作
 
 **完成标志：** 已安装 App 状态通过校验，活动数据按观众权限隐藏费用，导航从有用的个人 Recent 列表开始。
+
+## 半天 — 在本机运行
+
+1. [Local Runtime](./concepts/local-runtime.md) - Harness、事件驱动同步、显示共享
+2. [在 Local Runtime 上运行 Space](./playbooks/local-runtime.md) - up、logs、attach、import
+3. [Decision 模型](./concepts/decision-models.md) - 用结构化判断替代解析散文
+
+**完成标志：** 某个回合在本机目录上执行，并且 decision 问题返回校准后的答案。
 
 ## 进阶 — 自治与运维
 

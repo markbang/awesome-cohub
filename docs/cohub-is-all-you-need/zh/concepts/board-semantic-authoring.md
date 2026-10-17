@@ -6,101 +6,87 @@ related:
   - cohub.concept.board-runtime
   - cohub.bp.board-export-and-playback
 sources:
-  - https://cohub.live/changelog（v2.22-v2.45）
-  - https://github.com/talesofai/cohub/blob/main/packages/protocol/src/board-authoring.ts
-  - https://github.com/talesofai/cohub/blob/main/packages/protocol/src/board-composition.ts
+  - https://cohub.live/changelog（v2.22-v2.70）
+  - https://github.com/talesofai/cohub/blob/main/docs/board.md
+  - https://github.com/talesofai/cohub/blob/main/docs/board-scripts.md
 ---
 
 # Board 语义化编辑
 
-Board 编辑采用由 API、SDK、CLI、Web 编辑器、Checkpoint 与已发布 App 共享的语义文档协议。稳定模型描述 Board 的含义，渲染器再从中推导几何与呈现。
+Board 编辑采用 JSON 文档协议，由 API、SDK、CLI、Web 编辑器、Checkpoint 与已发布 App 共享。文档描述 Board 的含义，渲染器从中推导几何与呈现。
 
-## 文档模型
+## 文档
 
-Board 快照包含 Item、连接、效果、Composition 与 Playback。内置 Item 包括文本、几何图形、手绘、箭头、画框、图片、视频、音频、文件、任务与 App。媒体 Item 使用安全的相对 Space 文件引用；任务 Item 携带 task-run 快照；App Item 在画框内挂载已发布 App 界面。
+```json
+{
+  "board": { "background": { "kind": "dots" }, "grid": { "visible": true, "size": 24 }, "enter": { "preset": "deal" } },
+  "items": { "id": { "type": "text", "position": { "x": 0, "y": 0 }, "props": { "text": "Hi" } } },
+  "animations": { "intro": { "duration": 800, "tracks": { "t": { "target": "id", "property": "opacity", "keyframes": [{ "at": 0, "value": 0 }, { "at": 800, "value": 1 }] } } } }
+}
+```
 
-线上词汇使用 **Item**，不再使用已移除的泛化 Node/Sequence 结构。实时 `board.changed` 事件携带语义化 changed 投影；纯动画变更可以携带 `animationPatch`，无需重新读取完整 Board。
+默认是**合并补丁**：`boards apply`（或 SDK 等价调用）把输入合并进文档。`--replace` 让文档等于输入。删除仍被引用的 item 会失败并列出引用；`--cascade` 同时删除子项与指向它的轨道。
 
 ## 几何
 
-编辑使用世界坐标几何：
+- `position` 相对 `parent`；根 item 位于世界坐标。
+- `draw` 点与未绑定 `arrow` 端点为 item 局部坐标；绑定端点跟随引用 item。
+- 盒状类型（`frame`、`shape`、媒体、`task`、`effect`、`custom`）显式编辑 `size`；`text`、`draw`、`arrow` 自动推导。
+- `style` 支持调色板 token、CSS 颜色、light/dark 对，以及 `dash`、`radius`、`trim`。
 
-- `position`（`{ x, y }`）与 `rotation`，可带尺寸的 Item 使用可选 `size`。
-- 手绘点与箭头端点使用**世界**坐标；Item 画框由描边与曲线边界自动推导，并按规范几何校验。
-- `boards capabilities` 会按字段报告坐标约定；`@cohub/protocol` 中同一份几何核心被 SDK、CLI 与 Web 编辑器共用，导出与实时编辑不会漂移。
+用 `cohub boards schema <target> --field <path>` 查询准确的值类型、单位与组合（例如 camera 字段），不要猜测。
 
-早期语义化版本中的不透明 `frame` 包裹格式已移除，不要手写。
+## 脚本
 
-## 原子命令与批次
+`custom` item 与原生 item 都可以挂 `script`（`src`、`params`、`targets`、`seed`、`enabled`）。脚本运行在浏览器、CLI 与导出共享的隔离模块运行时中，自行声明 `hitRegions()`，并显式提交文档变更。ESM 入口会连同传递依赖一起发布。
 
-语义变更支持以下命令：
+## 校验与并发
 
-```text
-board.patch
-item.create / item.patch / item.replace / item.delete / item.reorder
-connection.create / connection.patch / connection.delete
-effect.apply / effect.delete
-composition.apply / composition.delete
-```
-
-变更带稳定的 `mutationId`、预期 `baseVersion`、命令列表与可选 `dryRun`。`boards batch` 在一次原子往返中发送多条命令。服务端写入前检查 schema、引用、版本、级联规则与 capabilities。持久回执让重试可以安全重放；未变化的组合轨道重新应用时可成为 no-op。
-
-## 校验契约
-
-`boards capabilities` 与公开 SDK 的 `BoardSemanticCommandSchema` 暴露编辑契约：支持的类型、字段、坐标空间、动画通道、片段/效果类型与限制。校验失败包含机器可读 code 和类似 `items.0.props.text` 的路径；codec 抛出 `BoardItemValidationError`。服务端失败使用稳定错误结构、diagnostics 数组与 `requestId`。
-
-本地和服务端使用同一 schema。不要猜测扩展字段，也不要把内部渲染对象直接当成编辑 JSON。
+- 每次写入都会报告 Board 版本。传 `--base-version` 可在 Board 已前进时失败。
+- 传 `--mutation-id`，重试不会重复应用。
+- `--dry-run` 只校验不写入。
+- 校验失败会给出编辑路径（例如 `items.0.props.text`）。
 
 ## CLI 流程
 
 ```bash
-# 发现并校验完整批次
-cohub boards capabilities <board-or-path> --json
-cohub boards examples create > board.json
-cohub boards batch <board-or-path> --input changes.json --dry-run
-cohub boards batch <board-or-path> --input changes.json \
-  --base-version 12 --mutation-id <stable-id> --json
+# 查看
+cohub boards get <board> --only board,items --json
+cohub boards get <board> --within <frame-id> --json
+cohub boards schema <target> --field props.geometry
 
-# 读取单个语义资源
-cohub boards items get <board-or-path> <item-id> --json
-cohub boards connections get <board-or-path> <connection-id> --json
-cohub boards effects get <board-or-path> <effect-id> --json
-cohub boards compositions get <board-or-path> <composition-id> --json
+# 写入
+cohub boards apply <board> -i patch.json --dry-run
+cohub boards apply <board> -i patch.json --base-version 12 --mutation-id <stable-id>
+cohub boards apply <board> -i doc.json --replace
+
+# 历史与恢复
+cohub boards history <board> --limit 20 --json
+cohub boards history <board> --restore 12
 ```
 
-播放命令统一在 `boards playback` 下：
+## 动画预设
 
 ```bash
-cohub boards playback play <board-or-path> <composition-id> --time-scale 1
-cohub boards playback pause <board-or-path> <playback-id>
-cohub boards playback seek <board-or-path> <playback-id> 400
-cohub boards playback stop <board-or-path> <playback-id>
+cohub boards preset <name> --at 0 --stagger 80 --duration 600 --ease ease-out --json
+cohub boards preset <name> --animation intro --json
 ```
 
-## 编辑历史
-
-每次成功应用的变更都是一条事务。只读日志提供快照一致、最新优先的分页，并带服务端计算好的逆操作：
-
-```bash
-cohub boards transactions <board-or-path> --limit 50 --json
-cohub boards transactions <board-or-path> --before 120 --operations --json
-```
-
-第一页携带当前快照。SDK 的 `createBoardReplayPlayer()` 把它变成可倒带的时间线，支持补齐旧分页与追加实时事务；Web 工作区提供带拖动条、播放/暂停、1-4 倍速与镜头跟随的私有回放舞台。
+不传 `--animation` 时预设输出裸 `tracks`；传入时会把这些轨道包在该动画中。
 
 ## 重试规则
 
-- 超时后复用相同的 `mutationId`。
-- 使用 `baseVersion` 明确预期快照。
-- 遇到 `VERSION_CONFLICT` 时读取最新 Board，并重新应用原意命令。
-- 遇到校验错误时修复报告的编辑路径，不要原样重试。
+- 超时后复用相同的 `mutation-id`。
+- 用 `--base-version` 拒绝过期快照。
+- 版本冲突后读取最新 Board 并重新应用补丁。
+- 修复报告的校验路径，不要原样重试。
 
 ## 避免
 
-- 直接写入已移除的旧 Sequence/Node 线上结构或旧的 `frame` 包裹格式。
+- 写入旧的 Node/Sequence 结构或 v3 之前的 `frame` 包裹。
 - 把截图或渲染缓存当作真相来源。
-- 用新 ID 替换超时的批次重试。
-- 发送无界 JSON 或不受支持的 capability。
+- 发送无界 JSON 或不受支持的 item 属性。
+- 超时后用新的 mutation id 重试。
 
 ---
 

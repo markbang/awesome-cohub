@@ -7,10 +7,10 @@ features: [work, app, sdk, auth, scopes]
 difficulty: advanced
 related: [cohub.bp.minimal-scopes, cohub.bp.work-kit-product, cohub.concept.task-browser, cohub.concept.work-presentation]
 sources:
-  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
-  - https://github.com/talesofai/cohub/blob/main/packages/sdk/docs/app-runtime-guide.md
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
   - https://cohub.live/docs/developers/sdk
-  - https://cohub.live/changelog（v2.44-v2.45）
+  - https://cohub.live/changelog（v2.44-v2.66）
 ---
 
 # App 观众授权与账户级权限
@@ -28,6 +28,35 @@ sources:
 - `allowedViewerScopes` 是已弃用的兼容字段，不是当前允许列表边界。
 
 ## 请求方式
+
+`client.auth.authorize({ target, scopes })` 是当前 consent 路径（v2.51+）。它解析显式的 **account**、**Space** 或 **Space 选择器** 目标，返回权威授权，并支持增量同意（`scopeMode: "extend"`）。
+
+```js
+// 显式 Space 目标
+const grant = await client.auth.authorize({
+  target: { kind: "space", spaceId },
+  scopes: ["file.view", "session.view"],
+  reason: "读取本 App 所在的 Space。",
+});
+
+// 让观众选择（观众控制的解析）
+const picked = await client.auth.authorize({
+  target: { kind: "pick-space" },
+  scopes: ["file.view"],
+  reason: "读取你选择的 Space。",
+});
+
+// 扩展已有授权
+await client.auth.authorize({
+  target: { kind: "space", spaceId },
+  scopes: ["session.prompt.readonly"],
+  scopeMode: "extend",
+});
+```
+
+授权失败会返回结构化 code，如 `space_inaccessible`、`scope_not_held`、`consent_required`；开发者诊断会转发给 App 作者。Space 绑定授权解析到**观众**可控的 Space（首先是观众正在看的那个，其次是观众可控的回退 Space），绝不会是 App 作者的主 Space。当目标正好是 `ctx.shell.space.id`、且该 Space 发布或安装了这个 App 时，只读 scope 会静默通过。
+
+旧辅助函数保持原有返回结构：
 
 ```js
 const ctx = await client.context();
@@ -61,6 +90,8 @@ if (created.granted && created.space) {
 ```
 
 观众需要重新确认或选择其他 Space 时使用 `alwaysAsk: true`。`requestCreateSpace` 始终打开对话框；每次确认都会创建新 Space，由宿主使用观众账号创建。
+
+App 侧读写权限由 Space `host` 与 `builder` 的 `app.manage` 治理；App 自身永远不获得该权限。公开 Cohub 栏与授权对话框会署名真实 App `publisher`，而不是 Space 所有者。
 
 `ctx.app.homeSpace` 表示拥有 App 的 Space，`ctx.shell` 携带当前工作区位置。`ctx.invocation?.spaceId` 表示当前调用承载的 Space，例如 New Chat 背景、Overlay 或 `desktop open`；这些字段是上下文/来源信息，不是授权本身。旧的顶层 `ctx.space` 已弃用。
 

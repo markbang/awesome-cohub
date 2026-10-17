@@ -10,10 +10,20 @@ This tracks **the guide**, not the Cohub product. Product changes: [cohub.live/c
 
 Assumptions are pinned to public docs + monorepo behavior at write time. When product drifts, prefer product docs and file a guide fix.
 
+## v0.21 — 2026-10-17
 
+Sync **v2.47-v2.70** major updates:
 
-
-
+- **Local Runtime** (v2.51-v2.58, v2.60, v2.68): `cohub runtime up/status/down/logs/attach/detach/import` replaces `cohub sandbox up`; Spaces run on a local folder via native Pi or Codex Harnesses with event-driven file sync, Windows/macOS support, port import, and display sharing
+- **Board v3** (v2.61-v2.69): one document model (`settings` / `items` / `animations`), layered SDK packages (`board/editor`, `board/replica`, `board/stage`, `board/export/node`, SDK 10), Board scripts replacing Sketch, server-synced task cards, 3D previews, and a v3 CLI (`boards get` replaces `inspect`, `apply`, `history`, `preset`, `export --paper`)
+- **App platform** (v2.47, v2.50-v2.53, v2.59, v2.63-v2.67): `client.auth.authorize()` with account/Space/picker targets and incremental consent, immutable version history with provenance (`?cohub_v=`, `listPublicVersions()`), `app.manage`, trusted Apps and host consent, file handlers, the app window protocol, App rooms with RTC/history/invites/device grants, and resource Apps
+- **Decision models** (v2.66): `space.decision()` / `cohub decision` answering `noul` / `choice` / `score` questions, configured in `.cohub/decisions.json`, billed at upstream cost, and kept out of LLM pickers
+- **Home as personal config** (v2.66): saving the Home Space publishes User Rules, skills, prompts, models, and a personal theme; an existing `name=config` Space stays ordinary
+- **Media and generation** (v2.47, v2.57, v2.60, v2.70): 3D model inputs, media as URLs end to end, WebP variants, 2 GiB uploads with structured error codes, a unified upload quota, and model pricing in the CLI
+- **Chat and navigation**: four-level fork trees, session source filters, a unified `@` mention, a roomier workspace, compact side-panel tabs, and a rebuilt side panel (This chat | Files · Media · Apps)
+- **Infra**: cross-replica relay fixes, sandbox RPC auth rollout, Node 26 / pnpm 12 / Go 1.27
+- Added `local-runtime` and `decision-models` concepts plus a `local-runtime` playbook; rewrote the Board trio, App presentation, runtime rooms, Home/config layers, lifecycle, authorization, sandbox, Task Browser, model status, and troubleshooting cards
+- Total: **36** Playbooks, **36** Concepts, **15** Anti-patterns, **6** Cheatsheets
 
 ## v0.20 — 2026-09-10
 

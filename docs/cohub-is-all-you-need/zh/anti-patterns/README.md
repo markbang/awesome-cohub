@@ -10,7 +10,7 @@
 | `cohub.ap.chat-only-project` | 只有聊天的项目 | [chat-only-project.md](./chat-only-project.md) |
 | `cohub.ap.commerce-on-static-preview` | 只在静态预览测试 App 商业化 | [commerce-on-static-preview.md](./commerce-on-static-preview.md) |
 | `cohub.ap.edit-configs-user-in-project` | 在项目沙箱改 /configs/user | [edit-configs-user-in-project.md](./edit-configs-user-in-project.md) |
-| `cohub.ap.home-as-config` | 把 Home 当用户配置 | [home-as-config.md](./home-as-config.md) |
+| `cohub.ap.home-as-config` | 误以为 Home 会给其他 Space 配默认 | [home-as-config.md](./home-as-config.md) |
 | `cohub.ap.home-as-dumping-ground` | Home 当垃圾桶 | [home-as-dumping-ground.md](./home-as-dumping-ground.md) |
 | `cohub.ap.loop-without-disk-state` | 循环无磁盘状态 | [loop-without-disk-state.md](./loop-without-disk-state.md) |
 | `cohub.ap.mega-skill-dump` | 无脑堆 skills | [mega-skill-dump.md](./mega-skill-dump.md) |

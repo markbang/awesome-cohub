@@ -13,14 +13,14 @@ Make your agent defaults follow you across Spaces.
 
 ## Outcome
 
-- A Space with `name === "config"` (not Home)
+- One personal-config source: the Home Space, or a Space with `name === "config"`
 - Rules / AGENTS published to `/configs/user`
 - Core skills available via `/skill:` after **Save**
 
 ## Path
 
 1. **Create/open config Space** — [user-config-and-rules](../playbooks/user-config-and-rules.md)  
-   Do **not** use Home as config ([home-as-config](../anti-patterns/home-as-config.md)).
+   Pick **one** config source: this `name=config` Space or Home - not both ([home-as-config](../anti-patterns/home-as-config.md)).
 2. **Write rules** in that Space (`AGENTS.md` / user rules as product expects).
 3. **Install skills into the config Space** (then Save):
 

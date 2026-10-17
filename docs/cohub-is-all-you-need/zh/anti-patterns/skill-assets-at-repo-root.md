@@ -1,5 +1,5 @@
 ---
-id: auto
+id: cohub.ap.skill-assets-at-repo-root
 title: Skill 资源在仓根
 type: anti-pattern
 ---

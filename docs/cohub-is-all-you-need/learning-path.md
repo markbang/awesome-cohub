@@ -42,6 +42,7 @@ Pick a track. Each step links to an existing playbook or cookbook.
 
 ## Half day — Board and generation surfaces
 
+0. [Board runtime (v3 document model)](./concepts/board-runtime.md)
 1. [Semantic Board authoring](./concepts/board-semantic-authoring.md)
 2. [Author, export, replay, and play Boards](./playbooks/board-export-and-playback.md)
 3. [Direct Generation turns](./concepts/direct-generation.md)
@@ -57,6 +58,14 @@ Pick a track. Each step links to an existing playbook or cookbook.
 3. [Command palette](./concepts/command-palette.md) - Recent, personal relevance, and Prompt quick actions
 
 **Done when:** installed-App state is validated, activity data respects viewer cost visibility, and navigation starts from a useful personal Recent list.
+
+## Half day — run it locally
+
+1. [Local Runtime](./concepts/local-runtime.md) - Harnesses, event-driven sync, display sharing
+2. [Run a Space on a Local Runtime](./playbooks/local-runtime.md) - up, logs, attach, import
+3. [Decision models](./concepts/decision-models.md) - structured judgments instead of prose parsing
+
+**Done when:** a turn executes on a local folder, and a decision question returns a calibrated answer.
 
 ## Advanced — autonomy & ops
 

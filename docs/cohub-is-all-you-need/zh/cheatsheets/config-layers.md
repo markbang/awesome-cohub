@@ -11,7 +11,7 @@ type: cheatsheet
 | Sandbox path | Source | Writable? |
 |--------------|--------|-----------|
 | `/workspace` | Current Space workspace | yes (project) |
-| `/configs/user` | Owner published user config (`name=config` Space Saves) | **read-only** |
+| `/configs/user` | Owner published personal config (Save from Home or `name=config`) | **read-only** |
 | `/configs/platform` | Platform config Space publish | **read-only** |
 | `/mods/<slug>` | Mounted mod Space checkpoint/latest | **read-only** |
 | `/public` | Space public share prefix | special |
@@ -35,15 +35,16 @@ platform → mods → user config → workspace (.agents/skills)
 
 - User Context: published user `AGENTS.md` / `CLAUDE.md` from config
 - Project Context: current `/workspace` AGENTS/CLAUDE
-- Do not edit `/configs/user` to “fix” rules; edit the **config Space** and Save
+- Do not edit `/configs/user` to “fix” rules; edit the **Home Space** (or `name=config`) and Save
 
 ## Publish trigger
 
 | Space | On Save publishes? |
 |-------|--------------------|
 | `name === "config"` | Yes → `{platformConfigRoot}/users/{userId}` |
+| Home Space (v2.66+) | Yes → `{platformConfigRoot}/users/{userId}` (rules, skills, prompts, models, theme) |
 | Platform space id | Yes → `/configs/platform` |
-| Home / project | Checkpoint only (no user-config publish) |
+| Project Space | Checkpoint only (no user-config publish) |
 
 
 ## `.cohub` vs `.agents`（目录与优先级）

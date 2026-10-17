@@ -8,70 +8,77 @@ related:
   - cohub.bp.board-export-and-playback
   - cohub.cheat.config-layers
 sources:
-  - https://cohub.live/changelog (v2.0-v2.46 Board runtime evolution)
+  - https://cohub.live/changelog (v2.0-v2.70 Board evolution)
+  - https://github.com/talesofai/cohub/blob/main/docs/board.md
 ---
 
 # Board runtime and semantic canvas
 
-The **Board runtime** is Cohub's infinite 2.5D visual surface for spatial collaboration, live file cards, media, task outputs, embedded Apps, animation, and headless exports. Its semantic document is shared by the API, SDK, CLI, Web editor, checkpoints, and published Apps.
+The **Board runtime** is Cohub's infinite 2.5D visual surface for spatial collaboration, live file cards, media, task outputs, embedded Apps, scripts, animation, and headless exports. Board v3 (v2.61+) is the current document model.
 
-## Core concepts
+## Document model
 
-| Term | Description |
-|------|-------------|
-| **Board** | Space-scoped infinite canvas document (`.board`) |
-| **Item** | Semantic element: text, geo, draw, arrow, frame, image, video, audio, file, task, or app |
-| **Connection** | Semantic relation between Items with anchors, direction, labels, routing, and style |
-| **Effect** | Typed visual behavior targeting an Item, with lifecycle and parameters |
-| **Composition** | Atomic animation timeline of property tracks, keyframes, procedural clips, and markers |
-| **Playback** | Shared composition control with play, pause, seek, stop, time scale, and reduced-motion policy |
-| **Transactions** | Server-side edit log powering replay, with snapshot-consistent pages and computed inverses |
-| **Board capability** | Versioned schema/renderer contract exposed for machine validation and authoring discovery |
-| **Export** | Headless rendering of a full Board, Item selection, frame, or world rectangle |
+A Board is one JSON document with three collections: settings (`board`), items, and animations.
 
-`Node` and `Sequence` are historical names from the removed legacy wire shape. New integrations use `Item` and `Composition`.
-
-## Key features (v2.22-v2.46)
-
-- **Semantic authoring**: atomic mutations cover Board metadata, Items, connections, effects, and compositions. `boards batch` applies many commands in one round trip with strict optimistic concurrency and idempotent replay.
-- **Structured validation**: codec and API errors expose stable codes, JSON-mapped diagnostic paths, and `requestId` for server failures; the SDK exports the public command schema and `BoardItemValidationError`.
-- **World-space geometry**: authoring uses `position` / `size` / `rotation`; draw and arrow geometry is authored in world space and item frames derive from stroke and curve bounds through a shared protocol geometry core.
-- **Task, media, and app Items**: generation tasks, audio, typed references, waveform previews, and embedded interactive Apps are first-class Board content.
-- **Edit-history replay** (v2.45): a read-only transaction log plus the SDK replay player and `cohub boards transactions` make any Board's history rewindable; the web workspace adds a private replay stage with a scrubber.
-- **Animation realtime sync**: small pure effect/composition changes arrive as a server-authored `animationPatch` inside `board.changed`, avoiding a full snapshot refetch.
-- **Entrance motion** (v2.44-v2.45): `effects.deal` is an optional Board-wide or per-node preset; local additions and realtime arrivals animate in, while bursts over 12 items are treated as rehydration and skipped.
-- **Rendering quality**: freehand paths use segment tessellation with round joins; image textures are shared through a reference-counted pool; render context declares `gpu` vs `canvas`, and headless export converges with live rendering.
-- **Published App capture**: a Board App includes the Board state and only the workspace assets it references.
-
-## Transactions and replay
-
-```bash
-# Newest-first transaction pages (alias: history)
-cohub boards transactions <board-or-path> --limit 50 --json
-cohub boards transactions <board-or-path> --before 120 --operations --json
+```json
+{
+  "board": { "background": { "kind": "dots" }, "grid": { "visible": true, "size": 24 }, "enter": { "preset": "deal" } },
+  "items": { "title": { "type": "text", "position": { "x": 80, "y": 60 }, "props": { "text": "Launch" } } },
+  "animations": { "intro": { "duration": 800, "tracks": { "fade": { "target": "title", "property": "opacity", "keyframes": [{ "at": 0, "value": 0 }, { "at": 800, "value": 1 }] } } } }
+}
 ```
 
-The first page carries the current snapshot, so the SDK `createBoardReplayPlayer()` can scrub back and forth, prepend older pages, and append live transactions.
+## Items
+
+| Group | Types |
+|-------|-------|
+| Structure | `frame` (the only parent type), `shape` (including `path`), `text`, `draw`, `arrow` |
+| Media | `image`, `video`, `audio`, `file`; `file` cards for `.glb` / `.gltf` / `.stl` / `.obj` render a 3D preview |
+| Runtime | `task` (a Task Run card), `effect`, `custom` (script-driven), extension types such as `acme.order` |
+
+Common fields: `parent`, `z`, `position` (relative to parent; root is world space), `size`, `rotation`, `scale`, `origin`, `opacity`, `style`, `props`, `locked`, `metadata`, optional `script` (`src`, `params`, `targets`, `seed`, `enabled`).
+
+- Children inherit the parent's transform and opacity.
+- Draw points and unbound arrow endpoints are item-local; bound endpoints follow the referenced item.
+- `size` is authored for boxes and derived for `text`, `draw`, and `arrow`.
+- `style` supports palette tokens, CSS colors, light/dark pairs, `dash`, `radius`, and `trim`.
+
+## Media and tasks
+
+Media sources accept a stable public HTTP(S) URL **or** a relative Space path. A Space path keeps live file updates; a URL loads directly without importing the file. Publishing captures Space file dependencies and records remote references in `externalUrls` — remote media stays live and is not an immutable captured asset.
+
+Task items store only `taskRunId`; the server reads the run and maintains `props.snapshot`. When a run finishes, the final snapshot is written to every Board in its Space that shows it, one version per Board, attributed to the task. Clients never win over the run's snapshot, and writing a run the author cannot view fails with `TASK_FORBIDDEN`.
+
+## Scripts
+
+Board scripts (v2.64+) replace the old Sketch item and run in one isolated module runtime shared by the browser, CLI, and exports. Scripts can draw with Canvas/WebGL, declare `hitRegions()`, observe selection/view/transform events, and commit document changes explicitly. ESM entry modules are published together with their transitive dependencies.
+
+## SDK layers
+
+Since v2.63 the Board SDK is split into framework-free layers:
+
+- `board/editor` — document editing and interactions
+- `board/replica` — read-only synchronized replica
+- `board/stage` — PixiJS rendering
+- `board/export/node` — headless Node export (formerly `board/headless`)
+
+Instances use an item registry (`defineBoardItem` / `createBoardRegistry`), and stored documents remain compatible.
+
+## Playback and export
+
+One playback runtime is shared by the web, CLI, and exports. Playback culls, preloads, and picks LOD from the **animated** camera; the far layer is double-buffered; connections cache per-layer geometry and cull to a rect. Exports release intermediate canvases eagerly, enforce a configurable decoded-image budget, and preflight video dimensions.
 
 ## CLI crumbs
 
 ```bash
-# A Board resolves by id or .board path
-cohub boards inspect <board-or-path> --json
-cohub boards capabilities <board-or-path> --json
-
-# Apply a validated atomic batch
-cohub boards batch <board-or-path> --input changes.json --dry-run
-cohub boards batch <board-or-path> --input changes.json --base-version 12 --mutation-id <stable-id>
-
-# Inspect relations and control shared playback
-cohub boards connections list <board-or-path> --json
-cohub boards connections get <board-or-path> <connection-id> --json
-cohub boards playback play <board-or-path> <composition-id>
-cohub boards playback pause <board-or-path> <playback-id>
+cohub boards get <board> --only board,items --json
+cohub boards get <board> --items a,b --within <item-id> --json
+cohub boards preset rise --targets title --json
+cohub boards schema camera --json
+cohub boards export <board> --paper dark -o out.png
 ```
 
-For mutation shape, diagnostics, and retry rules, see [semantic Board authoring](./board-semantic-authoring.md).
+For authoring, scripts, and retries, see [semantic Board authoring](./board-semantic-authoring.md).
 
 ---
 

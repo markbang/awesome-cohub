@@ -7,10 +7,10 @@ features: [work, app, sdk, auth, scopes]
 difficulty: advanced
 related: [cohub.bp.minimal-scopes, cohub.bp.work-kit-product, cohub.concept.task-browser, cohub.concept.work-presentation]
 sources:
-  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
-  - https://github.com/talesofai/cohub/blob/main/packages/sdk/docs/app-runtime-guide.md
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
   - https://cohub.live/docs/developers/sdk
-  - https://cohub.live/changelog (v2.44-v2.45)
+  - https://cohub.live/changelog (v2.44-v2.66)
 ---
 
 # App viewer authorization and account scopes
@@ -28,6 +28,35 @@ A published App must act as the viewer, access another Space, or perform an acti
 - `allowedViewerScopes` is a deprecated compatibility field, not a current allow-list boundary.
 
 ## Request patterns
+
+`client.auth.authorize({ target, scopes })` is the current consent path (v2.51+). It resolves an explicit **account**, **Space**, or **Space picker** target, reports the authoritative grant, and supports incremental consent (`scopeMode: "extend"`).
+
+```js
+// Explicit Space target
+const grant = await client.auth.authorize({
+  target: { kind: "space", spaceId },
+  scopes: ["file.view", "session.view"],
+  reason: "Read the Space this App is attached to.",
+});
+
+// Let the viewer choose (viewer-controlled resolution)
+const picked = await client.auth.authorize({
+  target: { kind: "pick-space" },
+  scopes: ["file.view"],
+  reason: "Read the Space you pick.",
+});
+
+// Extend an existing grant
+await client.auth.authorize({
+  target: { kind: "space", spaceId },
+  scopes: ["session.prompt.readonly"],
+  scopeMode: "extend",
+});
+```
+
+Failed grants return structured codes such as `space_inaccessible`, `scope_not_held`, and `consent_required`; developer diagnostics are forwarded to the App author. Space-bound consent resolves to a Space the **viewer** controls (the one they are already looking at, then a viewer-controlled fallback), never the App author's home Space. Targeting exactly `ctx.shell.space.id` is silent for read-only scopes when that Space published or installed the App.
+
+The legacy helpers keep their original return shapes:
 
 ```js
 const ctx = await client.context();
@@ -61,6 +90,8 @@ if (created.granted && created.space) {
 ```
 
 Use `alwaysAsk: true` when the viewer must reconfirm or choose a different Space. `requestCreateSpace` always opens the dialog; each confirm mints a new Space. The host creates it with the viewer's account token.
+
+App-side read/write access is governed by `app.manage` for Space `host` and `builder`; Apps themselves never receive that permission. The public Cohub bar and authorize dialog credit the real App `publisher`, not the Space owner.
 
 `ctx.app.homeSpace` identifies the Space that owns the App, and `ctx.shell` carries the current workspace location. `ctx.invocation?.spaceId` identifies the Space that hosted the current invocation, such as a New Chat background, overlay, or `desktop open`; these are context/provenance fields, not authorization grants. The old top-level `ctx.space` field is deprecated.
 

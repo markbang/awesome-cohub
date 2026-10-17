@@ -10,8 +10,8 @@ related:
   - cohub.bp.work-commerce
   - cohub.concept.work
 sources:
-  - https://cohub.live/changelog（v2.22-v2.23）
-  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
+  - https://cohub.live/changelog（v2.22-v2.41）
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
 ---
 
 # 在不泄露观众数据的前提下衡量 App 推广
@@ -51,6 +51,8 @@ cohub apps promotions stats <app> <promotion-id>
 4. 认证或结账跳转时，使用浏览器保留的 30 天 App 作用域最近触点归因。
 5. 只有部署配置了 Meta Pixel 与 Conversions API 凭据时，才使用 `--provider meta`。正式流量前用可选的 Meta 测试事件代码验证集成。
 6. 把统计当作聚合漏斗证据。Cohub 保留提供事件的不可变 App 版本，不保留访客级推广记录。
+7. 活动驱动的首购折扣（v2.41）在目录中与观众无关：折扣百分比与截止日期对所有人展示，实际优惠只在服务端应用于符合条件的已登录用户。活动参数来自 provider 折扣配置，而不是硬编码百分比。
+8. 只有结账对账后才信任购买：跳转携带服务端追加的结果，成功以订单或订阅状态为准。
 
 ## 事件契约
 

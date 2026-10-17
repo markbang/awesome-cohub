@@ -11,7 +11,7 @@ type: guide
 | Term | 中文 | 含义 | 概念 |
 |------|------|------|------|
 | **Space** | 空间 | 长期项目容器：文件、对话、沙箱、设置 | [space](./concepts/space.md) |
-| **Home Space** | 主空间 | 个人默认空间；不能替代 `config` | [home-space](./concepts/home-space.md) |
+| **Home Space** | 主空间 | 个人默认空间；自 v2.66 起其 Save 也会发布个人配置 | [home-space](./concepts/home-space.md) |
 | **config Space** | 配置空间 | `name === "config"`；Save 发布到 `/configs/user` | [user-config-space](./concepts/user-config-space.md) |
 | **platform config** | 平台配置 | 运营级默认，发布到 `/configs/platform` | [platform-config](./concepts/platform-config.md) |
 | **Chat / Session** | 对话 / 会话 | Space 内的 agent 线程 | [chat](./concepts/chat.md) |
@@ -32,17 +32,24 @@ type: guide
 | **Prompt quick action** | Prompt 快捷操作 | 通过 `quick-action` frontmatter 声明的 Prompt 模板按钮 | [command-palette](./concepts/command-palette.md) |
 | **Direct Generation** | 直接生成 | 带时间线顺序与费用状态的 Create 模式多模态回合 | [direct-generation](./concepts/direct-generation.md) |
 | **Channel** | 渠道 | 外部消息面（Discord / 飞书 / …） | [channel](./concepts/channel.md) |
-| **Sandbox** | 沙箱 | Space agent 的隔离运行时 | [sandbox](./concepts/sandbox.md) |
+| **Sandbox** | 沙箱 | Space agent 的云端运行时（未连接 Local Runtime 时的默认） | [sandbox](./concepts/sandbox.md) |
+| **Local Runtime** | 本地运行时 | 通过 Pi 或 Codex Harness 在本机目录运行 Space（`cohub runtime up`） | [local-runtime](./concepts/local-runtime.md) |
+| **Harness** | Harness | 运行时背后的 agent 执行器（Pi / Codex）；用户选择它而不是某台机器 | [local-runtime](./concepts/local-runtime.md) |
 | **Execution token** | 执行令牌 | 沙箱/API 运行时身份 | [execution-token](./concepts/execution-token.md) |
 | **Scopes** | 权限范围 | `appScopes` 与按 Space 的 viewer grant（`workScopes` / `viewerScopes` 为旧兼容别名） | [scopes 速查](./cheatsheets/scopes.md) |
 | **Labels** | 标签 | 轻量组织元数据 | [labels](./concepts/labels.md) |
 | **Commerce** | 商业化 | App 内付费能力/积分 | [commerce](./concepts/commerce.md) |
+| **Board document (v3)** | Board 文档（v3） | 单个 Board 文件，包含 `settings` / `items` / `animations` | [board-runtime](./concepts/board-runtime.md) |
+| **Board script** | Board 脚本 | 取代 Sketch 块的可执行编辑层 | [board-semantic-authoring](./concepts/board-semantic-authoring.md) |
 | **Board Item** | Board 项 | 取代旧线上 Node 的语义化 Board 元素 | [board-semantic-authoring](./concepts/board-semantic-authoring.md) |
 | **Composition** | 组合动画 | 由轨道、关键帧、片段与标记组成的原子 Board 时间线 | [board-semantic-authoring](./concepts/board-semantic-authoring.md) |
 | **Promotion** | 推广 | 带聚合归因与漏斗统计的不可变 App 链接 | [work-promotions](./playbooks/work-promotions.md) |
 | **Overlay** | Overlay | 无边框透明 App 表面，命中区域可配置 | [work-presentation](./concepts/work-presentation.md) |
 | **Embed** | 嵌入 | App 以 iframe 托管另一个 App 的公开页面 | [work-presentation](./concepts/work-presentation.md) |
 | **Transactions / Replay** | 事务 / 回放 | 支撑可倒带回放的 Board 编辑日志 | [board-semantic-authoring](./concepts/board-semantic-authoring.md) |
+| **Decision model** | Decision 模型 | 通过 `space.decision()` 获得校准概率的 `noul` / `choice` / `score` 问答；不进入 LLM 选择器 | [decision-models](./concepts/decision-models.md) |
+| **Room** | 房间 | 带 presence、保留事件、邀请与可选 RTC 媒体的实时 App 房间 | [realtime-rooms](./concepts/realtime-rooms.md) |
+| **`app.manage`** | App 管理权限 | Space host/builder 创建、发布与查看 App 的权限 | [work-lifecycle](./playbooks/work-lifecycle.md) |
 | **Search layers** | 搜索分层 | 产品 vs 工作区 vs 网页 | [search-layers](./concepts/search-layers.md) |
 
 | **`.cohub/`** | `.cohub/` | 平台向 Space 配置：models、generations、space.json 主题/背景、hooks | [dot-cohub-layers](./concepts/dot-cohub-layers.md) |
@@ -50,8 +57,8 @@ type: guide
 
 ## 短原则
 
-- Space = 工作 · Save = 时间 · Work = 分享  
-- config ≠ Home  
+- Space = 工作 · Save = 时间 · App = 分享
+- Home 也能发布个人配置；config Space 继续有效
 - `/configs/*` 是发布产物，不是可写热挂载  
 
 ---

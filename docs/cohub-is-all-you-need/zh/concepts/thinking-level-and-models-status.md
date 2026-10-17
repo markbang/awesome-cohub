@@ -15,12 +15,17 @@ Cohub 支持针对单次 Prompt 动态调整模型思考深度 (`thinkingLevel`)
 - **流程**：输入框选择器 → Turn 元数据 → Worker/Agent 运行时 → 模型服务商。
 - **持久化**：随 Turn 元数据落盘，保证多端同步与会话恢复的一致性。
 
+## 模型定价（v2.47）
+
+`cohub models ls` 与 `cohub models show` 会打印每百万 token 成本与紧凑的多模态单价（例如 `$0.04 / image`），在 `--json` 中暴露原始 `pricing` 对象，并隐藏 hidden 模型以及没有任何可见模型的 provider。
+
 ## 模型实时可用性
 
 模型选择器展示实时状态点与心跳图表：
 
 - **遥测数据**：结合实际请求成功率与 8 小时探测心跳。
 - **状态等级**：`operational`（正常）、`degraded`（降级）、`outage`（故障）。
+- 生成（图片/视频/音频）模型在选择器中同样显示可用性圆点。
 
 ---
 

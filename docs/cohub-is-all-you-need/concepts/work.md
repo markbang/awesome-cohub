@@ -8,8 +8,8 @@ related:
   - cohub.bp.work-lifecycle
 sources:
   - https://cohub.live/docs/apps
-  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
-  - https://cohub.live/changelog (v2.26, v2.37)
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
+  - https://cohub.live/changelog (v2.26-v2.67)
 ---
 
 # App (formerly Work)
@@ -32,6 +32,10 @@ The v2.37 vocabulary migration makes App the canonical developer term:
 - File and directory Apps publish immutable manifests and support checksum-verified downloads. Board and port Apps are runtime surfaces, not restorable file bundles.
 - Query parameters and URL fragments are forwarded to embedded Apps; the `cohub_*` namespace is reserved for the host.
 - The App Center's `.cohub/apps.json` is an installed-App list, separate from published App records.
+- Published versions are immutable and carry provenance: `?cohub_v=<n>` selects one publicly, `listPublicVersions()` lists them, and each version deep-links to the session/turn that produced it.
+- Apps published or installed in the Shell Space are **trusted** and run without a consent dialog; every other App asks through `client.auth.authorize()`.
+- Apps in a Space are governed by `app.manage` (Space `host` and `builder`); the App itself never holds it. The public bar credits the real publisher.
+- Richer surfaces: window protocol (`client.app.window`, `onBeforeClose`, `onDrop`, `onLaunch`), file handlers, and realtime rooms.
 
 ## See also
 

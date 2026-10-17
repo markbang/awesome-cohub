@@ -11,7 +11,7 @@ Bilingual terms. Deep dives link to concept cards.
 | Term | 中文 | Meaning | Concept |
 |------|------|---------|---------|
 | **Space** | 空间 | Durable project container: files, chats, sandbox, settings | [space](./concepts/space.md) |
-| **Home Space** | 主空间 | Personal default Space; not a substitute for `config` | [home-space](./concepts/home-space.md) |
+| **Home Space** | 主空间 | Personal default Space; since v2.66 its Save also publishes personal config | [home-space](./concepts/home-space.md) |
 | **config Space** | 配置空间 | Space with `name === "config"`; Save publishes to `/configs/user` | [user-config-space](./concepts/user-config-space.md) |
 | **platform config** | 平台配置 | Operator-level defaults published to `/configs/platform` | [platform-config](./concepts/platform-config.md) |
 | **Chat / Session** | 对话 / 会话 | Agent thread inside a Space | [chat](./concepts/chat.md) |
@@ -32,17 +32,24 @@ Bilingual terms. Deep dives link to concept cards.
 | **Prompt quick action** | Prompt 快捷操作 | Prompt-template button declared with `quick-action` frontmatter | [command-palette](./concepts/command-palette.md) |
 | **Direct Generation** | 直接生成 | Create-mode multimodal turn with timeline ordering and cost state | [direct-generation](./concepts/direct-generation.md) |
 | **Channel** | 渠道 | External messaging surface (Discord / Feishu / …) | [channel](./concepts/channel.md) |
-| **Sandbox** | 沙箱 | Isolated runtime for the Space agent | [sandbox](./concepts/sandbox.md) |
+| **Sandbox** | 沙箱 | Cloud runtime for the Space agent (default when no Local Runtime is connected) | [sandbox](./concepts/sandbox.md) |
+| **Local Runtime** | 本地运行时 | A Space running on a local folder via a Pi or Codex Harness (`cohub runtime up`) | [local-runtime](./concepts/local-runtime.md) |
+| **Harness** | Harness | The agent executor behind a runtime (Pi / Codex); users choose it, not a machine | [local-runtime](./concepts/local-runtime.md) |
 | **Execution token** | 执行令牌 | Runtime identity for sandbox/API calls | [execution-token](./concepts/execution-token.md) |
 | **Scopes** | 权限范围 | `appScopes` plus per-Space viewer grants (`workScopes` / `viewerScopes` are legacy aliases) | [scopes cheatsheet](./cheatsheets/scopes.md) |
 | **Labels** | 标签 | Lightweight organization metadata | [labels](./concepts/labels.md) |
 | **Commerce** | 商业化 | Paid features/credits inside Apps | [commerce](./concepts/commerce.md) |
+| **Board document (v3)** | Board 文档（v3） | One Board file with `settings` / `items` / `animations` | [board-runtime](./concepts/board-runtime.md) |
+| **Board script** | Board 脚本 | Executable authoring layer replacing Sketch blocks | [board-semantic-authoring](./concepts/board-semantic-authoring.md) |
 | **Board Item** | Board 项 | Semantic Board element replacing the legacy wire-level Node | [board-semantic-authoring](./concepts/board-semantic-authoring.md) |
 | **Composition** | 组合动画 | Atomic Board timeline of tracks, keyframes, clips, and markers | [board-semantic-authoring](./concepts/board-semantic-authoring.md) |
 | **Promotion** | 推广 | Immutable App link with aggregate attribution and funnel stats | [work-promotions](./playbooks/work-promotions.md) |
 | **Overlay** | Overlay | Chrome-free transparent App surface with configurable hit regions | [work-presentation](./concepts/work-presentation.md) |
 | **Embed** | 嵌入 | An App hosting another App's public page in an iframe | [work-presentation](./concepts/work-presentation.md) |
 | **Transactions / Replay** | 事务 / 回放 | Board edit log powering rewindable replay | [board-semantic-authoring](./concepts/board-semantic-authoring.md) |
+| **Decision model** | Decision 模型 | Calibrated `noul` / `choice` / `score` questions via `space.decision()`; excluded from LLM pickers | [decision-models](./concepts/decision-models.md) |
+| **Room** | 房间 | Realtime App room with presence, retained events, invites, and optional RTC media | [realtime-rooms](./concepts/realtime-rooms.md) |
+| **`app.manage`** | App 管理权限 | Space host/builder permission to create, publish, and inspect Apps | [work-lifecycle](./playbooks/work-lifecycle.md) |
 | **Search layers** | 搜索分层 | Product vs workspace vs web | [search-layers](./concepts/search-layers.md) |
 
 | **`.cohub/`** | `.cohub/` | Platform-facing Space config: models, generations, space.json theme/background, hooks | [dot-cohub-layers](./concepts/dot-cohub-layers.md) |
@@ -50,8 +57,8 @@ Bilingual terms. Deep dives link to concept cards.
 
 ## Short principles
 
-- Space = work · Save = time · Work = share  
-- config ≠ Home  
+- Space = work · Save = time · App = share
+- Home can publish personal config; config Space stays valid
 - `/configs/*` is published output, not a live editable mount  
 
 ---

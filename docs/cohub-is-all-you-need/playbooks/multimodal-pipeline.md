@@ -11,7 +11,7 @@ related:
   - cohub.bp.scratch-to-checkpoint
 sources:
   - https://github.com/talesofai/cohub/blob/main/docs/generations.md
-  - https://cohub.live/changelog (v2.8, v2.19-v2.23, v2.40-v2.45)
+  - https://cohub.live/changelog (v2.8, v2.19-v2.23, v2.40-v2.70)
 ---
 
 # Generate, inspect, and materialize multimodal assets
@@ -46,9 +46,10 @@ You need image, video, music, or other multimodal output as a durable Space asse
      --model <model> --json
    ```
 4. Treat creation and reading as separate permissions in an App: `generation.create` creates a task; `taskrun.view` is required to poll or inspect it.
-5. Materialize returned media into the workspace as soon as it is available. Chat or provider URLs are not a project library.
-6. Record model, prompt summary, task id, and provider cost beside the asset. Generation cost UI distinguishes charged, pending, and not-charged outcomes; transient billing writes may retry after task success.
-7. Preview, iterate with constrained changes, and Save when the set is demo-ready.
+5. Reference media deliberately. Generation inputs are uploaded to unlisted URLs instead of inline base64, task list views drop inline payloads, and 3D inputs accept GLB, glTF, OBJ, FBX, and STL whose extension matches the filename.
+6. Materialize returned media into the workspace as soon as it is available. Chat or provider URLs are not a project library.
+7. Record model, prompt summary, task id, and provider cost beside the asset. `cohub generate` reports each output's size, duration, and last frame; the UI distinguishes charged, pending, and not-charged outcomes, and transient billing writes may retry after task success.
+8. Preview, iterate with constrained changes, and Save when the set is demo-ready.
 
 ## Image context and fallback
 

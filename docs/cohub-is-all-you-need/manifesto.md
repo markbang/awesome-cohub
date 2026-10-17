@@ -1,6 +1,6 @@
 # Cohub Is All You Need
 
-**v0.2** · Best practices for people and agents building in [Cohub](https://cohub.live)
+**v0.21** · Best practices for people and agents building in [Cohub](https://cohub.live)
 
 > Your own space to create, play, and build with people and agents.
 
@@ -121,7 +121,7 @@ Runtime truth: `cohub.context()` / auth / commerce work **inside the published A
 
 Since v2.37, **App** is the canonical SDK/API term (`client.apps`, `appScopes`); Work and `/w/` remain the legacy user-facing vocabulary and compatibility URL. File and directory publishes have immutable manifests and verified downloads; Board and port publishes are runtime surfaces, not restorable file bundles. Query/hash parameters are forwarded to embedded Apps, except the reserved `cohub_*` namespace.
 
-Official guide: [apps-guide.md](https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md)
+Official guide: [apps-guide.md](https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md)
 
 ### 3.5 Generations
 **Use for:** image / video / music (and related multimodal tasks) in Space context.  
@@ -233,9 +233,9 @@ Playbook: [app-commerce](./playbooks/work-commerce.md) · Promotion: [app-promot
 Playbooks: [home-and-sessions-inbox](./playbooks/home-and-sessions-inbox.md) · [mod-mount](./playbooks/mod-mount.md) · [skill-slash-discovery](./playbooks/skill-slash-discovery.md)
 
 
-### 3.13 User config Space (not Home)
+### 3.13 Personal config: Home or a config Space
 
-Cohub has a dedicated **owner config Space** recognized when **`space.name === "config"`**.
+Cohub publishes personal config from the **Home Space** (v2.66+) or from a dedicated **owner config Space** recognized when **`space.name === "config"`**.
 
 On **Save**, the worker publishes a whitelist (`AGENTS.md`, `CLAUDE.md`, `.agents/`, `.cohub/`) to owner storage and every sandbox mounts it read-only at **`/configs/user`**.
 
@@ -245,8 +245,8 @@ Effects:
 - **User skills** appear under `/configs/user/.agents/skills` and in `/skill:` discovery
 - Skill precedence: `platform → mods → user → workspace` (same name: later wins)
 
-**Home Space is not config.** Home does not publish user config on Save.  
-**Mods are not user config.** Mods share team/base tooling; config Space is personal defaults.
+**Pick one source.** A Home Save publishes `AGENTS.md`, `.agents/`, `.cohub/models.json`, and `.cohub/theme.css`; an existing `name=config` Space keeps working but does not merge with Home.
+**Mods are not user config.** Mods share team/base tooling; personal config is for owner defaults.
 
 Playbook: [user-config-and-rules](./playbooks/user-config-and-rules.md) · Concept: [user-config-space](./concepts/user-config-space.md) · Cheat: [config-layers](./cheatsheets/config-layers.md)
 
@@ -295,6 +295,16 @@ Playbook: [search-layers](./playbooks/search-layers.md)
 - **App surfaces** (v2.39, v2.44-v2.46): overlays with configurable hit regions, iframe embedding, preview keep-alive tabs, unified surface resolution, and shell context for what is actually open.
 - **App Actions and webhooks** (v2.41, v2.46): server-side entrypoints under `.cohub/actions/` (owner-funded, viewer-metered) and HTTP-triggered hooks that can run them with `uses`.
 - **Board replay and live Apps** (v2.40, v2.45): rewindable transaction logs with `createBoardReplayPlayer()`, interactive App frames placed by drag-and-drop, and optional entrance motion.
+
+### 3.19 Local-first runtime and Board v3 (v2.47-v2.70)
+
+- **Local Runtime** (v2.51-v2.58, v2.60, v2.68): `cohub runtime up` replaces `cohub sandbox up`; a Space can run on a folder via native Pi or Codex Harnesses, with event-driven sync, Windows/macOS support, display sharing, and attach/import flows.
+- **Board v3** (v2.61-v2.69): one consolidated document model (`settings` / `items` / `animations`), layered SDK packages (`board/editor`, `board/replica`, `board/stage`, `board/export/node`, SDK 10), and a v3 CLI (`boards get`, `apply`, `history`, `preset`, `export --paper`). Board scripts replace Sketch; task cards are server-synced; 3D models preview in place.
+- **App platform** (v2.47, v2.50-v2.53, v2.59, v2.63-v2.67): `client.auth.authorize()` replaces legacy viewer auth; immutable version history with provenance (`?cohub_v=`, `listPublicVersions()`); `app.manage`; trusted Apps and host consent; file handlers; an app window protocol (`client.app.window`, `onBeforeClose`, `onDrop`, `onLaunch`); App rooms with RTC, history, invites, and device grants; resource Apps.
+- **Decision models** (v2.66): `space.decision()` and `cohub decision` answer `noul` / `choice` / `score` questions with calibrated probabilities, configured in `.cohub/decisions.json` and deliberately excluded from LLM pickers.
+- **Home as personal config** (v2.66): saving the Home Space publishes User Rules, skills, prompts, models, and a personal theme; an existing `name=config` Space stays ordinary.
+- **Media and generation** (v2.47-v2.70): 3D model inputs, media as URLs end to end, WebP variants, 2 GiB uploads with structured error codes, unified upload quota, and model pricing in the CLI.
+- **Chat and navigation**: four-level fork trees, session source filters, a unified `@` mention, a roomier workspace, and compact side-panel tabs.
 
 ## 4. Builder playbook (human)
 
@@ -388,10 +398,10 @@ Always start smaller than you think.
 
 | Layer | Now | Later |
 |-------|-----|-------|
-| Manifesto | this file (v0.2) | revise with product changes |
+| Manifesto | this file (v0.21) | revise with product changes |
 | [Matrix](./matrix.md) | scenario index | keep IDs stable |
-| [Playbooks](./playbooks/) | 35 playbooks | add new scenarios as product grows |
-| [Concepts](./concepts/) | 34 core nouns | add sparingly |
+| [Playbooks](./playbooks/) | 36 playbooks | add new scenarios as product grows |
+| [Concepts](./concepts/) | 36 core nouns | add sparingly |
 | Knowledge-base pattern | §3.9 + playbook | evolve with real Spaces |
 
 ---

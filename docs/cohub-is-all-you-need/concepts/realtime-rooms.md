@@ -1,53 +1,69 @@
 ---
 id: cohub.concept.realtime-rooms
-title: Realtime rooms for Work Apps
+title: Realtime rooms for Apps
 type: concept
 related:
   - cohub.concept.work
   - cohub.concept.work-presentation
   - cohub.concept.task-browser
 sources:
-  - https://cohub.live/changelog (v2.11)
-  - https://github.com/talesofai/cohub/blob/main/packages/sdk/docs/work-runtime-guide.md
+  - https://cohub.live/changelog (v2.11, v2.64, v2.67)
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
 ---
 
-# Realtime rooms for Work Apps
+# Realtime rooms for Apps
 
-**Realtime rooms** let a published Work/App run multiplayer state without deploying a separate backend. The current SDK surface is `client.app.realtime`; rooms use the published App runtime identity and need no additional scope.
+**Realtime rooms** let a published App share state, presence, and JSON events between its viewers and anyone it invites - a person in a terminal, or an Agent. Rooms are runtime-native: no scope and no consent.
 
-## How it works
-
-- Create or join a code-scoped room through `client.app.realtime`.
-- Exchange generic JSON events over the Cohub Gateway WebSocket.
-- Use presence, room-scoped sequencing, membership snapshots, publish acknowledgments, and short-lived admission tickets supplied by the runtime.
+## Basics
 
 ```ts
-const room = await client.app.realtime.createRoom({
-  code: "TEAM-ALPHA",
-  seatPerUser: true,
-});
-
-const stop = room.subscribe("shared.state.updated", (event) => {
-  render(event.data);
-});
+const room = await client.app.realtime.createRoom({ code: "TEAM-ALPHA" });
+const stop = room.subscribe("shared.state.updated", ({ data }) => render(data));
 await room.publish("shared.state.updated", { value: 42 });
-stop();
-await room.leave();
 ```
 
-## Key features
+- Every event takes one room-wide sequence. `publish()` events are kept in room history (latest 1,000, up to 512 KB); `send()` is for high-rate traffic, has no ack, and is never kept.
+- A reconnect replays what `publish()` sent meanwhile. `onOutOfSync()` fires only when more was missed than history holds - then resync your own state.
+- `room.history({ after })` reads what happened before you joined.
+- `seatPerUser: true` gives each viewer one seat across tabs.
+- Rooms live from a minute to 24 hours and belong to one App. Create and join them by code inside the App; open one from a link with `ctx.app.url + "?room=" + code`.
+- Payload limits: 16 KB events, 2 KB presence.
 
-- **High-frequency sends**: `room.send()` avoids the per-event ACK round trip; failures are reported through `room.onSendError()`.
-- **Per-viewer seats**: `seatPerUser` lets a second tab or reconnect take over the viewer's existing seat instead of consuming another one.
-- **Opaque `userKey`**: group a viewer's connections without seeing the account id.
-- **Reconnect signals**: use `onStateChange()` and `onOutOfSync()` to resync authoritative application state; room events are not replayed.
-- **Limits**: default lifetime is 2 hours (60 seconds to 24 hours), default participants are 16 (2 to 128), payloads are 16 KB, presence is 2 KB, and each App may have 512 active rooms.
-- **Runtime-only**: normal server auth and the CLI cannot create or join these rooms.
+## Members
 
-## Use cases
+`room.members` lists each member's `participantId`, `presence`, and `kind`: `user` for a viewer in the App, `agent` or `cli` for a seat taken through the CLI. An `agent` carries the `model` it runs on. Members acting for the same person share a `userKey`, so an App can show "Alice's Agent" without seeing an account id.
 
-- Multiplayer games and collaborative experiences published as Works.
-- Real-time dashboards and shared state without a custom websocket service.
+## Invites and Agents
+
+`room.invite()` returns an invite that admits whoever holds it until it expires (10 minutes by default):
+
+```ts
+const { invite } = await room.invite();
+await space.prompt({ content: [{ type: "text", text: `Join our room: cohub rooms join ${invite}` }] });
+```
+
+```bash
+cohub rooms join <invite> --presence '{"name":"Guide"}'
+cohub rooms events <room> --type 'chat.*' --wait 10m   # an Agent waits in the background and wakes on new events
+cohub rooms publish <room> chat.message '{"text":"Hello"}'
+```
+
+The CLI holds its seat without a connection: every call keeps it, and it lapses after `--idle` (30 minutes by default). A manager of the App can create a room with `cohub rooms create --app <app>`, which prints an invite and the link that opens the room. Node scripts use the same seat through `client.rooms`.
+
+## Peer channels (WebRTC)
+
+`room.rtc()` adds a WebRTC connection relayed between the room's viewers. Reach for it when room events are too slow, too small, or too ordered. The Go/Pion helper (`cohub rooms rtc`) handles PCM, Opus, I420, and VP8 with bounded binary or file output.
+
+Device access is granted per App and declared at publish time:
+
+```html
+<meta name="cohub:devices" content="camera,microphone,screen" />
+```
+
+## Privacy boundary
+
+Rooms are transient application state, not a database: persist anything authoritative to Space files. Only the latest history is replayed, and seats are tied to the room's lifetime.
 
 ---
 

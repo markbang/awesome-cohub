@@ -22,9 +22,11 @@ type: cheatsheet
 | Share link is a Sandbox host | Publish a Work/App; do not ship a raw Sandbox URL |
 | Refresh 404 on routes | Static hosting + History API; use hash routing or prerender |
 | White screen | Check `base: "./"`, asset paths, browser console, and rebuild `dist/` |
-| File/dir publish rejected | File/directory limit or missing `index.html`; current limit is 1 GiB and directory count is 1-1000 |
+| File/dir publish rejected | App target limit or missing `index.html`: 1 GiB, directory 1-1000 files. General file uploads are separate (2 GiB single file) |
 | `apps publish` says the target is missing | `--file` / `--dir` resolve against a source; inside a Sandbox that is the workspace, elsewhere it is the local machine. Pass `--source workspace` or `--source local` explicitly |
 | Target edited but public page is unchanged | Publish an explicit new version |
+| Viewer still sees an old version | Version URLs are immutable (`?cohub_v=<n>`); publish an explicit new version and share that link |
+| App auth prompt never appears | Apps published or installed in the Shell Space are trusted and skip consent; other Apps must use `client.auth.authorize()` |
 | Work preview turns blank after an update | Current preview should retain content on refresh failure; use its Retry action and inspect version state |
 | `desktop open --call` does nothing | The App must register that exact method and be opened from an approved Cohub origin |
 | Viewer API 403 | Check whether the call needs an App scope or a viewer grant on the target Space |
@@ -49,6 +51,17 @@ type: cheatsheet
 | Action fails with timeout/abort/exit code | Reasons are reported via the shared execution-source contract; inspect the Task Run. Actions cannot call `actions.run()` recursively |
 | Action input shows up in a Task Run | Expected: input is stored with the run and visible to the owner and Space members who can inspect tasks. Do not pass secrets |
 
+## Local Runtime, decisions, and rooms
+
+| Symptom | Fix |
+|---------|-----|
+| `cohub sandbox up` no longer works | It was removed in v2.51; use `cohub runtime up` (Local Runtime) or let the Space run in a cloud Sandbox |
+| Turn runs locally but tools behave differently | Harnesses (Pi/Codex) own tool semantics; check `cohub runtime logs` and confirm the intended `--harness` |
+| Runtime lost a folder change | Native monitoring can fall back to a bounded scanner; `cohub runtime status` reports the active backend |
+| `space.decision()` returns nothing | The question type must be `noul`/`choice`/`score` and the decision declared in `.cohub/decisions.json`; decision models are deliberately excluded from LLM pickers |
+| Room events stopped arriving | Publish/send are not replayed; resync via `onStateChange()` / `onOutOfSync()` and check the 24h absolute lifetime |
+| Rooms are empty after a restart | Only the latest 1,000 events (up to 512 KB) are retained; persist authoritative state to Space files |
+
 ## Hooks and webhooks
 
 | Symptom | Fix |
@@ -63,7 +76,9 @@ type: cheatsheet
 
 | Symptom | Fix |
 |---------|-----|
-| Legacy node/sequence payload rejected | Use semantic Items/Compositions and `boards capabilities` |
+| Legacy node/sequence payload rejected | Use the v3 document model (settings/items/animations); Sketch blocks are replaced by Board scripts |
+| `boards inspect` / `--background` not recognized | v3 CLI: `boards get` replaces `inspect`, `--paper` replaces `--background` |
+| Board changes land on the wrong item | Resolve ids by path; ids are stable per board file, not global |
 | Old `frame` envelope rejected | Author with `position` / `size` / `rotation`; draw and arrow geometry is world-space and frames are derived |
 | Board batch fails with a diagnostic | Fix the reported authoring path (for example `items.0.props.text`) before retrying |
 | Board API error lacks context | Capture the stable error code, diagnostics, and `requestId` |
@@ -78,6 +93,8 @@ type: cheatsheet
 | Symptom | Fix |
 |---------|-----|
 | Concurrent edit was rejected | Handle `CONFLICT`: read the latest version, then use a smaller edit or `fs.edit` |
+| Upload rejected with `file_too_large` | Single durable uploads cap at 2 GiB, a batch at 2 GiB / 2000 files; inline uploads cap at 64 MiB. Published App targets keep the 1 GiB cap |
+| Upload rejected with `upload_rate_limited` | The per-user hourly quota was hit; wait `retryAfterSeconds` from the response |
 | Concurrent upload rejected | Uploads detect and reject concurrent local edits via snapshot validation; re-read the file and retry |
 | Edit fails after harmless formatting drift | Retry with the normalized current snapshot; recoverable edits tolerate line endings, BOM, and trailing whitespace, but ambiguous matches still fail |
 | Command output appears incomplete | Check the explicit truncation flag/details before treating the output as a complete result |

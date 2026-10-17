@@ -13,6 +13,7 @@ sources:
   - https://cohub.live/changelog#v1.98
   - https://cohub.live/changelog#v1.101
   - https://cohub.live/changelog#v1.105
+  - https://cohub.live/changelog（v2.66）
 ---
 
 # Home Space 与 Sessions 收件箱
@@ -26,12 +27,14 @@ sources:
 ### Home Space
 - Empty accounts get a real **Home** space (`slug=home`) via default-space resolution instead of a dead-end “new space only” wall.
 - Optional platform bootstrap: first-time Home may fork from `HOME_BOOTSTRAP_CHECKPOINT_ID` when configured; otherwise blank workspace.
-- Home is still a normal Space - files, Chats, Saves, Apps apply.
+- Home 仍是普通 Space——文件、Chat、Save、App 都适用。
+- 自 v2.66 起，Save Home 也会发布个人配置：`AGENTS.md`、`.agents/skills`、`.agents/prompts`、`.cohub/models.json` 与 `.cohub/theme.css`。保持有意为之；空的 Home 不会发布有害内容。
 
 ### Sessions inbox (`/sessions`)
 - Cross-space recent Chats (desktop split list + conversation).
 - **从 Space 根路径新建 Chat** 直接使用 `/spaces/:id`；旧 `/sessions/new` 仅作为兼容导航，预览在切换时保持挂载。
-- Continuity: restore last chat / scroll where the product supports it.
+- 连续性：在产品支持处恢复上次 Chat/滚动位置。
+- 可按 Session 来源过滤（`web`、`feishu`、`wechat` 等）；分叉树最多嵌套四层。
 
 ## 结果
 

@@ -8,8 +8,8 @@ related:
   - cohub.bp.work-lifecycle
 sources:
   - https://cohub.live/docs/apps
-  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
-  - https://cohub.live/changelog（v2.26、v2.37）
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
+  - https://cohub.live/changelog（v2.26-v2.67）
 ---
 
 # App（原 Work）
@@ -32,6 +32,10 @@ v2.37 完成词汇迁移后，App 成为开发者侧规范术语：
 - file/directory App 发布带不可变 manifest，并支持 checksum 校验下载；Board 与 port App 是运行时界面，不是可恢复文件 bundle。
 - URL 查询参数和 hash 会转发给嵌入的 App；`cohub_*` 命名空间由宿主保留。
 - App Center 的 `.cohub/apps.json` 是已安装 App 列表，与已发布 App 记录分离。
+- 已发布版本不可变并保留来源：公开用 `?cohub_v=<n>` 选择版本，`listPublicVersions()` 列出历史，每个版本深链到产出它的 Session/turn。
+- 在 Shell Space 中发布或安装的 App 是**可信**的，无需 consent 对话框；其他 App 通过 `client.auth.authorize()` 申请。
+- Space 中的 App 由 `app.manage` 治理（Space `host` 与 `builder`），App 自身永不持有；公开栏署名真实发布者。
+- 更丰富的表面：窗口协议（`client.app.window`、`onBeforeClose`、`onDrop`、`onLaunch`）、文件处理器与实时房间。
 
 ## 参见
 

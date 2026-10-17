@@ -198,7 +198,7 @@ Best-practice series for **builders** and **agents** — from first Save to Apps
 
 - **[Cohub README](https://github.com/talesofai/cohub/blob/main/README.md)** - Product pitch, concepts, and repo map.
 - **[Co-creation model](https://github.com/talesofai/cohub/blob/main/docs/CO-CREATION-MODEL.md)** - Space / Checkpoint / Proposal mental model.
-- **[Apps guide](https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md)** - Publishing public Apps.
+- **[Apps guide](https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md)** - Publishing public Apps.
 - **[Self-hosting notes](https://github.com/talesofai/cohub/blob/main/docs/self-hosting.md)** - Deployment-oriented docs from the monorepo.
 
 

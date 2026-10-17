@@ -8,7 +8,7 @@ difficulty: starter
 related: [cohub.bp.publish-static-work, cohub.bp.work-kit-product, cohub.concept.work]
 sources:
   - https://cohub.live/docs/apps
-  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
   - https://cohub.live/changelog
 ---
 

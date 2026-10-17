@@ -8,7 +8,7 @@ difficulty: advanced
 related: [cohub.bp.work-kit-product, cohub.bp.minimal-scopes, cohub.bp.work-promotions, cohub.concept.work, cohub.concept.commerce]
 sources:
   - https://github.com/talesofai/cohub/blob/main/docs/app-commerce-guide.md
-  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
   - https://cohub.live/changelog (v2.39, v2.41)
 ---
 

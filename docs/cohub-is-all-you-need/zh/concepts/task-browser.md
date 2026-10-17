@@ -9,8 +9,8 @@ related:
   - cohub.concept.app-center
 sources:
   - https://cohub.live/changelog（v2.26、v2.30、v2.42）
-  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
-  - https://github.com/talesofai/cohub/blob/main/packages/sdk/docs/app-runtime-guide.md
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
 ---
 
 # Task Browser 任务浏览器
@@ -33,6 +33,8 @@ sources:
 - 结果先从按身份隔离的本地缓存立即显示，再在后台静默刷新。
 - 刷新失败时可以继续显示最后的缓存结果，而不是清空页面；在刷新成功前应将其视为可能过期。
 - Session Chat 不再负责生成任务托盘；任务历史和详情应使用 Task Browser 或 `client.tasks` API。
+- 当 Session 有生成任务时，工作区头部提供 **Browse generated media**，针对该 Session 打开 Task Browser（v2.56）。可用性来自一次有界 `tasks.list` 查询，并通过 `task.created` / `task.updated` 事件刷新而非轮询。
+- 生成信息流只投影媒体输出；修改后的 prompt 与纯文本拒绝留在原始任务结果中，不会显示为文本卡片（v2.60）。
 
 ## CLI 与 SDK
 
@@ -54,6 +56,8 @@ Task-run 快照在存储侧保持完整；调用者看到的内容按请求者�
 - 同一条规则在 task 与 cronjob run 端点上一致执行。
 
 账户级 **Mine** 只暴露观众自己拥有的 Task Run，不会暴露所有 Space 的所有任务，也不会暴露其他用户的任务。App 只应申请实际呈现的视图。
+
+Board 的 `task` item 只保存 `taskRunId`；服务端解析并维护快照，最终状态写入该 Space 内所有展示该 run 的 Board（v2.65）。见 [Board 运行时](./board-runtime.md)。
 
 ---
 

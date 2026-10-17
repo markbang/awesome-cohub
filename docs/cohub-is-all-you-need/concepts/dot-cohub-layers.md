@@ -52,17 +52,20 @@ CLAUDE.md
 | `.cohub/models.json` | Environment model catalog (Redis cache) |
 | `.cohub/generations/` | Generation declarations |
 | `.cohub/model-tasks.json` | Auxiliary task models such as session titles and image-to-text |
+| `.cohub/decisions.json` | Decision models and providers (`space.decision()`) |
 | `.cohub/explore.json` (etc.) | Other platform readers |
 | `.agents/skills/` | Platform skills |
 | `.agents/prompts/*.md` | Platform slash templates |
 
-### User layer (`name === "config"` Save → `/configs/user`)
+### User layer (Home Space or `name === "config"` Save → `/configs/user`)
 
 | Path | Effect |
 |------|--------|
 | `.cohub/models.json` | **Owner** model overrides / catalog merge |
 | `.cohub/generations/` | User generation declarations |
 | `.cohub/model-tasks.json` | User overrides for auxiliary task models |
+| `.cohub/decisions.json` | User view of decision models (name/hidden only) |
+| `.cohub/theme.css` | Personal theme applied across the app |
 | `.agents/skills/` | Personal skills (owner path) |
 | `.agents/prompts/*.md` | Personal slash templates |
 | `AGENTS.md` | User Rules |
@@ -79,7 +82,9 @@ CLAUDE.md
 | `.agents/skills/` | Project skills |
 | `.agents/prompts/*.md` | Project slash templates |
 
-Putting `models.json` only in a random project Space does **not** publish account-wide models. Models that follow you require **config** (or platform) Save.
+Putting `models.json` only in a random project Space does **not** publish account-wide models. Models that follow you require a Home Space or `name=config` Save (or platform Save).
+
+Since v2.66 the **Home Space** publishes the same personal config through the normal Save pipeline. An existing `name === "config"` Space keeps working as an ordinary Space; there is no automatic migration or fallback.
 
 ## Priority (merge order)
 
@@ -138,7 +143,7 @@ These do not replace the account **appearance** theme picker; they style **this 
 ```text
                     ┌─ platform  ── .cohub/models.json + .agents/*
  merge catalogs ───┼─ mods       ── mounted .agents/* (skills/prompts)
-                    ├─ user      ── config Space Save → /configs/user
+                    ├─ user      ── Home (or config) Space Save → /configs/user
                     └─ project   ── /workspace .agents/* (+ .cohub presentation)
 
  ordinary Space only (no global publish):
@@ -149,7 +154,7 @@ These do not replace the account **appearance** theme picker; they style **this 
 
 ## Practice
 
-1. **Personal models / default prompts / skills** → Space `name=config` → edit → **Save**.  
+1. **Personal models / default prompts / skills / theme** → Home Space (or a `name=config` Space) → edit → **Save**.
 2. **This product’s slash recipes** → project `.agents/prompts/*.md`.  
 3. **This product’s look** → project `.cohub/space.json` / `theme.css`.  
 4. **Team shared tooling** → Mod mount, not copy-paste into every config.  

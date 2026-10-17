@@ -9,8 +9,8 @@ related:
   - cohub.concept.app-center
 sources:
   - https://cohub.live/changelog (v2.26, v2.30, v2.42)
-  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
-  - https://github.com/talesofai/cohub/blob/main/packages/sdk/docs/app-runtime-guide.md
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
 ---
 
 # Task Browser
@@ -33,6 +33,8 @@ An App that creates a generation typically needs viewer grant `generation.create
 - Results render immediately from an identity-scoped local cache, then refresh silently in the background.
 - A failed refresh can keep showing the last cached result instead of blanking the browser; treat cached data as stale until refreshed.
 - Session Chat no longer owns a generation-task tray. Use the Task Browser or `client.tasks` APIs for task history and detail.
+- The workspace header exposes **Browse generated media** whenever a session has generation tasks, opening the Task Browser against that session (v2.56). Availability comes from one bounded `tasks.list` query and refreshes from `task.created` / `task.updated` events instead of polling.
+- Generation feed views project media outputs only; revised prompts and text-only refusals stay in the raw task result rather than appearing as text tiles (v2.60).
 
 ## CLI and SDK
 
@@ -54,6 +56,8 @@ Task-run snapshots are kept intact in storage; what a caller sees is redacted ba
 - The same rule is enforced consistently across task and cronjob run endpoints.
 
 Account-level **Mine** access exposes Task Runs owned by the viewer, not every task in every Space and not other users' runs. Apps should request only the view they render.
+
+A Board `task` item stores only `taskRunId`; the server resolves and maintains its snapshot, and writes the final state to every Board in the Space that shows the run (v2.65). See [Board runtime](./board-runtime.md).
 
 ---
 

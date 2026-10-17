@@ -1,19 +1,19 @@
 ---
 id: cohub.bp.user-config-and-rules
-title: 用 config Space 管理个人 Agent 默认配置
+title: 用 Home 或 config Space 管理个人 Agent 默认配置
 type: playbook
 audience: [builder, agent]
 features: [config-space, skills, agents-md, sandbox]
 difficulty: intermediate
 related: [cohub.concept.user-config-space, cohub.concept.home-space, cohub.bp.skill-slash-discovery, cohub.bp.mod-mount]
 sources:
-  - https://cohub.live/changelog (User Rules, owner-scoped user config)
+  - https://cohub.live/changelog (User Rules, owner-scoped user config, v2.66 Home config)
   - apps/worker/src/config-publish.ts
   - apps/worker/src/tasks/save-checkpoint-task.ts
   - apps/agent/src/runtime/system-prompt-builder.ts
 ---
 
-# 用 config Space 管理个人 Agent 默认配置
+# 用 Home 或 config Space 管理个人 Agent 默认配置
 
 ## 何时用
 
@@ -21,19 +21,19 @@ sources:
 
 ## 对照
 
-| | **config Space** | **Home Space** | **Project Space** |
-|--|-------------------|----------------|-------------------|
-| Identity | `name === "config"` | often `slug=home` | your initiative name |
-| Job | Publish owner agent config | Landing / light personal hub | Real product work |
-| On Save | Whitelist → `/configs/user` | Normal checkpoint only | Normal checkpoint only |
-| Sandbox view | Mounted **ro** into all spaces as `/configs/user` | Normal `/workspace` of Home | Normal `/workspace` |
-| Uniqueness | **One per user** | One default home | Many |
+| | **Home Space**（v2.66+） | **config Space** | **Project Space** |
+|--|------------------------|------------------|-------------------|
+| Identity | 通常 `slug=home` | `name === "config"` | 你的工作线名称 |
+| Job | 个人配置 + 落点 | 个人配置（旧方案） | 真实产品工作 |
+| On Save | 白名单 → `/configs/user` | 白名单 → `/configs/user` | 仅普通 Checkpoint |
+| Sandbox view | Home 自身的 `/workspace`；发布树在其他 Space 显示为 `/configs/user` | 同样发布，`source: "config-space"` | 普通 `/workspace` |
+| Uniqueness | 每用户一个 | 每用户一个（旧配置） | 多个 |
 
-If you put personal skills only in Home or a random project Space and never use a config Space Save publish path, they **won’t** become account-wide user config.
+个人配置从 **Home**（v2.66+）或名为 `config` 的 Space 发布。随意项目 Space 里的 skills 永远不会变成账户级配置；已有 `name=config` Space 仍是普通 Space，所以只选一个来源。
 
 ## 结果
 
-- One Space named **`config`**
+- 一个个人配置 Space：Home **或** 名为 **`config`** 的 Space（不要两边都用）
 - `AGENTS.md` / `.agents/skills` / allowed `.cohub` bits live there
 - After **Save**, other Spaces’ agents pick up User Context + user skills
 - Settings → **User Rules** reflects published `AGENTS.md` (`GET /api/me/rules`)
@@ -53,10 +53,10 @@ Everything else in that Space is normal workspace content — **not** auto-publi
 
 ## 步骤
 
-1. 准备一个 **name 恰好为 `config`** 的 Space（不是随便起个像 config 的 slug）。一人仅一份。
+1. 选择个人配置来源：**Home Space**，或一个 **name 恰好为 `config`** 的 Space（不是随便起个像 config 的 slug）。
 2. 个人默认放这里：`AGENTS.md`、`.agents/skills/…`、需要的 `.cohub/…`。
 3. User Rules 保持短而稳；**项目法**写在项目 Space 的 `AGENTS.md`。
-4. 对 config Space **存档（Save）** → 触发用户配置发布。
+4. 对该 Space **存档（Save）** → 触发用户配置发布。
 5. 到任意项目沙箱检查 `/configs/user` 与 skills。
 6. Chat 里确认 `/skill:` 与 User Rules 已生效。
 7. 改配置 = 改 config Space 再 Save；不要在业务 Space 里改 `/configs/user`（只读）。
@@ -91,12 +91,12 @@ platform  →  mods  →  user config  →  current workspace
 # PLATFORM_AGENTS_DIR=/configs/platform/.agents
 ```
 
-UI: Settings → **User Rules** edits/publishes personal rules from the config Space workflow.
+UI: Settings → **User Rules** 从 Home 或 config 流程编辑/发布个人规则（`source` 为 `home-space` 或 `config-space`）。
 
 ## 完成标准
 
-- [ ] Exactly one `name=config` Space
-- [ ] Save on config Space succeeds without 409 duplicate-config
+- [ ] 只有一个个人配置来源（Home 或 `name=config`）
+- [ ] Save 成功且没有 409 duplicate-config
 - [ ] `/configs/user/AGENTS.md` visible in a project sandbox after publish
 - [ ] Personal skill appears in discovery and runs
 - [ ] Project rules still live in project Space, not only in user config
@@ -114,7 +114,7 @@ See [search-layers](./search-layers.md).
 
 ## 别这样做
 
-- Confusing **Home** with **config** (Home does not publish user config on Save)
+- 误以为 `name=config` Space 与 Home 共享同一份配置（它们不会；只选一个）
 - Putting team-shared kits only in user config (use **Mod** instead)
 - Editing `/configs/user` inside a project sandbox (read-only mount)
 - Giant User Rules that fight every project’s AGENTS.md

@@ -13,8 +13,8 @@ related:
   - cohub.concept.app-center
 sources:
   - https://cohub.live/docs/apps
-  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
-  - https://cohub.live/changelog (v2.14, v2.22, v2.24, v2.37, v2.42-v2.43)
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
+  - https://cohub.live/changelog (v2.14-v2.69)
 ---
 
 # App lifecycle - publish, version, disable, visibility
@@ -55,10 +55,12 @@ Local sources are limited to 1,000 files and 1 GiB total. The publish worker dow
 
 ## Limits and artifact behavior
 
-- A file, HTML page, Board, or directory is limited to **1 GiB**.
+- An App target (file, HTML page, Board, or directory) is limited to **1 GiB**.
 - A directory needs `index.html`, contains 1 to 1000 files, and totals 1 byte to 1 GiB.
+- General file uploads are separate: a single durable upload may be up to **2 GiB** (v2.69), with machine-readable rejection codes (`file_too_large`, `upload_batch_too_large`, `upload_too_many_files`, `upload_rate_limited`) and `retryAfterSeconds` on rate limits.
 - A Board App captures the Board state and only the workspace assets it references.
 - File and directory Apps include an immutable manifest and support checksum-verified downloads. Board and port Apps are not downloadable artifacts.
+- Each published version is immutable and keeps provenance: the public version switcher (`?cohub_v=<n>`), SDK `listPublicVersions()`, and deep links to the session/turn that produced it.
 - A port must use a supported public Sandbox port.
 
 ## CLI
@@ -79,9 +81,18 @@ cohub desktop open app://<owner>/<space>/<app>
 cohub apps get <appId|url|owner/space/app> --json
 cohub apps stats <appId|url|owner/space/app> --json
 cohub apps download <appId|url|owner/space/app> --output <path>
+
+# Versions and viewer grants
+cohub apps versions <appId> --json
+cohub apps grants <appId> --json
+cohub apps revoke <appId> <grantId>
 ```
 
 `works` and `workScopes` spellings remain compatibility aliases in clients that still expose them.
+
+## Permissions
+
+Apps are governed by `app.manage`, granted to Space `host` and `builder`: builders can create Apps, publish versions, change config, and read stats without host-only Space settings. Deletion is scoped to hosts (any App) or the App's own publisher. App detail responses report the real `publisher`, which the Cohub bar and authorize dialog credit.
 
 ## Release rules
 

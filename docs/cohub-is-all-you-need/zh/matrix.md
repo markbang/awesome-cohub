@@ -42,6 +42,7 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | `cohub.bp.mod-mount` | 挂载 Mod 共享工具 | Mods, Skills, Sandbox | `cohub` | intermediate | builder, operator |
 | `cohub.bp.skill-slash-discovery` | 用 `/skill:` 发现技能 | Chat, Skills, Mods | `cohub` | starter | builder, agent-author |
 | `cohub.bp.home-and-sessions-inbox` | Home 与会话收件箱 | Home, `/sessions` | `cohub` | starter | builder |
+| `cohub.bp.local-runtime` | 在本机运行 Space | Local Runtime、Harness、文件 | `cohub` | advanced | builder, operator |
 | `cohub.bp.work-commerce` | App 内售卖功能与积分 | Apps, Billing, SDK | `cohub-work-kit` | advanced | builder |
 | `cohub.bp.user-config-and-rules` | 用 config Space 管个人 Agent 默认 | config Space, User Rules, `/configs/user` | `cohub` | intermediate | builder, agent-author |
 | `cohub.bp.platform-config` | 运营平台配置 Space | platform config, skills | `cohub` | advanced | operator |
@@ -91,6 +92,8 @@ Use this table to jump from **intent** → **Cohub surfaces** → **skills/docs*
 | 能跑工具的 agent | Space 内 skills | 假设宿主机路径 |
 | 周期性任务 | 定时 prompt + 磁盘状态 | 只靠聊天记忆 |
 | 事件驱动自动化 | **Space Hooks**（`.cohub/hooks`） | 永远靠人肉轮询 Chat |
+| 私有目录或本地 GPU | **Local Runtime**（`cohub runtime up`） | 每个回合都上传整棵目录树 |
+| 结构化判断（是/否、选项、评分） | **Decision 模型**（`space.decision()`） | 解析 LLM 的自由文本 |
 
 ---
 
@@ -161,10 +164,13 @@ npx skills add https://github.com/markbang/cohub-work-skill \
 
 | Topic | Doc |
 |-------|-----|
-| Apps | [apps-guide.md](https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md) |
+| Apps | [apps-guide.md](https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md) |
 | Generations | [generations.md](https://github.com/talesofai/cohub/blob/main/docs/generations.md) |
 | App commerce | [app-commerce-guide.md](https://github.com/talesofai/cohub/blob/main/docs/app-commerce-guide.md) |
 | Space hooks | [space-hooks.md](https://github.com/talesofai/cohub/blob/main/docs/space-hooks.md) |
+| Local Runtime | [local-runtime.md](https://github.com/talesofai/cohub/blob/main/docs/local-runtime.md) |
+| Decision 模型 | [decisions.md](https://github.com/talesofai/cohub/blob/main/docs/decisions.md) |
+| Board（v3） | [board.md](https://github.com/talesofai/cohub/blob/main/docs/board.md) |
 | Product docs (EN/ZH) | [docs/product](https://github.com/talesofai/cohub/tree/main/docs/product) |
 
 ---

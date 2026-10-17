@@ -6,101 +6,87 @@ related:
   - cohub.concept.board-runtime
   - cohub.bp.board-export-and-playback
 sources:
-  - https://cohub.live/changelog (v2.22-v2.45)
-  - https://github.com/talesofai/cohub/blob/main/packages/protocol/src/board-authoring.ts
-  - https://github.com/talesofai/cohub/blob/main/packages/protocol/src/board-composition.ts
+  - https://cohub.live/changelog (v2.22-v2.70)
+  - https://github.com/talesofai/cohub/blob/main/docs/board.md
+  - https://github.com/talesofai/cohub/blob/main/docs/board-scripts.md
 ---
 
 # Semantic Board authoring
 
-Board editing is a semantic document protocol shared by the API, SDK, CLI, Web editor, checkpoints, and published Apps. The stable model describes what a Board means; renderers derive geometry and presentation from it.
+Board editing is a JSON document protocol shared by the API, SDK, CLI, web editor, checkpoints, and published Apps. The document describes what a Board means; renderers derive geometry and presentation from it.
 
-## Document model
+## Document
 
-A Board snapshot contains Items, connections, effects, compositions, and playback. Built-in Items include text, geo, draw, arrow, frame, image, video, audio, file, task, and app. Media Items use safe relative Space-file references; task Items carry a task-run snapshot; app Items mount a published App surface inside a frame.
+```json
+{
+  "board": { "background": { "kind": "dots" }, "grid": { "visible": true, "size": 24 }, "enter": { "preset": "deal" } },
+  "items": { "id": { "type": "text", "position": { "x": 0, "y": 0 }, "props": { "text": "Hi" } } },
+  "animations": { "intro": { "duration": 800, "tracks": { "t": { "target": "id", "property": "opacity", "keyframes": [{ "at": 0, "value": 0 }, { "at": 800, "value": 1 }] } } } }
+}
+```
 
-The wire vocabulary uses **Item** rather than the removed generic Node/Sequence representation. Realtime `board.changed` events carry a semantic changed projection; pure animation updates may carry an `animationPatch` that can be applied without refetching the full Board.
+Authoring is a **merge patch** by default: `boards apply` (or the SDK equivalent) merges the input into the document. `--replace` makes the document equal to the input. Deleting a referenced item fails and lists references; `--cascade` also deletes children and targeting tracks.
 
 ## Geometry
 
-Authoring uses world-space geometry:
+- `position` is relative to `parent`; a root item is in world space.
+- `draw` points and unbound `arrow` endpoints are item-local; bound endpoints follow the referenced item.
+- `size` is authored for boxes (`frame`, `shape`, media, `task`, `effect`, `custom`) and derived for `text`, `draw`, and `arrow`.
+- `style` accepts palette tokens, CSS colors, light/dark pairs, plus `dash`, `radius`, and `trim`.
 
-- `position` (`{ x, y }`) and `rotation`, with an optional `size` for sized Items.
-- Draw points and arrow endpoints are authored in **world** coordinates; item frames are derived automatically from stroke and curve bounds and validated against canonical geometry.
-- `boards capabilities` reports the coordinate conventions per field, and the same geometry core in `@cohub/protocol` is used by the SDK, CLI, and web editor so exports and live editing cannot drift.
+Use `cohub boards schema <target> --field <path>` to read the exact value type, units, and composition (for example camera fields) instead of guessing.
 
-The older opaque `frame` envelope from early semantic builds is gone; do not hand-write it.
+## Scripts
 
-## Atomic commands and batches
+`custom` items and native items can carry a `script` attachment (`src`, `params`, `targets`, `seed`, `enabled`). Scripts run in one isolated module runtime shared by browser, CLI, and exports, declare their own `hitRegions()`, and commit document changes explicitly. ESM entry modules publish with their transitive dependencies.
 
-Semantic mutations accept commands such as:
+## Validation and concurrency
 
-```text
-board.patch
-item.create / item.patch / item.replace / item.delete / item.reorder
-connection.create / connection.patch / connection.delete
-effect.apply / effect.delete
-composition.apply / composition.delete
-```
-
-A mutation has a stable `mutationId`, an expected `baseVersion`, a command list, and optional `dryRun`. `boards batch` sends many commands in one atomic round trip. The server checks schemas, references, versions, cascade rules, and capabilities before writing. A durable receipt makes retries replay-safe; unchanged composition tracks can be re-applied as a no-op.
-
-## Validation contract
-
-`boards capabilities` and the public SDK `BoardSemanticCommandSchema` expose the authoring contract: supported types, fields, coordinate spaces, animation channels, clip/effect kinds, and limits. Validation failures include machine-readable codes and paths such as `items.0.props.text`; the codec raises `BoardItemValidationError`. Server failures use a stable error shape with a diagnostic array and `requestId`.
-
-Use the same schema locally and on the server. Do not guess extension fields or turn an internal renderer object into authoring JSON.
+- Every write reports a Board version. Pass `--base-version` to fail when the Board has moved past it.
+- Pass `--mutation-id` so a retry never applies twice.
+- `--dry-run` validates without writing.
+- Validation failures name the authoring path (for example `items.0.props.text`).
 
 ## CLI workflow
 
 ```bash
-# Discover and validate a complete batch
-cohub boards capabilities <board-or-path> --json
-cohub boards examples create > board.json
-cohub boards batch <board-or-path> --input changes.json --dry-run
-cohub boards batch <board-or-path> --input changes.json \
-  --base-version 12 --mutation-id <stable-id> --json
+# Inspect
+cohub boards get <board> --only board,items --json
+cohub boards get <board> --within <frame-id> --json
+cohub boards schema <target> --field props.geometry
 
-# Read individual semantic resources
-cohub boards items get <board-or-path> <item-id> --json
-cohub boards connections get <board-or-path> <connection-id> --json
-cohub boards effects get <board-or-path> <effect-id> --json
-cohub boards compositions get <board-or-path> <composition-id> --json
+# Write
+cohub boards apply <board> -i patch.json --dry-run
+cohub boards apply <board> -i patch.json --base-version 12 --mutation-id <stable-id>
+cohub boards apply <board> -i doc.json --replace
+
+# History and restore
+cohub boards history <board> --limit 20 --json
+cohub boards history <board> --restore 12
 ```
 
-Playback commands are grouped under `boards playback`:
+## Animation presets
 
 ```bash
-cohub boards playback play <board-or-path> <composition-id> --time-scale 1
-cohub boards playback pause <board-or-path> <playback-id>
-cohub boards playback seek <board-or-path> <playback-id> 400
-cohub boards playback stop <board-or-path> <playback-id>
+cohub boards preset <name> --at 0 --stagger 80 --duration 600 --ease ease-out --json
+cohub boards preset <name> --animation intro --json
 ```
 
-## Edit history
-
-Every applied mutation is one transaction. The read-only log serves snapshot-consistent, newest-first pages with server-computed inverses:
-
-```bash
-cohub boards transactions <board-or-path> --limit 50 --json
-cohub boards transactions <board-or-path> --before 120 --operations --json
-```
-
-The first page carries the current snapshot. The SDK's `createBoardReplayPlayer()` turns it into a rewindable timeline that supports older pages and live appends; the web workspace adds a private replay stage with a scrubber, play/pause, 1-4x speed, and camera follow.
+Without `--animation`, presets emit bare `tracks`; with it, they wrap the tracks in that animation.
 
 ## Retry rules
 
-- Reuse the same `mutationId` after a timeout.
-- Use `baseVersion` to make an expected snapshot explicit.
-- On `VERSION_CONFLICT`, read the latest Board and rebase the intended commands.
-- On a validation error, fix the reported authoring path; do not retry unchanged JSON.
+- Reuse the same `mutation-id` after a timeout.
+- Use `--base-version` to reject a stale snapshot.
+- After a version conflict, read the latest Board and rebase the patch.
+- Fix a reported validation path; do not retry unchanged JSON.
 
 ## Avoid
 
-- Writing the removed legacy Sequence/Node wire shape or the old `frame` envelope.
+- Writing legacy Node/Sequence shapes or the pre-v3 `frame` envelope.
 - Treating a screenshot or renderer cache as the source of truth.
-- Replacing a timed-out batch with a new id.
-- Sending unbounded JSON or unsupported capabilities.
+- Sending unbounded JSON or unsupported item properties.
+- Replacing a timed-out write with a new mutation id.
 
 ---
 

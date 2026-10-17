@@ -15,6 +15,7 @@ Curated playbooks.
 | `cohub.bp.fork-and-proposal` | Fork a Save and explore safely | [fork-and-proposal.md](./fork-and-proposal.md) |
 | `cohub.bp.hide-cohub-bar` | Hide the Cohub bar on a public App | [hide-cohub-bar.md](./hide-cohub-bar.md) |
 | `cohub.bp.home-and-sessions-inbox` | Home Space and Sessions inbox | [home-and-sessions-inbox.md](./home-and-sessions-inbox.md) |
+| `cohub.bp.local-runtime` | Run a Space on a Local Runtime | [local-runtime.md](./local-runtime.md) |
 | `cohub.bp.minimal-scopes` | Ship Apps with least privilege | [minimal-scopes.md](./minimal-scopes.md) |
 | `cohub.bp.mod-mount` | Mount Mods for shared tooling | [mod-mount.md](./mod-mount.md) |
 | `cohub.bp.multimodal-pipeline` | Generate, inspect, and materialize multimodal assets | [multimodal-pipeline.md](./multimodal-pipeline.md) |
@@ -40,6 +41,6 @@ Curated playbooks.
 | `cohub.bp.work-lifecycle` | App lifecycle - publish, version, disable, visibility | [work-lifecycle.md](./work-lifecycle.md) |
 | `cohub.bp.work-promotions` | Measure App promotions without leaking visitor data | [work-promotions.md](./work-promotions.md) |
 
-**35** items.
+**36** items.
 
 [中文](../zh/playbooks/README.md)

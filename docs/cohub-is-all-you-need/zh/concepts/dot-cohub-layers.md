@@ -45,13 +45,16 @@ CLAUDE.md
 - `.cohub/models.json` - 环境模型目录
 - `.cohub/generations/` - 生成声明
 - `.cohub/model-tasks.json` - session title、image-to-text 等辅助任务模型
+- `.cohub/decisions.json` - decision 模型与 provider（`space.decision()`）
 - `.agents/skills/`、`.agents/prompts/*.md`
 
-### 用户层（`name === "config"` Save -> `/configs/user`）
+### 用户层（Home Space 或 `name === "config"` Save -> `/configs/user`）
 
 - `.cohub/models.json` - 所有者模型覆盖/合并
 - `.cohub/generations/` - 用户生成声明
 - `.cohub/model-tasks.json` - 用户对辅助任务的覆盖或禁用
+- `.cohub/decisions.json` - decision 模型的用户视图（仅 name/hidden）
+- `.cohub/theme.css` - 全应用生效的个人主题
 - `.agents/skills/`、`.agents/prompts/*.md`、`AGENTS.md`
 
 ### 项目 / 普通 Space（`/workspace`）
@@ -62,7 +65,9 @@ CLAUDE.md
 - `.cohub/hooks/*` - 当前 Space 的事件自动化
 - `.agents/skills/`、`.agents/prompts/*.md` - 仅当前项目
 
-在普通项目 Space 放 `models.json` 不会发布账户级模型；需要 config 或 platform Save。
+在普通项目 Space 放 `models.json` 不会发布账户级模型；需要 Home Space 或 `name=config` 的 Save（或 platform Save）。
+
+自 v2.66 起，**Home Space** 通过普通 Save 管线发布同样的个人配置。已有的 `name === "config"` Space 仍作为普通 Space 工作；不会自动迁移，也没有回退。
 
 ## 优先级
 
@@ -89,7 +94,7 @@ models:                 platform -> user
 
 ## 实践
 
-1. 个人模型、默认 Prompt 与 skills：编辑 `name=config` Space，完成后 Save。
+1. 个人模型、默认 Prompt、skills 与主题：编辑 Home Space（或 `name=config` Space），完成后 Save。
 2. 项目斜杠配方：放在 `.agents/prompts/*.md`。
 3. 当前 Space 的外观：使用 `.cohub/space.json` / `theme.css`。
 4. 需要请求身份时使用 `{{cohub.*}}` 变量，不要把 ID 手工复制进模板。

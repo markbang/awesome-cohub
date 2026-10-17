@@ -1,29 +1,41 @@
 ---
 id: cohub.concept.home-space
-title: Home Space
+title: Home Space（主空间）
 type: concept
+related:
+  - cohub.concept.user-config-space
+  - cohub.bp.home-and-sessions-inbox
+sources:
+  - https://cohub.live/changelog（v2.66）
 ---
 
-# Home Space
+# Home Space（主空间）
 
-Default personal Space many accounts land in (`slug=home` when bootstrapped).
+许多账号默认落点的个人 Space（初始化时 `slug=home`）。
 
-- Still a full Space (files, Chats, Saves, Apps)
-- May be created empty or forked from a platform bootstrap checkpoint
-- Best as a hub/staging area - spin up named Spaces for real initiatives
+- 仍是完整 Space（文件、Chat、Save、App）
+- 可以创建为空，或从平台 bootstrap checkpoint 分叉
+- 适合作为枢纽/暂存区——真正的工作线另建具名 Space
+- CLI 默认目标：未提供 `-s` 或 `COHUB_SPACE_ID` 时，命令通过 `GET /api/spaces/default` 解析账号的 Home Space
 
-## See also
-- Playbook: `cohub.bp.home-and-sessions-inbox`
-- Changelog: Home bootstrap / default space resolution
+## Home 作为个人配置（v2.66）
 
-## Not the config Space
+现在 Save Home Space 会通过与 config Space 相同的 Save 管线发布个人配置：
 
-**Home ≠ user config Space.**
+| 从 Home 发布 | 效果 |
+|--------------|------|
+| `AGENTS.md` / `CLAUDE.md` | User Rules（`source: "home-space"`） |
+| `.agents/skills/` | 所有者个人 skills |
+| `.agents/prompts/` | 个人斜杠模板 |
+| `.cohub/models.json` | 所有者模型覆盖 |
+| `.cohub/theme.css` | 全应用生效的个人主题 |
 
-- Home: default landing (`slug=home`), ordinary Saves
-- Config: `name === "config"`, Save **publishes** owner agent config to `/configs/user`
+已有的 `name === "config"` Space 仍作为普通 Space 工作：不会自动迁移，两者之间也不做回退。
 
-See [user-config-space.md](./user-config-space.md).
+## 参见
+
+- 实践卡：[home-and-sessions-inbox](../../playbooks/home-and-sessions-inbox.md)
+- [用户 config Space](./user-config-space.md) - 较早的专用配置 Space
 
 ---
 

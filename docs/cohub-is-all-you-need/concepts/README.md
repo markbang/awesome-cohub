@@ -13,14 +13,16 @@ Curated concepts.
 | `cohub.concept.command-palette` | Personal command palette and Recent | [command-palette.md](./command-palette.md) |
 | `cohub.concept.commerce` | App commerce | [commerce.md](./commerce.md) |
 | `cohub.concept.context-compaction` | Recoverable context compaction | [context-compaction.md](./context-compaction.md) |
+| `cohub.concept.decision-models` | Decision models | [decision-models.md](./decision-models.md) |
 | `cohub.concept.direct-generation` | Direct Generation turns | [direct-generation.md](./direct-generation.md) |
 | `cohub.concept.dot-cohub-layers` | .cohub layers & priority | [dot-cohub-layers.md](./dot-cohub-layers.md) |
 | `cohub.concept.execution-token` | Execution token | [execution-token.md](./execution-token.md) |
 | `cohub.concept.home-space` | Home Space | [home-space.md](./home-space.md) |
 | `cohub.concept.hooks` | Space Hooks | [hooks.md](./hooks.md) |
 | `cohub.concept.labels` | Labels | [labels.md](./labels.md) |
+| `cohub.concept.local-runtime` | Local Runtime | [local-runtime.md](./local-runtime.md) |
 | `cohub.concept.platform-config` | Platform config | [platform-config.md](./platform-config.md) |
-| `cohub.concept.realtime-rooms` | Realtime rooms for Work Apps | [realtime-rooms.md](./realtime-rooms.md) |
+| `cohub.concept.realtime-rooms` | Realtime rooms for Apps | [realtime-rooms.md](./realtime-rooms.md) |
 | `cohub.concept.sandbox` | Sandbox | [sandbox.md](./sandbox.md) |
 | `cohub.concept.save` | Save (Checkpoint) | [save.md](./save.md) |
 | `cohub.concept.search-layers` | Search layers | [search-layers.md](./search-layers.md) |
@@ -37,8 +39,8 @@ Curated concepts.
 | `cohub.concept.thinking-level-and-models-status` | Per-prompt thinking level & live model status | [thinking-level-and-models-status.md](./thinking-level-and-models-status.md) |
 | `cohub.concept.user-config-space` | User config Space | [user-config-space.md](./user-config-space.md) |
 | `cohub.concept.work` | App (formerly Work) | [work.md](./work.md) |
-| `cohub.concept.work-presentation` | App presentation and runtime context | [work-presentation.md](./work-presentation.md) |
+| `cohub.concept.work-presentation` | App presentation, surfaces, and runtime context | [work-presentation.md](./work-presentation.md) |
 
-**34** items.
+**36** items.
 
 [中文](../zh/concepts/README.md)

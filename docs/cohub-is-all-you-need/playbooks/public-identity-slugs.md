@@ -9,7 +9,7 @@ related: [cohub.bp.publish-static-work, cohub.bp.work-lifecycle, cohub.concept.w
 sources:
   - https://cohub.live/docs/workspace/spaces
   - https://cohub.live/docs/apps
-  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
 ---
 
 # Username, Space slug, and App URLs

@@ -22,9 +22,11 @@ type: cheatsheet
 | 分享的是 Sandbox 域名 | 发布 Work/App，不要发原始 Sandbox URL |
 | 刷新 404 | 静态托管 + History API，改用 hash 路由或预渲染 |
 | 白屏 | 检查 `base: "./"`、资源路径、浏览器控制台并重新构建 `dist/` |
-| 文件/目录发布被拒 | 超出限制或缺 `index.html`；当前上限为 1 GiB，目录 1-1000 个文件 |
+| 文件/目录发布被拒 | App 目标限制或缺 `index.html`：1 GiB，目录 1-1000 个文件。普通文件上传另算（单文件 2 GiB） |
 | `apps publish` 报目标不存在 | `--file` / `--dir` 按来源解析；Sandbox 内是工作区，其他环境是本机。可以显式传 `--source workspace` 或 `--source local` |
 | 修改 target 但公开页面没变 | 明确发布新版本 |
+| 观众仍看到旧版本 | 版本 URL 不可变（`?cohub_v=<n>`）；明确发布新版本并分享该链接 |
+| 从不出现 App 授权弹窗 | 在 Shell Space 发布或安装的 App 是可信的，会跳过 consent；其他 App 必须使用 `client.auth.authorize()` |
 | Work 预览更新后变空 | 当前预览刷新失败应保留原内容；点击 Retry 并检查版本状态 |
 | `desktop open --call` 没反应 | App 必须注册完全相同的方法，并从获准 Cohub origin 打开 |
 | 访客 API 403 | 检查调用需要 App scope，还是目标 Space 上的 viewer grant |
@@ -49,6 +51,17 @@ type: cheatsheet
 | Action 报 timeout/abort/exit code | 失败原因通过统一执行来源契约上报；查看 Task Run。Action 不能递归调用 `actions.run()` |
 | Action input 出现在 Task Run 里 | 预期行为：输入随 run 保存，所有者与可查看任务的 Space 成员可见。不要传密钥 |
 
+## Local Runtime、decision 与房间
+
+| 现象 | 处理 |
+|------|------|
+| `cohub sandbox up` 不能用了 | v2.51 已移除；改用 `cohub runtime up`（Local Runtime），或让 Space 继续跑在云端 Sandbox |
+| 本地回合的工具行为不同 | Harness（Pi/Codex）决定工具语义；查看 `cohub runtime logs` 并确认 `--harness` |
+| Runtime 漏掉目录变更 | 原生监控可能回退到有限扫描；`cohub runtime status` 会报告当前后端 |
+| `space.decision()` 没有结果 | 问题类型必须是 `noul`/`choice`/`score`，且在 `.cohub/decisions.json` 声明；decision 模型被有意排除在 LLM 选择器之外 |
+| 房间事件不再到达 | publish/send 不会重放；用 `onStateChange()` / `onOutOfSync()` 重新同步，并检查 24 小时绝对生命周期 |
+| 重启后房间是空的 | 只保留最新 1,000 条事件（最多 512 KB）；权威状态要持久化到 Space 文件 |
+
 ## Hooks 与 webhook
 
 | 现象 | 处理 |
@@ -63,7 +76,9 @@ type: cheatsheet
 
 | 现象 | 处理 |
 |------|------|
-| 旧 node/sequence payload 被拒 | 使用语义化 Item/Composition，并先查看 `boards capabilities` |
+| 旧 node/sequence payload 被拒 | 使用 v3 文档模型（settings/items/animations）；Sketch 块已由 Board 脚本取代 |
+| `boards inspect` / `--background` 不被识别 | v3 CLI：`boards get` 取代 `inspect`，`--paper` 取代 `--background` |
+| Board 改动落到了错误的 item | 按路径解析 ID；ID 只在单个 board 文件内稳定，不是全局 |
 | 旧 `frame` 包裹格式被拒 | 使用 `position` / `size` / `rotation` 编辑；手绘与箭头为世界坐标，画框自动推导 |
 | Board batch 返回 diagnostic | 先修复报告的编辑路径（例如 `items.0.props.text`），再重试 |
 | Board API 错误缺少上下文 | 保存稳定 error code、diagnostics 与 `requestId` |
@@ -78,6 +93,8 @@ type: cheatsheet
 | 现象 | 处理 |
 |------|------|
 | 并发编辑被拒绝 | 处理 `CONFLICT`：读取最新版本，再缩小编辑或使用 `fs.edit` |
+| 上传被拒：`file_too_large` | 单个持久上传上限 2 GiB，批次 2 GiB / 2000 文件，内联上传 64 MiB。已发布 App 目标仍为 1 GiB |
+| 上传被拒：`upload_rate_limited` | 触发了按用户的小时配额；按响应的 `retryAfterSeconds` 等待 |
 | 并发上传被拒 | 上传会通过快照校验拒绝并发本地编辑；重新读取文件后重试 |
 | 无害格式差异导致编辑失败 | 基于规范化的最新快照重试；可恢复编辑容忍换行、BOM 和行尾空格，但歧义匹配仍会失败 |
 | 命令输出看起来不完整 | 先检查明确的截断标志/详情，不要把输出当作完整结果 |

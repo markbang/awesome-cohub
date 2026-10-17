@@ -10,13 +10,13 @@ type: cookbook
 
 ## 结果
 
-- `name === "config"` 的 Space（不是 Home）
+- 一个个人配置来源：Home Space，或 `name === "config"` 的 Space
 - 规则发布到 `/configs/user`
 - Save 后核心 skills 可用 `/skill:`
 
 ## 路径
 
-1. [user-config-and-rules](../playbooks/user-config-and-rules.md) — 别用 Home 当 config
+1. [user-config-and-rules](../playbooks/user-config-and-rules.md) — 选定 Home 或 config 其中一个
 2. 在 config Space 写规则
 3. 安装 skills 后 **Save**：
 

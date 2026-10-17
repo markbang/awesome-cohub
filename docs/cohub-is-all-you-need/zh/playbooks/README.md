@@ -13,6 +13,7 @@
 | `cohub.bp.fork-and-proposal` | Fork 存档并安全探索 | [fork-and-proposal.md](./fork-and-proposal.md) |
 | `cohub.bp.hide-cohub-bar` | 隐藏公开 App 的 Cohub 底栏 | [hide-cohub-bar.md](./hide-cohub-bar.md) |
 | `cohub.bp.home-and-sessions-inbox` | Home Space 与 Sessions 收件箱 | [home-and-sessions-inbox.md](./home-and-sessions-inbox.md) |
+| `cohub.bp.local-runtime` | 在 Local Runtime 上运行 Space | [local-runtime.md](./local-runtime.md) |
 | `cohub.bp.minimal-scopes` | 以最小权限发布 App | [minimal-scopes.md](./minimal-scopes.md) |
 | `cohub.bp.mod-mount` | 挂载 Mod 共享工具与技能 | [mod-mount.md](./mod-mount.md) |
 | `cohub.bp.multimodal-pipeline` | 生成、查看并落盘多模态资产 | [multimodal-pipeline.md](./multimodal-pipeline.md) |
@@ -38,6 +39,6 @@
 | `cohub.bp.work-lifecycle` | App 生命周期 - 发布、版本、停用、可见性 | [work-lifecycle.md](./work-lifecycle.md) |
 | `cohub.bp.work-promotions` | 在不泄露观众数据的前提下衡量 App 推广 | [work-promotions.md](./work-promotions.md) |
 
-**35** 项。
+**36** 项。
 
 [English](../../playbooks/README.md)

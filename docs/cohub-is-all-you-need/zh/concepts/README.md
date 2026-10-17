@@ -13,14 +13,16 @@
 | `cohub.concept.command-palette` | 个性化命令面板与 Recent | [command-palette.md](./command-palette.md) |
 | `cohub.concept.commerce` | App 商业化 | [commerce.md](./commerce.md) |
 | `cohub.concept.context-compaction` | 可恢复的上下文压缩 | [context-compaction.md](./context-compaction.md) |
+| `cohub.concept.decision-models` | Decision 模型 | [decision-models.md](./decision-models.md) |
 | `cohub.concept.direct-generation` | 直接生成回合 | [direct-generation.md](./direct-generation.md) |
 | `cohub.concept.dot-cohub-layers` | .cohub 分层与优先级 | [dot-cohub-layers.md](./dot-cohub-layers.md) |
 | `cohub.concept.execution-token` | Execution token（执行令牌） | [execution-token.md](./execution-token.md) |
 | `cohub.concept.home-space` | Home Space（主空间） | [home-space.md](./home-space.md) |
 | `cohub.concept.hooks` | Space Hooks（空间钩子） | [hooks.md](./hooks.md) |
 | `cohub.concept.labels` | Labels（标签） | [labels.md](./labels.md) |
+| `cohub.concept.local-runtime` | Local Runtime | [local-runtime.md](./local-runtime.md) |
 | `cohub.concept.platform-config` | 平台配置 | [platform-config.md](./platform-config.md) |
-| `cohub.concept.realtime-rooms` | Work App 实时房间 | [realtime-rooms.md](./realtime-rooms.md) |
+| `cohub.concept.realtime-rooms` | App 实时房间 | [realtime-rooms.md](./realtime-rooms.md) |
 | `cohub.concept.sandbox` | Sandbox（沙箱） | [sandbox.md](./sandbox.md) |
 | `cohub.concept.save` | Save / Checkpoint（存档） | [save.md](./save.md) |
 | `cohub.concept.search-layers` | 搜索分层 | [search-layers.md](./search-layers.md) |
@@ -37,8 +39,8 @@
 | `cohub.concept.thinking-level-and-models-status` | 单 Prompt 思考等级与模型实时状态 | [thinking-level-and-models-status.md](./thinking-level-and-models-status.md) |
 | `cohub.concept.user-config-space` | 用户 config Space | [user-config-space.md](./user-config-space.md) |
 | `cohub.concept.work` | App（原 Work） | [work.md](./work.md) |
-| `cohub.concept.work-presentation` | App 呈现与运行时上下文 | [work-presentation.md](./work-presentation.md) |
+| `cohub.concept.work-presentation` | App 呈现、表面与运行时上下文 | [work-presentation.md](./work-presentation.md) |
 
-**34** 项。
+**36** 项。
 
 [English](../../concepts/README.md)

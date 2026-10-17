@@ -8,7 +8,7 @@ difficulty: starter
 related: [cohub.concept.work, cohub.bp.minimal-scopes, cohub.bp.work-kit-product, cohub.bp.hide-cohub-bar, cohub.bp.work-lifecycle, cohub.bp.public-identity-slugs]
 sources:
   - https://cohub.live/docs/apps
-  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
 ---
 
 # 发布静态 App

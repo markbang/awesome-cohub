@@ -1,6 +1,6 @@
 # Cohub Is All You Need · Cohub 就是你需要的全部
 
-**v0.2** · 写给在 [Cohub](https://cohub.live) 里共创的人与 Agent 的最佳实践
+**v0.21** · 写给在 [Cohub](https://cohub.live) 里共创的人与 Agent 的最佳实践
 
 > 你的 Space：用来创造、玩耍，并与人、与 Agent 一起构建。
 
@@ -121,7 +121,7 @@ Web、CLI（`@neta-art/cohub-cli`）、频道应驱动 **同一个 Space**。
 
 从 v2.37 起，**App** 是 SDK/API 的规范术语（`client.apps`、`appScopes`）；Work 与 `/w/` 仍是面向用户的称呼和兼容 URL。file/directory 发布带不可变 manifest，可校验下载；Board 与 port 是运行时界面，不是可恢复的文件 bundle。查询参数和 hash 会转发给嵌入 App，但 `cohub_*` 命名空间由宿主保留。
 
-官方：[apps-guide.md](https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md)
+官方：[apps-guide.md](https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md)
 
 ### 3.5 生成（Generations）
 **用于：** 在 Space 上下文中做图/视频/音乐等。  
@@ -233,7 +233,7 @@ Webhook hook（v2.46）按文件名寻址（`POST /api/spaces/:id/webhooks/<name
 实践卡：[home-and-sessions-inbox](./playbooks/home-and-sessions-inbox.md) · [mod-mount](./playbooks/mod-mount.md) · [skill-slash-discovery](./playbooks/skill-slash-discovery.md)
 
 
-### 3.13 用户 config Space（不是 Home）
+### 3.13 个人配置：Home 或 config Space
 
 Cohub 有一类特殊的 **owner 配置 Space**：当 **`space.name === "config"`** 时被识别。
 
@@ -245,7 +245,7 @@ Cohub 有一类特殊的 **owner 配置 Space**：当 **`space.name === "config"
 - **个人 skills** 出现在 `/configs/user/.agents/skills` 与 `/skill:` 发现
 - Skill 优先级：`platform → mods → user → workspace`（同名后者覆盖）
 
-**Home 不是 config**——Home 存档不会发布 user config。  
+**只选一个来源**——Save Home 会发布个人配置；已有的 `name=config` Space 继续可用，但不会与 Home 合并。
 **Mod 不是 user config**——Mod 共享团队/基座能力；config Space 是个人默认。
 
 实践卡：[user-config-and-rules](./playbooks/user-config-and-rules.md) · 概念：[user-config-space](./concepts/user-config-space.md) · 速查：[config-layers](./cheatsheets/config-layers.md)
@@ -295,6 +295,16 @@ node /configs/user/.agents/skills/hyper-search/scripts/cli.js search "query"
 - **App 表面**（v2.39、v2.44-v2.46）：可配置命中区域的 Overlay、iframe 嵌入、预览保活标签、统一表面解析，以及描述当前打开位置的 shell 上下文。
 - **App Actions 与 webhook**（v2.41、v2.46）：`.cohub/actions/` 下的服务端入口（所有者出资、观众计量），以及可用 `uses` 运行它们的 HTTP 触发 hook。
 - **Board 回放与实况 App**（v2.40、v2.45）：可倒带的事务日志与 `createBoardReplayPlayer()`、拖放上板的可交互 App 画框，以及可选入场动效。
+
+### 3.19 本地优先运行时与 Board v3（v2.47-v2.70）
+
+- **Local Runtime**（v2.51-v2.58、v2.60、v2.68）：`cohub runtime up` 取代 `cohub sandbox up`；Space 可以通过原生 Pi 或 Codex Harness 在本机目录上运行，支持事件驱动同步、Windows/macOS、显示共享与 attach/import 流程。
+- **Board v3**（v2.61-v2.69）：统一文档模型（`settings` / `items` / `animations`）、分层 SDK 包（`board/editor`、`board/replica`、`board/stage`、`board/export/node`、SDK 10），以及 v3 CLI（`boards get`、`apply`、`history`、`preset`、`export --paper`）。Board 脚本取代 Sketch；task 卡片由服务端同步；3D 模型可原位预览。
+- **App 平台**（v2.47、v2.50-v2.53、v2.59、v2.63-v2.67）：`client.auth.authorize()` 取代旧 viewer auth；带来源的不可变版本历史（`?cohub_v=`、`listPublicVersions()`）；`app.manage`；可信 App 与宿主 consent；文件处理器；App 窗口协议（`client.app.window`、`onBeforeClose`、`onDrop`、`onLaunch`）；带 RTC、历史、邀请与设备授权的 App 房间；资源类 App。
+- **Decision 模型**（v2.66）：`space.decision()` 与 `cohub decision` 用校准概率回答 `noul` / `choice` / `score` 问题，配置在 `.cohub/decisions.json`，并被有意排除在 LLM 选择器之外。
+- **Home 作为个人配置**（v2.66）：Save Home Space 会发布 User Rules、skills、prompts、模型与个人主题；已有的 `name=config` Space 保持普通 Space 语义。
+- **媒体与生成**（v2.47-v2.70）：3D 模型输入、端到端 URL 媒体、WebP 变体、带结构化错误码的 2 GiB 上传、统一上传配额，以及 CLI 中的模型定价。
+- **Chat 与导航**：四层分叉树、Session 来源过滤、统一 `@` 提及、更宽松的工作区与紧凑侧栏标签。
 
 ## 4. 给建造者（人）
 
@@ -388,10 +398,10 @@ cohub -s "$COHUB_SPACE_ID" apps publish <slug> \
 
 | 层 | 现在 | 之后 |
 |----|------|------|
-| 主文 | 本文件（v0.2） | 随产品迭代修订 |
+| 主文 | 本文件（v0.21） | 随产品迭代修订 |
 | [矩阵](./matrix.md) | 场景索引 | 保持 ID 稳定 |
-| [实践卡](./playbooks/) | 35 张实践卡 | 随产品增长追加新场景 |
-| [概念卡](./concepts/) | 34 个核心名词 | 少而精 |
+| [实践卡](./playbooks/) | 36 张实践卡 | 随产品增长追加新场景 |
+| [概念卡](./concepts/) | 36 个核心名词 | 少而精 |
 | 知识库模式 | §3.9 + 实践卡 | 随真实 Space 演进 |
 
 ---

@@ -10,8 +10,8 @@ related:
   - cohub.bp.work-commerce
   - cohub.concept.work
 sources:
-  - https://cohub.live/changelog (v2.22-v2.23)
-  - https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md
+  - https://cohub.live/changelog (v2.22-v2.41)
+  - https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md
 ---
 
 # Measure App promotions without leaking visitor data
@@ -51,6 +51,8 @@ cohub apps promotions stats <app> <promotion-id>
 4. Use the 30-day App-scoped last-touch attribution maintained in browser storage when authentication or checkout redirects occur.
 5. For Meta delivery, use `--provider meta` only when the deployment has configured the Meta Pixel and Conversions API credentials. Test integrations with the optional Meta test event code before sending live traffic.
 6. Treat statistics as aggregate funnel evidence. Cohub retains the immutable App version that served each event, not a visitor-level promotion record.
+7. Campaign-driven first-purchase discounts (v2.41) are viewer-independent in the catalog: discount percent and end date show on pricing pages for everyone, while priced offers apply server-side only to eligible signed-in users. Campaign parameters come from provider discount configuration, not a hard-coded percentage.
+8. Only trust a purchase after checkout reconciliation: the redirect carries a server-appended outcome, and success is confirmed against the order or subscription state.
 
 ## Event contract
 

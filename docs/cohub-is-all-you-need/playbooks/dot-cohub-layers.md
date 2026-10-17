@@ -37,11 +37,11 @@ You need models, slash `/` templates, Space theme/background, or hooks — and m
 
 | Goal | Put it here | Activate |
 |------|-------------|----------|
-| Account-wide models | `config` Space → `.cohub/models.json` | **Save** config |
+| Account-wide models | Home or `config` Space → `.cohub/models.json` | **Save** that Space |
 | Env-wide models | platform Space → `.cohub/models.json` | **Save** platform |
-| Personal slash templates | `config` → `.agents/prompts/*.md` | **Save** config |
+| Personal slash templates | Home or `config` → `.agents/prompts/*.md` | **Save** that Space |
 | Project slash templates | project → `.agents/prompts/*.md` | live in workspace (cached by revision) |
-| Skills | `.agents/skills/<name>/` (same layering) | Save if config/platform |
+| Skills | `.agents/skills/<name>/` (same layering) | Save if Home/config/platform |
 | New chat background | project → `.cohub/space.json` | files in that Space |
 | Space theme CSS | project → `.cohub/theme.css` | files in that Space |
 | Hooks | project → `.cohub/hooks/*` | files in that Space |
@@ -49,7 +49,7 @@ You need models, slash `/` templates, Space theme/background, or hooks — and m
 **Priority (skills & slash prompts):**  
 
 ```text
-platform → mods → user (config) → project workspace
+platform → mods → user (Home or config) → project workspace
 ```
 
 Same `name` → **later wins**.
@@ -64,7 +64,7 @@ platform → user
 
 ### A. Personal models + default slash commands
 
-1. Open the Space with **`name === "config"`** (not Home).  
+1. Open your **Home Space**, or a Space with **`name === "config"`** (pick one; do not split config across both).
 2. Add or edit:
    ```text
    .cohub/models.json
@@ -98,7 +98,7 @@ platform → user
    .cohub/theme.css     # optional custom CSS
    ```
 2. Reload Chat / new chat surface; confirm background.  
-3. This is **local to the Space**, not published as user config.
+3. This is **local to the Space**, not published as personal config.
 
 ### D. Hooks
 
@@ -132,7 +132,7 @@ Filename without `.md` is the slash name (`ship.md` → `/ship`).
 - Editing `/configs/user` inside a project sandbox  
 - Expecting project `.cohub/models.json` to become global  
 - Putting slash templates under `.cohub/` instead of `.agents/prompts/`  
-- Using Home as config  
+- Mixing Home and `name=config` as two config sources
 
 ## See also
 

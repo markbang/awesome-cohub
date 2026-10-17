@@ -50,7 +50,11 @@ type: guide
 | Board 编辑历史回放 | [board-runtime](./concepts/board-runtime.md) · [board-export-and-playback](./playbooks/board-export-and-playback.md) |
 | App Overlay 与嵌入 | [work-presentation](./concepts/work-presentation.md) |
 | Space 活动报告 | [space-activity](./playbooks/space-activity.md) |
-| 命令面板与快捷操作 | [command-palette](./concepts/command-palette.md) |
+| 命令面板与快捷操作 |
+| Local Runtime（本机目录 + Harness） | [local-runtime](./concepts/local-runtime.md) · [实践卡](./playbooks/local-runtime.md) |
+| Decision 模型（结构化判断） | [decision-models](./concepts/decision-models.md) |
+| App 房间（RTC、邀请、历史） | [realtime-rooms](./concepts/realtime-rooms.md) |
+| Board v3 文档与脚本 | [board-runtime](./concepts/board-runtime.md) · [board-semantic-authoring](./concepts/board-semantic-authoring.md) | [command-palette](./concepts/command-palette.md) |
 | 调研 → wiki | [cookbook](./cookbooks/research-agent-wiki.md) |
 | 周末 App | [cookbook](./cookbooks/weekend-static-work.md) |
 

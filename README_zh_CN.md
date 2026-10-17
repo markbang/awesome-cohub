@@ -194,7 +194,7 @@ npx skills add https://github.com/markbang/wgetx-skill --list
 
 - **[Cohub README](https://github.com/talesofai/cohub/blob/main/README.md)** - 产品定位、概念与仓库地图。
 - **[共创模型](https://github.com/talesofai/cohub/blob/main/docs/CO-CREATION-MODEL.md)** - Space / Checkpoint / Proposal 心智模型。
-- **[Apps 指南](https://github.com/talesofai/cohub/blob/main/docs/apps-guide.md)** - 发布公开 Apps。
+- **[Apps 指南](https://github.com/talesofai/cohub/blob/main/docs/product/en/developers/apps.md)** - 发布公开 Apps。
 - **[自托管说明](https://github.com/talesofai/cohub/blob/main/docs/self-hosting.md)** - Monorepo 中面向部署的文档。
 
 ## 贡献
