@@ -928,7 +928,13 @@ function main() {
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Awesome Cohub</title>
+<title>Awesome Cohub · A map of the Cohub ecosystem</title>
+<meta name="description" content="Skills, playbooks, and the product surface — indexed, bilingual, and ready to copy." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Awesome Cohub" />
+<meta property="og:description" content="A bilingual map of the Cohub ecosystem: skills, guides, and resources." />
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/markbang/awesome-cohub@main/docs/cohub-is-all-you-need/assets/banner.png" />
+<meta name="theme-color" content="#0b0c0f" />
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
 <script>
 (function () {
