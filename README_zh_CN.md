@@ -193,6 +193,8 @@ npx skills add https://github.com/markbang/wgetx-skill --list
 
 ## 站点
 
+在线访问：**[markbang.github.io/awesome-cohub](https://markbang.github.io/awesome-cohub/)**（中文：[/zh/](https://markbang.github.io/awesome-cohub/zh/)）。
+
 同一份目录也构建为静态站点：Skills 带可复制的安装命令，指南支持搜索、筛选与明暗主题。
 
 ```bash

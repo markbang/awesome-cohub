@@ -42,7 +42,7 @@ This repository curates the best public entry points into the Cohub ecosystem:
 - core concepts (Space, Checkpoint, App, Channel)
 - community tools, examples, and related projects
 
-**Browse it as a site:** [Skills](#official-skills) · [Library](docs/cohub-is-all-you-need/README.md) · search with `⌘K` (static site deploy in progress).
+**Browse the site:** [English](https://markbang.github.io/awesome-cohub/) · [中文](https://markbang.github.io/awesome-cohub/zh/) — skills, the full guide, filters, and `⌘K` search.
 
 Inspired by the [Awesome](https://awesome.re) format and the VoltAgent awesome series presentation style.
 
@@ -198,6 +198,8 @@ Best-practice series for **builders** and **agents** — from first Save to Apps
 
 
 ## Site
+
+Live at **[markbang.github.io/awesome-cohub](https://markbang.github.io/awesome-cohub/)** (中文: [/zh/](https://markbang.github.io/awesome-cohub/zh/)).
 
 The same catalog is built as a static site: skills with copyable install commands, the full guide with search, filters, and a light/dark theme.
 
