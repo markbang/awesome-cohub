@@ -18,6 +18,9 @@ const BLOB = `${REPO}/blob/main/docs/cohub-is-all-you-need`;
 const CDN = "https://cdn.jsdelivr.net/gh/markbang/awesome-cohub@main";
 
 const ROOT_BASE = process.env.SITE_BASE || "";
+const ABSOLUTE = Boolean(ROOT_BASE);
+const SITE_ROOT = ROOT_BASE || "/";
+const rel = (root, path) => (root === "/" ? "/" + path : root + "/" + path);
 
 const C = {
   playbooks: { en: "Playbooks", zh: "实践卡", noteEn: "Task-shaped recipes", noteZh: "按任务组织的配方" },
@@ -225,6 +228,7 @@ const UI = {
     all: "全部",
   },
 };
+
 
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
@@ -464,7 +468,7 @@ function shell({ lang, base, title, desc, body, active = "", mode = "page", othe
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>${esc(title)}</title>
-<base href="${ROOT_BASE}/" />
+${ABSOLUTE ? `<base href="${rel(ROOT_BASE, "")}" />` : ""}
 <meta name="description" content="${esc(desc)}" />
 <meta property="og:title" content="${esc(title)}" />
 <meta property="og:description" content="${esc(desc)}" />
@@ -482,7 +486,7 @@ function shell({ lang, base, title, desc, body, active = "", mode = "page", othe
 ${header(lang, base, active, otherBase)}
 ${body}
 ${footer(lang, base)}
-<script>window.__AC_INDEX_URL=${JSON.stringify((base || "") + "search-index.js")};window.__AC_BASE=${JSON.stringify(ROOT_BASE ? ROOT_BASE + "/" : "")};</script>
+<script>window.__AC_LANG=${JSON.stringify(lang)};window.__AC_INDEX_URL=${JSON.stringify(base + "search-index.js")};window.__AC_BASE=${JSON.stringify(ABSOLUTE ? ROOT_BASE + "/" : base)};</script>
 <script src="${base}assets/app.js" defer></script>
 </body>
 </html>`;
@@ -906,7 +910,8 @@ function main() {
   const resources = parseResources();
 
   for (const lang of ["en", "zh"]) {
-    const base = "";
+    const base = ABSOLUTE ? "" : "../";
+    const homeBase = base;
     for (const doc of docs[lang]) {
       fs.writeFileSync(path.join(OUT, lang, `${doc.slug}.html`), docPage(lang, doc, docs[lang], base));
     }
@@ -915,7 +920,7 @@ function main() {
     }
     fs.writeFileSync(path.join(OUT, lang, "library.html"), libraryPage(lang, docs[lang], base));
     fs.writeFileSync(path.join(OUT, lang, "skills.html"), skillsPage(lang, skills, base));
-    fs.writeFileSync(path.join(OUT, lang, "index.html"), homePage(lang, docs[lang], skills, resources, base));
+    fs.writeFileSync(path.join(OUT, lang, "index.html"), homePage(lang, docs[lang], skills, resources, homeBase));
   }
 
   const root = `<!doctype html>

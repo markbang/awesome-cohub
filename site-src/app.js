@@ -59,10 +59,7 @@
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   const t = (k) => T[lang()][k] || k;
   const siteBase = window.__AC_BASE || "";
-  const lang = () => {
-    const seg = location.pathname.slice(siteBase.length).split("/")[0];
-    return seg === "zh" ? "zh" : "en";
-  };
+  const lang = () => window.__AC_LANG || "en";
   const mode = document.body.dataset.mode || "doc";
   const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 

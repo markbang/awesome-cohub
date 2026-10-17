@@ -200,6 +200,7 @@ Best-practice series for **builders** and **agents** — from first Save to Apps
 ## Site
 
 Live at **[markbang.github.io/awesome-cohub](https://markbang.github.io/awesome-cohub/)** (中文: [/zh/](https://markbang.github.io/awesome-cohub/zh/)).
+Also published as a Cohub App: **[cohub.live/bangwu/awesome-cohub/w/awesome-cohub](https://cohub.live/bangwu/awesome-cohub/w/awesome-cohub)**.
 
 The same catalog is built as a static site: skills with copyable install commands, the full guide with search, filters, and a light/dark theme.
 
