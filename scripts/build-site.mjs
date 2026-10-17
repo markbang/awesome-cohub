@@ -486,7 +486,7 @@ ${ABSOLUTE ? `<base href="${rel(ROOT_BASE, "")}" />` : ""}
 ${header(lang, base, active, otherBase)}
 ${body}
 ${footer(lang, base)}
-<script>window.__AC_LANG=${JSON.stringify(lang)};window.__AC_INDEX_URL=${JSON.stringify(base + "search-index.js")};window.__AC_BASE=${JSON.stringify(ABSOLUTE ? ROOT_BASE + "/" : base)};</script>
+<script>window.__AC_LANG=${JSON.stringify(lang)};window.__AC_ABS=${ABSOLUTE ? 1 : 0};window.__AC_INDEX_URL=${JSON.stringify(base + "search-index.js")};window.__AC_BASE=${JSON.stringify(ABSOLUTE ? ROOT_BASE + "/" : base)};</script>
 <script src="${base}assets/app.js" defer></script>
 </body>
 </html>`;
@@ -962,7 +962,28 @@ function main() {
   }
   fs.writeFileSync(path.join(OUT, "search-index.js"), `window.__AC_INDEX=${JSON.stringify(search)};`);
   fs.writeFileSync(path.join(OUT, ".nojekyll"), "");
-  fs.writeFileSync(path.join(OUT, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${REPO}\n`);
+  fs.writeFileSync(
+    path.join(OUT, "robots.txt"),
+    "User-agent: *\nAllow: /\nSitemap: https://markbang.github.io/awesome-cohub/sitemap.xml\n"
+  );
+
+  const urls = ["", "en/index.html", "zh/index.html"];
+  for (const lang of ["en", "zh"]) {
+    for (const doc of docs[lang]) urls.push(`${lang}/${doc.slug}.html`);
+    for (const c of ["playbooks", "concepts", "anti-patterns", "cheatsheets", "cookbooks", "reference", "library", "skills"])
+      urls.push(`${lang}/${c}.html`);
+  }
+  fs.writeFileSync(
+    path.join(OUT, "sitemap.xml"),
+    `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls
+      .map((u) => `  <url><loc>https://markbang.github.io/awesome-cohub/${u}</loc></url>`)
+      .join("\n")}\n</urlset>\n`
+  );
+
+  fs.writeFileSync(
+    path.join(OUT, "404.html"),
+    `<!doctype html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Not found · Awesome Cohub</title><link rel="stylesheet" href="/assets/style.css" /></head><body><main class="main" style="max-width:640px;margin:15vh auto;padding:0 24px"><p class="pill accent">404</p><h1 style="font-size:40px;letter-spacing:-.03em">This card is not on the board.</h1><p style="color:var(--text-dim)">The page moved, or the link is older than the catalog. <a href="/">Go home</a> · <a href="/zh/">中文首页</a></p></main></body></html>`
+  );
 
   console.log(`built ${docs.en.length} EN + ${docs.zh.length} ZH pages, ${skills.length} skills -> ${path.relative(ROOT, OUT)}/`);
 }

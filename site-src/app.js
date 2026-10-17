@@ -75,11 +75,13 @@
   };
 
   function langHref() {
+    const frames = Math.max(1, (window.__AC_FRAME_DEPTH__ = window.__AC_FRAME_DEPTH__ || Number(sessionStorage.getItem("ac-frame-depth")) || 1));
     const here = lang();
     const other = here === "en" ? "zh" : "en";
-    let slug = location.pathname.slice(siteBase.length).replace(/^\/?(en|zh)\//, "").replace(/\.html$/, "");
+    let slug = location.pathname.replace(/^.*\/(en|zh)\//, "").replace(/\.html$/, "");
     slug = LANG_SLUGS[slug] || slug;
-    return `${siteBase}${other}/${slug}.html${location.search}${location.hash}`;
+    const prefix = window.__AC_ABS ? siteBase : "../".repeat(frames);
+    return prefix + `${other}/${slug}.html${location.search}${location.hash}`;
   }
 
   // ---------- search ----------
@@ -179,13 +181,13 @@
         );
         for (const d of item.items) {
           rows.push(
-            `<li><a href="${d.u}"><span class="t">${esc(d.t)}</span><span class="k">${esc(d.ty)}</span></a></li>`
+            `<li><a href="${siteBase}${d.u}"><span class="t">${esc(d.t)}</span><span class="k">${esc(d.ty)}</span></a></li>`
           );
         }
         continue;
       }
       rows.push(
-        `<li><a href="${item.u}"><span><span class="t">${mark(item.t, terms)}</span><span class="s">${esc(
+        `<li><a href="${siteBase}${item.u}"><span><span class="t">${mark(item.t, terms)}</span><span class="s">${esc(
           item.s || item.i || ""
         )}</span></span><span class="k">${esc(item.ty)}</span></a></li>`
       );
@@ -344,7 +346,10 @@
   // ---------- boot ----------
   document.addEventListener("DOMContentLoaded", () => {
     const l = $("[data-lang]");
-    if (l) l.setAttribute("href", langHref());
+    if (l) {
+      l.setAttribute("href", langHref());
+      l.removeAttribute("hreflang");
+    }
     $$("[data-search-open]").forEach((b) => b.addEventListener("click", openSearch));
     const themeBtn = $("[data-theme-toggle]");
     const paintTheme = () => {
@@ -366,6 +371,13 @@
     const menu = $("[data-menu]");
     if (menu) menu.addEventListener("click", () => $(".rail").classList.toggle("open"));
     ensureOverlay();
+    if (window.parent && window.parent !== window) {
+      try {
+        const n = Number(window.parent.document.documentElement.dataset.embedDepth || "0") + 1;
+        sessionStorage.setItem("ac-frame-depth", String(n));
+        window.parent.document.documentElement.dataset.embedDepth = String(n);
+      } catch {}
+    }
     // preload index lazily on first search intent
     $$("[data-search-open]").forEach((b) => b.addEventListener("mouseenter", ensureOverlay, { once: true }));
   });
