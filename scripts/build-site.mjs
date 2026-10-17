@@ -918,6 +918,26 @@ function main() {
     fs.writeFileSync(path.join(OUT, lang, "index.html"), homePage(lang, docs[lang], skills, resources, base));
   }
 
+  const root = `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Awesome Cohub</title>
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+<script>
+(function () {
+  var zh = /^zh/i.test(navigator.language || "");
+  location.replace(zh ? "zh/index.html" : "en/index.html");
+})();
+</script>
+<noscript><meta http-equiv="refresh" content="0; url=en/index.html" /></noscript>
+<style>body{margin:0;background:#0b0c0f;color:#e8e9ec;font:14px/1.6 system-ui;display:grid;place-items:center;min-height:100vh}a{color:#ff4500}</style>
+</head>
+<body><p>Awesome Cohub · <a href="en/index.html">English</a> · <a href="zh/index.html">中文</a></p></body>
+</html>`;
+  fs.writeFileSync(path.join(OUT, "index.html"), root);
+
   const search = {};
   for (const lang of ["en", "zh"]) {
     search[lang] = docs[lang].map((d) => ({
