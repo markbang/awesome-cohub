@@ -7,3 +7,6 @@ node_modules/
 .tmp/
 tmp/
 .cache/
+
+# generated site (built by scripts/build-site.mjs)
+site/

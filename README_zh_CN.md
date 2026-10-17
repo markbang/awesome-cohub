@@ -53,6 +53,7 @@
 - [官方 Skills](#官方-skills)
 - [学习资源](#学习资源)
 - [Cohub Is All You Need](#cohub-is-all-you-need)
+- [站点](#站点)
 - [贡献](#贡献)
 
 ## 官方入口
@@ -189,6 +190,19 @@ npx skills add https://github.com/markbang/wgetx-skill --list
 | **概念 / 反模式 / 速查** | [概念](docs/cohub-is-all-you-need/zh/concepts/)（34）· [反模式](docs/cohub-is-all-you-need/zh/anti-patterns/)（15）· [速查](docs/cohub-is-all-you-need/zh/cheatsheets/)（6） |
 | **Banner** | [动画 SVG](https://cdn.jsdelivr.net/gh/markbang/awesome-cohub@main/docs/cohub-is-all-you-need/assets/banner.svg) · [架构图](docs/cohub-is-all-you-need/assets/architecture.svg) |
 | **变更日志** | [指南 CHANGELOG](docs/cohub-is-all-you-need/zh/CHANGELOG.md) |
+
+## 站点
+
+同一份目录也构建为静态站点：Skills 带可复制的安装命令，指南支持搜索、筛选与明暗主题。
+
+```bash
+node scripts/build-site.mjs   # 输出到 site/
+npx serve site                # 本地预览
+```
+
+- `site/en/` 与 `site/zh/` — 中英镜像
+- `site/search-index.js` — 客户端索引
+- `scripts/build-site.mjs` + `site-src/` — 生成器、样式与运行时
 
 ## 学习资源
 

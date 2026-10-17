@@ -42,6 +42,8 @@ This repository curates the best public entry points into the Cohub ecosystem:
 - core concepts (Space, Checkpoint, App, Channel)
 - community tools, examples, and related projects
 
+**Browse it as a site:** [Skills](#official-skills) · [Library](docs/cohub-is-all-you-need/README.md) · search with `⌘K` (static site deploy in progress).
+
 Inspired by the [Awesome](https://awesome.re) format and the VoltAgent awesome series presentation style.
 
 ## Contents
@@ -53,6 +55,7 @@ Inspired by the [Awesome](https://awesome.re) format and the VoltAgent awesome s
 - [Official Skills](#official-skills)
 - [Learning Resources](#learning-resources)
 - [Cohub Is All You Need](#cohub-is-all-you-need)
+- [Site](#site)
 - [Contributing](#contributing)
 
 ## Official
@@ -193,6 +196,19 @@ Best-practice series for **builders** and **agents** — from first Save to Apps
 | **Banner** | [animated SVG](https://cdn.jsdelivr.net/gh/markbang/awesome-cohub@main/docs/cohub-is-all-you-need/assets/banner.svg) · [architecture](docs/cohub-is-all-you-need/assets/architecture.svg) |
 | **Changelog** | [guide CHANGELOG](docs/cohub-is-all-you-need/CHANGELOG.md) |
 
+
+## Site
+
+The same catalog is built as a static site: skills with copyable install commands, the full guide with search, filters, and a light/dark theme.
+
+```bash
+node scripts/build-site.mjs   # writes site/
+npx serve site                # preview locally
+```
+
+- `site/en/` and `site/zh/` — mirrored pages
+- `site/search-index.js` — client-side index
+- `scripts/build-site.mjs` + `site-src/` — generator, styles, runtime
 
 ## Learning Resources
 
