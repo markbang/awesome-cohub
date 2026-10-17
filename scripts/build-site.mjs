@@ -982,7 +982,7 @@ function main() {
 
   fs.writeFileSync(
     path.join(OUT, "404.html"),
-    `<!doctype html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Not found · Awesome Cohub</title><link rel="stylesheet" href="/assets/style.css" /></head><body><main class="main" style="max-width:640px;margin:15vh auto;padding:0 24px"><p class="pill accent">404</p><h1 style="font-size:40px;letter-spacing:-.03em">This card is not on the board.</h1><p style="color:var(--text-dim)">The page moved, or the link is older than the catalog. <a href="/">Go home</a> · <a href="/zh/">中文首页</a></p></main></body></html>`
+    `<!doctype html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Not found · Awesome Cohub</title><link rel="stylesheet" href="${rel(SITE_ROOT, "assets/style.css")}" /></head><body><main class="main" style="max-width:640px;margin:15vh auto;padding:0 24px"><p class="pill accent">404</p><h1 style="font-size:40px;letter-spacing:-.03em">This card is not on the board.</h1><p style="color:var(--text-dim)">The page moved, or the link is older than the catalog. <a href="${rel(SITE_ROOT, "en/index.html")}">Go home</a> · <a href="${rel(SITE_ROOT, "zh/index.html")}">中文首页</a></p></main></body></html>`
   );
 
   console.log(`built ${docs.en.length} EN + ${docs.zh.length} ZH pages, ${skills.length} skills -> ${path.relative(ROOT, OUT)}/`);
